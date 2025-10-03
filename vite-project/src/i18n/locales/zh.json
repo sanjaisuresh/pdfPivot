@@ -1,0 +1,1002 @@
+{
+  "PdfPivot": "PDF枢纽",
+  "Dashboard": "仪表板",
+  "Users": "用户",
+  "Plans Management": "计划管理",
+  "Payment History": "付款历史",
+  "Payment History Description": "查看您至今所有的交易",
+  "Features": "功能",
+  "Merge PDF": "合并 PDF",
+  "Split PDF": "拆分 PDF",
+  "Remove Pages": "删除页面",
+  "Extract Pages": "提取页面",
+  "Organize PDF": "整理 PDF",
+  "Rotate PDF": "旋转 PDF",
+  "Compress PDF": "压缩 PDF",
+  "JPG to PDF": "JPG 转 PDF",
+  "Word to PDF": "Word 转 PDF",
+  "PowerPoint to PDF": "PowerPoint 转 PDF",
+  "Excel to PDF": "Excel 转 PDF",
+  "HTML to PDF": "HTML 转 PDF",
+  "PDF to JPG": "PDF 转 JPG",
+  "PDF to Word": "PDF 转 Word",
+  "PDF to PowerPoint": "PDF 转 PowerPoint",
+  "PDF to Excel": "PDF 转 Excel",
+  "PDF to PDF/A": "PDF 转 PDF/A",
+  "Add Page Numbers": "添加页码",
+  "Add Watermark": "添加水印",
+  "Unlock PDF": "解锁 PDF",
+  "Protect PDF": "保护 PDF",
+  "Sign PDF": "签署 PDF",
+  "Compare PDF": "比较 PDF",
+  "Plans": "计划",
+  "Login": "登录",
+  "Sign Up": "注册",
+  "Logout": "登出",
+  "add_page_numbers_title": "为PDF添加页码",
+  "add_page_numbers_desc": "上传PDF并为每一页添加可自定义的页码。",
+  "upload_pdf": "上传PDF",
+  "upload_pdf_file": "上传PDF文件",
+  "or_drag_and_drop": "或拖放",
+  "pdf_up_to_20mb": "PDF最大20MB",
+  "selected_file": "已选择: {{name}} ({{size}} MB)",
+  "position": "位置",
+  "top_left": "左上",
+  "top_center": "上中",
+  "top_right": "右上",
+  "bottom_left": "左下",
+  "bottom_center": "下中",
+  "bottom_right": "右下",
+  "format": "格式",
+  "format_placeholder": "第{n}页 共{total}页",
+  "format_help": "使用{n}表示页码，{total}表示总页数",
+  "font_size": "字体大小",
+  "color": "颜色",
+  "margin": "边距 (点)",
+  "add_page_numbers": "添加页码",
+  "adding_page_numbers": "正在添加页码...",
+  "please_select_pdf": "请先选择一个PDF文件",
+  "please_login": "请登录以使用此功能",
+  "limit_reached": "您已达到PDF处理限制。请升级您的套餐。",
+  "failed_add_page_number": "添加页码失败，请重试。",
+  "success_add_page_numbers": "页码添加成功！",
+  "admin_dashboard": "管理员仪表板",
+  "total_users": "总用户数",
+  "active_subscriptions": "活跃订阅",
+  "feature_usage": "功能使用量",
+  "compare_two_pdfs": "比较两个PDF",
+  "upload_exactly_two": "请上传恰好两个PDF文件。",
+  "drag_drop_two_pdfs": "拖放恰好两个PDF文件，或点击选择。",
+  "comparing": "比较中...",
+  "compare": "比较",
+  "download_diff_pdf": "下载差异PDF",
+  "comparison_done": "比较完成！",
+  "pdf_limit_reached": "您已达到PDF限制。请升级您的套餐。",
+  "failed_compare_pdf": "PDF比较失败，请重试。",
+  "compress_image": "压缩图片",
+  "compress_image_desc": "使用自定义压缩设置优化您的图片，同时保持视觉质量",
+  "upload_image": "上传图片",
+  "upload_a_file": "上传文件",
+  "image_formats": "PNG、JPG、WEBP最大10MB",
+  "selected": "已选择",
+  "compression_quality": "压缩质量",
+  "width_optional": "宽度（可选）",
+  "height_optional": "高度（可选）",
+  "original_width": "原始宽度",
+  "original_height": "原始高度",
+  "compressing": "压缩中...",
+  "compress_image_btn": "压缩图片",
+  "download_compressed_image": "下载压缩图片",
+  "image_limit_reached": "您已达到图片处理限制。请升级您的套餐。",
+  "failed_compress_image": "图片压缩失败，请重试。",
+  "compress_pdf": "压缩PDF",
+  "compress_pdf_desc": "减小PDF文件大小，便于分享。",
+  "compression_level": "压缩级别",
+  "low_better_quality": "低（更好质量）",
+  "medium_balanced": "中（平衡）",
+  "high_smaller_size": "高（更小体积）",
+  "compression_hint": "更高的压缩意味着更小的文件但更低的质量",
+  "compress_pdf_btn": "压缩PDF",
+  "download_compressed_pdf": "下载压缩PDF",
+  "failed_compress_pdf": "PDF压缩失败，请重试。",
+  "pdf_compressed_success": "PDF压缩成功！",
+  "pdf_processed": "已处理PDF",
+  "check_transactions": "查看您至今所有的交易",
+  "current_plan": "当前套餐",
+  "free": "免费",
+  "convert_pdf": "转换PDF",
+  "convert_pdf_desc": "在不同格式之间转换PDF",
+  "compress_images": "压缩图片",
+  "compress_images_desc": "在保持质量的同时减小PDF文件大小",
+  "upgrade_plan": "升级套餐",
+  "upgrade_plan_desc": "获取更多功能和更高限制",
+  "failed_fetch_stats": "获取用户统计信息失败",
+  "excel_to_pdf": {
+    "title": "Excel转PDF",
+    "desc": "上传Excel文件（.xls或.xlsx），并在保留布局的情况下将其转换为PDF格式。",
+    "upload_label": "上传Excel文件",
+    "upload_btn": "上传表格",
+    "file_hint": "XLS或XLSX，最大20MB",
+    "selected_file": "已选文件：",
+    "convert_btn": "转换为PDF",
+    "converting": "正在转换...",
+    "download_btn": "下载PDF",
+    "please_select_excel": "请选择一个Excel文件",
+    "success": "Excel成功转换为PDF！",
+    "failed": "Excel转换失败，请重试。"
+  },
+  "extract_pdf": {
+    "title": "提取PDF页面",
+    "desc": "上传PDF并将特定页面提取到新PDF中。用逗号分隔输入页码（例如：1,3,5）。",
+    "please_select_pdf_only": "请选择PDF文件。",
+    "failed_load_pdf": "加载PDF失败，请尝试其他文件。",
+    "enter_page_numbers": "请输入至少一个要提取的页码。",
+    "invalid_page_numbers": "无效的页码。请输入1到{{totalPages}}之间的数字",
+    "failed_extract": "提取PDF失败，请重试。",
+    "pages": "页",
+    "pages_to_extract": "要提取的页面（用逗号分隔）",
+    "page_numbers_placeholder": "例如：1,3,5",
+    "enter_page_numbers_range": "请输入1到{{totalPages}}之间的页码",
+    "extracting": "正在提取...",
+    "extract_btn": "提取页面",
+    "download_btn": "下载提取的页面"
+  },
+  "forgot_password": {
+    "title": "重置密码",
+    "step1": "请输入您的邮箱地址",
+    "step2": "回答您的安全问题",
+    "step3": "创建新密码",
+    "email_label": "邮箱地址",
+    "email_placeholder": "请输入您的邮箱",
+    "checking": "正在检查...",
+    "continue": "继续",
+    "fav_book": "你最喜欢的书是什么？",
+    "fav_meal": "你最喜欢的食物是什么？",
+    "answer_placeholder": "请输入您的答案",
+    "verify_answers": "验证答案",
+    "new_password": "新密码",
+    "new_password_placeholder": "输入新密码",
+    "confirm_password": "确认密码",
+    "confirm_password_placeholder": "再次输入新密码",
+    "resetting": "正在重置...",
+    "reset_password": "重置密码",
+    "back_to_login": "返回登录",
+    "email_not_found": "未找到邮箱",
+    "incorrect_answers": "答案不正确",
+    "passwords_do_not_match": "两次输入的密码不一致",
+    "reset_success": "密码重置成功。请使用新密码登录。",
+    "failed_reset": "重置密码失败"
+  },
+  "home": {
+    "merge_pdf_desc": "将多个PDF合并为一个。",
+    "split_pdf_desc": "将PDF分割为单独的文件。",
+    "remove_pages_desc": "从PDF中删除特定页面。",
+    "extract_pages_desc": "将选定的页面提取为新的PDF。",
+    "organize_pdf_desc": "重新排序或排列PDF页面。",
+    "rotate_pdf_desc": "旋转PDF中的页面。",
+    "metadata_viewer": "元数据查看器",
+    "metadata_viewer_desc": "查看任何PDF的所有详细信息。",
+    "update_metadata": "更新元数据",
+    "update_metadata_desc": "编辑PDF作者、标题等",
+    "compare_pdf_desc": "比较两个PDF文件的差异。",
+    "pdf_to_pdfa_desc": "将PDF转换为PDF/A进行存档。",
+    "jpg_to_pdf_desc": "将JPG图像转换为PDF。",
+    "word_to_pdf_desc": "将Word文档转换为PDF。",
+    "powerpoint_to_pdf_desc": "将PowerPoint文件转换为PDF。",
+    "excel_to_pdf_desc": "将Excel电子表格转换为PDF。",
+    "html_to_pdf_desc": "将HTML文件转换为PDF。",
+    "pdf_to_jpg_desc": "将PDF页面转换为JPG图像。",
+    "pdf_to_word_desc": "将PDF转换为可编辑的Word文档。",
+    "pdf_to_powerpoint_desc": "将PDF转换为PowerPoint演示文稿。",
+    "pdf_to_excel_desc": "将PDF转换为Excel电子表格。",
+    "pdf_to_text": "PDF转文本转换器",
+    "pdf_to_text_desc": "轻松提取纯文本",
+    "unlock_pdf_desc": "移除PDF的密码保护。",
+    "protect_pdf": "保护PDF",
+    "protect_pdf_desc": "为您的PDF添加密码保护。",
+    "add_page_numbers_desc": "为您的PDF添加页码。",
+    "add_watermark_desc": "为您的PDF添加水印文本或图像。",
+    "compress_pdf_desc": "减小PDF文件大小以便轻松共享。",
+    "pdf_voice_reader": "PDF语音阅读器",
+    "pdf_voice_reader_desc": "用自然语音朗读您的PDF内容。",
+    "translate": "翻译PDF",
+    "translate_desc": "将PDF中的文本翻译成多种语言。",
+    "handwriting": "手写转PDF",
+    "handwriting_desc": "将手写笔记或文本转换为数字PDF格式。",
+    "pdf_expire": "限时PDF",
+    "pdf_expire_desc": "分享带有到期日期的PDF以确保安全访问。",
+    "e_sign": "PDF电子签名",
+    "e_sign_desc": "以电子方式签署您的PDF文档"
+  },
+  "html_to_pdf": {
+    "desc": "在下面粘贴您的HTML代码并将其下载为PDF。",
+    "html_content": "HTML内容",
+    "html_placeholder": "<html><body><h1>你好PDF！</h1></body></html>",
+    "pdf_filename": "PDF文件名",
+    "convert_btn": "转换为PDF",
+    "converting": "正在转换...",
+    "enter_html_content": "请输入HTML内容。",
+    "failed_convert": "HTML转换为PDF失败",
+    "server_error": "服务器未返回PDF。响应: ",
+    "download_success": "PDF已下载！"
+  },
+  "jpg_to_pdf": {
+    "title": "图片转PDF",
+    "desc": "上传一张或多张图片并将其转换为单个PDF文件。每张图片将成为单独的一页。",
+    "upload_images": "上传图片",
+    "upload_btn": "上传图片",
+    "file_hint": "JPG、JPEG或PNG，每张最大20MB",
+    "selected_files": "已选择{{count}}个文件",
+    "convert_btn": "转换为PDF",
+    "converting": "正在转换...",
+    "download_btn": "下载PDF",
+    "select_images": "请至少选择一张图片",
+    "success": "图片成功转换为PDF！",
+    "failed": "转换为PDF失败，请重试。"
+  },
+  "login": {
+    "welcome": "欢迎回来",
+    "subtitle": "登录您的账户以继续",
+    "email_label": "邮箱地址",
+    "email_placeholder": "请输入您的邮箱",
+    "password_label": "密码",
+    "password_placeholder": "请输入您的密码",
+    "sign_in": "登录",
+    "no_account": "还没有账户？",
+    "sign_up": "注册",
+    "forgot_password": "忘记密码？",
+    "failed": "登录失败。请检查您的凭据。"
+  },
+  "merge_pdf": {
+    "title": "合并PDF文件",
+    "desc": "将多个PDF文件合并为单个文档。合并前拖拽重新排序。",
+    "upload_pdfs": "上传PDF",
+    "upload_btn": "上传PDF文件",
+    "remove": "删除",
+    "merge_btn": "合并PDF",
+    "merging": "正在合并...",
+    "download_btn": "下载合并的PDF",
+    "select_pdf_only": "请只选择PDF文件。",
+    "failed_merge": "合并PDF失败",
+    "failed": "合并PDF失败，请重试。"
+  },
+  "metadata_viewer": {
+    "title": "PDF元数据查看器",
+    "upload_text": "上传PDF文件或拖拽到此处",
+    "view_btn": "查看元数据",
+    "fetching": "获取中...",
+    "metadata_label": "元数据",
+    "select_pdf": "请选择一个PDF文件。",
+    "success": "元数据获取成功！",
+    "failed": "无法查看PDF元数据，请重试。"
+  },
+  "organize_pdf": {
+    "title": "整理PDF页面",
+    "desc": "上传PDF，拖拽重新排序页面，并下载重新排序的PDF。",
+    "select_pdf_only": "请仅选择PDF文件。",
+    "failed_load_pdf": "加载PDF失败。",
+    "upload_pdf": "请上传PDF文件。",
+    "success": "PDF重新排序完成！",
+    "failed": "整理PDF失败。请重试。",
+    "pages": "页",
+    "drag_reorder": "拖拽重新排序页面",
+    "reordering": "重新排序中...",
+    "reorder_btn": "重新排序和下载",
+    "download_btn": "下载重新排序的PDF"
+  },
+  "payment_failed": {
+    "alt_text": "支付失败",
+    "title": "支付失败",
+    "description": "很抱歉，您的交易无法完成。",
+    "try_again": "请重试，如果问题持续存在，请联系客服。",
+    "go_to_dashboard": "前往仪表板"
+  },
+  "payment_success": {
+    "alt_text": "支付成功",
+    "title": "支付成功！",
+    "thank_you": "感谢您的购买。",
+    "redirecting": "正在重定向到您的仪表板，还有<1>{{seconds}}</1>秒...",
+    "not_redirected": "没有重定向？",
+    "go_to_dashboard": "前往仪表板"
+  },
+  "pdf_to_excel": {
+    "title": "将PDF转换为Excel",
+    "desc": "上传PDF文件并将其转换为Excel格式（.xlsx），保持数据结构。",
+    "upload_label": "上传PDF文件",
+    "selected_file": "已选择的文件",
+    "select_pdf": "请选择PDF文件",
+    "success": "PDF成功转换为Excel！",
+    "failed": "转换为Excel失败。请重试。",
+    "converting": "转换中...",
+    "convert_btn": "转换为Excel",
+    "download_btn": "下载Excel"
+  },
+  "pdf_to_jpg": {
+    "title": "将PDF转换为JPG",
+    "desc": "上传PDF并将每页转换为JPG图像。将所有图像作为ZIP文件下载。",
+    "upload_valid_pdf": "请上传有效的PDF文件。",
+    "failed": "将PDF转换为JPG失败。请重试。",
+    "converting": "正在将PDF转换为图像...",
+    "page_alt": "第{{page}}页",
+    "download_btn": "下载JPG ZIP"
+  },
+  "pdf_to_pdfa": {
+    "title": "将PDF转换为PDF/A",
+    "desc": "上传PDF并将其转换为档案标准PDF/A文件。",
+    "upload_text": "上传PDF文件或拖放到此处",
+    "select_pdf": "请选择PDF文件",
+    "success": "PDF成功转换为PDF/A！",
+    "failed": "转换为PDF/A失败。请重试。",
+    "converting": "转换中...",
+    "convert_btn": "转换为PDF/A",
+    "download_btn": "下载PDF/A"
+  },
+  "pdf_to_ppt": {
+    "title": "将PDF转换为PowerPoint",
+    "desc": "上传PDF文件并将其转换为PowerPoint格式（.pptx），保持布局。",
+    "upload_label": "上传PDF文件",
+    "selected_file": "已选择的文件",
+    "select_pdf": "请选择PDF文件",
+    "success": "PDF成功转换为PPT！",
+    "failed": "将PDF转换为PPT失败。请重试。",
+    "converting": "转换中...",
+    "convert_btn": "转换为PPT",
+    "download_btn": "下载PPT"
+  },
+  "pdf_to_text": {
+    "title": "将PDF转换为纯文本",
+    "desc": "上传PDF文件并将其转换为纯文本格式（.txt）。",
+    "upload_label": "上传PDF文件",
+    "selected_file": "已选择的文件",
+    "convert_btn": "转换为文本",
+    "converting": "转换中...",
+    "download_btn": "下载文本",
+    "select_pdf": "请选择PDF文件",
+    "success": "PDF成功转换为文本！",
+    "failed": "将PDF转换为文本失败。请重试。"
+  },
+  "user_management": {
+    "title": "用户管理",
+    "search_placeholder": "搜索用户...",
+    "failed_fetch_users": "获取用户失败",
+    "table": {
+      "name": "姓名",
+      "email": "邮箱",
+      "role": "角色",
+      "subscription": "订阅",
+      "country": "国家"
+    },
+    "roles": {
+      "admin": "管理员",
+      "user": "用户"
+    },
+    "plans": {
+      "basic": "基础版"
+    },
+    "not_available": "N/A"
+  },
+  "payment_history": {
+    "title": "支付历史",
+    "auth_error": "认证错误。请重新登录。",
+    "plan": "计划",
+    "not_available": "N/A",
+    "hide_details": "隐藏详情",
+    "more_details": "更多详情",
+    "card": "卡",
+    "receipt": "收据",
+    "view_receipt": "查看收据",
+    "billing_name": "账单姓名",
+    "email": "邮箱",
+    "paid_on": "支付日期"
+  },
+  "watermark_pdf": {
+    "title": "为PDF添加水印",
+    "desc": "上传PDF并为每页添加自定义水印文本。",
+    "upload_text": "上传PDF文件或拖放到此处",
+    "watermark_text": "水印文本",
+    "watermark_placeholder": "例如：机密",
+    "add_watermark": "添加水印",
+    "adding": "添加中...",
+    "download_watermarked": "下载带水印的PDF",
+    "please_select_pdf": "请选择PDF文件",
+    "please_enter_watermark": "请输入水印文本",
+    "success": "水印添加成功！",
+    "failed": "为PDF添加水印失败。请重试。"
+  },
+  "word_to_pdf": {
+    "title": "将Word转换为PDF",
+    "desc": "上传Word文档（.doc或.docx）并将其转换为PDF格式，同时保持格式。",
+    "upload_label": "上传Word文档",
+    "upload_btn": "上传文档",
+    "file_hint": "DOC或DOCX，最大20MB",
+    "selected_file": "已选择的文件",
+    "convert_btn": "转换为PDF",
+    "converting": "转换中...",
+    "download_btn": "下载PDF",
+    "please_select_word": "请选择Word文档",
+    "success": "文档成功转换为PDF！",
+    "failed": "Word转PDF转换失败。请重试。"
+  },
+  "pdf_to_word": {
+    "title": "将PDF转换为Word",
+    "desc": "上传PDF文件并将其转换为可编辑的Word格式（.docx）。",
+    "upload_label": "上传PDF文件",
+    "selected_file": "已选择的文件",
+    "convert_btn": "转换为Word",
+    "converting": "转换中...",
+    "download_btn": "下载Word",
+    "select_pdf": "请选择PDF文件",
+    "success": "PDF成功转换为Word！",
+    "failed": "将PDF转换为Word失败。请重试。"
+  },
+  "plan_management": {
+    "title": "套餐管理",
+    "plan_name": "套餐名称",
+    "monthly_fee": "月费",
+    "annual_fee": "年费",
+    "service_quotas": "服务配额",
+    "set_all_quotas": "设置所有服务配额",
+    "monthly_quota_all": "月配额（所有服务）",
+    "annual_quota_all": "年配额（所有服务）",
+    "set_monthly_quota_placeholder": "为所有服务设置月配额",
+    "set_annual_quota_placeholder": "为所有服务设置年配额",
+    "individual_quotas": "个别服务配额",
+    "monthly_quota": "月配额",
+    "annual_quota": "年配额",
+    "create_plan": "创建套餐",
+    "update_plan": "更新套餐",
+    "cancel": "取消",
+    "existing_plans": "现有套餐",
+    "monthly": "月费",
+    "annual": "年费",
+    "edit": "编辑",
+    "delete": "删除",
+    "features": "功能",
+    "month": "月",
+    "year": "年",
+    "all_services_included": "包含所有服务",
+    "failed_fetch_plans": "获取套餐失败",
+    "failed_save_plan": "保存套餐失败",
+    "failed_delete_plan": "删除套餐失败",
+    "confirm_delete": "您确定要删除这个套餐吗？"
+  },
+  "ppt_to_pdf": {
+    "title": "将PPT转换为PDF",
+    "desc": "上传PowerPoint演示文稿（.ppt或.pptx）并将其转换为PDF格式，同时保持演示文稿布局。",
+    "upload_label": "上传PowerPoint文件",
+    "upload_btn": "上传演示文稿",
+    "file_hint": "PPT或PPTX，最大20MB",
+    "selected_file": "已选择的文件",
+    "convert_btn": "转换为PDF",
+    "converting": "转换中...",
+    "download_btn": "下载PDF",
+    "select_ppt": "请选择PowerPoint文件",
+    "success": "演示文稿成功转换为PDF！",
+    "failed": "将PPT转换为PDF失败。请重试。"
+  },
+  "privacy_policy": {
+    "title": "隐私政策",
+    "introduction": {
+      "title": "1. 介绍",
+      "content": "欢迎使用PDFPivot（'我们'、'我们的'或'我们'）。本政策适用于访问以下网站的所有访问者、用户和客户"
+    },
+    "information_collection": {
+      "title": "2. 我们收集的信息",
+      "content": "我们收集个人数据，如姓名、电子邮件、联系详情、上传的文件、IP地址和浏览器/设备信息。"
+    },
+    "how_we_use": {
+      "title": "3. 我们如何使用您的信息",
+      "item1": "提供PDF相关工具和服务",
+      "item2": "改善网站性能和功能",
+      "item3": "与用户沟通",
+      "item4": "遵守法律要求"
+    },
+    "legal_basis": {
+      "title": "4. 数据处理的合法基础",
+      "content": "我们基于同意、合同必要性和合法商业利益（如改善服务交付和确保安全）处理数据。"
+    },
+    "cookies": {
+      "title": "5. Cookie和跟踪",
+      "content": "PDFPivot使用cookie来个性化内容、分析使用情况并改善您的体验。您可以在浏览器设置中禁用cookie。"
+    },
+    "uploaded_files": {
+      "title": "6. 上传文件的使用",
+      "content": "为转换或编辑而上传的文件会临时存储，处理后被删除。我们不访问、读取或与第三方共享文件内容。"
+    },
+    "third_party": {
+      "title": "7. 第三方服务",
+      "content": "我们可能使用可信的第三方提供商进行分析、托管或支付服务。这些提供商必须遵守严格的数据隐私标准。"
+    },
+    "data_security": {
+      "title": "8. 数据安全",
+      "content": "我们实施强加密和访问控制，以保护您的数据免受未经授权的访问、丢失或滥用。"
+    },
+    "data_retention": {
+      "title": "9. 数据保留",
+      "content": "我们仅在为我们的服务所必需或履行法律义务期间保留您的个人数据。上传的文件在处理后会自动删除。"
+    },
+    "international_transfers": {
+      "title": "10. 国际传输",
+      "content": "您的数据可能会传输到您国家以外的服务器。我们采取措施确保您的数据按照本隐私政策得到保护。"
+    },
+    "children_privacy": {
+      "title": "11. 儿童隐私",
+      "content": "PDFPivot不适用于13岁以下的儿童。我们不会故意收集儿童的数据。如果发现，此类数据将立即删除。"
+    },
+    "your_rights": {
+      "title": "12. 您的权利",
+      "content": "根据您所在的地区，您可能有权访问、更正、删除或限制您的个人数据。请联系我们行使这些权利。"
+    },
+    "third_party_links": {
+      "title": "13. 第三方链接",
+      "content": "我们的网站可能包含指向外部网站的链接。我们不对其隐私做法负责。请单独查看其政策。"
+    },
+    "policy_updates": {
+      "title": "14. 政策更新",
+      "content": "本隐私政策可能会更新。任何更改都将在此页面上发布，并附有新的生效日期。"
+    },
+    "contact": {
+      "title": "15. 联系我们",
+      "intro": "如果您对您的数据有疑问或疑虑：",
+      "email": "电子邮件",
+      "website": "网站"
+    },
+    "protect_pdf": {
+      "title": "为PDF添加保护",
+      "desc": "上传PDF文件并设置密码以防止未经授权的访问。",
+      "set_password": "设置密码",
+      "password_placeholder": "输入密码",
+      "selected_file": "已选择的文件",
+      "protect_btn": "保护PDF",
+      "protecting": "保护中...",
+      "download_btn": "下载受保护的PDF",
+      "select_pdf_and_password": "请选择PDF并输入密码。",
+      "success": "PDF保护成功！",
+      "failed": "保护PDF失败，请重试。"
+    }
+  },
+  "refund_policy": {
+    "title": "退款和取消政策",
+    "no_refund": {
+      "title": "1. 无退款政策",
+      "content": "在PDFPivot上进行的所有付款均不可退款。一旦服务启动或完成，我们无法撤销或退款交易。"
+    },
+    "instant_service": {
+      "title": "2. 即时数字服务",
+      "content": "我们的服务是自动化的，在文件上传或付款后立即开始处理。因此，一旦流程开始，就不可能取消或退款。"
+    },
+    "order_cancellation": {
+      "title": "3. 订单取消",
+      "content": "订单提交并开始处理后，您可能无法取消订单。请在下单前验证所有详细信息。"
+    },
+    "wrong_file": {
+      "title": "4. 错误文件上传",
+      "content": "如果您上传了错误或不正确的文件，PDFPivot不承担责任。请在提交前仔细检查您的文件。"
+    },
+    "duplicate_payments": {
+      "title": "5. 重复付款",
+      "content": "如果发生意外重复付款，您必须在24小时内通知我们。我们将验证并仅对重复金额（如果符合条件）进行退款。"
+    },
+    "failed_services": {
+      "title": "6. 失败的服务",
+      "content": "如果服务因我们这边的技术问题而失败（例如，文件未处理，服务器错误），我们可能会提供免费重新处理。不会发放退款。"
+    },
+    "user_mistakes": {
+      "title": "7. 用户错误",
+      "content": "不会因用户错误（如处理过程中的错误设置、输出格式或遗漏的选项）而给予退款。"
+    },
+    "subscription_services": {
+      "title": "8. 订阅服务",
+      "content": "如果PDFPivot引入订阅计划，用户必须在下一个计费周期之前取消其订阅。不会发放按比例或中期退款。"
+    },
+    "unauthorized_use": {
+      "title": "9. 未经授权的使用",
+      "content": "我们不对您账户的任何未经授权或欺诈性使用负责。保护您的登录详细信息以避免滥用。"
+    },
+    "file_retention": {
+      "title": "10. 文件保留和删除",
+      "content": "我们不永久存储文件。所有文件在短时间内后会自动删除。由于文件过期导致的未交付不符合退款条件。"
+    },
+    "service_downtime": {
+      "title": "11. 服务停机时间",
+      "content": "预计会有偶尔的维护或技术问题停机时间。不会因服务的临时不可用而发放退款。"
+    },
+    "promotional_purchases": {
+      "title": "12. 促销和折扣购买",
+      "content": "在销售、基于优惠券的折扣或促销优惠期间使用的服务不会发放退款。"
+    },
+    "chargebacks": {
+      "title": "13. 拒付",
+      "content": "发起欺诈性拒付的用户可能会被永久禁止账户并撤销访问权限。"
+    },
+    "policy_agreement": {
+      "title": "14. 政策协议",
+      "content": "通过使用我们的服务，您同意此退款和取消政策。用户在购买前阅读和理解它是用户的责任。"
+    },
+    "contact": {
+      "title": "15. 联系我们",
+      "intro": "如果您有疑问或特殊情况，请联系我们：",
+      "email": "电子邮件",
+      "website": "网站"
+    }
+  },
+  "update_metadata_page": {
+    "title": "更新PDF元数据",
+    "desc": "上传PDF并更新其元数据，如标题、作者等。",
+    "selected_file": "已选择的文件",
+    "title_placeholder": "标题",
+    "author_placeholder": "作者",
+    "subject_placeholder": "主题",
+    "keywords_placeholder": "关键词（逗号分隔）",
+    "update_metadata_btn": "更新元数据",
+    "updating": "更新中...",
+    "download_updated_pdf": "下载更新的PDF",
+    "updated_successfully": "元数据更新成功！",
+    "please_select_pdf": "请选择PDF文件",
+    "failed_update": "更新PDF元数据失败。请重试。"
+  },
+  "unlock_pdf_page": {
+    "title": "解锁PDF",
+    "desc": "移除PDF文件的密码保护。上传您的密码保护PDF并输入密码以解锁它。",
+    "upload_label": "上传密码保护PDF",
+    "pdf_password": "PDF密码",
+    "enter_password_placeholder": "输入PDF密码",
+    "unlock_pdf_btn": "解锁PDF",
+    "unlocking": "解锁中...",
+    "unlocked_successfully": "PDF解锁成功！",
+    "please_upload_pdf": "请上传PDF文件",
+    "please_enter_password": "请输入PDF密码",
+    "failed_unlock": "解锁PDF失败。请重试。"
+  },
+  "terms_conditions": {
+    "title": "服务条款",
+    "acceptance": {
+      "title": "1. 条款接受",
+      "content": "使用PDFPivot即表示您同意遵守这些条款和适用法律。这些条款构成您与PDFPivot之间的具有约束力的协议。"
+    },
+    "eligibility": {
+      "title": "2. 资格要求",
+      "content": "您必须年满13岁才能使用我们的服务。访问我们的网站即表示您确认满足此年龄要求。"
+    },
+    "services": {
+      "title": "3. 提供的服务",
+      "content": "PDFPivot提供PDF相关工具，包括PDF文件的转换、合并、分割、压缩和编辑。我们可能会在未经通知的情况下添加、修改或删除功能。"
+    },
+    "account": {
+      "title": "4. 账户和访问",
+      "content": "某些功能可能需要注册。您有责任维护账户信息的机密性，并对账户下的所有活动负责。"
+    },
+    "acceptable_use": {
+      "title": "5. 可接受使用",
+      "intro": "您同意不滥用网站。您不得：",
+      "item1": "上传有害或恶意内容",
+      "item2": "侵犯知识产权",
+      "item3": "尝试未经授权的访问",
+      "item4": "违反任何适用法律"
+    },
+    "intellectual_property": {
+      "title": "6. 知识产权",
+      "content": "PDFPivot上的所有内容和工具都是网站或其许可方的知识产权。未经书面许可，您不得复制、修改或分发它们。"
+    },
+    "user_content": {
+      "title": "7. 用户内容和文件上传",
+      "content": "您保留上传文件的所有权。使用我们的工具即表示您授予我们临时处理和存储文件以提供服务的权限。"
+    },
+    "payment": {
+      "title": "8. 付款和定价",
+      "content": "某些服务可能需要付款。所有费用都清楚显示。PDFPivot保留随时修改定价的权利。"
+    },
+    "refund": {
+      "title": "9. 退款和取消",
+      "content": "所有购买均不可退款。由于我们服务的数字和即时性质，一旦流程开始，我们不提供取消或退款。"
+    },
+    "liability": {
+      "title": "10. 责任限制",
+      "content": "PDFPivot对因使用或无法使用网站或服务而产生的任何直接、间接或后果性损害不承担责任。"
+    },
+    "warranties": {
+      "title": "11. 保证免责",
+      "content": "服务按'原样'提供。我们不保证服务不中断、输出准确性或与特定文件类型的兼容性。"
+    },
+    "third_party": {
+      "title": "12. 第三方链接",
+      "content": "网站可能包含指向第三方服务的链接。我们对外部网站的内容、条款或隐私做法不承担责任。"
+    },
+    "termination": {
+      "title": "13. 访问终止",
+      "content": "如果您违反这些条款或滥用平台，我们可能随时暂停或终止您对PDFPivot的访问。"
+    },
+    "modifications": {
+      "title": "14. 条款修改",
+      "content": "PDFPivot可能随时更新这些条款。更改将发布在此页面上，更改后的继续使用表示您接受新条款。"
+    },
+    "contact": {
+      "title": "15. 联系我们",
+      "intro": "如果您对这些条款有任何疑问，请联系我们：",
+      "email": "电子邮件",
+      "website": "网站"
+    }
+  },
+  "subscription_plans": {
+    "expired_on": "已于",
+    "will_expire_on": "将于",
+    "your_plan_status": "您的{{planName}}计划{{expiryText}} {{expiryDate}}",
+    "session_expired": "您的会话已过期。请重新登录。",
+    "service_unavailable": "订阅服务当前不可用。请稍后重试。",
+    "failed_load_plans": "加载订阅计划失败。请稍后重试。",
+    "go_to_login": "前往登录",
+    "retry": "重试",
+    "current_plan": "当前计划",
+    "free": "免费",
+    "price_per_month": "${{price}}/月",
+    "unlimited": "无限制",
+    "quota_per_month": "{{quota}}/月",
+    "start_free": "免费开始",
+    "select_plan": "选择计划"
+  },
+  "subscribe_page": {
+    "subscribe_to": "订阅",
+    "choose_billing_desc": "选择您的计费周期并继续安全支付。",
+    "billing_type": "计费类型",
+    "monthly_option": "月付 - ${{price}}",
+    "annual_option": "年付 - ${{price}}",
+    "pay_now": "立即支付 ${{price}}",
+    "redirecting": "重定向中...",
+    "loading_plan": "加载计划详情...",
+    "plan_not_loaded": "计划未加载",
+    "payment_failed": "支付失败"
+  },
+  "split_pdf_page": {
+    "title": "分割PDF",
+    "desc": "上传PDF并将其分割为单独的页面。下载所有页面作为ZIP文件。",
+    "split_pdf_btn": "分割PDF",
+    "splitting": "分割中...",
+    "download_split_pages": "下载分割页面 (ZIP)",
+    "please_select_pdf_only": "请只选择PDF文件。",
+    "failed_split": "分割PDF失败。请重试。"
+  },
+  "rotate_pdf_page": {
+    "title": "旋转PDF页面",
+    "desc": "上传PDF并预览第一页。使用按钮向左或向右旋转预览。下载旋转后的PDF。",
+    "pdf_preview": "PDF预览",
+    "rotation_degrees": "旋转: {{degrees}}°",
+    "current_rotation": "当前旋转: {{degrees}}°",
+    "rotate_left": "向左旋转",
+    "rotate_right": "向右旋转",
+    "generating": "生成中...",
+    "download_rotated_pdf": "下载旋转后的PDF",
+    "click_to_download": "点击此处下载",
+    "please_select_pdf": "请选择PDF文件。",
+    "failed_generate": "生成旋转PDF失败。{{message}}",
+    "please_try_again": "请重试。"
+  },
+  "rotate_page": {
+    "title": "旋转图片",
+    "desc": "精确旋转您的图片，同时保持质量",
+    "upload_image": "上传图片",
+    "upload_a_file": "上传文件",
+    "rotating": "旋转中...",
+    "rotate_left": "向左旋转",
+    "rotate_right": "向右旋转",
+    "download_rotated_image": "下载旋转后的图片",
+    "please_upload_image": "请先上传一张图片。",
+    "failed_track_usage": "跟踪使用情况失败。请稍后重试。",
+    "failed_rotate": "旋转图片失败。请重试。"
+  },
+  "remove_pdf": {
+    "title": "删除PDF页面",
+    "desc": "上传PDF并删除特定页面。输入用逗号分隔的页码（例如：1,3,5）。",
+    "pages_to_remove": "要删除的页面（逗号分隔）",
+    "page_numbers_placeholder": "例如：1,3,5",
+    "remove_pages_btn": "删除页面",
+    "removing": "删除中...",
+    "download_btn": "下载修改后的PDF",
+    "please_select_pdf_only": "请只选择PDF文件。",
+    "enter_page_numbers": "请输入至少一个要删除的页码。",
+    "invalid_page_numbers": "无效的页码。请输入1到{{pageCount}}之间的数字",
+    "failed_remove": "删除页面失败。请重试。"
+  },
+  "register": {
+    "title": "创建账户",
+    "subtitle": "加入我们开始您的旅程",
+    "full_name": "全名",
+    "full_name_placeholder": "请输入您的全名",
+    "email_label": "电子邮件地址",
+    "email_placeholder": "请输入您的电子邮件",
+    "password_label": "密码",
+    "password_placeholder": "请输入您的密码",
+    "confirm_password_label": "确认密码",
+    "confirm_password_placeholder": "请确认您的密码",
+    "country_label": "国家",
+    "select_country": "选择您的国家",
+    "fav_book_question": "您最喜欢的书是什么？",
+    "fav_book_placeholder": "请输入您最喜欢的书",
+    "fav_meal_question": "您最喜欢的食物是什么？",
+    "fav_meal_placeholder": "请输入您最喜欢的食物",
+    "create_account_btn": "创建账户",
+    "already_have_account": "已有账户？",
+    "sign_in_link": "登录",
+    "passwords_do_not_match": "密码不匹配"
+  },
+  "display_plans": {
+    "title": "订阅计划",
+    "desc": "选择适合您需求的计划。随时可升级。"
+  },
+  "faq": {
+    "title": "PdfPivot FAQ",
+    "convert_file": {
+      "question": "如何将文件转换为PDF？",
+      "answer": "选择转换工具如Word转PDF，上传您的文件，然后点击转换。您的PDF将立即可供下载。"
+    },
+    "limits": {
+      "question": "我可以执行的PDF任务数量有限制吗？",
+      "answer": "是的，每个订阅计划都有月度配额。免费用户获得有限的转换次数。付费计划提供更多或无限使用。"
+    },
+    "security": {
+      "question": "我的PDF数据安全吗？",
+      "answer": "绝对安全。所有文件都经过安全加密处理，处理完成后自动删除。我们从不存储您的数据。"
+    },
+    "mobile": {
+      "question": "我可以在手机上使用PdfPivot吗？",
+      "answer": "可以！PdfPivot完全响应式，在所有现代移动浏览器上都能正常工作。"
+    },
+    "formats": {
+      "question": "我可以转换哪些文件格式到PDF？",
+      "answer": "您可以将Word、Excel、PowerPoint、JPG和HTML转换为PDF — 反之亦然。我们还支持PDF转PDF/A和扫描文件的OCR。"
+    },
+    "ocr": {
+      "question": "OCR功能是如何工作的？",
+      "answer": "OCR自动从扫描的PDF中提取文本，允许您搜索和编辑内容。它适用于所有PDF工具。"
+    }
+  },
+  "hero": {
+    "title_line1": "快速、安全 &",
+    "title_line2": "强大的",
+    "title_line3": "PDF工具在线",
+    "description": "轻松编辑、转换、压缩和保护您的PDF — 全部在浏览器中完成。全球专业人士信赖。",
+    "live_chat": "在线聊天",
+    "image_alt": "图像编辑插图"
+  },
+  "how_it_works": {
+    "title": "PdfPivot，您的一体化PDF工具包。",
+    "subtitle": "如何将PDF转换为Word",
+    "description": "按照以下简单步骤使用Xodo将PDF转换为Word：",
+    "step1": "将您的PDF上传到免费的在线PDF转Word转换器。",
+    "step2": "点击'转换' — OCR会自动应用于扫描的PDF。",
+    "step3": "下载您可编辑的Word（.docx）文件。",
+    "image_alt": "如何转换"
+  },
+  "payment_form": {
+    "cancel": "取消",
+    "pay_now": "立即支付",
+    "processing": "处理中...",
+    "default_error": "发生错误"
+  },
+  "trusted_by": {
+    "title": "数千用户信赖的PDF工具包",
+    "description": "PDFPivot是您安全的一体化平台，用于转换、编辑和组织PDF文件。快速性能，私有处理 — 不存储数据。",
+    "iso_27001": "ISO 27001",
+    "secure_processing": "安全处理",
+    "trusted_by_enterprises": "企业信赖"
+  },
+  "why_us": {
+    "title": "PDFPivot，您的一站式完整PDF工具包",
+    "feature1": {
+      "title": "一体化PDF工具包",
+      "description": "合并、分割、转换、压缩、保护和编辑您的PDF — 全部来自单一、易用的平台。"
+    },
+    "feature2": {
+      "title": "快速可靠的转换",
+      "description": "在几秒钟内将文件转换为PDF格式或从PDF格式转换。OCR自动应用于扫描文档。"
+    },
+    "feature3": {
+      "title": "智能配额访问",
+      "description": "享受灵活的订阅计划，提供月度配额或无限使用 — 专为个人和团队构建。"
+    }
+  },
+  "footer": {
+    "pdfpivot": "PDF枢纽",
+    "home": "首页",
+    "pricing": "价格",
+    "security": "安全性",
+    "tools": "工具",
+    "faq": "常见问题",
+    "product": "产品",
+    "desktop": "PDF枢纽桌面版",
+    "mobile": "PDF枢纽移动版",
+    "developers": "开发者",
+    "features": "功能",
+    "solutions": "解决方案",
+    "business": "企业",
+    "education": "教育",
+    "company": "公司",
+    "privacy_policy": "隐私政策",
+    "terms_conditions": "条款与条件",
+    "refund_policy": "退款政策",
+    "copyright": "© 2025 PDF枢纽。保留所有权利。",
+    "trusted_by": "被数千用户信赖的PDF工具包",
+    "login": "登录",
+    "register": "注册",
+    "plans": "套餐",
+    "services": "服务",
+    "merge_pdf": "合并PDF",
+    "split_pdf": "拆分PDF",
+    "remove_pages": "删除页面",
+    "extract_pages": "提取页面",
+    "security_tools": "安全工具",
+    "update_metadata": "更新元数据",
+    "view_metadata": "查看元数据",
+    "add_watermark": "添加水印",
+    "protect_pdf": "保护PDF"
+  },
+  "choose_language": "选择您的首选语言",
+  "pdfvoicereader": {
+    "pdf_voice_reader": "PDF 语音阅读器",
+    "pdf_voice_reader_desc": "将 PDF 内容转换为音频旁白。",
+    "upload_pdf": "上传 PDF",
+    "upload_a_file": "上传文件",
+    "pdf_formats": "仅限 PDF 格式",
+    "selected": "已选择",
+    "convert_to_audio": "转换为音频",
+    "converting": "正在转换...",
+    "download_audio": "下载 MP3",
+    "invalid_pdf": "请选择有效的 PDF 文件。",
+    "conversion_failed": "无法将 PDF 转换为音频。请重试。"
+  },
+  "pdftranslator": {
+    "smart_pdf_translator": "智能 PDF 翻译器  ",
+    "smart_pdf_translator_desc": "在保持原始格式的同时翻译整个 PDF。",
+    "invalid_pdf": "请上传有效的 PDF 文件。",
+    "upload_pdf": "上传 PDF",
+    "upload_a_file": "点击上传文件",
+    "pdf_formats": "仅支持 PDF 文件。",
+    "selected": "已选择",
+    "select_language": "选择目标语言",
+    "translate_pdf": "翻译 PDF",
+    "translating": "正在翻译...",
+    "translation_failed": "翻译失败。请重试。",
+    "download_translated": "下载已翻译的 PDF"
+  },
+  "pdfhandwriter": {
+    "handwriting_simulation": "手写模拟",
+    "desc": "上传 PDF 并将其转换为模拟手写版本。",
+    "invalid_pdf": "请上传有效的 PDF 文件。",
+    "failed": "手写模拟失败。请重试。",
+    "upload_pdf": "上传 PDF",
+    "upload_a_file": "上传文件",
+    "pdf_formats": "仅支持 PDF 文件。",
+    "selected": "已选择文件",
+    "simulate_pdf": "模拟 PDF",
+    "simulating": "正在模拟...",
+    "download_handwritten": "下载手写版 PDF"
+  },
+  "pdfexpiry": {
+    "upload_pdf_title": "上传并分享带有效期的 PDF",
+    "desc": "上传 PDF 并生成一个可共享链接，该链接将在您选择的天数后自动过期。",
+    "invalid_pdf": "请上传有效的 PDF 文件。",
+    "failed": "出了点问题。请重试。",
+    "upload_pdf": "上传 PDF 文件",
+    "upload_a_file": "点击上传文件",
+    "pdf_formats": "仅支持 PDF 格式",
+    "selected": "已选择文件",
+    "expiry_days": "有效期（天）",
+    "days_note": "最多 30 天",
+    "uploading": "正在上传...",
+    "upload_pdf_btn": "上传并生成链接",
+    "link_expires": "链接过期时间",
+    "open_pdf": "打开 PDF"
+  },
+  "pdfEditor": {
+    "title": "PDF 编辑器",
+    "uploadPDF": "上传 PDF",
+    "uploadImage": "上传图片",
+    "clearSignature": "清除签名",
+    "placeImage": "放置图片",
+    "placeSignature": "放置签名",
+    "placeText": "放置文本",
+    "submitPDF": "提交 PDF",
+    "sampleText": "示例文本",
+    "uploadPDFFirst": "请先上传 PDF！",
+    "failedToCreatePDF": "创建 PDF 失败"
+  }
+}

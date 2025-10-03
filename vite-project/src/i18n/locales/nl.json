@@ -1,0 +1,958 @@
+{
+  "welcome": "Welkom bij PDFPivot",
+  "choose_language": "Kies uw voorkeurstaal",
+  "PdfPivot": "PdfPivot",
+  "Dashboard": "Dashboard",
+  "Users": "Gebruikers",
+  "Plans Management": "Abonnementsbeheer",
+  "Payment History": "Betalingsgeschiedenis",
+  "payment_history_desc": "Bekijk al uw transacties tot nu toe",
+  "Features": "Functies",
+  "Merge PDF": "PDF Samenvoegen",
+  "Split PDF": "PDF Splitsen",
+  "Remove Pages": "Pagina's Verwijderen",
+  "Extract Pages": "Pagina's Extraheren",
+  "Organize PDF": "PDF Organiseren",
+  "Rotate PDF": "PDF Roteren",
+  "Compress PDF": "PDF Comprimeren",
+  "JPG to PDF": "JPG naar PDF",
+  "Word to PDF": "Word naar PDF",
+  "PowerPoint to PDF": "PowerPoint naar PDF",
+  "Excel to PDF": "Excel naar PDF",
+  "HTML to PDF": "HTML naar PDF",
+  "PDF to JPG": "PDF naar JPG",
+  "PDF to Word": "PDF naar Word",
+  "PDF to PowerPoint": "PDF naar PowerPoint",
+  "PDF to Excel": "PDF naar Excel",
+  "PDF to PDF/A": "PDF naar PDF/A",
+  "Add Page Numbers": "Paginanummers Toevoegen",
+  "Add Watermark": "Watermerk Toevoegen",
+  "Unlock PDF": "PDF Ontgrendelen",
+  "Protect PDF": "PDF Beveiligen",
+  "Sign PDF": "PDF Ondertekenen",
+  "Compare PDF": "PDF Vergelijken",
+  "Plans": "Plannen",
+  "Login": "Inloggen",
+  "Sign Up": "Aanmelden",
+  "Logout": "Uitloggen",
+  "add_page_numbers_title": "Paginanummers Toevoegen aan PDF",
+  "add_page_numbers_desc": "Voeg paginanummers toe aan uw PDF.",
+  "upload_pdf": "PDF uploaden",
+  "upload_pdf_file": "PDF-bestand uploaden",
+  "or_drag_and_drop": "of sleep en zet neer",
+  "pdf_up_to_20mb": "PDF tot 20 MB",
+  "selected_file": "Geselecteerd: {{name}} ({{size}} MB)",
+  "position": "Positie",
+  "top_left": "Linksboven",
+  "top_center": "Boven midden",
+  "top_right": "Rechtsboven",
+  "bottom_left": "Linksonder",
+  "bottom_center": "Onder midden",
+  "bottom_right": "Rechtsonder",
+  "format": "Formaat",
+  "format_placeholder": "Pagina {n} van {total}",
+  "format_help": "Gebruik {n} voor het paginanummer en {total} voor het totaal aantal pagina's",
+  "font_size": "Lettergrootte",
+  "color": "Kleur",
+  "margin": "Marge (punten)",
+  "add_page_numbers": "Paginanummers toevoegen",
+  "adding_page_numbers": "Paginanummers toevoegen...",
+  "please_select_pdf": "Selecteer alstublieft eerst een PDF-bestand",
+  "please_login": "Log alstublieft in om deze functie te gebruiken",
+  "limit_reached": "U heeft uw PDF-verwerkingslimiet bereikt. Upgrade alstublieft uw abonnement.",
+  "failed_add_page_number": "Kon geen paginanummer toevoegen aan PDF. Probeer het alstublieft opnieuw.",
+  "success_add_page_numbers": "Paginanummers succesvol toegevoegd!",
+  "admin_dashboard": "Beheerdersdashboard",
+  "total_users": "Totaal aantal gebruikers",
+  "active_subscriptions": "Actieve abonnementen",
+  "feature_usage": "Functiegebruik",
+  "compare_two_pdfs": "Twee PDF's vergelijken",
+  "upload_exactly_two": "Upload alstublieft precies twee PDF-bestanden.",
+  "drag_drop_two_pdfs": "Sleep en zet precies twee PDF-bestanden neer, of klik om te selecteren.",
+  "comparing": "Vergelijken...",
+  "compare": "Vergelijk",
+  "download_diff_pdf": "Verschillen-PDF downloaden",
+  "comparison_done": "Vergelijking voltooid!",
+  "pdf_limit_reached": "U heeft uw PDF-limiet bereikt. Upgrade alstublieft uw abonnement.",
+  "failed_compare_pdf": "Kon PDF niet vergelijken. Probeer het alstublieft opnieuw.",
+  "compress_image": "Afbeelding Comprimeren",
+  "compress_image_desc": "Optimaliseer uw afbeeldingen met aangepaste compressie-instellingen met behoud van visuele kwaliteit",
+  "upload_image": "Afbeelding uploaden",
+  "upload_a_file": "Een bestand uploaden",
+  "image_formats": "PNG, JPG, WEBP tot 10 MB",
+  "selected": "Geselecteerd",
+  "compression_quality": "Compressiekwaliteit",
+  "width_optional": "Breedte (optioneel)",
+  "height_optional": "Hoogte (optioneel)",
+  "original_width": "Originele breedte",
+  "original_height": "Originele hoogte",
+  "compressing": "Comprimeren...",
+  "compress_image_btn": "Afbeelding comprimeren",
+  "download_compressed_image": "Gecomprimeerde afbeelding downloaden",
+  "image_limit_reached": "U heeft uw limiet voor afbeeldingsverwerking bereikt. Upgrade alstublieft uw abonnement.",
+  "failed_compress_image": "Kon afbeelding niet comprimeren. Probeer het alstublieft opnieuw.",
+  "compress_pdf": "PDF Comprimeren",
+  "compress_pdf_desc": "Verklein de bestandsgrootte van PDF voor eenvoudig delen.",
+  "compression_level": "Compressieniveau",
+  "low_better_quality": "Laag (Betere kwaliteit)",
+  "medium_balanced": "Gemiddeld (Gebalanceerd)",
+  "high_smaller_size": "Hoog (Kleinere grootte)",
+  "compression_hint": "Hogere compressie betekent een kleinere bestandsgrootte, maar lagere kwaliteit",
+  "compress_pdf_btn": "PDF Comprimeren",
+  "download_compressed_pdf": "Gecomprimeerde PDF downloaden",
+  "failed_compress_pdf": "Kon PDF niet comprimeren. Probeer het alstublieft opnieuw.",
+  "pdf_compressed_success": "PDF succesvol gecomprimeerd!",
+  "convert_image": "Afbeelding Converteren",
+  "convert_image_desc": "Converteer uw afbeeldingen naar verschillende formaten met behoud van kwaliteit",
+  "convert_to_format": "Converteren naar formaat",
+  "converting": "Converteren...",
+  "convert_image_btn": "Afbeelding converteren",
+  "download_converted_image": "Geconverteerde afbeelding downloaden",
+  "failed_convert_image": "Kon afbeelding niet converteren. Probeer het alstublieft opnieuw.",
+  "pdf_processed": "Verwerkte PDF's",
+  "check_transactions": "Bekijk al uw transacties tot nu toe",
+  "current_plan": "Huidig abonnement",
+  "free": "Gratis",
+  "convert_pdf": "PDF Converteren",
+  "convert_pdf_desc": "Converteer een PDF tussen verschillende formaten",
+  "compress_images": "Afbeeldingen Comprimeren",
+  "compress_images_desc": "Verklein de bestandsgrootte van PDF met behoud van kwaliteit",
+  "upgrade_plan": "Abonnement upgraden",
+  "upgrade_plan_desc": "Krijg meer functies en hogere limieten",
+  "failed_fetch_stats": "Kon gebruikersstatistieken niet ophalen",
+  "excel_to_pdf": {
+    "title": "Excel naar PDF Converteren",
+    "desc": "Upload een Excel-bestand (.xls of .xlsx) en converteer het naar PDF-formaat, met behoud van de lay-out.",
+    "upload_label": "Excel-bestand uploaden",
+    "upload_btn": "Spreadsheet uploaden",
+    "file_hint": "XLS of XLSX tot 20 MB",
+    "selected_file": "Geselecteerd bestand:",
+    "convert_btn": "Converteren naar PDF",
+    "converting": "Converteren...",
+    "download_btn": "PDF downloaden",
+    "please_select_excel": "Selecteer alstublieft een Excel-bestand",
+    "success": "Excel succesvol geconverteerd naar PDF!",
+    "failed": "Kon Excel niet converteren. Probeer het alstublieft opnieuw."
+  },
+  "extract_pdf": {
+    "title": "PDF-pagina's Extraheren",
+    "desc": "Upload een PDF en extraheer specifieke pagina's naar een nieuwe PDF. Voer paginanummers in, gescheiden door komma's (bijv. 1,3,5).",
+    "please_select_pdf_only": "Selecteer alstublieft slechts één PDF-bestand.",
+    "failed_load_pdf": "Kon PDF niet laden. Probeer alstublieft een ander bestand.",
+    "enter_page_numbers": "Voer alstublieft minstens één paginanummer in om te extraheren.",
+    "invalid_page_numbers": "Ongeldige paginanummers. Voer alstublieft nummers in tussen 1 en {{totalPages}}",
+    "failed_extract": "Kon PDF niet extraheren. Probeer het alstublieft opnieuw.",
+    "pages": "pagina's",
+    "pages_to_extract": "Pagina's om te extraheren (door komma's gescheiden)",
+    "page_numbers_placeholder": "bijv. 1,3,5",
+    "enter_page_numbers_range": "Voer paginanummers in tussen 1 en {{totalPages}}",
+    "extracting": "Extraheren...",
+    "extract_btn": "Pagina's extraheren",
+    "download_btn": "Geëxtraheerde pagina's downloaden"
+  },
+  "forgot_password": {
+    "title": "Wachtwoord Herstellen",
+    "step1": "Voer uw e-mailadres in",
+    "step2": "Beantwoord uw beveiligingsvragen",
+    "step3": "Creëer een nieuw wachtwoord",
+    "email_label": "E-mailadres",
+    "email_placeholder": "Voer uw e-mailadres in",
+    "checking": "Controleren...",
+    "continue": "Doorgaan",
+    "fav_book": "Wat is uw favoriete boek?",
+    "fav_meal": "Wat is uw favoriete maaltijd?",
+    "answer_placeholder": "Voer uw antwoord in",
+    "verify_answers": "Antwoorden verifiëren",
+    "new_password": "Nieuw wachtwoord",
+    "new_password_placeholder": "Voer een nieuw wachtwoord in",
+    "confirm_password": "Wachtwoord bevestigen",
+    "confirm_password_placeholder": "Voer het nieuwe wachtwoord opnieuw in",
+    "resetting": "Herstellen...",
+    "reset_password": "Wachtwoord herstellen",
+    "back_to_login": "Terug naar inloggen",
+    "email_not_found": "E-mailadres niet gevonden",
+    "incorrect_answers": "Onjuiste antwoorden",
+    "passwords_do_not_match": "Wachtwoorden komen niet overeen",
+    "reset_success": "Wachtwoord succesvol hersteld. Log alstublieft in met uw nieuwe wachtwoord.",
+    "failed_reset": "Wachtwoord herstellen mislukt"
+  },
+  "home": {
+    "merge_pdf_desc": "Combineer meerdere PDF-bestanden tot één.",
+    "split_pdf_desc": "Splits een PDF in afzonderlijke bestanden.",
+    "remove_pages_desc": "Verwijder specifieke pagina's uit een PDF.",
+    "extract_pages_desc": "Extraheer geselecteerde pagina's als een nieuwe PDF.",
+    "organize_pdf_desc": "Herschik of organiseer PDF-pagina's.",
+    "rotate_pdf_desc": "Roteer de pagina's van uw PDF.",
+    "metadata_viewer": "Metadataviewer",
+    "metadata_viewer_desc": "Controleer alle details van elke PDF.",
+    "update_metadata": "Metadata Bijwerken",
+    "update_metadata_desc": "Bewerk de auteur, titel en meer van een PDF",
+    "compare_pdf_desc": "Vergelijk twee PDF-bestanden op verschillen.",
+    "pdf_to_pdfa_desc": "Converteer PDF's naar PDF/A voor archivering.",
+    "jpg_to_pdf_desc": "Converteer JPG-afbeeldingen naar PDF.",
+    "word_to_pdf_desc": "Converteer Word-documenten naar PDF.",
+    "powerpoint_to_pdf_desc": "Converteer PowerPoint-bestanden naar PDF.",
+    "excel_to_pdf_desc": "Converteer Excel-spreadsheets naar PDF.",
+    "html_to_pdf_desc": "Converteer HTML-bestanden naar PDF.",
+    "pdf_to_jpg_desc": "Converteer PDF-pagina's naar JPG-afbeeldingen.",
+    "pdf_to_word_desc": "Converteer PDF's naar bewerkbare Word-documenten.",
+    "pdf_to_powerpoint_desc": "Converteer PDF's naar PowerPoint-presentaties.",
+    "pdf_to_excel_desc": "Converteer PDF's naar Excel-spreadsheets.",
+    "pdf_to_text_converter": "PDF naar tekst converter",
+    "pdf_voice_reader": "PDF stemlezer",
+    "pdf_voice_reader_desc": "Luister naar de inhoud van uw PDF met een natuurlijke stem.",
+    "translate": "PDF vertalen",
+    "translate_desc": "Vertaal de tekst in uw PDF naar meerdere talen.",
+    "handwriting": "Handschrift naar PDF",
+    "handwriting_desc": "Zet handgeschreven notities om in een digitaal PDF-bestand.",
+    "pdf_expire": "PDF met vervaldatum",
+    "pdf_expire_desc": "Deel PDF’s met een vervaldatum voor veilige toegang.",
+    "e_sign": "PDF digitaal ondertekenen",
+    "e_sign_desc": "Onderteken uw PDF-documenten elektronisch"
+  },
+  "user_management": {
+    "title": "Gebruikersbeheer",
+    "search_placeholder": "Gebruikers zoeken...",
+    "failed_fetch_users": "Kon gebruikers niet ophalen",
+    "table": {
+      "name": "Naam",
+      "email": "E-mail",
+      "role": "Rol",
+      "subscription": "Abonnement",
+      "country": "Land"
+    },
+    "roles": {
+      "admin": "Beheerder",
+      "user": "Gebruiker"
+    },
+    "plans": {
+      "basic": "Basis"
+    },
+    "not_available": "N.v.t."
+  },
+  "payment_history": {
+    "title": "Betalingsgeschiedenis",
+    "auth_error": "Authenticatiefout. Log alstublieft opnieuw in.",
+    "plan": "Abonnement",
+    "not_available": "N.v.t.",
+    "hide_details": "Details verbergen",
+    "more_details": "Meer details",
+    "card": "Kaart",
+    "receipt": "Bon",
+    "view_receipt": "Bon bekijken",
+    "billing_name": "Factuurnaam",
+    "email": "E-mail",
+    "paid_on": "Betaald op"
+  },
+  "merge_pdf": {
+    "title": "PDF-bestanden Samenvoegen",
+    "desc": "Combineer meerdere PDF-bestanden tot één document. Sleep om de volgorde te wijzigen voordat u samenvoegt.",
+    "upload_pdfs": "PDF's uploaden",
+    "upload_btn": "PDF-bestanden uploaden",
+    "remove": "Verwijderen",
+    "merge_btn": "PDF's samenvoegen",
+    "merging": "Samenvoegen...",
+    "download_btn": "Samengevoegde PDF downloaden",
+    "select_pdf_only": "Selecteer alstublieft alleen PDF-bestanden.",
+    "failed_merge": "Kon PDF's niet samenvoegen",
+    "failed": "Kon PDF niet samenvoegen. Probeer het alstublieft opnieuw."
+  },
+  "watermark_pdf": {
+    "title": "Watermerk Toevoegen aan PDF",
+    "desc": "Upload een PDF en voeg een aangepaste tekstwatermerk toe aan elke pagina.",
+    "upload_text": "Upload een PDF-bestand of sleep het hierheen",
+    "watermark_text": "Watermerktekst",
+    "watermark_placeholder": "bijv. Vertrouwelijk",
+    "add_watermark": "Watermerk toevoegen",
+    "adding": "Toevoegen...",
+    "download_watermarked": "Watermerk-PDF downloaden",
+    "please_select_pdf": "Selecteer alstublieft een PDF-bestand",
+    "please_enter_watermark": "Voer alstublieft een watermerktekst in",
+    "success": "Watermerk succesvol toegevoegd!",
+    "failed": "Kon geen watermerk toevoegen aan PDF. Probeer het alstublieft opnieuw."
+  },
+  "word_to_pdf": {
+    "title": "Word naar PDF Converteren",
+    "desc": "Upload een Word-document (.doc of .docx) en converteer het naar PDF-formaat, met behoud van de opmaak.",
+    "upload_label": "Word-document uploaden",
+    "upload_btn": "Document uploaden",
+    "file_hint": "DOC of DOCX tot 20 MB",
+    "selected_file": "Geselecteerd bestand",
+    "convert_btn": "Converteren naar PDF",
+    "converting": "Converteren...",
+    "download_btn": "PDF downloaden",
+    "please_select_word": "Selecteer alstublieft een Word-document",
+    "success": "Document succesvol geconverteerd naar PDF!",
+    "failed": "Kon Word niet converteren naar PDF. Probeer het alstublieft opnieuw."
+  },
+  "terms_conditions": {
+    "title": "Servicevoorwaarden",
+    "acceptance": {
+      "title": "1. Acceptatie van de voorwaarden",
+      "content": "Door PDFPivot te gebruiken, stemt u ermee in zich te houden aan deze voorwaarden en de toepasselijke wetgeving. Deze voorwaarden vormen een bindende overeenkomst tussen u en PDFPivot."
+    },
+    "eligibility": {
+      "title": "2. Geschiktheid",
+      "content": "U moet ten minste 13 jaar oud zijn om gebruik te maken van onze diensten. Door onze website te bezoeken, bevestigt u dat u aan deze leeftijdseis voldoet."
+    },
+    "services": {
+      "title": "3. Geleverde diensten",
+      "content": "PDFPivot biedt PDF-gerelateerde tools, waaronder conversie, samenvoegen, splitsen, comprimeren en bewerken van PDF-bestanden. We kunnen functies toevoegen, wijzigen of verwijderen zonder voorafgaande kennisgeving."
+    },
+    "account": {
+      "title": "4. Account en toegang",
+      "content": "Voor sommige functies kan registratie vereist zijn. U bent verantwoordelijk voor het vertrouwelijk houden van uw accountgegevens en bent aansprakelijk voor alle activiteiten die onder uw account plaatsvinden."
+    },
+    "acceptable_use": {
+      "title": "5. Acceptabel gebruik",
+      "intro": "U stemt ermee in de website niet te misbruiken. U mag niet:",
+      "item1": "Schadelijke of kwaadwillige inhoud uploaden",
+      "item2": "Inbreuk maken op intellectuele eigendomsrechten",
+      "item3": "Proberen ongeautoriseerde toegang te krijgen",
+      "item4": "Toepasselijke wetgeving overtreden"
+    },
+    "intellectual_property": {
+      "title": "6. Intellectuele eigendomsrechten",
+      "content": "Alle inhoud en tools op PDFPivot zijn intellectueel eigendom van de website of haar licentiegevers. U mag deze niet kopiëren, wijzigen of distribueren zonder schriftelijke toestemming."
+    },
+    "user_content": {
+      "title": "7. Gebruikersinhoud en bestandsuploads",
+      "content": "U behoudt het eigendom van de bestanden die u uploadt. Door onze tools te gebruiken, geeft u ons toestemming om de bestanden tijdelijk te verwerken en op te slaan om de service te leveren."
+    },
+    "payment": {
+      "title": "8. Betaling en prijzen",
+      "content": "Voor bepaalde diensten kan betaling vereist zijn. Alle kosten worden duidelijk weergegeven. PDFPivot behoudt zich het recht voor om prijzen op elk moment te wijzigen."
+    },
+    "refund": {
+      "title": "9. Terugbetaling en annulering",
+      "content": "Alle aankopen zijn niet-terugbetaalbaar. Vanwege de digitale en directe aard van onze diensten bieden we geen annuleringen of terugbetalingen zodra het proces is gestart."
+    },
+    "liability": {
+      "title": "10. Beperking van aansprakelijkheid",
+      "content": "PDFPivot is niet aansprakelijk voor enige directe, indirecte of gevolgschade die voortvloeit uit het gebruik van of de onmogelijkheid om de website of diensten te gebruiken."
+    },
+    "warranties": {
+      "title": "11. Afwijzing van garanties",
+      "content": "De diensten worden 'zoals ze zijn' geleverd. We garanderen geen ononderbroken service, nauwkeurigheid van resultaten of compatibiliteit met specifieke bestandstypen."
+    },
+    "third_party": {
+      "title": "12. Links van derden",
+      "content": "De website kan links bevatten naar diensten van derden. We zijn niet verantwoordelijk voor de inhoud, voorwaarden of privacypraktijken van externe websites."
+    },
+    "termination": {
+      "title": "13. Beëindiging van toegang",
+      "content": "We kunnen uw toegang tot PDFPivot op elk moment opschorten of beëindigen als u deze voorwaarden schendt of misbruik maakt van het platform."
+    },
+    "modifications": {
+      "title": "14. Wijzigingen in de voorwaarden",
+      "content": "PDFPivot kan deze voorwaarden op elk moment bijwerken. Wijzigingen worden op deze pagina geplaatst en uw voortgezet gebruik na de wijzigingen betekent dat u de nieuwe voorwaarden accepteert."
+    },
+    "contact": {
+      "title": "15. Contact opnemen",
+      "intro": "Als u vragen heeft over deze voorwaarden, neem dan contact met ons op:",
+      "email": "E-mail",
+      "website": "Website"
+    }
+  },
+  "subscription_plans": {
+    "expired_on": "verlopen op",
+    "will_expire_on": "verloopt op",
+    "your_plan_status": "Uw {{planName}} abonnement {{expiryText}} {{expiryDate}}",
+    "session_expired": "Uw sessie is verlopen. Log alstublieft opnieuw in.",
+    "service_unavailable": "Abonnementsservice is tijdelijk niet beschikbaar. Probeer het later alstublieft opnieuw.",
+    "failed_load_plans": "Kon abonnementsplannen niet laden. Probeer het later alstublieft opnieuw.",
+    "go_to_login": "Ga naar inloggen",
+    "retry": "Opnieuw proberen",
+    "current_plan": "Huidig abonnement",
+    "free": "Gratis",
+    "price_per_month": "${{price}}/maand",
+    "unlimited": "Onbeperkt",
+    "quota_per_month": "{{quota}}/maand",
+    "start_free": "Gratis starten",
+    "select_plan": "Abonnement selecteren"
+  },
+  "subscribe_page": {
+    "subscribe_to": "Abonneren op",
+    "choose_billing_desc": "Kies uw factureringscyclus en ga verder naar een veilige betaling.",
+    "billing_type": "Factureringstype",
+    "monthly_option": "Maandelijks - ${{price}}",
+    "annual_option": "Jaarlijks - ${{price}}",
+    "pay_now": "Betaal ${{price}} nu",
+    "redirecting": "Doorsturen...",
+    "loading_plan": "Plan details laden...",
+    "plan_not_loaded": "Plan niet geladen",
+    "payment_failed": "Betaling mislukt"
+  },
+  "split_pdf_page": {
+    "title": "Een PDF Splitsen",
+    "desc": "Upload een PDF en splits deze in afzonderlijke pagina's. Download alle pagina's als een ZIP-bestand.",
+    "split_pdf_btn": "PDF splitsen",
+    "splitting": "Splitsen...",
+    "download_split_pages": "Gesplitste pagina's downloaden (ZIP)",
+    "please_select_pdf_only": "Selecteer alstublieft slechts één PDF-bestand.",
+    "failed_split": "Kon de PDF niet splitsen. Probeer het alstublieft opnieuw."
+  },
+  "rotate_pdf_page": {
+    "title": "PDF-pagina Roteren",
+    "desc": "Upload een PDF en bekijk de eerste pagina. Gebruik de knoppen om de weergave naar links of rechts te roteren. Download de geroteerde PDF.",
+    "pdf_preview": "PDF-voorbeeld",
+    "rotation_degrees": "Rotatie: {{degrees}}°",
+    "current_rotation": "Huidige rotatie: {{degrees}}°",
+    "rotate_left": "Roteer links",
+    "rotate_right": "Roteer rechts",
+    "generating": "Genereren...",
+    "download_rotated_pdf": "Geroteerde PDF downloaden",
+    "click_to_download": "Klik hier om te downloaden",
+    "please_select_pdf": "Selecteer alstublieft een PDF-bestand.",
+    "failed_generate": "Kon de geroteerde PDF niet genereren. {{message}}",
+    "please_try_again": "Probeer het alstublieft opnieuw."
+  },
+  "rotate_page": {
+    "title": "Afbeelding Roteren",
+    "desc": "Roteer uw afbeeldingen met precisie, met behoud van kwaliteit",
+    "upload_image": "Afbeelding uploaden",
+    "upload_a_file": "Een bestand uploaden",
+    "rotating": "Roteren...",
+    "rotate_left": "Roteer links",
+    "rotate_right": "Roteer rechts",
+    "download_rotated_image": "Geroteerde afbeelding downloaden",
+    "please_upload_image": "Upload alstublieft eerst een afbeelding.",
+    "failed_track_usage": "Kon gebruik niet volgen. Probeer het later alstublieft opnieuw.",
+    "failed_rotate": "Kon afbeelding niet roteren. Probeer het alstublieft opnieuw."
+  },
+  "remove_pdf": {
+    "title": "Pagina's Verwijderen uit PDF",
+    "desc": "Upload een PDF en verwijder specifieke pagina's. Voer paginanummers in, gescheiden door komma's (bijv. 1,3,5).",
+    "pages_to_remove": "Pagina's om te verwijderen (door komma's gescheiden)",
+    "page_numbers_placeholder": "bijv. 1,3,5",
+    "remove_pages_btn": "Pagina's verwijderen",
+    "removing": "Verwijderen...",
+    "download_btn": "Gewijzigde PDF downloaden",
+    "please_select_pdf_only": "Selecteer alstublieft slechts één PDF-bestand.",
+    "enter_page_numbers": "Voer alstublieft minstens één paginanummer in om te verwijderen.",
+    "invalid_page_numbers": "Ongeldige paginanummers. Voer alstublieft nummers in tussen 1 en {{pageCount}}",
+    "failed_remove": "Kon pagina's niet verwijderen. Probeer het alstublieft opnieuw."
+  },
+  "register": {
+    "title": "Een Account Aanmaken",
+    "subtitle": "Word lid om uw reis te beginnen",
+    "full_name": "Volledige naam",
+    "full_name_placeholder": "Voer uw volledige naam in",
+    "email_label": "E-mailadres",
+    "email_placeholder": "Voer uw e-mailadres in",
+    "password_label": "Wachtwoord",
+    "password_placeholder": "Voer uw wachtwoord in",
+    "confirm_password_label": "Wachtwoord bevestigen",
+    "confirm_password_placeholder": "Bevestig uw wachtwoord",
+    "country_label": "Land",
+    "select_country": "Selecteer uw land",
+    "fav_book_question": "Wat is uw favoriete boek?",
+    "fav_book_placeholder": "Voer uw favoriete boek in",
+    "fav_meal_question": "Wat is uw favoriete maaltijd?",
+    "fav_meal_placeholder": "Voer uw favoriete maaltijd in",
+    "create_account_btn": "Account aanmaken",
+    "already_have_account": "Heeft u al een account?",
+    "sign_in_link": "Inloggen",
+    "passwords_do_not_match": "Wachtwoorden komen niet overeen"
+  },
+  "privacy_policy": {
+    "title": "Privacybeleid",
+    "introduction": {
+      "title": "1. Introductie",
+      "content": "Welkom bij PDFPivot ('wij', 'ons' of 'onze'). Dit beleid is van toepassing op alle bezoekers, gebruikers en klanten die toegang hebben tot"
+    },
+    "information_collection": {
+      "title": "2. Informatie die we verzamelen",
+      "content": "We verzamelen persoonlijke gegevens zoals naam, e-mail, contactgegevens, geüploade bestanden, IP-adressen en browser-/apparaatinformatie."
+    },
+    "how_we_use": {
+      "title": "3. Hoe we uw informatie gebruiken",
+      "item1": "Om PDF-gerelateerde tools en diensten te leveren",
+      "item2": "Om de prestaties en functionaliteit van de site te verbeteren",
+      "item3": "Om met gebruikers te communiceren",
+      "item4": "Om te voldoen aan wettelijke vereisten"
+    },
+    "legal_basis": {
+      "title": "4. Wettelijke basis voor gegevensverwerking",
+      "content": "We verwerken gegevens op basis van toestemming, contractuele noodzaak en legitieme zakelijke belangen, zoals het verbeteren van de dienstverlening en het waarborgen van de beveiliging."
+    },
+    "cookies": {
+      "title": "5. Cookies en tracking",
+      "content": "PDFPivot gebruikt cookies om inhoud te personaliseren, het gebruik te analyseren en uw ervaring te verbeteren. U kunt cookies uitschakelen in uw browserinstellingen."
+    },
+    "uploaded_files": {
+      "title": "6. Gebruik van geüploade bestanden",
+      "content": "Bestanden die voor conversie of bewerking zijn geüpload, worden tijdelijk opgeslagen en na verwerking verwijderd. We hebben geen toegang tot, lezen of delen de inhoud van de bestanden niet met derden."
+    },
+    "third_party": {
+      "title": "7. Diensten van derden",
+      "content": "We kunnen vertrouwde externe providers gebruiken voor analyse, hosting of betaaldiensten. Deze providers moeten zich houden aan strenge normen voor gegevensprivacy."
+    },
+    "data_security": {
+      "title": "8. Gegevensbeveiliging",
+      "content": "We implementeren sterke versleuteling en toegangscontroles om uw gegevens te beschermen tegen ongeoorloofde toegang, verlies of misbruik."
+    },
+    "data_retention": {
+      "title": "9. Gegevensbewaring",
+      "content": "We bewaren uw persoonlijke gegevens alleen zo lang als nodig is voor onze diensten of om te voldoen aan wettelijke verplichtingen. Geüploade bestanden worden automatisch verwijderd na verwerking."
+    },
+    "international_transfers": {
+      "title": "10. Internationale overdrachten",
+      "content": "Uw gegevens kunnen worden overgedragen naar servers buiten uw land. We nemen maatregelen om ervoor te zorgen dat uw gegevens worden beschermd in overeenstemming met dit privacybeleid."
+    },
+    "children_privacy": {
+      "title": "11. Privacy van kinderen",
+      "content": "PDFPivot is niet bedoeld voor kinderen jonger dan 13 jaar. We verzamelen niet bewust gegevens van kinderen. Als dergelijke gegevens worden gevonden, worden ze onmiddellijk verwijderd."
+    },
+    "your_rights": {
+      "title": "12. Uw rechten",
+      "content": "Afhankelijk van uw regio heeft u mogelijk rechten op toegang tot, rectificatie, verwijdering of beperking van uw persoonlijke gegevens. Neem contact met ons op om deze rechten uit te oefenen."
+    },
+    "third_party_links": {
+      "title": "13. Links van derden",
+      "content": "Onze website kan links naar externe websites bevatten. Wij zijn niet verantwoordelijk voor hun privacypraktijken. Raadpleeg alstublieft hun beleid afzonderlijk."
+    },
+    "policy_updates": {
+      "title": "14. Beleidsupdates",
+      "content": "Dit privacybeleid kan worden bijgewerkt. Eventuele wijzigingen worden op deze pagina geplaatst met een nieuwe ingangsdatum."
+    },
+    "contact": {
+      "title": "15. Contact opnemen",
+      "intro": "Als u vragen of opmerkingen heeft over uw gegevens:",
+      "email": "E-mail",
+      "website": "Website"
+    }
+  },
+  "unlock_pdf_page": {
+    "title": "Een PDF Ontgrendelen",
+    "desc": "Verwijder wachtwoordbeveiliging van uw PDF-bestanden. Upload uw met wachtwoord beveiligde PDF en voer het wachtwoord in om het te ontgrendelen.",
+    "upload_label": "Met wachtwoord beveiligde PDF uploaden",
+    "pdf_password": "PDF-wachtwoord",
+    "enter_password_placeholder": "Voer PDF-wachtwoord in",
+    "unlock_pdf_btn": "PDF ontgrendelen",
+    "unlocking": "Ontgrendelen...",
+    "unlocked_successfully": "PDF succesvol ontgrendeld!",
+    "please_upload_pdf": "Upload alstublieft een PDF-bestand",
+    "please_enter_password": "Voer alstublieft het PDF-wachtwoord in",
+    "failed_unlock": "Kon PDF niet ontgrendelen. Probeer het alstublieft opnieuw."
+  },
+  "pdf_to_text": "PDF naar tekst",
+  "pdf_to_text_desc": "Extraheer eenvoudig platte tekst",
+  "unlock_pdf_desc": "Verwijder wachtwoordbeveiliging van PDF's.",
+  "protect_pdf": {
+    "title": "Beveiliging Toevoegen aan PDF",
+    "desc": "Upload een PDF-bestand en stel een wachtwoord in om het te beveiligen tegen ongeoorloofde toegang.",
+    "set_password": "Een wachtwoord instellen",
+    "password_placeholder": "Voer een wachtwoord in",
+    "selected_file": "Geselecteerd bestand",
+    "protect_btn": "PDF beveiligen",
+    "protecting": "Beveiligen...",
+    "download_btn": "Beveiligde PDF downloaden",
+    "select_pdf_and_password": "Selecteer alstublieft een PDF en voer een wachtwoord in.",
+    "success": "PDF succesvol beveiligd!",
+    "failed": "Kon PDF niet beveiligen. Probeer het alstublieft opnieuw."
+  },
+  "protect_pdf_desc": "Voeg wachtwoordbeveiliging toe aan uw PDF's.",
+  "add_watermark_desc": "Voeg een tekst- of afbeeldingswatermerk toe aan uw PDF.",
+  "refund_policy": {
+    "title": "Terugbetalings- en Annuleringsbeleid",
+    "no_refund": {
+      "title": "1. Geen-terugbetalingsbeleid",
+      "content": "Alle betalingen op PDFPivot zijn niet-terugbetaalbaar. Zodra een dienst is gestart of voltooid, kunnen we de transactie niet annuleren of terugbetalen."
+    },
+    "instant_service": {
+      "title": "2. Directe digitale service",
+      "content": "Onze diensten zijn geautomatiseerd en beginnen onmiddellijk met de verwerking nadat het bestand is geüpload of de betaling is gedaan. Daarom zijn annuleringen of terugbetalingen niet mogelijk zodra het proces is gestart."
+    },
+    "order_cancellation": {
+      "title": "3. Annulering van bestelling",
+      "content": "U kunt een bestelling niet annuleren nadat deze is ingediend en de verwerking is gestart. Controleer alstublieft alle details voordat u een bestelling plaatst."
+    },
+    "wrong_file": {
+      "title": "4. Onjuiste bestanden geüpload",
+      "content": "PDFPivot is niet verantwoordelijk als u een verkeerd of onjuist bestand uploadt. Controleer uw bestanden alstublieft dubbel voordat u ze indient."
+    },
+    "duplicate_payments": {
+      "title": "5. Dubbele betalingen",
+      "content": "In geval van onbedoelde dubbele betalingen, moet u ons binnen 24 uur op de hoogte stellen. We zullen dit verifiëren en alleen het dubbele bedrag terugbetalen, indien van toepassing."
+    },
+    "failed_services": {
+      "title": "6. Mislukte diensten",
+      "content": "Als de dienst faalt vanwege een technisch probleem van onze kant (bijv. bestand niet verwerkt, serverfout), kunnen we een gratis herverwerking aanbieden. Er wordt geen terugbetaling gedaan."
+    },
+    "user_mistakes": {
+      "title": "7. Gebruikersfouten",
+      "content": "Terugbetalingen worden niet verleend voor gebruikersfouten, zoals onjuiste instellingen, uitvoerformaten of gemiste opties tijdens de verwerking."
+    },
+    "subscription_services": {
+      "title": "8. Abonnementsdiensten",
+      "content": "Als PDFPivot abonnementsplannen introduceert, moeten gebruikers hun abonnementen opzeggen voor de volgende factureringscyclus. Er worden geen pro-rata of tussentijdse terugbetalingen gedaan."
+    },
+    "unauthorized_use": {
+      "title": "9. Ongeautoriseerd gebruik",
+      "content": "We zijn niet verantwoordelijk voor ongeautoriseerd of frauduleus gebruik van uw account. Bescherm uw inloggegevens om misbruik te voorkomen."
+    },
+    "file_retention": {
+      "title": "10. Bestandsbewaring en -verwijdering",
+      "content": "We bewaren bestanden niet permanent. Alle bestanden worden automatisch na korte tijd verwijderd. Niet-levering vanwege verlopen bestanden komt niet in aanmerking voor terugbetaling."
+    },
+    "service_downtime": {
+      "title": "11. Servicestoring",
+      "content": "Af en toe wordt er een storing verwacht voor onderhoud of technische problemen. Terugbetalingen worden niet gedaan voor tijdelijke onbeschikbaarheid van de diensten."
+    },
+    "promotional_purchases": {
+      "title": "12. Promotionele en afgeprijsde aankopen",
+      "content": "Er worden geen terugbetalingen gedaan voor diensten die zijn verkregen tijdens uitverkoop, kortingen op basis van coupons of promotie-aanbiedingen."
+    },
+    "chargebacks": {
+      "title": "13. Terugboekingen",
+      "content": "Gebruikers die frauduleuze terugboekingen initiëren, kunnen permanent worden verbannen en hun toegang wordt ingetrokken."
+    },
+    "policy_agreement": {
+      "title": "14. Beleidsovereenkomst",
+      "content": "Door gebruik te maken van onze diensten, stemt u in met dit terugbetalings- en annuleringsbeleid. Het is de verantwoordelijkheid van de gebruiker om het te lezen en te begrijpen voordat een aankoop wordt gedaan."
+    },
+    "contact": {
+      "title": "15. Contact opnemen",
+      "intro": "Als u vragen heeft of in uitzonderlijke omstandigheden verkeert, neem dan contact met ons op:",
+      "email": "E-mail",
+      "website": "Website"
+    }
+  },
+  "update_metadata_page": {
+    "title": "PDF-metadata bijwerken",
+    "desc": "Upload een PDF en update de metadata zoals titel, auteur en meer.",
+    "selected_file": "Geselecteerd bestand",
+    "title_placeholder": "Titel",
+    "author_placeholder": "Auteur",
+    "subject_placeholder": "Onderwerp",
+    "keywords_placeholder": "Trefwoorden (gescheiden door komma's)",
+    "update_metadata_btn": "Metadata bijwerken",
+    "updating": "Bijwerken...",
+    "download_updated_pdf": "Bijgewerkte PDF downloaden",
+    "updated_successfully": "Metadata succesvol bijgewerkt!",
+    "please_select_pdf": "Selecteer alstublieft een PDF-bestand",
+    "failed_update": "Kon PDF-metadata niet bijwerken. Probeer het alstublieft opnieuw."
+  },
+  "display_plans": {
+    "title": "Abonnementsplannen",
+    "desc": "Kies een plan dat bij uw behoeften past. Upgrade op elk moment."
+  },
+  "faq": {
+    "title": "PdfPivot FAQ",
+    "convert_file": {
+      "question": "Hoe converteer ik een bestand naar PDF?",
+      "answer": "Selecteer een conversietool zoals Word naar PDF, upload uw bestand en klik op 'Converteren'. Uw PDF is direct klaar om te downloaden."
+    },
+    "limits": {
+      "question": "Is er een limiet aan het aantal PDF-taken dat ik kan uitvoeren?",
+      "answer": "Ja, elk abonnementsplan wordt geleverd met maandelijkse quota's. Gratis gebruikers krijgen beperkte conversies. Betaalde plannen bieden meer of onbeperkt gebruik."
+    },
+    "security": {
+      "question": "Zijn mijn PDF-gegevens veilig?",
+      "answer": "Absoluut. Alle bestanden worden verwerkt met veilige versleuteling en worden na verwerking automatisch verwijderd. We slaan uw gegevens nooit op."
+    },
+    "mobile": {
+      "question": "Kan ik PdfPivot op mijn telefoon gebruiken?",
+      "answer": "Ja! PdfPivot is volledig responsief en werkt op alle moderne mobiele browsers."
+    },
+    "formats": {
+      "question": "Welke bestandstypen kan ik converteren naar en van PDF?",
+      "answer": "U kunt Word, Excel, PowerPoint, JPG en HTML converteren naar PDF, en vice versa. We ondersteunen ook conversie van PDF naar PDF/A en OCR voor gescande bestanden."
+    },
+    "ocr": {
+      "question": "Hoe werkt de OCR-functie?",
+      "answer": "OCR extraheert automatisch tekst uit gescande PDF's, zodat u de inhoud kunt doorzoeken en bewerken. Het is beschikbaar voor alle PDF-tools."
+    }
+  },
+  "hero": {
+    "title_line1": "Online PDF-tools",
+    "title_line2": "snel, veilig en",
+    "title_line3": "krachtig",
+    "description": "Bewerk, converteer, comprimeer en beveilig uw PDF's eenvoudig, alles in uw browser. Vertrouwd door professionals wereldwijd.",
+    "live_chat": "Live chat",
+    "image_alt": "Illustratie van afbeeldingsbewerking"
+  },
+  "how_it_works": {
+    "title": "PdfPivot, uw alles-in-één PDF-toolbox.",
+    "subtitle": "Hoe een PDF naar Word te converteren",
+    "description": "Volg deze eenvoudige stappen om een PDF naar Word te converteren met Xodo:",
+    "step1": "Upload uw PDF naar de gratis online PDF naar Word-converter.",
+    "step2": "Klik op 'Converteren' - OCR wordt automatisch toegepast op gescande PDF's.",
+    "step3": "Download uw bewerkbare Word-bestand (.docx).",
+    "image_alt": "Hoe te converteren"
+  },
+  "payment_form": {
+    "cancel": "Annuleren",
+    "pay_now": "Nu betalen",
+    "processing": "Verwerken...",
+    "default_error": "Er is een fout opgetreden"
+  },
+  "trusted_by": {
+    "title": "De PDF-toolbox die door duizenden wordt vertrouwd",
+    "description": "PDFPivot is uw veilige, alles-in-één platform voor het converteren, bewerken en organiseren van PDF-bestanden. Snelle prestaties, privéverwerking - geen opgeslagen gegevens.",
+    "iso_27001": "ISO 27001",
+    "secure_processing": "Veilige verwerking",
+    "trusted_by_enterprises": "Vertrouwd door bedrijven"
+  },
+  "why_us": {
+    "title": "PDFPivot, uw complete PDF-toolbox op één plek",
+    "feature1": {
+      "title": "Complete PDF-toolbox",
+      "description": "Voeg samen, splits, converteer, comprimeer, beveilig en bewerk uw PDF's, allemaal vanuit één eenvoudig te gebruiken platform."
+    },
+    "feature2": {
+      "title": "Snelle en betrouwbare conversies",
+      "description": "Converteer bestanden naar en van PDF-formaten in seconden. OCR wordt automatisch toegepast op gescande documenten."
+    },
+    "feature3": {
+      "title": "Slimme quotagebaseerde toegang",
+      "description": "Geniet van flexibele abonnementsplannen met maandelijkse quota's of onbeperkt gebruik, ontworpen voor individuen en teams."
+    }
+  },
+  "metadata_viewer": {
+    "title": "PDF Metadataviewer",
+    "upload_text": "Upload een PDF-bestand of sleep het hierheen",
+    "view_btn": "Metadata bekijken",
+    "fetching": "Ophalen...",
+    "metadata_label": "Metadata",
+    "select_pdf": "Selecteer alstublieft een PDF-bestand.",
+    "success": "Metadata succesvol opgehaald!",
+    "failed": "Kon PDF-metadata niet bekijken. Probeer het alstublieft opnieuw."
+  },
+  "organize_pdf": {
+    "title": "PDF-pagina's Organiseren",
+    "desc": "Upload een PDF, sleep om de pagina's te herschikken en download de geordende PDF.",
+    "select_pdf_only": "Selecteer alstublieft slechts één PDF-bestand.",
+    "failed_load_pdf": "Kon PDF niet laden.",
+    "upload_pdf": "Upload alstublieft een PDF-bestand.",
+    "success": "PDF geordend!",
+    "failed": "Kon PDF niet organiseren. Probeer het alstublieft opnieuw.",
+    "pages": "pagina's",
+    "drag_reorder": "Sleep om de pagina's te herschikken",
+    "reordering": "Herschikken...",
+    "reorder_btn": "Herschikken en downloaden",
+    "download_btn": "Geordende PDF downloaden"
+  },
+  "plan_management": {
+    "title": "Abonnementsbeheer",
+    "plan_name": "Naam van het plan",
+    "monthly_fee": "Maandelijks bedrag",
+    "annual_fee": "Jaarlijks bedrag",
+    "service_quotas": "Dienstquota's",
+    "set_all_quotas": "Alle dienstquota's instellen",
+    "monthly_quota_all": "Maandelijks quotum (Alle diensten)",
+    "annual_quota_all": "Jaarlijks quotum (Alle diensten)",
+    "set_monthly_quota_placeholder": "Maandelijks quotum instellen voor alle diensten",
+    "set_annual_quota_placeholder": "Jaarlijks quotum instellen voor alle diensten",
+    "individual_quotas": "Individuele dienstquota's",
+    "monthly_quota": "Maandelijks quotum",
+    "annual_quota": "Jaarlijks quotum",
+    "create_plan": "Plan aanmaken",
+    "update_plan": "Plan bijwerken",
+    "cancel": "Annuleren",
+    "existing_plans": "Bestaande plannen",
+    "monthly": "Maandelijks",
+    "annual": "Jaarlijks",
+    "edit": "Bewerken",
+    "delete": "Verwijderen",
+    "features": "Functies",
+    "month": "maand",
+    "year": "jaar",
+    "all_services_included": "Alle diensten inbegrepen",
+    "failed_fetch_plans": "Kon plannen niet ophalen",
+    "failed_save_plan": "Kon plan niet opslaan",
+    "failed_delete_plan": "Kon plan niet verwijderen",
+    "confirm_delete": "Weet u zeker dat u dit plan wilt verwijderen?"
+  },
+  "ppt_to_pdf": {
+    "title": "PPT naar PDF Converteren",
+    "desc": "Upload een PowerPoint-presentatie (.ppt of .pptx) en converteer deze naar PDF-formaat, met behoud van de presentatielay-out.",
+    "upload_label": "PowerPoint-bestand uploaden",
+    "upload_btn": "Presentatie uploaden",
+    "file_hint": "PPT of PPTX tot 20 MB",
+    "selected_file": "Geselecteerd bestand",
+    "convert_btn": "Converteren naar PDF",
+    "converting": "Converteren...",
+    "download_btn": "PDF downloaden",
+    "select_ppt": "Selecteer alstublieft een PowerPoint-bestand",
+    "success": "Presentatie succesvol geconverteerd naar PDF!",
+    "failed": "Kon PPT niet converteren naar PDF. Probeer het alstublieft opnieuw."
+  },
+  "pdf_to_excel": {
+    "title": "PDF naar Excel Converteren",
+    "desc": "Upload een PDF-bestand en converteer het naar Excel (.xlsx) formaat, met behoud van de gegevensstructuur.",
+    "upload_label": "Een PDF-bestand uploaden",
+    "selected_file": "Geselecteerd bestand",
+    "select_pdf": "Selecteer alstublieft een PDF-bestand",
+    "success": "PDF succesvol geconverteerd naar Excel!",
+    "failed": "Kon niet converteren naar Excel. Probeer het alstublieft opnieuw.",
+    "converting": "Converteren...",
+    "convert_btn": "Converteren naar Excel",
+    "download_btn": "Excel downloaden"
+  },
+  "pdf_to_jpg": {
+    "title": "PDF naar JPG Converteren",
+    "desc": "Upload een PDF en converteer elke pagina naar een JPG-afbeelding. Download alle afbeeldingen als een ZIP-bestand.",
+    "upload_valid_pdf": "Upload alstublieft een geldig PDF-bestand.",
+    "failed": "Kon PDF niet converteren naar JPG. Probeer het alstublieft opnieuw.",
+    "converting": "PDF converteren naar afbeeldingen...",
+    "page_alt": "Pagina {{page}}",
+    "download_btn": "JPG ZIP downloaden"
+  },
+  "pdf_to_pdfa": {
+    "title": "PDF naar PDF/A Converteren",
+    "desc": "Upload een PDF en converteer deze naar een standaard archiveringsbestand PDF/A.",
+    "upload_text": "Upload een PDF-bestand of sleep het hierheen",
+    "select_pdf": "Selecteer alstublieft een PDF-bestand",
+    "success": "PDF succesvol geconverteerd naar PDF/A!",
+    "failed": "Kon niet converteren naar PDF/A. Probeer het alstublieft opnieuw.",
+    "converting": "Converteren...",
+    "convert_btn": "Converteren naar PDF/A",
+    "download_btn": "PDF/A downloaden"
+  },
+  "pdf_to_ppt": {
+    "title": "PDF naar PowerPoint Converteren",
+    "desc": "Upload een PDF-bestand en converteer het naar PowerPoint (.pptx) formaat, met behoud van de lay-out.",
+    "upload_label": "Een PDF-bestand uploaden",
+    "selected_file": "Geselecteerd bestand",
+    "select_pdf": "Selecteer alstublieft een PDF-bestand",
+    "success": "PDF succesvol geconverteerd naar PPT!",
+    "failed": "Kon PDF niet converteren naar PPT. Probeer het alstublieft opnieuw.",
+    "converting": "Converteren...",
+    "convert_btn": "Converteren naar PPT",
+    "download_btn": "PPT downloaden"
+  },
+  "payment_failed": {
+    "alt_text": "Betaling mislukt",
+    "title": "Betaling mislukt",
+    "description": "Helaas kon uw transactie niet worden voltooid.",
+    "try_again": "Probeer het alstublieft opnieuw of neem contact op met de ondersteuning als het probleem aanhoudt.",
+    "go_to_dashboard": "Ga naar dashboard"
+  },
+  "payment_success": {
+    "alt_text": "Betaling succesvol",
+    "title": "Betaling succesvol!",
+    "thank_you": "Bedankt voor uw aankoop.",
+    "redirecting": "Doorsturen naar uw dashboard over <1>{{seconds}}</1> seconden...",
+    "not_redirected": "Niet doorgestuurd?",
+    "go_to_dashboard": "Ga naar dashboard"
+  },
+  "login": {
+    "welcome": "Welkom terug",
+    "subtitle": "Log in op uw account om verder te gaan",
+    "email_label": "E-mailadres",
+    "email_placeholder": "Voer uw e-mailadres in",
+    "password_label": "Wachtwoord",
+    "password_placeholder": "Voer uw wachtwoord in",
+    "sign_in": "Inloggen",
+    "no_account": "Geen account?",
+    "sign_up": "Aanmelden",
+    "forgot_password": "Wachtwoord vergeten?",
+    "failed": "Inloggen mislukt. Controleer alstublieft uw inloggegevens."
+  },
+  "footer": {
+    "pdfpivot": "PdfPivot",
+    "home": "Home",
+    "pricing": "Prijzen",
+    "security": "Beveiliging",
+    "tools": "Gereedschap",
+    "faq": "FAQ",
+    "product": "Product",
+    "desktop": "PdfPivot voor Desktop",
+    "mobile": "PdfPivot voor Mobiel",
+    "developers": "Ontwikkelaars",
+    "features": "Functies",
+    "solutions": "Oplossingen",
+    "business": "Bedrijven",
+    "education": "Onderwijs",
+    "company": "Bedrijf",
+    "privacy_policy": "Privacybeleid",
+    "terms_conditions": "Algemene voorwaarden",
+    "refund_policy": "Terugbetalingsbeleid",
+    "copyright": "© 2025 PdfPivot. Alle rechten voorbehouden.",
+    "trusted_by": "De PDF-toolbox die door duizenden wordt vertrouwd",
+    "login": "Inloggen",
+    "register": "Aanmelden",
+    "plans": "Plannen",
+    "services": "Diensten",
+    "merge_pdf": "PDF Samenvoegen",
+    "split_pdf": "PDF Splitsen",
+    "remove_pages": "Pagina's Verwijderen",
+    "extract_pages": "Pagina's Extraheren",
+    "security_tools": "Beveiligingstools",
+    "update_metadata": "Metadata bijwerken",
+    "view_metadata": "Metadata bekijken",
+    "add_watermark": "Watermerk toevoegen",
+    "protect_pdf": "PDF beveiligen"
+  },
+  "pdfvoicereader": {
+    "pdf_voice_reader": "PDF-stemlezer",
+    "pdf_voice_reader_desc": "Converteer PDF-inhoud naar audionarratie.",
+    "upload_pdf": "PDF uploaden",
+    "upload_a_file": "Een bestand uploaden",
+    "pdf_formats": "Alleen PDF-formaat",
+    "selected": "Geselecteerd",
+    "convert_to_audio": "Converteren naar audio",
+    "converting": "Bezig met converteren...",
+    "download_audio": "Download MP3",
+    "invalid_pdf": "Selecteer een geldig PDF-bestand.",
+    "conversion_failed": "Conversie van PDF naar audio mislukt. Probeer het opnieuw."
+  },
+  "pdftranslator": {
+    "smart_pdf_translator": "Slimme PDF-vertaler  ",
+    "smart_pdf_translator_desc": "Vertaal de hele PDF met behoud van de originele opmaak.",
+    "invalid_pdf": "Upload een geldig PDF-bestand.",
+    "upload_pdf": "PDF uploaden",
+    "upload_a_file": "Klik om een bestand te uploaden",
+    "pdf_formats": "Alleen PDF-bestanden worden ondersteund.",
+    "selected": "Geselecteerd",
+    "select_language": "Selecteer doeltaal",
+    "translate_pdf": "PDF vertalen",
+    "translating": "Bezig met vertalen...",
+    "translation_failed": "Vertaling mislukt. Probeer het opnieuw.",
+    "download_translated": "Vertaalde PDF downloaden"
+  },
+  "pdfhandwriter": {
+    "handwriting_simulation": "Handschrift simulatie",
+    "desc": "Upload een PDF en converteer deze naar een gesimuleerde handgeschreven versie.",
+    "invalid_pdf": "Upload een geldig PDF-bestand.",
+    "failed": "Het simuleren van handschrift is mislukt. Probeer het opnieuw.",
+    "upload_pdf": "PDF uploaden",
+    "upload_a_file": "Een bestand uploaden",
+    "pdf_formats": "Alleen PDF-bestanden worden ondersteund.",
+    "selected": "Geselecteerd bestand",
+    "simulate_pdf": "PDF simuleren",
+    "simulating": "Bezig met simuleren...",
+    "download_handwritten": "Handgeschreven PDF downloaden"
+  },
+  "pdfexpiry": {
+    "upload_pdf_title": "PDF uploaden en delen met vervaldatum",
+    "desc": "Upload een PDF en genereer een deelbare link die automatisch vervalt na het gekozen aantal dagen.",
+    "invalid_pdf": "Upload een geldig PDF-bestand.",
+    "failed": "Er is iets misgegaan. Probeer het opnieuw.",
+    "upload_pdf": "PDF-bestand uploaden",
+    "upload_a_file": "Klik om een bestand te uploaden",
+    "pdf_formats": "Alleen het PDF-formaat wordt ondersteund",
+    "selected": "Geselecteerd bestand",
+    "expiry_days": "Vervaldatum (in dagen)",
+    "days_note": "Maximaal 30 dagen",
+    "uploading": "Bezig met uploaden...",
+    "upload_pdf_btn": "Uploaden & link genereren",
+    "link_expires": "Link vervalt om",
+    "open_pdf": "Open PDF"
+  },
+  "pdfEditor": {
+    "title": "PDF-editor",
+    "uploadPDF": "PDF uploaden",
+    "uploadImage": "Afbeelding uploaden",
+    "clearSignature": "Handtekening wissen",
+    "placeImage": "Afbeelding plaatsen",
+    "placeSignature": "Handtekening plaatsen",
+    "placeText": "Tekst plaatsen",
+    "submitPDF": "PDF verzenden",
+    "sampleText": "Voorbeeldtekst",
+    "uploadPDFFirst": "Upload eerst een PDF!",
+    "failedToCreatePDF": "Kan PDF niet maken"
+  }
+}

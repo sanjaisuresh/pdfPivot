@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base reset */
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100%;
+}
+
+/* Main layout */
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content area */
+.route-transition {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+/* Hide scrollbar but keep functionality */
+.route-transition::-webkit-scrollbar {
+  width: 8px;
+}
+
+.route-transition::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.route-transition::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.route-transition::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

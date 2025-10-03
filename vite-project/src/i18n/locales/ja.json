@@ -1,0 +1,1004 @@
+{
+  "PdfPivot": "PDFピボット",
+  "Dashboard": "ダッシュボード",
+  "Users": "ユーザー",
+  "Plans Management": "プラン管理",
+  "Payment History": "支払い履歴",
+  "Payment History Desc": "これまでのすべての取引を確認する",
+  "Features": "機能",
+  "Merge PDF": "PDFを結合",
+  "Split PDF": "PDFを分割",
+  "Remove Pages": "ページを削除",
+  "Extract Pages": "ページを抽出",
+  "Organize PDF": "PDFを整理",
+  "Rotate PDF": "PDFを回転",
+  "Compress PDF": "PDFを圧縮",
+  "JPG to PDF": "JPGからPDFへ",
+  "Word to PDF": "WordからPDFへ",
+  "PowerPoint to PDF": "PowerPointからPDFへ",
+  "Excel to PDF": "ExcelからPDFへ",
+  "HTML to PDF": "HTMLからPDFへ",
+  "PDF to JPG": "PDFからJPGへ",
+  "PDF to Word": "PDFからWordへ",
+  "PDF to PowerPoint": "PDFからPowerPointへ",
+  "PDF to Excel": "PDFからExcelへ",
+  "PDF to PDF/A": "PDFからPDF/Aへ",
+  "Add Page Numbers": "ページ番号を追加",
+  "Add Watermark": "透かしを追加",
+  "Unlock PDF": "PDFのロックを解除",
+  "Protect PDF": "PDFを保護",
+  "Sign PDF": "PDFに署名",
+  "Compare PDF": "PDFを比較",
+  "Plans": "プラン",
+  "Login": "ログイン",
+  "Sign Up": "サインアップ",
+  "Logout": "ログアウト",
+  "add_page_numbers_title": "PDFにページ番号を追加",
+  "add_page_numbers_desc": "PDFをアップロードして、各ページにカスタマイズ可能なページ番号を追加します。",
+  "upload_pdf": "PDFをアップロード",
+  "upload_pdf_file": "PDFファイルをアップロード",
+  "or_drag_and_drop": "またはドラッグ＆ドロップ",
+  "pdf_up_to_20mb": "PDF最大20MB",
+  "selected_file": "選択済み: {{name}} ({{size}} MB)",
+  "position": "位置",
+  "top_left": "左上",
+  "top_center": "上中央",
+  "top_right": "右上",
+  "bottom_left": "左下",
+  "bottom_center": "下中央",
+  "bottom_right": "右下",
+  "format": "フォーマット",
+  "format_placeholder": "ページ {n} / {total}",
+  "format_help": "{n} はページ番号、{total} は総ページ数です",
+  "font_size": "フォントサイズ",
+  "color": "色",
+  "margin": "余白 (ポイント)",
+  "add_page_numbers": "ページ番号を追加",
+  "adding_page_numbers": "ページ番号を追加中...",
+  "please_select_pdf": "最初にPDFファイルを選択してください",
+  "please_login": "この機能を利用するにはログインしてください",
+  "limit_reached": "PDF処理の上限に達しました。プランをアップグレードしてください。",
+  "failed_add_page_number": "PDFへのページ番号追加に失敗しました。再試行してください。",
+  "success_add_page_numbers": "ページ番号が正常に追加されました！",
+  "admin_dashboard": "管理者ダッシュボード",
+  "total_users": "総ユーザー数",
+  "active_subscriptions": "アクティブなサブスクリプション",
+  "feature_usage": "機能使用量",
+  "compare_two_pdfs": "مقارنة ملفي PDF",
+  "upload_exactly_two": "يرجى رفع ملفي PDF بالضبط.",
+  "drag_drop_two_pdfs": "اسحب وأفلت ملفي PDF بالضبط، أو انقر للاختيار.",
+  "comparing": "جاري المقارنة...",
+  "compare": "مقارنة",
+  "download_diff_pdf": "تحميل PDF الاختلافات",
+  "comparison_done": "تمت المقارنة!",
+  "pdf_limit_reached": "لقد وصلت إلى حد PDF. يرجى ترقية خطتك.",
+  "failed_compare_pdf": "فشل في مقارنة PDF. يرجى المحاولة مرة أخرى.",
+  "compress_image": "画像を圧縮",
+  "compress_image_desc": "視覚品質を維持しながら、カスタム圧縮設定で画像を最適化します",
+  "upload_image": "画像をアップロード",
+  "upload_a_file": "ファイルをアップロード",
+  "image_formats": "PNG、JPG、WEBP最大10MB",
+  "selected": "選択済み",
+  "compression_quality": "圧縮品質",
+  "width_optional": "幅（オプション）",
+  "height_optional": "高さ（オプション）",
+  "original_width": "元の幅",
+  "original_height": "元の高さ",
+  "compressing": "圧縮中...",
+  "compress_image_btn": "画像を圧縮",
+  "download_compressed_image": "圧縮画像をダウンロード",
+  "image_limit_reached": "画像処理の制限に達しました。プランをアップグレードしてください。",
+  "failed_compress_image": "画像の圧縮に失敗しました。再試行してください。",
+  "compress_pdf": "PDFを圧縮",
+  "compress_pdf_desc": "PDFファイルサイズを縮小して簡単に共有できます。",
+  "compression_level": "圧縮レベル",
+  "low_better_quality": "低（高品質）",
+  "medium_balanced": "中（バランス）",
+  "high_smaller_size": "高（小さいサイズ）",
+  "compression_hint": "圧縮率が高いほどファイルサイズは小さくなりますが、品質は低下します",
+  "compress_pdf_btn": "PDFを圧縮",
+  "download_compressed_pdf": "圧縮PDFをダウンロード",
+  "failed_compress_pdf": "PDFの圧縮に失敗しました。再試行してください。",
+  "pdf_compressed_success": "PDFが正常に圧縮されました！",
+  "pdf_processed": "PDF処理済み",
+  "check_transactions": "これまでのすべての取引を確認",
+  "current_plan": "現在のプラン",
+  "free": "無料",
+  "convert_pdf": "PDF変換",
+  "convert_pdf_desc": "PDFをさまざまな形式に変換",
+  "compress_images": "画像を圧縮",
+  "compress_images_desc": "品質を維持しながらPDFファイルサイズを削減",
+  "upgrade_plan": "プランをアップグレード",
+  "upgrade_plan_desc": "より多くの機能と上限を取得",
+  "failed_fetch_stats": "ユーザー統計の取得に失敗しました",
+  "excel_to_pdf": {
+    "title": "ExcelをPDFに変換",
+    "desc": "Excelファイル（.xlsまたは.xlsx）をアップロードして、レイアウトを維持したままPDFに変換します。",
+    "upload_label": "Excelファイルをアップロード",
+    "upload_btn": "スプレッドシートをアップロード",
+    "file_hint": "XLSまたはXLSX 最大20MB",
+    "selected_file": "選択されたファイル：",
+    "convert_btn": "PDFに変換",
+    "converting": "変換中...",
+    "download_btn": "PDFをダウンロード",
+    "please_select_excel": "Excelファイルを選択してください",
+    "success": "Excelが正常にPDFに変換されました！",
+    "failed": "Excelの変換に失敗しました。再試行してください。"
+  },
+  "extract_pdf": {
+    "title": "PDFページの抽出",
+    "desc": "PDFをアップロードし、特定のページを新しいPDFとして抽出します。ページ番号はカンマ区切りで入力してください（例: 1,3,5）。",
+    "please_select_pdf_only": "PDFファイルのみを選択してください。",
+    "failed_load_pdf": "PDFの読み込みに失敗しました。別のファイルをお試しください。",
+    "enter_page_numbers": "抽出するページ番号を少なくとも1つ入力してください。",
+    "invalid_page_numbers": "無効なページ番号です。1から{{totalPages}}の間で入力してください。",
+    "failed_extract": "PDFの抽出に失敗しました。再試行してください。",
+    "pages": "ページ",
+    "pages_to_extract": "抽出するページ（カンマ区切り）",
+    "page_numbers_placeholder": "例: 1,3,5",
+    "enter_page_numbers_range": "1から{{totalPages}}の間のページ番号を入力してください",
+    "extracting": "抽出中...",
+    "extract_btn": "ページを抽出",
+    "download_btn": "抽出したページをダウンロード"
+  },
+  "forgot_password": {
+    "title": "パスワードをリセット",
+    "step1": "メールアドレスを入力してください",
+    "step2": "セキュリティ質問に答えてください",
+    "step3": "新しいパスワードを作成してください",
+    "email_label": "メールアドレス",
+    "email_placeholder": "メールアドレスを入力",
+    "checking": "確認中...",
+    "continue": "続行",
+    "fav_book": "あなたの好きな本は何ですか？",
+    "fav_meal": "あなたの好きな食事は何ですか？",
+    "answer_placeholder": "回答を入力してください",
+    "verify_answers": "回答を確認",
+    "new_password": "新しいパスワード",
+    "new_password_placeholder": "新しいパスワードを入力",
+    "confirm_password": "パスワードの確認",
+    "confirm_password_placeholder": "新しいパスワードを再入力",
+    "resetting": "リセット中...",
+    "reset_password": "パスワードをリセット",
+    "back_to_login": "ログインに戻る",
+    "email_not_found": "メールアドレスが見つかりません",
+    "incorrect_answers": "回答が正しくありません",
+    "passwords_do_not_match": "パスワードが一致しません",
+    "reset_success": "パスワードが正常にリセットされました。新しいパスワードでログインしてください。",
+    "failed_reset": "パスワードのリセットに失敗しました"
+  },
+  "home": {
+    "merge_pdf_desc": "複数のPDFを1つに結合します。",
+    "split_pdf_desc": "PDFを個別のファイルに分割します。",
+    "remove_pages_desc": "PDFから特定のページを削除します。",
+    "extract_pages_desc": "選択したページを新しいPDFとして抽出します。",
+    "organize_pdf_desc": "PDFページを並べ替えまたは整理します。",
+    "rotate_pdf_desc": "PDFのページを回転させます。",
+    "metadata_viewer": "メタデータビューアー",
+    "metadata_viewer_desc": "任意のPDFのすべての詳細を表示します。",
+    "update_metadata": "メタデータを更新",
+    "update_metadata_desc": "PDFの作成者、タイトルなどを編集",
+    "compare_pdf_desc": "2つのPDFファイルの違いを比較します。",
+    "pdf_to_pdfa_desc": "PDFをPDF/Aに変換してアーカイブします。",
+    "jpg_to_pdf_desc": "JPG画像をPDFに変換します。",
+    "word_to_pdf_desc": "Word文書をPDFに変換します。",
+    "powerpoint_to_pdf_desc": "PowerPointファイルをPDFに変換します。",
+    "excel_to_pdf_desc": "ExcelスプレッドシートをPDFに変換します。",
+    "html_to_pdf_desc": "HTMLファイルをPDFに変換します。",
+    "pdf_to_jpg_desc": "PDFページをJPG画像に変換します。",
+    "pdf_to_word_desc": "PDFを編集可能なWord文書に変換します。",
+    "pdf_to_powerpoint_desc": "PDFをPowerPointプレゼンテーションに変換します。",
+    "pdf_to_excel_desc": "PDFをExcelスプレッドシートに変換します。",
+    "pdf_to_text": "PDF to Text コンバーター",
+    "pdf_to_text_desc": "テキストを簡単に抽出",
+    "unlock_pdf_desc": "PDFからパスワード保護を削除します。",
+    "protect_pdf": "PDFを保護",
+    "protect_pdf_desc": "PDFにパスワード保護を追加します。",
+    "add_page_numbers_desc": "PDFにページ番号を追加します。",
+    "add_watermark_desc": "PDFに透かしテキストまたは画像を追加します。",
+    "compress_pdf_desc": "PDFファイルサイズを縮小して簡単に共有できます。",
+    "pdf_voice_reader": "PDF音声リーダー",
+    "pdf_voice_reader_desc": "PDFの内容を自然な音声で読み上げます。",
+    "translate": "PDF翻訳",
+    "translate_desc": "PDF内のテキストを多言語に翻訳します。",
+    "handwriting": "手書きをPDFに変換",
+    "handwriting_desc": "手書きのメモや文字をデジタルPDFに変換します。",
+    "pdf_expire": "有効期限付きPDF",
+    "pdf_expire_desc": "有効期限を設定してPDFを安全に共有します。",
+    "e_sign": "PDFに電子署名",
+    "e_sign_desc": "PDFドキュメントに電子的に署名します"
+  },
+  "html_to_pdf": {
+    "desc": "下にHTMLコードを貼り付けて、PDFとしてダウンロードしてください。",
+    "html_content": "HTMLコンテンツ",
+    "html_placeholder": "<html><body><h1>こんにちはPDF！</h1></body></html>",
+    "pdf_filename": "PDFファイル名",
+    "convert_btn": "PDFに変換",
+    "converting": "変換中...",
+    "enter_html_content": "HTMLコンテンツを入力してください。",
+    "failed_convert": "HTMLをPDFに変換できませんでした",
+    "server_error": "サーバーがPDFを返しませんでした。レスポンス: ",
+    "download_success": "PDFがダウンロードされました！"
+  },
+  "jpg_to_pdf": {
+    "title": "画像をPDFに変換",
+    "desc": "1枚以上の画像をアップロードして、1つのPDFファイルに変換します。各画像は別々のページになります。",
+    "upload_images": "画像をアップロード",
+    "upload_btn": "画像をアップロード",
+    "file_hint": "JPG、JPEG、またはPNG（各最大20MB）",
+    "selected_files": "{{count}}件のファイルが選択されました",
+    "convert_btn": "PDFに変換",
+    "converting": "変換中...",
+    "download_btn": "PDFをダウンロード",
+    "select_images": "少なくとも1つの画像を選択してください",
+    "success": "画像が正常にPDFに変換されました！",
+    "failed": "PDFへの変換に失敗しました。再試行してください。"
+  },
+  "login": {
+    "welcome": "お帰りなさい",
+    "subtitle": "アカウントにサインインして続行してください",
+    "email_label": "メールアドレス",
+    "email_placeholder": "メールアドレスを入力",
+    "password_label": "パスワード",
+    "password_placeholder": "パスワードを入力",
+    "sign_in": "サインイン",
+    "no_account": "アカウントをお持ちでないですか？",
+    "sign_up": "サインアップ",
+    "forgot_password": "パスワードをお忘れですか？",
+    "failed": "ログインに失敗しました。認証情報を確認してください。"
+  },
+  "merge_pdf": {
+    "title": "PDFファイルを結合",
+    "desc": "複数のPDFファイルを1つのドキュメントに結合します。結合前にドラッグして並べ替えてください。",
+    "upload_pdfs": "PDFをアップロード",
+    "upload_btn": "PDFファイルをアップロード",
+    "remove": "削除",
+    "merge_btn": "PDFを結合",
+    "merging": "結合中...",
+    "download_btn": "結合されたPDFをダウンロード",
+    "select_pdf_only": "PDFファイルのみを選択してください。",
+    "failed_merge": "PDFの結合に失敗しました",
+    "failed": "PDFの結合に失敗しました。再試行してください。"
+  },
+  "metadata_viewer": {
+    "title": "PDFメタデータビューアー",
+    "upload_text": "PDFファイルをアップロードまたはここにドラッグ＆ドロップ",
+    "view_btn": "メタデータを表示",
+    "fetching": "取得中...",
+    "metadata_label": "メタデータ",
+    "select_pdf": "PDFファイルを選択してください。",
+    "success": "メタデータが正常に取得されました！",
+    "failed": "PDFのメタデータを表示できませんでした。再試行してください。"
+  },
+  "organize_pdf": {
+    "title": "PDFページの整理",
+    "desc": "PDFをアップロードし、ページをドラッグして並べ替え、並べ替えたPDFをダウンロードします。",
+    "select_pdf_only": "PDFファイルのみを選択してください。",
+    "failed_load_pdf": "PDFの読み込みに失敗しました。",
+    "upload_pdf": "PDFファイルをアップロードしてください。",
+    "success": "PDFが並べ替えられました！",
+    "failed": "PDFの整理に失敗しました。もう一度お試しください。",
+    "pages": "ページ",
+    "drag_reorder": "ドラッグしてページを並べ替え",
+    "reordering": "並べ替え中...",
+    "reorder_btn": "並べ替えとダウンロード",
+    "download_btn": "並べ替えたPDFをダウンロード"
+  },
+  "payment_failed": {
+    "alt_text": "支払い失敗",
+    "title": "支払い失敗",
+    "description": "申し訳ございませんが、お客様の取引を完了できませんでした。",
+    "try_again": "もう一度お試しいただくか、問題が続く場合はサポートにお問い合わせください。",
+    "go_to_dashboard": "ダッシュボードへ"
+  },
+  "payment_success": {
+    "alt_text": "支払い成功",
+    "title": "支払い成功！",
+    "thank_you": "ご購入ありがとうございます。",
+    "redirecting": "ダッシュボードに<1>{{seconds}}</1>秒でリダイレクトしています...",
+    "not_redirected": "リダイレクトされませんか？",
+    "go_to_dashboard": "ダッシュボードへ"
+  },
+  "pdf_to_excel": {
+    "title": "PDFをExcelに変換",
+    "desc": "PDFファイルをアップロードしてExcel形式（.xlsx）に変換し、データ構造を保持します。",
+    "upload_label": "PDFファイルをアップロード",
+    "selected_file": "選択されたファイル",
+    "select_pdf": "PDFファイルを選択してください",
+    "success": "PDFがExcelに正常に変換されました！",
+    "failed": "Excelへの変換に失敗しました。もう一度お試しください。",
+    "converting": "変換中...",
+    "convert_btn": "Excelに変換",
+    "download_btn": "Excelをダウンロード"
+  },
+  "pdf_to_jpg": {
+    "title": "PDFをJPGに変換",
+    "desc": "PDFをアップロードして各ページをJPG画像に変換します。すべての画像をZIPファイルとしてダウンロードします。",
+    "upload_valid_pdf": "有効なPDFファイルをアップロードしてください。",
+    "failed": "PDFをJPGに変換できませんでした。もう一度お試しください。",
+    "converting": "PDFを画像に変換中...",
+    "page_alt": "ページ{{page}}",
+    "download_btn": "JPG ZIPをダウンロード"
+  },
+  "pdf_to_pdfa": {
+    "title": "PDFをPDF/Aに変換",
+    "desc": "PDFをアップロードしてアーカイブ標準のPDF/Aファイルに変換します。",
+    "upload_text": "PDFファイルをアップロードまたはここにドラッグ＆ドロップ",
+    "select_pdf": "PDFファイルを選択してください",
+    "success": "PDFがPDF/Aに正常に変換されました！",
+    "failed": "PDF/Aへの変換に失敗しました。もう一度お試しください。",
+    "converting": "変換中...",
+    "convert_btn": "PDF/Aに変換",
+    "download_btn": "PDF/Aをダウンロード"
+  },
+  "pdf_to_ppt": {
+    "title": "PDFをPowerPointに変換",
+    "desc": "PDFファイルをアップロードしてPowerPoint形式（.pptx）に変換し、レイアウトを保持します。",
+    "upload_label": "PDFファイルをアップロード",
+    "upload_btn": "プレゼンテーションをアップロード",
+    "file_hint": "PPTまたはPPTX（最大20MB）",
+    "selected_file": "選択されたファイル",
+    "convert_btn": "PDFに変換",
+    "converting": "変換中...",
+    "download_btn": "PDFをダウンロード",
+    "select_ppt": "PowerPointファイルを選択してください",
+    "success": "プレゼンテーションがPDFに正常に変換されました！",
+    "failed": "PPTからPDFへの変換に失敗しました。もう一度お試しください。"
+  },
+  "pdf_to_text": {
+    "title": "PDFをテキストに変換",
+    "desc": "PDFファイルをアップロードしてプレーンテキスト形式（.txt）に変換します。",
+    "upload_label": "PDFファイルをアップロード",
+    "selected_file": "選択されたファイル",
+    "convert_btn": "テキストに変換",
+    "converting": "変換中...",
+    "download_btn": "テキストをダウンロード",
+    "select_pdf": "PDFファイルを選択してください",
+    "success": "PDFがテキストに正常に変換されました！",
+    "failed": "PDFからテキストへの変換に失敗しました。もう一度お試しください。"
+  },
+  "user_management": {
+    "title": "ユーザー管理",
+    "search_placeholder": "ユーザーを検索...",
+    "failed_fetch_users": "ユーザーの取得に失敗しました",
+    "table": {
+      "name": "名前",
+      "email": "メール",
+      "role": "役割",
+      "subscription": "サブスクリプション",
+      "country": "国"
+    },
+    "roles": {
+      "admin": "管理者",
+      "user": "ユーザー"
+    },
+    "plans": {
+      "basic": "ベーシック"
+    },
+    "not_available": "N/A"
+  },
+  "payment_history": {
+    "title": "支払い履歴",
+    "auth_error": "認証エラー。再度ログインしてください。",
+    "plan": "プラン",
+    "not_available": "N/A",
+    "hide_details": "詳細を隠す",
+    "more_details": "詳細を見る",
+    "card": "カード",
+    "receipt": "領収書",
+    "view_receipt": "領収書を表示",
+    "billing_name": "請求名",
+    "email": "メール",
+    "paid_on": "支払日"
+  },
+  "watermark_pdf": {
+    "title": "PDFに透かしを追加",
+    "desc": "PDFをアップロードして、各ページにカスタム透かしテキストを追加します。",
+    "upload_text": "PDFファイルをアップロードまたはここにドラッグ＆ドロップ",
+    "watermark_text": "透かしテキスト",
+    "watermark_placeholder": "例：機密",
+    "add_watermark": "透かしを追加",
+    "adding": "追加中...",
+    "download_watermarked": "透かし付きPDFをダウンロード",
+    "please_select_pdf": "PDFファイルを選択してください",
+    "please_enter_watermark": "透かしテキストを入力してください",
+    "success": "透かしが正常に追加されました！",
+    "failed": "PDFに透かしを追加できませんでした。もう一度お試しください。"
+  },
+  "word_to_pdf": {
+    "title": "WordをPDFに変換",
+    "desc": "Word文書（.docまたは.docx）をアップロードして、フォーマットを保持しながらPDF形式に変換します。",
+    "upload_label": "Word文書をアップロード",
+    "upload_btn": "文書をアップロード",
+    "file_hint": "DOCまたはDOCX（最大20MB）",
+    "selected_file": "選択されたファイル",
+    "convert_btn": "PDFに変換",
+    "converting": "変換中...",
+    "download_btn": "PDFをダウンロード",
+    "please_select_word": "Word文書を選択してください",
+    "success": "文書がPDFに正常に変換されました！",
+    "failed": "WordからPDFへの変換に失敗しました。もう一度お試しください。"
+  },
+  "pdf_to_word": {
+    "title": "PDFをWordに変換",
+    "desc": "PDFファイルをアップロードして編集可能なWord形式（.docx）に変換します。",
+    "upload_label": "PDFファイルをアップロード",
+    "selected_file": "選択されたファイル",
+    "convert_btn": "Wordに変換",
+    "converting": "変換中...",
+    "download_btn": "Wordをダウンロード",
+    "select_pdf": "PDFファイルを選択してください",
+    "success": "PDFがWordに正常に変換されました！",
+    "failed": "PDFからWordへの変換に失敗しました。もう一度お試しください。"
+  },
+  "plan_management": {
+    "title": "プラン管理",
+    "plan_name": "プラン名",
+    "monthly_fee": "月額料金",
+    "annual_fee": "年間料金",
+    "service_quotas": "サービス制限",
+    "set_all_quotas": "すべてのサービス制限を設定",
+    "monthly_quota_all": "月額制限（すべてのサービス）",
+    "annual_quota_all": "年間制限（すべてのサービス）",
+    "set_monthly_quota_placeholder": "すべてのサービスの月額制限を設定",
+    "set_annual_quota_placeholder": "すべてのサービスの年間制限を設定",
+    "individual_quotas": "個別サービス制限",
+    "monthly_quota": "月額制限",
+    "annual_quota": "年間制限",
+    "create_plan": "プラン作成",
+    "update_plan": "プラン更新",
+    "cancel": "キャンセル",
+    "existing_plans": "既存のプラン",
+    "monthly": "月額",
+    "annual": "年間",
+    "edit": "編集",
+    "delete": "削除",
+    "features": "機能",
+    "month": "月",
+    "year": "年",
+    "all_services_included": "すべてのサービスが含まれています",
+    "failed_fetch_plans": "プランの取得に失敗しました",
+    "failed_save_plan": "プランの保存に失敗しました",
+    "failed_delete_plan": "プランの削除に失敗しました",
+    "confirm_delete": "このプランを削除してもよろしいですか？"
+  },
+  "ppt_to_pdf": {
+    "title": "PPTをPDFに変換",
+    "desc": "PowerPointプレゼンテーション（.pptまたは.pptx）をアップロードして、プレゼンテーションのレイアウトを保持しながらPDF形式に変換します。",
+    "upload_label": "PowerPointファイルをアップロード",
+    "upload_btn": "プレゼンテーションをアップロード",
+    "file_hint": "PPTまたはPPTX（最大20MB）",
+    "selected_file": "選択されたファイル",
+    "convert_btn": "PDFに変換",
+    "converting": "変換中...",
+    "download_btn": "PDFをダウンロード",
+    "select_ppt": "PowerPointファイルを選択してください",
+    "success": "プレゼンテーションがPDFに正常に変換されました！",
+    "failed": "PPTからPDFへの変換に失敗しました。もう一度お試しください。"
+  },
+  "privacy_policy": {
+    "title": "プライバシーポリシー",
+    "introduction": {
+      "title": "1. はじめに",
+      "content": "PDFPivot（「当社」「私たち」「私たちの」）へようこそ。このポリシーは、以下にアクセスするすべての訪問者、ユーザー、顧客に適用されます"
+    },
+    "information_collection": {
+      "title": "2. 収集する情報",
+      "content": "名前、メール、連絡先詳細、アップロードされたファイル、IPアドレス、ブラウザ/デバイス情報などの個人データを収集します。"
+    },
+    "how_we_use": {
+      "title": "3. 情報の使用方法",
+      "item1": "PDF関連のツールとサービスを提供するため",
+      "item2": "サイトのパフォーマンスと機能を向上させるため",
+      "item3": "ユーザーとのコミュニケーションのため",
+      "item4": "法的要件を遵守するため"
+    },
+    "legal_basis": {
+      "title": "4. データ処理の法的根拠",
+      "content": "同意、契約上の必要性、サービス提供の改善やセキュリティの確保などの正当な事業利益に基づいてデータを処理します。"
+    },
+    "cookies": {
+      "title": "5. クッキーとトラッキング",
+      "content": "PDFPivotは、コンテンツのパーソナライズ、使用状況の分析、体験の向上のためにクッキーを使用します。ブラウザ設定でクッキーを無効にできます。"
+    },
+    "uploaded_files": {
+      "title": "6. アップロードされたファイルの使用",
+      "content": "変換や編集のためにアップロードされたファイルは一時的に保存され、処理後に削除されます。ファイルの内容にアクセス、読み取り、第三者との共有は行いません。"
+    },
+    "third_party": {
+      "title": "7. 第三者サービス",
+      "content": "分析、ホスティング、支払いサービスのために信頼できる第三者プロバイダーを使用する場合があります。これらのプロバイダーは厳格なデータプライバシー基準を遵守する必要があります。"
+    },
+    "data_security": {
+      "title": "8. データセキュリティ",
+      "content": "強力な暗号化とアクセス制御を実装して、データを不正アクセス、損失、悪用から保護します。"
+    },
+    "data_retention": {
+      "title": "9. データ保持",
+      "content": "個人データは、サービスに必要な期間または法的義務を満たすためにのみ保持します。アップロードされたファイルは処理後に自動的に削除されます。"
+    },
+    "international_transfers": {
+      "title": "10. 国際転送",
+      "content": "データはお客様の国以外のサーバーに転送される場合があります。このプライバシーポリシーに従ってデータが保護されるよう措置を講じます。"
+    },
+    "children_privacy": {
+      "title": "11. 児童のプライバシー",
+      "content": "PDFPivotは13歳未満の児童を対象としていません。児童から意図的にデータを収集することはありません。発見された場合、そのようなデータは直ちに削除されます。"
+    },
+    "your_rights": {
+      "title": "12. お客様の権利",
+      "content": "お客様の地域によっては、個人データへのアクセス、修正、削除、制限する権利がある場合があります。これらの権利を行使するにはお問い合わせください。"
+    },
+    "third_party_links": {
+      "title": "13. 第三者リンク",
+      "content": "当サイトには外部ウェブサイトへのリンクが含まれる場合があります。それらのプライバシー慣行については責任を負いません。個別にポリシーをご確認ください。"
+    },
+    "policy_updates": {
+      "title": "14. ポリシーの更新",
+      "content": "このプライバシーポリシーは更新される場合があります。変更は新しい有効日付とともにこのページに掲載されます。"
+    },
+    "contact": {
+      "title": "15. お問い合わせ",
+      "intro": "ご質問や特別な事情がございましたら、お気軽にお問い合わせください：",
+      "email": "メール",
+      "website": "ウェブサイト"
+    },
+    "protect_pdf": {
+      "title": "PDFに保護を追加",
+      "desc": "PDFファイルをアップロードしてパスワードを設定し、不正アクセスから保護します。",
+      "set_password": "パスワードを設定",
+      "password_placeholder": "パスワードを入力",
+      "selected_file": "選択されたファイル",
+      "protect_btn": "PDFを保護",
+      "protecting": "保護中...",
+      "download_btn": "保護されたPDFをダウンロード",
+      "select_pdf_and_password": "PDFを選択してパスワードを入力してください。",
+      "success": "PDFが正常に保護されました！",
+      "failed": "PDFの保護に失敗しました。もう一度お試しください。"
+    }
+  },
+  "refund_policy": {
+    "title": "返金・キャンセルポリシー",
+    "no_refund": {
+      "title": "1. 返金なしポリシー",
+      "content": "PDFPivotで行われたすべての支払いは返金不可です。サービスが開始または完了すると、取引を元に戻したり返金したりすることはできません。"
+    },
+    "instant_service": {
+      "title": "2. 即座のデジタルサービス",
+      "content": "当社のサービスは自動化されており、ファイルのアップロードまたは支払いと同時に処理が開始されます。したがって、プロセスが開始されると、キャンセルや返金はできません。"
+    },
+    "order_cancellation": {
+      "title": "3. 注文キャンセル",
+      "content": "注文が送信され、処理が開始されると、注文をキャンセルすることはできません。注文する前にすべての詳細を確認してください。"
+    },
+    "wrong_file": {
+      "title": "4. 間違ったファイルのアップロード",
+      "content": "間違ったファイルや不正確なファイルをアップロードした場合、PDFPivotは責任を負いません。送信する前にファイルを再確認してください。"
+    },
+    "duplicate_payments": {
+      "title": "5. 重複支払い",
+      "content": "偶発的な重複支払いの場合、24時間以内に通知する必要があります。確認後、適格な場合のみ重複金額の返金を行います。"
+    },
+    "failed_services": {
+      "title": "6. 失敗したサービス",
+      "content": "当社側の技術的問題（例：ファイルが処理されない、サーバーエラー）によりサービスが失敗した場合、無料の再処理を提供する場合があります。返金は発行されません。"
+    },
+    "user_mistakes": {
+      "title": "7. ユーザーの間違い",
+      "content": "不正確な設定、出力形式、処理中の見逃したオプションなどのユーザーエラーに対して返金は付与されません。"
+    },
+    "subscription_services": {
+      "title": "8. サブスクリプションサービス",
+      "content": "PDFPivotがサブスクリプションプランを導入する場合、ユーザーは次の請求サイクル前にサブスクリプションをキャンセルする必要があります。按分または中期返金は発行されません。"
+    },
+    "unauthorized_use": {
+      "title": "9. 不正使用",
+      "content": "アカウントの不正または詐欺的な使用については責任を負いません。悪用を避けるためにログイン詳細を保護してください。"
+    },
+    "file_retention": {
+      "title": "10. ファイル保持と削除",
+      "content": "ファイルを永続的に保存することはありません。すべてのファイルは短期間後に自動的に削除されます。期限切れファイルによる未配達は返金対象外です。"
+    },
+    "service_downtime": {
+      "title": "11. サービス停止時間",
+      "content": "メンテナンスや技術的問題による偶発的な停止時間は予想されます。サービスの一時的な利用不可に対する返金は発行されません。"
+    },
+    "promotional_purchases": {
+      "title": "12. プロモーション・割引購入",
+      "content": "セール、クーポンベースの割引、またはプロモーションオファー中に利用したサービスに対する返金は発行されません。"
+    },
+    "chargebacks": {
+      "title": "13. チャージバック",
+      "content": "詐欺的なチャージバックを開始するユーザーは、アカウントが永久に禁止され、アクセスが取り消される場合があります。"
+    },
+    "policy_agreement": {
+      "title": "14. ポリシー同意",
+      "content": "当社のサービスを使用することで、この返金・キャンセルポリシーに同意したことになります。購入前に読み理解することはユーザーの責任です。"
+    },
+    "contact": {
+      "title": "15. お問い合わせ",
+      "intro": "ご質問や例外的な状況がございましたら、お問い合わせください：",
+      "email": "メール",
+      "website": "ウェブサイト"
+    }
+  },
+  "update_metadata_page": {
+    "title": "PDFメタデータ更新",
+    "desc": "PDFをアップロードして、タイトル、作成者などのメタデータを更新します。",
+    "selected_file": "選択されたファイル",
+    "title_placeholder": "タイトル",
+    "author_placeholder": "作成者",
+    "subject_placeholder": "件名",
+    "keywords_placeholder": "キーワード（カンマ区切り）",
+    "update_metadata_btn": "メタデータ更新",
+    "updating": "更新中...",
+    "download_updated_pdf": "更新されたPDFをダウンロード",
+    "updated_successfully": "メタデータが正常に更新されました！",
+    "please_select_pdf": "PDFファイルを選択してください",
+    "failed_update": "PDFメタデータの更新に失敗しました。もう一度お試しください。"
+  },
+  "unlock_pdf_page": {
+    "title": "PDFロック解除",
+    "desc": "PDFファイルからパスワード保護を削除します。パスワード保護されたPDFをアップロードし、パスワードを入力してロックを解除します。",
+    "upload_label": "パスワード保護されたPDFをアップロード",
+    "pdf_password": "PDFパスワード",
+    "enter_password_placeholder": "PDFパスワードを入力してください",
+    "unlock_pdf_btn": "PDFロック解除",
+    "unlocking": "ロック解除中...",
+    "unlocked_successfully": "PDFのロックが正常に解除されました！",
+    "please_upload_pdf": "PDFファイルをアップロードしてください",
+    "please_enter_password": "PDFパスワードを入力してください",
+    "failed_unlock": "PDFのロック解除に失敗しました。もう一度お試しください。"
+  },
+  "terms_conditions": {
+    "title": "利用規約",
+    "acceptance": {
+      "title": "1. 利用規約の承諾",
+      "content": "PDFPivotを使用することで、これらの利用規約と適用される法律に従うことに同意します。これらの規約は、あなたとPDFPivotの間の拘束力のある契約を形成します。"
+    },
+    "eligibility": {
+      "title": "2. 利用資格",
+      "content": "当社のサービスを利用するには、13歳以上である必要があります。当社のウェブサイトにアクセスすることで、この年齢要件を満たしていることを確認します。"
+    },
+    "services": {
+      "title": "3. 提供されるサービス",
+      "content": "PDFPivotは、PDFファイルの変換、結合、分割、圧縮、編集を含むPDF関連ツールを提供します。事前通知なしに機能を追加、変更、または削除する場合があります。"
+    },
+    "account": {
+      "title": "4. アカウントとアクセス",
+      "content": "一部の機能には登録が必要な場合があります。アカウント情報の機密性を維持する責任があり、アカウント下のすべての活動に対して責任があります。"
+    },
+    "acceptable_use": {
+      "title": "5. 適切な使用",
+      "intro": "ウェブサイトを悪用しないことに同意します。以下を行ってはなりません：",
+      "item1": "有害または悪意のあるコンテンツをアップロードする",
+      "item2": "知的財産権を侵害する",
+      "item3": "不正アクセスを試行する",
+      "item4": "適用される法律に違反する"
+    },
+    "intellectual_property": {
+      "title": "6. 知的財産権",
+      "content": "PDFPivotのすべてのコンテンツとツールは、ウェブサイトまたはそのライセンサーの知的財産です。書面による許可なしに、これらをコピー、変更、または配布することはできません。"
+    },
+    "user_content": {
+      "title": "7. ユーザーコンテンツとファイルアップロード",
+      "content": "アップロードしたファイルの所有権は保持されます。当社のツールを使用することで、サービスを提供するためにファイルを一時的に処理および保存する許可を当社に与えます。"
+    },
+    "payment": {
+      "title": "8. 支払いと価格設定",
+      "content": "一部のサービスには支払いが必要な場合があります。すべての料金は明確に表示されています。PDFPivotは、いつでも価格を変更する権利を留保します。"
+    },
+    "refund": {
+      "title": "9. 返金とキャンセル",
+      "content": "すべての購入は返金不可です。当社のサービスのデジタルで即座の性質により、プロセスが開始された後はキャンセルや返金を提供しません。"
+    },
+    "liability": {
+      "title": "10. 責任の制限",
+      "content": "PDFPivotは、ウェブサイトやサービスの使用または使用不能から生じる直接的、間接的、または結果的な損害について責任を負いません。"
+    },
+    "warranties": {
+      "title": "11. 保証の免責",
+      "content": "サービスは「現状のまま」提供されます。中断のないサービス、出力の正確性、または特定のファイルタイプとの互換性を保証しません。"
+    },
+    "third_party": {
+      "title": "12. 第三者リンク",
+      "content": "ウェブサイトには第三者サービスのリンクが含まれる場合があります。外部ウェブサイトのコンテンツ、利用規約、またはプライバシー慣行については責任を負いません。"
+    },
+    "termination": {
+      "title": "13. アクセスの終了",
+      "content": "これらの規約に違反したり、プラットフォームを悪用した場合、いつでもPDFPivotへのアクセスを停止または終了する場合があります。"
+    },
+    "modifications": {
+      "title": "14. 規約の変更",
+      "content": "PDFPivotは、いつでもこれらの規約を更新する場合があります。変更はこのページに投稿され、変更後の継続使用は新しい規約を受け入れることを意味します。"
+    },
+    "contact": {
+      "title": "15. お問い合わせ",
+      "intro": "これらの規約についてご質問がある場合は、お問い合わせください：",
+      "email": "メール",
+      "website": "ウェブサイト"
+    }
+  },
+  "subscription_plans": {
+    "expired_on": "期限切れ",
+    "will_expire_on": "期限切れ予定",
+    "your_plan_status": "あなたの{{planName}}プランは{{expiryText}} {{expiryDate}}",
+    "session_expired": "セッションが期限切れです。再度ログインしてください。",
+    "service_unavailable": "サブスクリプションサービスは現在利用できません。後でもう一度お試しください。",
+    "failed_load_plans": "サブスクリプションプランの読み込みに失敗しました。後でもう一度お試しください。",
+    "go_to_login": "ログインへ",
+    "retry": "再試行",
+    "current_plan": "現在のプラン",
+    "free": "無料",
+    "price_per_month": "${{price}}/月",
+    "unlimited": "無制限",
+    "quota_per_month": "{{quota}}/月",
+    "start_free": "無料で開始",
+    "select_plan": "プランを選択"
+  },
+  "subscribe_page": {
+    "subscribe_to": "購読する",
+    "choose_billing_desc": "請求サイクルを選択し、安全な支払いに進んでください。",
+    "billing_type": "請求タイプ",
+    "monthly_option": "月額 - ${{price}}",
+    "annual_option": "年額 - ${{price}}",
+    "pay_now": "今すぐ${{price}}支払う",
+    "redirecting": "リダイレクト中...",
+    "loading_plan": "プラン詳細を読み込み中...",
+    "plan_not_loaded": "プランが読み込まれていません",
+    "payment_failed": "支払いに失敗しました"
+  },
+  "split_pdf_page": {
+    "title": "PDF分割",
+    "desc": "PDFをアップロードして個別のページに分割します。すべてのページをZIPファイルとしてダウンロードします。",
+    "split_pdf_btn": "PDF分割",
+    "splitting": "分割中...",
+    "download_split_pages": "分割されたページをダウンロード (ZIP)",
+    "please_select_pdf_only": "PDFファイルのみを選択してください。",
+    "failed_split": "PDFの分割に失敗しました。もう一度お試しください。"
+  },
+  "rotate_pdf_page": {
+    "title": "PDFページ回転",
+    "desc": "PDFをアップロードして最初のページをプレビューします。ボタンを使用してプレビューを左右に回転させます。回転したPDFをダウンロードします。",
+    "pdf_preview": "PDFプレビュー",
+    "rotation_degrees": "回転: {{degrees}}°",
+    "current_rotation": "現在の回転: {{degrees}}°",
+    "rotate_left": "左回転",
+    "rotate_right": "右回転",
+    "generating": "生成中...",
+    "download_rotated_pdf": "回転したPDFをダウンロード",
+    "click_to_download": "ダウンロードするにはここをクリック",
+    "please_select_pdf": "PDFファイルを選択してください。",
+    "failed_generate": "回転したPDFの生成に失敗しました。{{message}}",
+    "please_try_again": "もう一度お試しください。"
+  },
+  "rotate_page": {
+    "title": "画像回転",
+    "desc": "品質を保ちながら画像を精密に回転させます",
+    "upload_image": "画像アップロード",
+    "upload_a_file": "ファイルをアップロード",
+    "rotating": "回転中...",
+    "rotate_left": "左回転",
+    "rotate_right": "右回転",
+    "download_rotated_image": "回転した画像をダウンロード",
+    "please_upload_image": "まず画像をアップロードしてください。",
+    "failed_track_usage": "使用量の追跡に失敗しました。後でもう一度お試しください。",
+    "failed_rotate": "画像の回転に失敗しました。もう一度お試しください。"
+  },
+  "remove_pdf": {
+    "title": "PDFページ削除",
+    "desc": "PDFをアップロードして特定のページを削除します。ページ番号をカンマで区切って入力してください（例：1,3,5）。",
+    "pages_to_remove": "削除するページ（カンマ区切り）",
+    "page_numbers_placeholder": "例：1,3,5",
+    "remove_pages_btn": "ページ削除",
+    "removing": "削除中...",
+    "download_btn": "修正されたPDFをダウンロード",
+    "please_select_pdf_only": "PDFファイルのみを選択してください。",
+    "enter_page_numbers": "削除するページ番号を少なくとも1つ入力してください。",
+    "invalid_page_numbers": "無効なページ番号です。1から{{pageCount}}までの数字を入力してください",
+    "failed_remove": "ページの削除に失敗しました。もう一度お試しください。"
+  },
+  "register": {
+    "title": "アカウント作成",
+    "subtitle": "あなたの旅を始めるために私たちに参加してください",
+    "full_name": "氏名",
+    "full_name_placeholder": "氏名を入力してください",
+    "email_label": "メールアドレス",
+    "email_placeholder": "メールアドレスを入力してください",
+    "password_label": "パスワード",
+    "password_placeholder": "パスワードを入力してください",
+    "confirm_password_label": "パスワード確認",
+    "confirm_password_placeholder": "パスワードを再入力してください",
+    "country_label": "国",
+    "select_country": "国を選択してください",
+    "fav_book_question": "お気に入りの本は何ですか？",
+    "fav_book_placeholder": "お気に入りの本を入力してください",
+    "fav_meal_question": "お気に入りの料理は何ですか？",
+    "fav_meal_placeholder": "お気に入りの料理を入力してください",
+    "create_account_btn": "アカウント作成",
+    "already_have_account": "すでにアカウントをお持ちですか？",
+    "sign_in_link": "ログイン",
+    "passwords_do_not_match": "パスワードが一致しません"
+  },
+  "display_plans": {
+    "title": "サブスクリプションプラン",
+    "desc": "ニーズに合ったプランを選択してください。いつでもアップグレード可能です。"
+  },
+  "faq": {
+    "title": "PdfPivot FAQ",
+    "convert_file": {
+      "question": "ファイルをPDFに変換するにはどうすればよいですか？",
+      "answer": "Word to PDFなどの変換ツールを選択し、ファイルをアップロードして「変換」をクリックします。PDFはすぐにダウンロード可能になります。"
+    },
+    "limits": {
+      "question": "PDFタスクの数に制限はありますか？",
+      "answer": "はい、各サブスクリプションプランには月額クォータがあります。無料ユーザーは制限された変換を取得します。有料プランはより多くの使用量または無制限の使用を提供します。"
+    },
+    "security": {
+      "question": "PDFデータは安全ですか？",
+      "answer": "絶対に安全です。すべてのファイルは安全な暗号化で処理され、処理後に自動的に削除されます。データを保存することはありません。"
+    },
+    "mobile": {
+      "question": "スマートフォンでPdfPivotを使用できますか？",
+      "answer": "はい！PdfPivotは完全にレスポンシブで、すべての最新のモバイルブラウザで動作します。"
+    },
+    "formats": {
+      "question": "どのファイル形式をPDFに変換できますか？",
+      "answer": "Word、Excel、PowerPoint、JPG、HTMLをPDFに変換できます — その逆も可能です。スキャンされたファイルのPDF to PDF/AとOCRもサポートしています。"
+    },
+    "ocr": {
+      "question": "OCR機能はどのように動作しますか？",
+      "answer": "OCRはスキャンされたPDFからテキストを自動的に抽出し、コンテンツの検索と編集を可能にします。すべてのPDFツールで利用できます。"
+    }
+  },
+  "hero": {
+    "title_line1": "高速、安全 &",
+    "title_line2": "強力な",
+    "title_line3": "PDFツールオンライン",
+    "description": "PDFを簡単に編集、変換、圧縮、保護 — すべてブラウザで。世界中のプロフェッショナルに信頼されています。",
+    "live_chat": "ライブチャット",
+    "image_alt": "画像編集イラスト"
+  },
+  "how_it_works": {
+    "title": "PdfPivot、あなたのオールインワンPDFツールキット。",
+    "subtitle": "PDFをWordに変換する方法",
+    "description": "Xodoを使用してPDFをWordに変換する簡単な手順に従ってください：",
+    "step1": "PDFを無料のオンラインPDF to Wordコンバーターにアップロードします。",
+    "step2": "「変換」をクリック — OCRはスキャンされたPDFに自動的に適用されます。",
+    "step3": "編集可能なWord（.docx）ファイルをダウンロードします。",
+    "image_alt": "変換方法"
+  },
+  "payment_form": {
+    "cancel": "キャンセル",
+    "pay_now": "今すぐ支払う",
+    "processing": "処理中...",
+    "default_error": "エラーが発生しました"
+  },
+  "trusted_by": {
+    "title": "何千人ものユーザーに信頼されているPDFツールキット",
+    "description": "PDFPivotは、PDFファイルの変換、編集、整理のための安全なオールインワンプラットフォームです。高速パフォーマンス、プライベート処理 — データは保存されません。",
+    "iso_27001": "ISO 27001",
+    "secure_processing": "安全な処理",
+    "trusted_by_enterprises": "企業に信頼されている"
+  },
+  "why_us": {
+    "title": "PDFPivot、一箇所で完結するPDFツールキット",
+    "feature1": {
+      "title": "オールインワンPDFツールキット",
+      "description": "PDFの結合、分割、変換、圧縮、保護、編集 — すべて使いやすい単一プラットフォームから。"
+    },
+    "feature2": {
+      "title": "高速・信頼性の高い変換",
+      "description": "数秒でPDF形式との間でファイルを変換。スキャンされた文書にOCRが自動適用されます。"
+    },
+    "feature3": {
+      "title": "スマートなクォータベースアクセス",
+      "description": "月額クォータまたは無制限使用の柔軟なサブスクリプションプラン — 個人とチームのために構築。"
+    }
+  },
+  "footer": {
+    "pdfpivot": "PdfPivot",
+    "home": "ホーム",
+    "pricing": "料金",
+    "security": "セキュリティ",
+    "tools": "ツール",
+    "faq": "よくある質問",
+    "product": "製品",
+    "desktop": "PdfPivot デスクトップ",
+    "mobile": "PdfPivot モバイル",
+    "developers": "開発者",
+    "features": "機能",
+    "solutions": "ソリューション",
+    "business": "ビジネス",
+    "education": "教育",
+    "company": "会社情報",
+    "privacy_policy": "プライバシーポリシー",
+    "terms_conditions": "利用規約",
+    "refund_policy": "返金ポリシー",
+    "copyright": "© 2025 PdfPivot. 無断転載を禁じます。",
+    "trusted_by": "何千人ものユーザーに信頼されているPDFツールキット",
+    "login": "ログイン",
+    "register": "登録",
+    "plans": "プラン",
+    "services": "サービス",
+    "merge_pdf": "PDFを結合",
+    "split_pdf": "PDFを分割",
+    "remove_pages": "ページを削除",
+    "extract_pages": "ページを抽出",
+    "security_tools": "セキュリティツール",
+    "update_metadata": "メタデータを更新",
+    "view_metadata": "メタデータを表示",
+    "add_watermark": "透かしを追加",
+    "protect_pdf": "PDFを保護"
+  },
+  "choose_language": "ご希望の言語を選択してください",
+  "pdfvoicereader": {
+    "pdf_voice_reader": "PDF音声リーダー",
+    "pdf_voice_reader_desc": "PDFコンテンツを音声ナレーションに変換します。",
+    "upload_pdf": "PDFをアップロード",
+    "upload_a_file": "ファイルをアップロード",
+    "pdf_formats": "PDF形式のみ",
+    "selected": "選択済み",
+    "convert_to_audio": "音声に変換",
+    "converting": "変換中...",
+    "download_audio": "MP3をダウンロード",
+    "invalid_pdf": "有効なPDFファイルを選択してください。",
+    "conversion_failed": "PDFから音声への変換に失敗しました。もう一度お試しください。"
+  },
+  "pdftranslator": {
+    "smart_pdf_translator": "スマートPDF翻訳  ",
+    "smart_pdf_translator_desc": "元のフォーマットを維持したままPDF全体を翻訳します。",
+    "invalid_pdf": "有効なPDFファイルをアップロードしてください。",
+    "upload_pdf": "PDFをアップロード",
+    "upload_a_file": "クリックしてファイルをアップロード",
+    "pdf_formats": "PDFファイルのみ対応しています。",
+    "selected": "選択済み",
+    "select_language": "ターゲット言語を選択",
+    "translate_pdf": "PDFを翻訳",
+    "translating": "翻訳中...",
+    "translation_failed": "翻訳に失敗しました。もう一度お試しください。",
+    "download_translated": "翻訳済みPDFをダウンロード"
+  },
+  "pdfhandwriter": {
+    "handwriting_simulation": "手書きシミュレーション",
+    "desc": "PDFをアップロードし、手書き風のバージョンに変換します。",
+    "invalid_pdf": "有効なPDFファイルをアップロードしてください。",
+    "failed": "手書きシミュレーションに失敗しました。もう一度お試しください。",
+    "upload_pdf": "PDFをアップロード",
+    "upload_a_file": "ファイルをアップロード",
+    "pdf_formats": "PDFファイルのみ対応しています。",
+    "selected": "選択済みファイル",
+    "simulate_pdf": "PDFをシミュレート",
+    "simulating": "シミュレーション中...",
+    "download_handwritten": "手書きPDFをダウンロード"
+  },
+  "pdfexpiry": {
+    "upload_pdf_title": "有効期限付きPDFのアップロードと共有",
+    "desc": "PDFをアップロードし、指定した日数後に自動的に期限切れになる共有可能なリンクを生成します。",
+    "invalid_pdf": "有効なPDFファイルをアップロードしてください。",
+    "failed": "何か問題が発生しました。もう一度お試しください。",
+    "upload_pdf": "PDFファイルをアップロード",
+    "upload_a_file": "クリックしてファイルをアップロード",
+    "pdf_formats": "PDF形式のみ対応しています",
+    "selected": "選択済みファイル",
+    "expiry_days": "有効期限（日数）",
+    "days_note": "最大30日",
+    "uploading": "アップロード中...",
+    "upload_pdf_btn": "アップロードしてリンクを生成",
+    "link_expires": "リンクの有効期限",
+    "open_pdf": "PDFを開く"
+  },
+  "pdfEditor": {
+    "title": "PDFエディタ",
+    "uploadPDF": "PDFをアップロード",
+    "uploadImage": "画像をアップロード",
+    "clearSignature": "署名をクリア",
+    "placeImage": "画像を配置",
+    "placeSignature": "署名を配置",
+    "placeText": "テキストを配置",
+    "submitPDF": "PDFを送信",
+    "sampleText": "サンプルテキスト",
+    "uploadPDFFirst": "まずPDFをアップロードしてください！",
+    "failedToCreatePDF": "PDFの作成に失敗しました"
+  }
+}

@@ -1,0 +1,972 @@
+{
+  "welcome": "Selamat Datang ke PDFPivot",
+  "choose_language": "Pilih bahasa pilihan anda",
+  "PdfPivot": "PdfPivot",
+  "Dashboard": "Papan Pemuka",
+  "Users": "Pengguna",
+  "Plans Management": "Pengurusan Pelan",
+  "Payment History": "Sejarah Pembayaran",
+  "payment_history_desc": "Semak semua transaksi anda setakat ini",
+  "Features": "Ciri-ciri",
+  "Merge PDF": "Gabungkan PDF",
+  "Split PDF": "Pisahkan PDF",
+  "Remove Pages": "Padam Halaman",
+  "Extract Pages": "Ekstrak Halaman",
+  "Organize PDF": "Susun PDF",
+  "Rotate PDF": "Putar PDF",
+  "Compress PDF": "Mampatkan PDF",
+  "JPG to PDF": "JPG ke PDF",
+  "Word to PDF": "Word ke PDF",
+  "PowerPoint to PDF": "PowerPoint ke PDF",
+  "Excel to PDF": "Excel ke PDF",
+  "HTML to PDF": "HTML ke PDF",
+  "PDF to JPG": "PDF ke JPG",
+  "PDF to Word": "PDF ke Word",
+  "PDF to PowerPoint": "PDF ke PowerPoint",
+  "PDF to Excel": "PDF ke Excel",
+  "PDF to PDF/A": "PDF ke PDF/A",
+  "Add Page Numbers": "Tambah Nombor Halaman",
+  "Add Watermark": "Tambah Tanda Air",
+  "Unlock PDF": "Buka Kunci PDF",
+  "Protect PDF": "Lindungi PDF",
+  "Sign PDF": "Tandatangani PDF",
+  "Compare PDF": "Bandingkan PDF",
+  "Plans": "Pelan",
+  "Login": "Log Masuk",
+  "Sign Up": "Daftar",
+  "Logout": "Log Keluar",
+  "add_page_numbers_title": "Tambah Nombor Halaman ke PDF",
+  "add_page_numbers_desc": "Muat naik PDF dan tambah nombor halaman yang boleh disesuaikan pada setiap halaman.",
+  "upload_pdf": "Muat Naik PDF",
+  "upload_pdf_file": "Muat naik fail PDF",
+  "or_drag_and_drop": "atau seret dan lepaskan",
+  "pdf_up_to_20mb": "PDF sehingga 20MB",
+  "selected_file": "Dipilih: {{name}} ({{size}} MB)",
+  "position": "Kedudukan",
+  "top_left": "Kiri Atas",
+  "top_center": "Tengah Atas",
+  "top_right": "Kanan Atas",
+  "bottom_left": "Kiri Bawah",
+  "bottom_center": "Tengah Bawah",
+  "bottom_right": "Kanan Bawah",
+  "format": "Format",
+  "format_placeholder": "Halaman {n} daripada {total}",
+  "format_help": "Gunakan {n} untuk nombor halaman dan {total} untuk jumlah halaman",
+  "font_size": "Saiz Fon",
+  "color": "Warna",
+  "margin": "Margin (mata)",
+  "add_page_numbers": "Tambah Nombor Halaman",
+  "adding_page_numbers": "Menambah Nombor Halaman...",
+  "please_select_pdf": "Sila pilih fail PDF terlebih dahulu",
+  "please_login": "Sila log masuk untuk menggunakan ciri ini",
+  "limit_reached": "Anda telah mencapai had pemprosesan pdf anda. Sila tingkatkan pelan anda.",
+  "failed_add_page_number": "Gagal menambah nombor halaman dalam pdf. Sila cuba lagi.",
+  "success_add_page_numbers": "Nombor halaman berjaya ditambah!",
+  "admin_dashboard": "Papan Pemuka Admin",
+  "total_users": "Jumlah Pengguna",
+  "active_subscriptions": "Langganan Aktif",
+  "feature_usage": "Penggunaan Ciri",
+  "compare_two_pdfs": "Bandingkan Dua PDF",
+  "upload_exactly_two": "Sila muat naik tepat dua fail PDF.",
+  "drag_drop_two_pdfs": "Seret dan lepaskan tepat dua fail PDF, atau klik untuk memilih.",
+  "comparing": "Membandingkan...",
+  "compare": "Bandingkan",
+  "download_diff_pdf": "Muat Turun PDF Perbezaan",
+  "comparison_done": "Perbandingan selesai!",
+  "pdf_limit_reached": "Anda telah mencapai had pdf anda. Sila tingkatkan pelan anda.",
+  "failed_compare_pdf": "Gagal membandingkan pdf. Sila cuba lagi.",
+  "compress_image": "Mampatkan Imej",
+  "compress_image_desc": "Optimumkan imej anda dengan tetapan mampatan tersuai sambil mengekalkan kualiti visual",
+  "upload_image": "Muat Naik Imej",
+  "upload_a_file": "Muat naik fail",
+  "image_formats": "PNG, JPG, WEBP sehingga 10MB",
+  "selected": "Dipilih",
+  "compression_quality": "Kualiti Mampatan",
+  "width_optional": "Lebar (pilihan)",
+  "height_optional": "Tinggi (pilihan)",
+  "original_width": "Lebar asal",
+  "original_height": "Tinggi asal",
+  "compressing": "Memampatkan...",
+  "compress_image_btn": "Mampatkan Imej",
+  "download_compressed_image": "Muat Turun Imej yang Dimampatkan",
+  "image_limit_reached": "Anda telah mencapai had pemprosesan imej anda. Sila tingkatkan pelan anda.",
+  "failed_compress_image": "Gagal memampatkan imej. Sila cuba lagi.",
+  "compress_pdf": "Mampatkan PDF",
+  "compress_pdf_desc": "Kurangkan saiz fail PDF untuk perkongsian mudah.",
+  "compression_level": "Tahap Mampatan",
+  "low_better_quality": "Rendah (Kualiti Lebih Baik)",
+  "medium_balanced": "Sederhana (Seimbang)",
+  "high_smaller_size": "Tinggi (Saiz Lebih Kecil)",
+  "compression_hint": "Mampatan yang lebih tinggi bermakna saiz fail yang lebih kecil tetapi kualiti yang lebih rendah",
+  "compress_pdf_btn": "Mampatkan PDF",
+  "download_compressed_pdf": "Muat Turun PDF yang Dimampatkan",
+  "failed_compress_pdf": "Gagal memampatkan pdf. Sila cuba lagi.",
+  "pdf_compressed_success": "PDF berjaya dimampatkan!",
+  "convert_image": "Tukar Imej",
+  "convert_image_desc": "Tukar imej anda kepada format yang berbeza sambil mengekalkan kualiti",
+  "convert_to_format": "Tukar ke Format",
+  "converting": "Menukar...",
+  "convert_image_btn": "Tukar Imej",
+  "download_converted_image": "Muat Turun Imej yang Ditukar",
+  "failed_convert_image": "Gagal menukar imej. Sila cuba lagi.",
+  "pdf_processed": "PDF Diproses",
+  "check_transactions": "Semak semua transaksi anda setakat ini",
+  "current_plan": "Pelan Semasa",
+  "free": "Percuma",
+  "convert_pdf": "Tukar PDF",
+  "convert_pdf_desc": "Tukar PDF antara format yang berbeza",
+  "compress_images": "Mampatkan Imej",
+  "compress_images_desc": "Kurangkan saiz fail PDF sambil mengekalkan kualiti",
+  "upgrade_plan": "Tingkatkan Pelan",
+  "upgrade_plan_desc": "Dapatkan lebih banyak ciri dan had yang lebih tinggi",
+  "failed_fetch_stats": "Gagal mengambil statistik pengguna",
+  "excel_to_pdf": {
+    "title": "Tukar Excel ke PDF",
+    "desc": "Muat naik fail Excel (.xls atau .xlsx) dan tukarkannya ke format PDF sambil mengekalkan susun atur.",
+    "upload_label": "Muat Naik Fail Excel",
+    "upload_btn": "Muat naik hamparan",
+    "file_hint": "XLS atau XLSX sehingga 20MB",
+    "selected_file": "Fail yang dipilih:",
+    "convert_btn": "Tukar ke PDF",
+    "converting": "Menukar...",
+    "download_btn": "Muat Turun PDF",
+    "please_select_excel": "Sila pilih fail Excel",
+    "success": "Excel berjaya ditukar ke PDF!",
+    "failed": "Gagal menukar excel. Sila cuba lagi."
+  },
+  "extract_pdf": {
+    "title": "Ekstrak Halaman PDF",
+    "desc": "Muat naik PDF dan ekstrak halaman tertentu ke dalam PDF baharu. Masukkan nombor halaman yang dipisahkan oleh koma (cth., 1,3,5).",
+    "please_select_pdf_only": "Sila pilih fail PDF sahaja.",
+    "failed_load_pdf": "Gagal memuatkan PDF. Sila cuba fail lain.",
+    "enter_page_numbers": "Sila masukkan sekurang-kurangnya satu nombor halaman untuk diekstrak.",
+    "invalid_page_numbers": "Nombor halaman tidak sah. Sila masukkan nombor antara 1 dan {{totalPages}}",
+    "failed_extract": "Gagal mengekstrak pdf. Sila cuba lagi.",
+    "pages": "halaman",
+    "pages_to_extract": "Halaman untuk Diekstrak (dipisahkan koma)",
+    "page_numbers_placeholder": "cth., 1,3,5",
+    "enter_page_numbers_range": "Masukkan nombor halaman antara 1 dan {{totalPages}}",
+    "extracting": "Mengekstrak...",
+    "extract_btn": "Ekstrak Halaman",
+    "download_btn": "Muat Turun Halaman yang Diekstrak"
+  },
+  "forgot_password": {
+    "title": "Tetapkan Semula Kata Laluan",
+    "step1": "Masukkan alamat e-mel anda",
+    "step2": "Jawab soalan keselamatan anda",
+    "step3": "Cipta kata laluan baharu",
+    "email_label": "Alamat E-mel",
+    "email_placeholder": "Masukkan e-mel anda",
+    "checking": "Menyemak...",
+    "continue": "Teruskan",
+    "fav_book": "Apakah buku kegemaran anda?",
+    "fav_meal": "Apakah hidangan kegemaran anda?",
+    "answer_placeholder": "Masukkan jawapan anda",
+    "verify_answers": "Sahkan Jawapan",
+    "new_password": "Kata Laluan Baharu",
+    "new_password_placeholder": "Masukkan kata laluan baharu",
+    "confirm_password": "Sahkan Kata Laluan",
+    "confirm_password_placeholder": "Masukkan semula kata laluan baharu",
+    "resetting": "Menetapkan semula...",
+    "reset_password": "Tetapkan Semula Kata Laluan",
+    "back_to_login": "Kembali ke Log Masuk",
+    "email_not_found": "E-mel tidak ditemui",
+    "incorrect_answers": "Jawapan tidak betul",
+    "passwords_do_not_match": "Kata laluan tidak sepadan",
+    "reset_success": "Kata laluan berjaya ditetapkan semula. Sila log masuk dengan kata laluan baharu anda.",
+    "failed_reset": "Gagal menetapkan semula kata laluan"
+  },
+  "home": {
+    "merge_pdf_desc": "Gabungkan beberapa PDF menjadi satu.",
+    "split_pdf_desc": "Pisahkan PDF menjadi fail berasingan.",
+    "remove_pages_desc": "Padam halaman tertentu dari PDF.",
+    "extract_pages_desc": "Ekstrak halaman yang dipilih sebagai PDF baharu.",
+    "organize_pdf_desc": "Susun semula atau atur halaman PDF.",
+    "rotate_pdf_desc": "Putar halaman dalam PDF anda.",
+    "metadata_viewer": "Penonton Metadata",
+    "metadata_viewer_desc": "Lihat semua butiran mana-mana PDF.",
+    "update_metadata": "Kemas Kini Metadata",
+    "update_metadata_desc": "Edit pengarang PDF, tajuk, dan banyak lagi",
+    "compare_pdf_desc": "Bandingkan dua fail PDF untuk perbezaan.",
+    "pdf_to_pdfa_desc": "Tukar PDF ke PDF/A untuk pengarkiban.",
+    "jpg_to_pdf_desc": "Tukar imej JPG ke PDF.",
+    "word_to_pdf_desc": "Tukar dokumen Word ke PDF.",
+    "powerpoint_to_pdf_desc": "Tukar fail PowerPoint ke PDF.",
+    "excel_to_pdf_desc": "Tukar hamparan Excel ke PDF.",
+    "html_to_pdf_desc": "Tukar fail HTML ke PDF.",
+    "pdf_to_jpg_desc": "Tukar halaman PDF ke imej JPG.",
+    "pdf_to_word_desc": "Tukar PDF ke dokumen Word yang boleh diedit.",
+    "pdf_to_powerpoint_desc": "Tukar PDF ke persembahan PowerPoint.",
+    "pdf_to_excel_desc": "Tukar PDF ke hamparan Excel.",
+    "pdf_to_text_converter": "Penukar PDF ke Teks",
+    "pdf_voice_reader": "Pembaca Suara PDF",
+    "pdf_voice_reader_desc": "Dengar kandungan PDF anda dengan suara semula jadi.",
+    "translate": "Terjemah PDF",
+    "translate_desc": "Terjemahkan teks dalam PDF ke pelbagai bahasa.",
+    "handwriting": "Tulisan tangan ke PDF",
+    "handwriting_desc": "Tukar nota tulisan tangan kepada PDF digital.",
+    "pdf_expire": "PDF Tamat Tempoh",
+    "pdf_expire_desc": "Kongsi PDF dengan tarikh luput untuk akses selamat.",
+    "e_sign": "Tandatangan PDF",
+    "e_sign_desc": "Tandatangani dokumen PDF anda secara elektronik"
+  },
+  "user_management": {
+    "title": "Pengurusan Pengguna",
+    "search_placeholder": "Cari pengguna...",
+    "failed_fetch_users": "Gagal mengambil pengguna",
+    "table": {
+      "name": "Nama",
+      "email": "E-mel",
+      "role": "Peranan",
+      "subscription": "Langganan",
+      "country": "Negara"
+    },
+    "roles": {
+      "admin": "Admin",
+      "user": "Pengguna"
+    },
+    "plans": {
+      "basic": "Asas"
+    },
+    "not_available": "T/A"
+  },
+  "payment_history": {
+    "title": "Sejarah Pembayaran",
+    "auth_error": "Ralat pengesahan. Sila log masuk semula.",
+    "plan": "Pelan",
+    "not_available": "T/A",
+    "hide_details": "Sembunyikan Butiran",
+    "more_details": "Butiran Lanjut",
+    "card": "Kad",
+    "receipt": "Resit",
+    "view_receipt": "Lihat Resit",
+    "billing_name": "Nama Pengebilan",
+    "email": "E-mel",
+    "paid_on": "Dibayar Pada"
+  },
+  "merge_pdf": {
+    "title": "Gabungkan Fail PDF",
+    "desc": "Gabungkan beberapa fail PDF menjadi satu dokumen. Seret untuk menyusun semula sebelum menggabungkan.",
+    "upload_pdfs": "Muat Naik PDF",
+    "upload_btn": "Muat naik fail PDF",
+    "remove": "Padam",
+    "merge_btn": "Gabungkan PDF",
+    "merging": "Menggabungkan...",
+    "download_btn": "Muat turun PDF yang digabungkan",
+    "select_pdf_only": "Sila pilih fail PDF sahaja.",
+    "failed_merge": "Gagal menggabungkan PDF",
+    "failed": "Gagal menggabungkan PDF. Sila cuba lagi."
+  },
+  "watermark_pdf": {
+    "title": "Tambah Tanda Air ke PDF",
+    "desc": "Muat naik PDF dan tambah teks tanda air tersuai pada setiap halaman.",
+    "upload_text": "Muat naik fail PDF atau seret dan lepaskan di sini",
+    "watermark_text": "Teks Tanda Air",
+    "watermark_placeholder": "cth., Sulit",
+    "add_watermark": "Tambah Tanda Air",
+    "adding": "Menambah...",
+    "download_watermarked": "Muat Turun PDF Bertanda Air",
+    "please_select_pdf": "Sila pilih fail PDF",
+    "please_enter_watermark": "Sila masukkan teks tanda air",
+    "success": "Tanda air berjaya ditambah!",
+    "failed": "Gagal menambah tanda air pada pdf. Sila cuba lagi."
+  },
+  "word_to_pdf": {
+    "title": "Tukar Word ke PDF",
+    "desc": "Muat naik dokumen Word (.doc atau .docx) dan tukarkannya ke format PDF sambil mengekalkan pemformatan.",
+    "upload_label": "Muat Naik Dokumen Word",
+    "upload_btn": "Muat naik dokumen",
+    "file_hint": "DOC atau DOCX sehingga 20MB",
+    "selected_file": "Fail yang dipilih",
+    "convert_btn": "Tukar ke PDF",
+    "converting": "Menukar...",
+    "download_btn": "Muat Turun PDF",
+    "please_select_word": "Sila pilih dokumen Word",
+    "success": "Dokumen berjaya ditukar ke PDF!",
+    "failed": "Gagal menukar word ke pdf. Sila cuba lagi."
+  },
+  "terms_conditions": {
+    "title": "Syarat Perkhidmatan",
+    "acceptance": {
+      "title": "1. Penerimaan Syarat",
+      "content": "Dengan menggunakan PDFPivot, anda bersetuju untuk mematuhi Syarat-syarat ini dan undang-undang yang berkenaan. Syarat-syarat ini membentuk perjanjian yang mengikat antara anda dan PDFPivot."
+    },
+    "eligibility": {
+      "title": "2. Kelayakan",
+      "content": "Anda mestilah berumur sekurang-kurangnya 13 tahun untuk menggunakan perkhidmatan kami. Dengan mengakses laman web kami, anda mengesahkan bahawa anda memenuhi syarat umur ini."
+    },
+    "services": {
+      "title": "3. Perkhidmatan yang Disediakan",
+      "content": "PDFPivot menawarkan alat berkaitan PDF termasuk penukaran, penggabungan, pemisahan, pemampatan, dan penyuntingan fail PDF. Kami boleh menambah, mengubah suai, atau membuang ciri-ciri tanpa notis."
+    },
+    "account": {
+      "title": "4. Akaun dan Akses",
+      "content": "Sesetengah ciri mungkin memerlukan pendaftaran. Anda bertanggungjawab untuk menjaga kerahsiaan maklumat akaun anda dan bertanggungjawab ke atas semua aktiviti di bawah akaun anda."
+    },
+    "acceptable_use": {
+      "title": "5. Penggunaan yang Boleh Diterima",
+      "intro": "Anda bersetuju untuk tidak menyalahgunakan laman web. Anda tidak boleh:",
+      "item1": "Memuat naik kandungan yang berbahaya atau berniat jahat",
+      "item2": "Melanggar hak harta intelek",
+      "item3": "Mencuba akses tanpa kebenaran",
+      "item4": "Melanggar mana-mana undang-undang yang berkenaan"
+    },
+    "intellectual_property": {
+      "title": "6. Hak Harta Intelek",
+      "content": "Semua kandungan dan alat di PDFPivot adalah hak milik intelek laman web atau pemberi lesennya. Anda tidak boleh menyalin, mengubah suai, atau mengedarkannya tanpa kebenaran bertulis."
+    },
+    "user_content": {
+      "title": "7. Kandungan Pengguna dan Muat Naik Fail",
+      "content": "Anda mengekalkan pemilikan fail yang anda muat naik. Dengan menggunakan alat kami, anda memberi kami kebenaran untuk memproses dan menyimpan fail buat sementara waktu untuk menyampaikan perkhidmatan."
+    },
+    "payment": {
+      "title": "8. Pembayaran dan Harga",
+      "content": "Perkhidmatan tertentu mungkin memerlukan pembayaran. Semua bayaran dipaparkan dengan jelas. PDFPivot berhak untuk mengubah harga pada bila-bila masa."
+    },
+    "refund": {
+      "title": "9. Bayaran Balik dan Pembatalan",
+      "content": "Semua pembelian tidak boleh dibayar balik. Oleh kerana sifat digital dan segera perkhidmatan kami, kami tidak menawarkan pembatalan atau bayaran balik setelah proses bermula."
+    },
+    "liability": {
+      "title": "10. Batasan Liabiliti",
+      "content": "PDFPivot tidak bertanggungjawab untuk sebarang kerosakan langsung, tidak langsung, atau berbangkit yang timbul daripada penggunaan atau ketidakupayaan untuk menggunakan laman web atau perkhidmatan."
+    },
+    "warranties": {
+      "title": "11. Penafian Jaminan",
+      "content": "Perkhidmatan disediakan \"sebagaimana adanya.\" Kami tidak menjamin perkhidmatan tanpa gangguan, ketepatan output, atau keserasian dengan jenis fail tertentu."
+    },
+    "third_party": {
+      "title": "12. Pautan Pihak Ketiga",
+      "content": "Laman web ini mungkin mengandungi pautan ke perkhidmatan pihak ketiga. Kami tidak bertanggungjawab untuk kandungan, syarat, atau amalan privasi laman web luaran."
+    },
+    "termination": {
+      "title": "13. Penamatan Akses",
+      "content": "Kami boleh menggantung atau menamatkan akses anda ke PDFPivot pada bila-bila masa jika anda melanggar syarat-syarat ini atau menyalahgunakan platform."
+    },
+    "modifications": {
+      "title": "14. Pengubahsuaian Syarat",
+      "content": "PDFPivot boleh mengemas kini Syarat-syarat ini pada bila-bila masa. Perubahan akan disiarkan di halaman ini, dan penggunaan berterusan selepas perubahan bermakna anda menerima syarat baharu."
+    },
+    "contact": {
+      "title": "15. Hubungi Kami",
+      "intro": "Jika anda mempunyai sebarang soalan tentang Syarat-syarat ini, sila hubungi kami:",
+      "email": "E-mel",
+      "website": "Laman web"
+    }
+  },
+  "subscription_plans": {
+    "expired_on": "tamat tempoh pada",
+    "will_expire_on": "akan tamat tempoh pada",
+    "your_plan_status": "Pelan {{planName}} anda {{expiryText}} {{expiryDate}}",
+    "session_expired": "Sesi anda telah tamat tempoh. Sila log masuk semula.",
+    "service_unavailable": "Perkhidmatan langganan pada masa ini tidak tersedia. Sila cuba lagi nanti.",
+    "failed_load_plans": "Gagal memuatkan pelan langganan. Sila cuba lagi nanti.",
+    "go_to_login": "Pergi ke Log Masuk",
+    "retry": "Cuba semula",
+    "current_plan": "Pelan Semasa",
+    "free": "Percuma",
+    "price_per_month": "${{price}}/bulan",
+    "unlimited": "Tanpa had",
+    "quota_per_month": "{{quota}}/bulan",
+    "start_free": "Mula Percuma",
+    "select_plan": "Pilih Pelan"
+  },
+  "subscribe_page": {
+    "subscribe_to": "Langgan",
+    "choose_billing_desc": "Pilih kitaran pengebilan anda dan teruskan ke pembayaran yang selamat.",
+    "billing_type": "Jenis Pengebilan",
+    "monthly_option": "Bulanan - ${{price}}",
+    "annual_option": "Tahunan - ${{price}}",
+    "pay_now": "Bayar ${{price}} Sekarang",
+    "redirecting": "Mengalihkan...",
+    "loading_plan": "Memuatkan butiran pelan...",
+    "plan_not_loaded": "Pelan tidak dimuatkan",
+    "payment_failed": "Pembayaran gagal"
+  },
+  "split_pdf_page": {
+    "title": "Pisahkan PDF",
+    "desc": "Muat naik PDF dan pisahkannya menjadi halaman individu. Muat turun semua halaman sebagai fail ZIP.",
+    "split_pdf_btn": "Pisahkan PDF",
+    "splitting": "Memisahkan...",
+    "download_split_pages": "Muat Turun Halaman yang Dipisahkan (ZIP)",
+    "please_select_pdf_only": "Sila pilih fail PDF sahaja.",
+    "failed_split": "Gagal memisahkan pdf. Sila cuba lagi."
+  },
+  "rotate_pdf_page": {
+    "title": "Putar Halaman PDF",
+    "desc": "Muat naik PDF dan pratonton halaman pertama. Gunakan butang untuk memutar pratonton ke kiri atau kanan. Muat turun PDF yang diputar.",
+    "pdf_preview": "Pratonton PDF",
+    "rotation_degrees": "Putaran: {{degrees}}°",
+    "current_rotation": "Putaran semasa: {{degrees}}°",
+    "rotate_left": "Putar Kiri",
+    "rotate_right": "Putar Kanan",
+    "generating": "Menjana...",
+    "download_rotated_pdf": "Muat Turun PDF yang Diputar",
+    "click_to_download": "Klik di sini untuk memuat turun",
+    "please_select_pdf": "Sila pilih fail PDF.",
+    "failed_generate": "Gagal menjana PDF yang diputar. {{message}}",
+    "please_try_again": "Sila cuba lagi."
+  },
+  "rotate_page": {
+    "title": "Putar Imej",
+    "desc": "Putar imej anda dengan ketepatan sambil mengekalkan kualiti",
+    "upload_image": "Muat Naik Imej",
+    "upload_a_file": "Muat naik fail",
+    "rotating": "Memutar...",
+    "rotate_left": "Putar Kiri",
+    "rotate_right": "Putar Kanan",
+    "download_rotated_image": "Muat Turun Imej yang Diputar",
+    "please_upload_image": "Sila muat naik imej terlebih dahulu.",
+    "failed_track_usage": "Gagal mengesan penggunaan. Sila cuba lagi nanti.",
+    "failed_rotate": "Gagal memutar imej. Sila cuba lagi."
+  },
+  "remove_pdf": {
+    "title": "Padam Halaman PDF",
+    "desc": "Muat naik PDF dan padam halaman tertentu. Masukkan nombor halaman yang dipisahkan oleh koma (cth., 1,3,5).",
+    "pages_to_remove": "Halaman untuk Dipadam (dipisahkan koma)",
+    "page_numbers_placeholder": "cth., 1,3,5",
+    "remove_pages_btn": "Padam Halaman",
+    "removing": "Memadam...",
+    "download_btn": "Muat Turun PDF yang Diubah Suai",
+    "please_select_pdf_only": "Sila pilih fail PDF sahaja.",
+    "enter_page_numbers": "Sila masukkan sekurang-kurangnya satu nombor halaman untuk dipadam.",
+    "invalid_page_numbers": "Nombor halaman tidak sah. Sila masukkan nombor antara 1 dan {{pageCount}}",
+    "failed_remove": "Gagal memadam halaman. Sila cuba lagi."
+  },
+  "register": {
+    "title": "Cipta Akaun",
+    "subtitle": "Sertai kami untuk memulakan perjalanan anda",
+    "full_name": "Nama Penuh",
+    "full_name_placeholder": "Masukkan nama penuh anda",
+    "email_label": "Alamat e-mel",
+    "email_placeholder": "Masukkan e-mel anda",
+    "password_label": "Kata laluan",
+    "password_placeholder": "Masukkan kata laluan anda",
+    "confirm_password_label": "Sahkan Kata Laluan",
+    "confirm_password_placeholder": "Sahkan kata laluan anda",
+    "country_label": "Negara",
+    "select_country": "Pilih negara anda",
+    "fav_book_question": "Apakah buku kegemaran anda?",
+    "fav_book_placeholder": "Masukkan buku kegemaran anda",
+    "fav_meal_question": "Apakah hidangan kegemaran anda?",
+    "fav_meal_placeholder": "Masukkan hidangan kegemaran anda",
+    "create_account_btn": "Cipta Akaun",
+    "already_have_account": "Sudah mempunyai akaun?",
+    "sign_in_link": "Log masuk",
+    "passwords_do_not_match": "Kata laluan tidak sepadan"
+  },
+  "privacy_policy": {
+    "title": "Dasar Privasi",
+    "introduction": {
+      "title": "1. Pengenalan",
+      "content": "Selamat datang ke PDFPivot ('kami,' 'milik kami,' atau 'kita'). Dasar ini terpakai untuk semua pelawat, pengguna, dan pelanggan yang mengakses"
+    },
+    "information_collection": {
+      "title": "2. Maklumat yang Kami Kumpulkan",
+      "content": "Kami mengumpulkan data peribadi seperti nama, e-mel, butiran hubungan, fail yang dimuat naik, alamat IP, dan maklumat pelayar/peranti."
+    },
+    "how_we_use": {
+      "title": "3. Bagaimana Kami Menggunakan Maklumat Anda",
+      "item1": "Untuk menyediakan alat dan perkhidmatan berkaitan PDF",
+      "item2": "Untuk meningkatkan prestasi dan fungsi laman web",
+      "item3": "Untuk berkomunikasi dengan pengguna",
+      "item4": "Untuk mematuhi keperluan undang-undang"
+    },
+    "legal_basis": {
+      "title": "4. Asas Undang-undang untuk Pemprosesan Data",
+      "content": "Kami memproses data berdasarkan persetujuan, keperluan kontrak, dan kepentingan perniagaan yang sah seperti meningkatkan penyampaian perkhidmatan dan memastikan keselamatan."
+    },
+    "cookies": {
+      "title": "5. Kuki dan Penjejakan",
+      "content": "PDFPivot menggunakan kuki untuk memperibadikan kandungan, menganalisis penggunaan, dan meningkatkan pengalaman anda. Anda boleh melumpuhkan kuki dalam tetapan pelayar anda."
+    },
+    "uploaded_files": {
+      "title": "6. Penggunaan Fail yang Dimuat Naik",
+      "content": "Fail yang dimuat naik untuk penukaran atau penyuntingan disimpan buat sementara waktu dan dipadam selepas pemprosesan. Kami tidak mengakses, membaca, atau berkongsi kandungan fail dengan pihak ketiga."
+    },
+    "third_party": {
+      "title": "7. Perkhidmatan Pihak Ketiga",
+      "content": "Kami boleh menggunakan penyedia pihak ketiga yang dipercayai untuk analitik, pengehosan, atau perkhidmatan pembayaran. Penyedia ini mesti mematuhi piawaian privasi data yang ketat."
+    },
+    "data_security": {
+      "title": "8. Keselamatan Data",
+      "content": "Kami melaksanakan penyulitan yang kukuh dan kawalan akses untuk melindungi data anda daripada akses, kehilangan, atau penyalahgunaan yang tidak dibenarkan."
+    },
+    "data_retention": {
+      "title": "9. Pengekalan Data",
+      "content": "Kami mengekalkan data peribadi anda hanya selama yang diperlukan untuk perkhidmatan kami atau untuk memenuhi kewajipan undang-undang. Fail yang dimuat naik dipadam secara automatik selepas pemprosesan."
+    },
+    "international_transfers": {
+      "title": "10. Pemindahan Antarabangsa",
+      "content": "Data anda mungkin dipindahkan ke pelayan di luar negara anda. Kami mengambil langkah-langkah untuk memastikan data anda dilindungi mengikut Dasar Privasi ini."
+    },
+    "children_privacy": {
+      "title": "11. Privasi Kanak-kanak",
+      "content": "PDFPivot tidak bertujuan untuk kanak-kanak di bawah 13 tahun. Kami tidak secara sedar mengumpulkan data daripada kanak-kanak. Jika ditemui, data tersebut akan dipadam dengan segera."
+    },
+    "your_rights": {
+      "title": "12. Hak Anda",
+      "content": "Bergantung pada wilayah anda, anda mungkin mempunyai hak untuk mengakses, membetulkan, memadam, atau menyekat data peribadi anda. Hubungi kami untuk menggunakan hak-hak ini."
+    },
+    "third_party_links": {
+      "title": "13. Pautan Pihak Ketiga",
+      "content": "Laman web kami mungkin mengandungi pautan ke laman web luaran. Kami tidak bertanggungjawab untuk amalan privasi mereka. Sila semak dasar mereka secara berasingan."
+    },
+    "policy_updates": {
+      "title": "14. Kemas Kini Dasar",
+      "content": "Dasar Privasi ini boleh dikemas kini. Sebarang perubahan akan disiarkan di halaman ini dengan tarikh berkuat kuasa baharu."
+    },
+    "contact": {
+      "title": "15. Hubungi Kami",
+      "intro": "Jika anda mempunyai soalan atau kebimbangan mengenai data anda:",
+      "email": "E-mel",
+      "website": "Laman web"
+    }
+  },
+  "unlock_pdf_page": {
+    "title": "Buka Kunci PDF",
+    "desc": "Buang perlindungan kata laluan dari fail PDF anda. Muat naik PDF yang dilindungi kata laluan anda dan masukkan kata laluan untuk membukanya.",
+    "upload_label": "Muat Naik PDF yang Dilindungi Kata Laluan",
+    "pdf_password": "Kata Laluan PDF",
+    "enter_password_placeholder": "Masukkan kata laluan PDF",
+    "unlock_pdf_btn": "Buka Kunci PDF",
+    "unlocking": "Membuka kunci...",
+    "unlocked_successfully": "PDF berjaya dibuka!",
+    "please_upload_pdf": "Sila muat naik fail PDF",
+    "please_enter_password": "Sila masukkan kata laluan PDF",
+    "failed_unlock": "Gagal membuka kunci pdf. Sila cuba lagi."
+  },
+  "pdf_to_text": {
+    "title": "Tukar PDF ke Teks Biasa",
+    "desc": "Muat naik fail PDF dan tukarkannya ke format teks biasa (.txt).",
+    "upload_label": "Muat Naik Fail PDF",
+    "selected_file": "Fail yang dipilih",
+    "convert_btn": "Tukar ke Teks",
+    "converting": "Menukar...",
+    "download_btn": "Muat Turun Teks",
+    "select_pdf": "Sila pilih fail PDF",
+    "success": "PDF berjaya ditukar ke teks biasa!",
+    "failed": "Gagal menukar PDF ke teks. Sila cuba lagi."
+  },
+  "pdf_to_text_desc": "Ekstrak teks biasa dengan mudah",
+  "unlock_pdf_desc": "Buang perlindungan kata laluan dari PDF.",
+  "protect_pdf": {
+    "title": "Tambah Perlindungan ke PDF",
+    "desc": "Muat naik fail PDF dan tetapkan kata laluan untuk melindunginya daripada akses tanpa kebenaran.",
+    "set_password": "Tetapkan Kata Laluan",
+    "password_placeholder": "Masukkan kata laluan",
+    "selected_file": "Fail yang dipilih",
+    "protect_btn": "Lindungi PDF",
+    "protecting": "Melindungi...",
+    "download_btn": "Muat Turun PDF yang Dilindungi",
+    "select_pdf_and_password": "Sila pilih fail PDF dan masukkan kata laluan.",
+    "success": "PDF berjaya dilindungi!",
+    "failed": "Gagal melindungi pdf. Sila cuba lagi."
+  },
+  "protect_pdf_desc": "Tambah perlindungan kata laluan ke PDF anda.",
+  "add_page_numbers_desc": "Tambah nombor halaman ke PDF anda.",
+  "add_watermark_desc": "Tambah teks tanda air atau imej ke PDF anda.",
+  "compress_pdf_desc": "Kurangkan saiz fail PDF untuk perkongsian mudah.",
+  "refund_policy": {
+    "title": "Dasar Bayaran Balik & Pembatalan",
+    "no_refund": {
+      "title": "1. Dasar Tiada Bayaran Balik",
+      "content": "Semua pembayaran yang dibuat di PDFPivot tidak boleh dibayar balik. Setelah perkhidmatan dimulakan atau diselesaikan, kami tidak boleh membalikkan atau membayar balik transaksi."
+    },
+    "instant_service": {
+      "title": "2. Perkhidmatan Digital Segera",
+      "content": "Perkhidmatan kami adalah automatik dan mula memproses sebaik sahaja fail dimuat naik atau pembayaran dibuat. Oleh itu, setelah proses bermula, tiada pembatalan atau bayaran balik yang mungkin dilakukan."
+    },
+    "order_cancellation": {
+      "title": "3. Pembatalan Pesanan",
+      "content": "Anda tidak boleh membatalkan pesanan setelah ia diserahkan dan pemprosesan telah bermula. Sila sahkan semua butiran sebelum membuat pesanan."
+    },
+    "wrong_file": {
+      "title": "4. Muat Naik Fail yang Salah",
+      "content": "PDFPivot tidak bertanggungjawab jika anda memuat naik fail yang salah atau tidak betul. Sila periksa semula fail anda sebelum menyerahkannya."
+    },
+    "duplicate_payments": {
+      "title": "5. Pembayaran Ganda",
+      "content": "Sekiranya berlaku pembayaran ganda yang tidak disengajakan, anda mesti memaklumkan kami dalam masa 24 jam. Kami akan mengesahkan dan mengeluarkan bayaran balik hanya untuk jumlah ganda, jika layak."
+    },
+    "failed_services": {
+      "title": "6. Perkhidmatan Gagal",
+      "content": "Jika perkhidmatan gagal disebabkan masalah teknikal di pihak kami (cth., fail tidak diproses, ralat pelayan), kami mungkin menawarkan pemprosesan semula percuma. Tiada bayaran balik akan dikeluarkan."
+    },
+    "user_mistakes": {
+      "title": "7. Kesilapan Pengguna",
+      "content": "Bayaran balik tidak akan diberikan untuk kesilapan pengguna, seperti tetapan yang salah, format output, atau pilihan yang terlepas semasa pemprosesan."
+    },
+    "subscription_services": {
+      "title": "8. Perkhidmatan Langganan",
+      "content": "Jika PDFPivot memperkenalkan pelan langganan, pengguna mesti membatalkan langganan mereka sebelum kitaran pengebilan seterusnya. Tiada bayaran balik pro-rata atau pertengahan penggal akan dikeluarkan."
+    },
+    "unauthorized_use": {
+      "title": "9. Penggunaan Tanpa Kebenaran",
+      "content": "Kami tidak bertanggungjawab untuk sebarang penggunaan akaun anda yang tidak dibenarkan atau penipuan. Lindungi butiran log masuk anda untuk mengelakkan penyalahgunaan."
+    },
+    "file_retention": {
+      "title": "10. Pengekalan & Pemadaman Fail",
+      "content": "Kami tidak menyimpan fail secara kekal. Semua fail dipadam secara automatik selepas tempoh yang singkat. Kegagalan penghantaran kerana fail tamat tempoh tidak layak untuk bayaran balik."
+    },
+    "service_downtime": {
+      "title": "11. Waktu Henti Perkhidmatan",
+      "content": "Waktu henti sesekali untuk penyelenggaraan atau masalah teknikal dijangka. Bayaran balik tidak akan dikeluarkan untuk ketidaktersediaan perkhidmatan sementara."
+    },
+    "promotional_purchases": {
+      "title": "12. Pembelian Promosi & Diskaun",
+      "content": "Tiada bayaran balik akan dikeluarkan untuk perkhidmatan yang digunakan semasa jualan, diskaun berasaskan kupon, atau tawaran promosi."
+    },
+    "chargebacks": {
+      "title": "13. Caj Balik",
+      "content": "Pengguna yang memulakan caj balik yang menipu mungkin akaun mereka diharamkan secara kekal dan akses ditarik balik."
+    },
+    "policy_agreement": {
+      "title": "14. Perjanjian Dasar",
+      "content": "Dengan menggunakan perkhidmatan kami, anda bersetuju dengan Dasar Bayaran Balik & Pembatalan ini. Adalah menjadi tanggungjawab pengguna untuk membaca dan memahaminya sebelum membuat pembelian."
+    },
+    "contact": {
+      "title": "15. Hubungi Kami",
+      "intro": "Jika anda mempunyai soalan atau keadaan luar biasa, sila hubungi kami:",
+      "email": "E-mel",
+      "website": "Laman web"
+    }
+  },
+  "update_metadata_page": {
+    "title": "Kemas Kini Metadata PDF",
+    "desc": "Muat naik PDF dan kemas kini metadatanya seperti tajuk, pengarang, dan banyak lagi.",
+    "selected_file": "Fail yang dipilih",
+    "title_placeholder": "Tajuk",
+    "author_placeholder": "Pengarang",
+    "subject_placeholder": "Subjek",
+    "keywords_placeholder": "Kata kunci (dipisahkan koma)",
+    "update_metadata_btn": "Kemas Kini Metadata",
+    "updating": "Mengemas kini...",
+    "download_updated_pdf": "Muat Turun PDF yang Dikemas Kini",
+    "updated_successfully": "Metadata berjaya dikemas kini!",
+    "please_select_pdf": "Sila pilih fail PDF",
+    "failed_update": "Gagal mengemas kini metadata pdf. Sila cuba lagi."
+  },
+  "display_plans": {
+    "title": "Pelan Langganan",
+    "desc": "Pilih pelan yang sesuai dengan keperluan anda. Tingkatkan pada bila-bila masa."
+  },
+  "faq": {
+    "title": "FAQ PdfPivot",
+    "convert_file": {
+      "question": "Bagaimana cara menukar fail ke PDF?",
+      "answer": "Pilih alat penukaran seperti Word ke PDF, muat naik fail anda, dan klik Tukar. PDF anda akan sedia untuk dimuat turun serta-merta."
+    },
+    "limits": {
+      "question": "Adakah terdapat had kepada bilangan tugas PDF yang boleh saya lakukan?",
+      "answer": "Ya, setiap pelan langganan disertakan dengan kuota bulanan. Pengguna percuma mendapat penukaran terhad. Pelan berbayar menawarkan penggunaan lebih banyak atau tanpa had."
+    },
+    "security": {
+      "question": "Adakah data PDF saya selamat?",
+      "answer": "Sudah tentu. Semua fail diproses dengan penyulitan yang selamat dan dipadam secara automatik selepas pemprosesan. Kami tidak pernah menyimpan data anda."
+    },
+    "mobile": {
+      "question": "Bolehkah saya menggunakan PdfPivot pada telefon saya?",
+      "answer": "Ya! PdfPivot adalah responsif sepenuhnya dan berfungsi pada semua pelayar mudah alih moden."
+    },
+    "formats": {
+      "question": "Format fail apa yang boleh saya tukar ke dan dari PDF?",
+      "answer": "Anda boleh menukar Word, Excel, PowerPoint, JPG, dan HTML ke PDF — dan sebaliknya. Kami juga menyokong PDF ke PDF/A dan OCR untuk fail yang diimbas."
+    },
+    "ocr": {
+      "question": "Bagaimana ciri OCR berfungsi?",
+      "answer": "OCR secara automatik mengekstrak teks dari PDF yang diimbas, membolehkan anda mencari dan mengedit kandungan. Ia tersedia untuk semua alat PDF."
+    }
+  },
+  "hero": {
+    "title_line1": "Cepat, Selamat &",
+    "title_line2": "Berkuasa",
+    "title_line3": "Alat PDF Dalam Talian",
+    "description": "Edit, tukar, mampatkan, dan selamatkan PDF anda dengan mudah — semuanya dalam pelayar anda. Dipercayai oleh profesional di seluruh dunia.",
+    "live_chat": "Sembang Langsung",
+    "image_alt": "Ilustrasi penyuntingan imej"
+  },
+  "how_it_works": {
+    "title": "PdfPivot, Alat PDF all-in-one anda.",
+    "subtitle": "Cara menukar PDF ke Word",
+    "description": "Ikuti langkah-langkah mudah ini untuk menukar PDF ke Word menggunakan Xodo:",
+    "step1": "Muat naik PDF anda ke penukar PDF ke Word dalam talian percuma.",
+    "step2": "Klik \"Tukar\" – OCR secara automatik digunakan untuk PDF yang diimbas.",
+    "step3": "Muat turun fail Word (.docx) anda yang boleh diedit.",
+    "image_alt": "Cara menukar"
+  },
+  "payment_form": {
+    "cancel": "Batal",
+    "pay_now": "Bayar Sekarang",
+    "processing": "Memproses...",
+    "default_error": "Ralat berlaku"
+  },
+  "trusted_by": {
+    "title": "Alat PDF yang dipercayai oleh ribuan pengguna",
+    "description": "PDFPivot adalah platform all-in-one anda yang selamat untuk menukar, menyunting, dan menyusun fail PDF. Prestasi pantas, pemprosesan peribadi — tiada data disimpan.",
+    "iso_27001": "ISO 27001",
+    "secure_processing": "Pemprosesan Selamat",
+    "trusted_by_enterprises": "Dipercayai oleh Perusahaan"
+  },
+  "why_us": {
+    "title": "PDFPivot, Alat PDF Lengkap Anda dalam Satu Tempat",
+    "feature1": {
+      "title": "Alat PDF All-in-One",
+      "description": "Gabungkan, pisahkan, tukar, mampatkan, selamatkan, dan edit PDF anda — semuanya dari satu platform yang mudah digunakan."
+    },
+    "feature2": {
+      "title": "Penukaran Pantas & Boleh Dipercayai",
+      "description": "Tukar fail ke dan dari format PDF dalam beberapa saat. OCR secara automatik digunakan pada dokumen yang diimbas."
+    },
+    "feature3": {
+      "title": "Akses Berasaskan Kuota Pintar",
+      "description": "Nikmati pelan langganan yang fleksibel dengan kuota bulanan atau penggunaan tanpa had — dibina untuk individu dan pasukan."
+    }
+  },
+  "metadata_viewer": {
+    "title": "Penonton Metadata PDF",
+    "upload_text": "Muat naik fail PDF atau seret dan lepaskan di sini",
+    "view_btn": "Lihat Metadata",
+    "fetching": "Mengambil...",
+    "metadata_label": "Metadata",
+    "select_pdf": "Sila pilih fail PDF.",
+    "success": "Metadata berjaya diambil!",
+    "failed": "Gagal melihat metadata PDF. Sila cuba lagi."
+  },
+  "organize_pdf": {
+    "title": "Susun Halaman PDF",
+    "desc": "Muat naik PDF, seret untuk menyusun semula halaman, dan muat turun PDF yang disusun semula.",
+    "select_pdf_only": "Sila pilih fail PDF sahaja.",
+    "failed_load_pdf": "Gagal memuatkan PDF.",
+    "upload_pdf": "Sila muat naik fail PDF.",
+    "success": "PDF berjaya disusun semula!",
+    "failed": "Gagal menyusun PDF. Sila cuba lagi.",
+    "pages": "halaman",
+    "drag_reorder": "Seret untuk menyusun semula halaman",
+    "reordering": "Menyusun semula...",
+    "reorder_btn": "Susun Semula dan Muat Turun",
+    "download_btn": "Muat Turun PDF yang Disusun Semula"
+  },
+  "plan_management": {
+    "title": "Pengurusan Pelan",
+    "plan_name": "Nama Pelan",
+    "monthly_fee": "Yuran Bulanan",
+    "annual_fee": "Yuran Tahunan",
+    "service_quotas": "Kuota Perkhidmatan",
+    "set_all_quotas": "Tetapkan Semua Kuota Perkhidmatan",
+    "monthly_quota_all": "Kuota Bulanan (Semua Perkhidmatan)",
+    "annual_quota_all": "Kuota Tahunan (Semua Perkhidmatan)",
+    "set_monthly_quota_placeholder": "Tetapkan kuota bulanan untuk semua perkhidmatan",
+    "set_annual_quota_placeholder": "Tetapkan kuota tahunan untuk semua perkhidmatan",
+    "individual_quotas": "Kuota Perkhidmatan Individu",
+    "monthly_quota": "Kuota Bulanan",
+    "annual_quota": "Kuota Tahunan",
+    "create_plan": "Cipta Pelan",
+    "update_plan": "Kemas Kini Pelan",
+    "cancel": "Batal",
+    "existing_plans": "Pelan Sedia Ada",
+    "monthly": "Bulanan",
+    "annual": "Tahunan",
+    "edit": "Edit",
+    "delete": "Padam",
+    "features": "Ciri-ciri",
+    "month": "bulan",
+    "year": "tahun",
+    "all_services_included": "Semua perkhidmatan termasuk",
+    "failed_fetch_plans": "Gagal mengambil pelan",
+    "failed_save_plan": "Gagal menyimpan pelan",
+    "failed_delete_plan": "Gagal memadam pelan",
+    "confirm_delete": "Adakah anda pasti ingin memadam pelan ini?"
+  },
+  "ppt_to_pdf": {
+    "title": "Tukar PPT ke PDF",
+    "desc": "Muat naik persembahan PowerPoint (.ppt atau .pptx) dan tukarkannya ke format PDF sambil mengekalkan susun atur persembahan.",
+    "upload_label": "Muat Naik Fail PowerPoint",
+    "upload_btn": "Muat naik persembahan",
+    "file_hint": "PPT atau PPTX sehingga 20MB",
+    "selected_file": "Fail yang dipilih",
+    "convert_btn": "Tukar ke PDF",
+    "converting": "Menukar...",
+    "download_btn": "Muat Turun PDF",
+    "select_ppt": "Sila pilih fail PowerPoint",
+    "success": "Persembahan berjaya ditukar ke PDF!",
+    "failed": "Gagal menukar PPT ke PDF. Sila cuba lagi."
+  },
+  "pdf_to_excel": {
+    "title": "Tukar PDF ke Excel",
+    "desc": "Muat naik fail PDF dan tukarkannya ke format Excel (.xlsx) sambil mengekalkan struktur data.",
+    "upload_label": "Muat Naik Fail PDF",
+    "selected_file": "Fail yang dipilih",
+    "select_pdf": "Sila pilih fail PDF",
+    "success": "PDF berjaya ditukar ke Excel!",
+    "failed": "Gagal menukar ke Excel. Sila cuba lagi.",
+    "converting": "Menukar...",
+    "convert_btn": "Tukar ke Excel",
+    "download_btn": "Muat Turun Excel"
+  },
+  "pdf_to_jpg": {
+    "title": "Tukar PDF ke JPG",
+    "desc": "Muat naik PDF dan tukar setiap halaman ke imej JPG. Muat turun semua imej sebagai fail ZIP.",
+    "upload_valid_pdf": "Sila muat naik fail PDF yang sah.",
+    "failed": "Gagal menukar PDF ke JPG. Sila cuba lagi.",
+    "converting": "Menukar PDF ke imej...",
+    "page_alt": "Halaman {{page}}",
+    "download_btn": "Muat Turun JPG ZIP"
+  },
+  "pdf_to_pdfa": {
+    "title": "Tukar PDF ke PDF/A",
+    "desc": "Muat naik PDF dan tukarkannya ke fail standard pengarkiban PDF/A.",
+    "upload_text": "Muat naik fail PDF atau seret dan lepaskan di sini",
+    "select_pdf": "Sila pilih fail PDF",
+    "success": "PDF berjaya ditukar ke PDF/A!",
+    "failed": "Gagal menukar ke PDF/A. Sila cuba lagi.",
+    "converting": "Menukar...",
+    "convert_btn": "Tukar ke PDF/A",
+    "download_btn": "Muat Turun PDF/A"
+  },
+  "pdf_to_ppt": {
+    "title": "Tukar PDF ke PowerPoint",
+    "desc": "Muat naik fail PDF dan tukarkannya ke format PowerPoint (.pptx) sambil mengekalkan susun atur.",
+    "upload_label": "Muat Naik Fail PDF",
+    "selected_file": "Fail yang dipilih",
+    "select_pdf": "Sila pilih fail PDF",
+    "success": "PDF berjaya ditukar ke PPT!",
+    "failed": "Gagal menukar PDF ke PPT. Sila cuba lagi.",
+    "converting": "Menukar...",
+    "convert_btn": "Tukar ke PPT",
+    "download_btn": "Muat Turun PPT"
+  },
+  "payment_failed": {
+    "alt_text": "Pembayaran Gagal",
+    "title": "Pembayaran Gagal",
+    "description": "Malangnya, transaksi anda tidak dapat diselesaikan.",
+    "try_again": "Sila cuba lagi atau hubungi sokongan jika masalah berterusan.",
+    "go_to_dashboard": "Pergi ke Papan Pemuka"
+  },
+  "payment_success": {
+    "alt_text": "Pembayaran Berjaya",
+    "title": "Pembayaran Berjaya!",
+    "thank_you": "Terima kasih atas pembelian anda.",
+    "redirecting": "Mengalihkan ke papan pemuka anda dalam <1>{{seconds}}</1> saat...",
+    "not_redirected": "Tidak dialihkan?",
+    "go_to_dashboard": "Pergi ke Papan Pemuka"
+  },
+  "pdf_to_text": "PDF ke Teks",
+  "login": {
+    "welcome": "Selamat kembali",
+    "subtitle": "Log masuk ke akaun anda untuk meneruskan",
+    "email_label": "Alamat e-mel",
+    "email_placeholder": "Masukkan e-mel anda",
+    "password_label": "Kata laluan",
+    "password_placeholder": "Masukkan kata laluan anda",
+    "sign_in": "Log Masuk",
+    "no_account": "Tidak mempunyai akaun?",
+    "sign_up": "Daftar",
+    "forgot_password": "Lupa kata laluan anda?",
+    "failed": "Log masuk gagal. Sila semak kelayakan anda."
+  },
+  "footer": {
+    "pdfpivot": "PdfPivot",
+    "home": "Laman Utama",
+    "pricing": "Harga",
+    "security": "Keselamatan",
+    "tools": "Alat",
+    "faq": "FAQ",
+    "product": "Produk",
+    "desktop": "PdfPivot Desktop",
+    "mobile": "PdfPivot Mudah Alih",
+    "developers": "Pembangun",
+    "features": "Ciri-ciri",
+    "solutions": "Penyelesaian",
+    "business": "Perniagaan",
+    "education": "Pendidikan",
+    "company": "Syarikat",
+    "privacy_policy": "Dasar Privasi",
+    "terms_conditions": "Syarat & Ketentuan",
+    "refund_policy": "Dasar Bayaran Balik",
+    "copyright": "© 2025 PdfPivot. Semua hak terpelihara.",
+    "trusted_by": "Alat PDF yang dipercayai oleh ribuan pengguna",
+    "login": "Log masuk",
+    "register": "Daftar",
+    "plans": "Pelan",
+    "services": "Perkhidmatan",
+    "merge_pdf": "Gabungkan PDF",
+    "split_pdf": "Pisahkan PDF",
+    "remove_pages": "Padam Halaman",
+    "extract_pages": "Ekstrak Halaman",
+    "security_tools": "Alat Keselamatan",
+    "update_metadata": "Kemas Kini Metadata",
+    "view_metadata": "Lihat Metadata",
+    "add_watermark": "Tambah Tanda Air",
+    "protect_pdf": "Lindungi PDF"
+  },
+  "pdfvoicereader": {
+    "pdf_voice_reader": "Pembaca Suara PDF",
+    "pdf_voice_reader_desc": "Tukar kandungan PDF ke penceritaan audio.",
+    "upload_pdf": "Muat Naik PDF",
+    "upload_a_file": "Muat naik fail",
+    "pdf_formats": "Format PDF sahaja",
+    "selected": "Dipilih",
+    "convert_to_audio": "Tukar ke Audio",
+    "converting": "Menukar...",
+    "download_audio": "Muat Turun MP3",
+    "invalid_pdf": "Sila pilih fail PDF yang sah.",
+    "conversion_failed": "Gagal menukar PDF ke audio. Cuba lagi."
+  },
+  "pdftranslator": {
+    "smart_pdf_translator": "Penterjemah PDF Pintar",
+    "smart_pdf_translator_desc": "Terjemahkan keseluruhan PDF sambil mengekalkan pemformatan asal.",
+    "invalid_pdf": "Sila muat naik fail PDF yang sah.",
+    "upload_pdf": "Muat Naik PDF",
+    "upload_a_file": "Klik untuk memuat naik fail",
+    "pdf_formats": "Hanya fail PDF yang disokong.",
+    "selected": "Dipilih",
+    "select_language": "Pilih Bahasa Sasaran",
+    "translate_pdf": "Terjemah PDF",
+    "translating": "Menterjemah...",
+    "translation_failed": "Penterjemahan gagal. Sila cuba lagi.",
+    "download_translated": "Muat Turun PDF yang Diterjemah"
+  },
+  "pdfhandwriter": {
+    "handwriting_simulation": "Simulasi Tulisan Tangan",
+    "desc": "Muat naik PDF dan tukarkannya ke versi tulisan tangan yang disimulasikan.",
+    "invalid_pdf": "Sila muat naik fail PDF yang sah.",
+    "failed": "Gagal mensimulasikan tulisan tangan. Sila cuba lagi.",
+    "upload_pdf": "Muat Naik PDF",
+    "upload_a_file": "Muat naik fail",
+    "pdf_formats": "Hanya fail PDF yang disokong.",
+    "selected": "Fail yang dipilih",
+    "simulate_pdf": "Simulasikan PDF",
+    "simulating": "Mensimulasikan...",
+    "download_handwritten": "Muat Turun PDF Tulisan Tangan"
+  },
+  "pdfexpiry": {
+    "upload_pdf_title": "Muat Naik dan Kongsi PDF dengan Tempoh Tamat",
+    "desc": "Muat naik PDF dan jana pautan yang boleh dikongsi yang secara automatik tamat tempoh selepas bilangan hari yang dipilih.",
+    "invalid_pdf": "Sila muat naik fail PDF yang sah.",
+    "failed": "Ada yang tidak kena. Sila cuba lagi.",
+    "upload_pdf": "Muat Naik Fail PDF",
+    "upload_a_file": "Klik untuk memuat naik fail",
+    "pdf_formats": "Hanya format PDF yang disokong",
+    "selected": "Fail yang Dipilih",
+    "expiry_days": "Tamat Tempoh (dalam hari)",
+    "days_note": "Maksimum 30 hari",
+    "uploading": "Memuat naik...",
+    "upload_pdf_btn": "Muat Naik & Jana Pautan",
+    "link_expires": "Pautan tamat tempoh pada",
+    "open_pdf": "Buka PDF"
+  },
+  "pdfEditor": {
+    "title": "Editor PDF",
+    "uploadPDF": "Muat Naik PDF",
+    "uploadImage": "Muat Naik Imej",
+    "clearSignature": "Padamkan Tandatangan",
+    "placeImage": "Letakkan Imej",
+    "placeSignature": "Letakkan Tandatangan",
+    "placeText": "Letakkan Teks",
+    "submitPDF": "Hantar PDF",
+    "sampleText": "Teks Contoh",
+    "uploadPDFFirst": "Muat naik PDF dahulu!",
+    "failedToCreatePDF": "Gagal membuat PDF"
+  }
+}

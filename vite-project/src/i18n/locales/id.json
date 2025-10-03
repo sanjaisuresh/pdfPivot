@@ -1,0 +1,972 @@
+{
+  "welcome": "Selamat datang di PDFPivot",
+  "choose_language": "Pilih bahasa pilihan Anda",
+  "PdfPivot": "PdfPivot",
+  "Dashboard": "Dasbor",
+  "Users": "Pengguna",
+  "Plans Management": "Manajemen Paket",
+  "Payment History": "Riwayat Pembayaran",
+  "payment_history_desc": "Periksa semua transaksi Anda sejauh ini",
+  "Features": "Fitur",
+  "Merge PDF": "Gabungkan PDF",
+  "Split PDF": "Pisahkan PDF",
+  "Remove Pages": "Hapus Halaman",
+  "Extract Pages": "Ekstrak Halaman",
+  "Organize PDF": "Atur PDF",
+  "Rotate PDF": "Putar PDF",
+  "Compress PDF": "Kompres PDF",
+  "JPG to PDF": "JPG ke PDF",
+  "Word to PDF": "Word ke PDF",
+  "PowerPoint to PDF": "PowerPoint ke PDF",
+  "Excel to PDF": "Excel ke PDF",
+  "HTML to PDF": "HTML ke PDF",
+  "PDF to JPG": "PDF ke JPG",
+  "PDF to Word": "PDF ke Word",
+  "PDF to PowerPoint": "PDF ke PowerPoint",
+  "PDF to Excel": "PDF ke Excel",
+  "PDF to PDF/A": "PDF ke PDF/A",
+  "Add Page Numbers": "Tambahkan Nomor Halaman",
+  "Add Watermark": "Tambahkan Tanda Air",
+  "Unlock PDF": "Buka Kunci PDF",
+  "Protect PDF": "Lindungi PDF",
+  "Sign PDF": "Tandatangani PDF",
+  "Compare PDF": "Bandingkan PDF",
+  "Plans": "Paket",
+  "Login": "Masuk",
+  "Sign Up": "Daftar",
+  "Logout": "Keluar",
+  "add_page_numbers_title": "Tambahkan Nomor Halaman ke PDF",
+  "add_page_numbers_desc": "Unggah PDF dan tambahkan nomor halaman yang dapat disesuaikan di setiap halaman.",
+  "upload_pdf": "Unggah PDF",
+  "upload_pdf_file": "Unggah file PDF",
+  "or_drag_and_drop": "atau seret dan lepas",
+  "pdf_up_to_20mb": "PDF hingga 20MB",
+  "selected_file": "Terpilih: {{name}} ({{size}} MB)",
+  "position": "Posisi",
+  "top_left": "Kiri Atas",
+  "top_center": "Tengah Atas",
+  "top_right": "Kanan Atas",
+  "bottom_left": "Kiri Bawah",
+  "bottom_center": "Tengah Bawah",
+  "bottom_right": "Kanan Bawah",
+  "format": "Format",
+  "format_placeholder": "Halaman {n} dari {total}",
+  "format_help": "Gunakan {n} untuk nomor halaman dan {total} untuk total halaman",
+  "font_size": "Ukuran Font",
+  "color": "Warna",
+  "margin": "Margin (poin)",
+  "add_page_numbers": "Tambahkan Nomor Halaman",
+  "adding_page_numbers": "Menambahkan Nomor Halaman...",
+  "please_select_pdf": "Silakan pilih file PDF terlebih dahulu",
+  "please_login": "Silakan masuk untuk menggunakan fitur ini",
+  "limit_reached": "Anda telah mencapai batas pemrosesan pdf Anda. Silakan tingkatkan paket Anda.",
+  "failed_add_page_number": "Gagal menambahkan nomor halaman di pdf. Silakan coba lagi.",
+  "success_add_page_numbers": "Nomor halaman berhasil ditambahkan!",
+  "admin_dashboard": "Dasbor Admin",
+  "total_users": "Total Pengguna",
+  "active_subscriptions": "Langganan Aktif",
+  "feature_usage": "Penggunaan Fitur",
+  "compare_two_pdfs": "Bandingkan Dua PDF",
+  "upload_exactly_two": "Silakan unggah tepat dua file PDF.",
+  "drag_drop_two_pdfs": "Seret dan lepas tepat dua file PDF, atau klik untuk memilih.",
+  "comparing": "Membandingkan...",
+  "compare": "Bandingkan",
+  "download_diff_pdf": "Unduh PDF Perbedaan",
+  "comparison_done": "Perbandingan selesai!",
+  "pdf_limit_reached": "Anda telah mencapai batas pdf Anda. Silakan tingkatkan paket Anda.",
+  "failed_compare_pdf": "Gagal membandingkan pdf. Silakan coba lagi.",
+  "compress_image": "Kompres Gambar",
+  "compress_image_desc": "Optimalkan gambar Anda dengan pengaturan kompresi khusus sambil menjaga kualitas visual",
+  "upload_image": "Unggah Gambar",
+  "upload_a_file": "Unggah file",
+  "image_formats": "PNG, JPG, WEBP hingga 10MB",
+  "selected": "Terpilih",
+  "compression_quality": "Kualitas Kompresi",
+  "width_optional": "Lebar (opsional)",
+  "height_optional": "Tinggi (opsional)",
+  "original_width": "Lebar asli",
+  "original_height": "Tinggi asli",
+  "compressing": "Mengompres...",
+  "compress_image_btn": "Kompres Gambar",
+  "download_compressed_image": "Unduh Gambar yang Dikompres",
+  "image_limit_reached": "Anda telah mencapai batas pemrosesan gambar Anda. Silakan tingkatkan paket Anda.",
+  "failed_compress_image": "Gagal mengompres gambar. Silakan coba lagi.",
+  "compress_pdf": "Kompres PDF",
+  "compress_pdf_desc": "Kurangi ukuran file PDF untuk berbagi dengan mudah.",
+  "compression_level": "Tingkat Kompresi",
+  "low_better_quality": "Rendah (Kualitas Lebih Baik)",
+  "medium_balanced": "Sedang (Seimbang)",
+  "high_smaller_size": "Tinggi (Ukuran Lebih Kecil)",
+  "compression_hint": "Kompresi yang lebih tinggi berarti ukuran file yang lebih kecil tetapi kualitas yang lebih rendah",
+  "compress_pdf_btn": "Kompres PDF",
+  "download_compressed_pdf": "Unduh PDF yang Dikompres",
+  "failed_compress_pdf": "Gagal mengompres pdf. Silakan coba lagi.",
+  "pdf_compressed_success": "PDF berhasil dikompres!",
+  "convert_image": "Konversi Gambar",
+  "convert_image_desc": "Konversi gambar Anda ke format yang berbeda sambil menjaga kualitas",
+  "convert_to_format": "Konversi ke Format",
+  "converting": "Mengkonversi...",
+  "convert_image_btn": "Konversi Gambar",
+  "download_converted_image": "Unduh Gambar yang Dikonversi",
+  "failed_convert_image": "Gagal mengkonversi gambar. Silakan coba lagi.",
+  "pdf_processed": "PDF Diproses",
+  "check_transactions": "Periksa semua transaksi Anda sejauh ini",
+  "current_plan": "Paket Saat Ini",
+  "free": "Gratis",
+  "convert_pdf": "Konversi PDF",
+  "convert_pdf_desc": "Konversi PDF antar format yang berbeda",
+  "compress_images": "Kompres Gambar",
+  "compress_images_desc": "Kurangi ukuran file PDF sambil menjaga kualitas",
+  "upgrade_plan": "Tingkatkan Paket",
+  "upgrade_plan_desc": "Dapatkan lebih banyak fitur dan batas yang lebih tinggi",
+  "failed_fetch_stats": "Gagal mengambil statistik pengguna",
+  "excel_to_pdf": {
+    "title": "Konversi Excel ke PDF",
+    "desc": "Unggah file Excel (.xls atau .xlsx) dan konversikan ke format PDF sambil mempertahankan tata letak.",
+    "upload_label": "Unggah File Excel",
+    "upload_btn": "Unggah spreadsheet",
+    "file_hint": "XLS atau XLSX hingga 20MB",
+    "selected_file": "File terpilih:",
+    "convert_btn": "Konversi ke PDF",
+    "converting": "Mengkonversi...",
+    "download_btn": "Unduh PDF",
+    "please_select_excel": "Silakan pilih file Excel",
+    "success": "Excel berhasil dikonversi ke PDF!",
+    "failed": "Gagal mengkonversi excel. Silakan coba lagi."
+  },
+  "extract_pdf": {
+    "title": "Ekstrak Halaman PDF",
+    "desc": "Unggah PDF dan ekstrak halaman tertentu ke dalam PDF baru. Masukkan nomor halaman yang dipisahkan oleh koma (misalnya, 1,3,5).",
+    "please_select_pdf_only": "Silakan pilih file PDF saja.",
+    "failed_load_pdf": "Gagal memuat PDF. Silakan coba file lain.",
+    "enter_page_numbers": "Silakan masukkan setidaknya satu nomor halaman untuk diekstrak.",
+    "invalid_page_numbers": "Nomor halaman tidak valid. Silakan masukkan nomor antara 1 dan {{totalPages}}",
+    "failed_extract": "Gagal mengekstrak pdf. Silakan coba lagi.",
+    "pages": "halaman",
+    "pages_to_extract": "Halaman yang Akan Diekstrak (dipisahkan koma)",
+    "page_numbers_placeholder": "misalnya, 1,3,5",
+    "enter_page_numbers_range": "Masukkan nomor halaman antara 1 dan {{totalPages}}",
+    "extracting": "Mengekstrak...",
+    "extract_btn": "Ekstrak Halaman",
+    "download_btn": "Unduh Halaman yang Diekstrak"
+  },
+  "forgot_password": {
+    "title": "Atur Ulang Kata Sandi",
+    "step1": "Masukkan alamat email Anda",
+    "step2": "Jawab pertanyaan keamanan Anda",
+    "step3": "Buat kata sandi baru",
+    "email_label": "Alamat Email",
+    "email_placeholder": "Masukkan email Anda",
+    "checking": "Memeriksa...",
+    "continue": "Lanjutkan",
+    "fav_book": "Apa buku favorit Anda?",
+    "fav_meal": "Apa makanan favorit Anda?",
+    "answer_placeholder": "Masukkan jawaban Anda",
+    "verify_answers": "Verifikasi Jawaban",
+    "new_password": "Kata Sandi Baru",
+    "new_password_placeholder": "Masukkan kata sandi baru",
+    "confirm_password": "Konfirmasi Kata Sandi",
+    "confirm_password_placeholder": "Masukkan kembali kata sandi baru",
+    "resetting": "Mengatur ulang...",
+    "reset_password": "Atur Ulang Kata Sandi",
+    "back_to_login": "Kembali ke Masuk",
+    "email_not_found": "Email tidak ditemukan",
+    "incorrect_answers": "Jawaban salah",
+    "passwords_do_not_match": "Kata sandi tidak cocok",
+    "reset_success": "Kata sandi berhasil diatur ulang. Silakan masuk dengan kata sandi baru Anda.",
+    "failed_reset": "Gagal mengatur ulang kata sandi"
+  },
+  "home": {
+    "merge_pdf_desc": "Gabungkan beberapa PDF menjadi satu.",
+    "split_pdf_desc": "Pisahkan PDF menjadi file terpisah.",
+    "remove_pages_desc": "Hapus halaman tertentu dari PDF.",
+    "extract_pages_desc": "Ekstrak halaman yang dipilih sebagai PDF baru.",
+    "organize_pdf_desc": "Susun ulang atau atur halaman PDF.",
+    "rotate_pdf_desc": "Putar halaman dalam PDF Anda.",
+    "metadata_viewer": "Penampil Metadata",
+    "metadata_viewer_desc": "Lihat semua detail PDF apa pun.",
+    "update_metadata": "Perbarui Metadata",
+    "update_metadata_desc": "Edit penulis, judul, dan lainnya dari PDF",
+    "compare_pdf_desc": "Bandingkan dua file PDF untuk perbedaan.",
+    "pdf_to_pdfa_desc": "Konversi PDF ke PDF/A untuk pengarsipan.",
+    "jpg_to_pdf_desc": "Konversi gambar JPG ke PDF.",
+    "word_to_pdf_desc": "Konversi dokumen Word ke PDF.",
+    "powerpoint_to_pdf_desc": "Konversi file PowerPoint ke PDF.",
+    "excel_to_pdf_desc": "Konversi spreadsheet Excel ke PDF.",
+    "html_to_pdf_desc": "Konversi file HTML ke PDF.",
+    "pdf_to_jpg_desc": "Konversi halaman PDF ke gambar JPG.",
+    "pdf_to_word_desc": "Konversi PDF ke dokumen Word yang dapat diedit.",
+    "pdf_to_powerpoint_desc": "Konversi PDF ke presentasi PowerPoint.",
+    "pdf_to_excel_desc": "Konversi PDF ke spreadsheet Excel.",
+    "pdf_to_text_converter": "Konverter PDF ke Teks",
+    "pdf_voice_reader": "Pembaca Suara PDF",
+    "pdf_voice_reader_desc": "Dengarkan konten PDF Anda dengan suara alami.",
+    "translate": "Terjemahkan PDF",
+    "translate_desc": "Terjemahkan teks dalam PDF ke berbagai bahasa.",
+    "handwriting": "Tulisan tangan ke PDF",
+    "handwriting_desc": "Ubah catatan tulisan tangan menjadi PDF digital.",
+    "pdf_expire": "PDF Kedaluwarsa",
+    "pdf_expire_desc": "Bagikan PDF dengan tanggal kedaluwarsa untuk akses aman.",
+    "e_sign": "Tanda Tangan PDF",
+    "e_sign_desc": "Tandatangani dokumen PDF Anda secara elektronik"
+  },
+  "user_management": {
+    "title": "Manajemen Pengguna",
+    "search_placeholder": "Cari pengguna...",
+    "failed_fetch_users": "Gagal mengambil pengguna",
+    "table": {
+      "name": "Nama",
+      "email": "Email",
+      "role": "Peran",
+      "subscription": "Langganan",
+      "country": "Negara"
+    },
+    "roles": {
+      "admin": "Admin",
+      "user": "Pengguna"
+    },
+    "plans": {
+      "basic": "Dasar"
+    },
+    "not_available": "T/A"
+  },
+  "payment_history": {
+    "title": "Riwayat Pembayaran",
+    "auth_error": "Kesalahan otentikasi. Silakan masuk lagi.",
+    "plan": "Paket",
+    "not_available": "T/A",
+    "hide_details": "Sembunyikan Detail",
+    "more_details": "Detail Lebih Lanjut",
+    "card": "Kartu",
+    "receipt": "Kuitansi",
+    "view_receipt": "Lihat Kuitansi",
+    "billing_name": "Nama Penagihan",
+    "email": "Email",
+    "paid_on": "Dibayar Pada"
+  },
+  "merge_pdf": {
+    "title": "Gabungkan File PDF",
+    "desc": "Gabungkan beberapa file PDF menjadi satu dokumen. Seret untuk menyusun ulang sebelum menggabungkan.",
+    "upload_pdfs": "Unggah PDF",
+    "upload_btn": "Unggah file PDF",
+    "remove": "Hapus",
+    "merge_btn": "Gabungkan PDF",
+    "merging": "Menggabungkan...",
+    "download_btn": "Unduh PDF yang digabungkan",
+    "select_pdf_only": "Silakan pilih file PDF saja.",
+    "failed_merge": "Gagal menggabungkan PDF",
+    "failed": "Gagal menggabungkan PDF. Silakan coba lagi."
+  },
+  "watermark_pdf": {
+    "title": "Tambahkan Tanda Air ke PDF",
+    "desc": "Unggah PDF dan tambahkan teks tanda air khusus ke setiap halaman.",
+    "upload_text": "Unggah file PDF atau seret dan lepas di sini",
+    "watermark_text": "Teks Tanda Air",
+    "watermark_placeholder": "misalnya, Rahasia",
+    "add_watermark": "Tambahkan Tanda Air",
+    "adding": "Menambahkan...",
+    "download_watermarked": "Unduh PDF Bertanda Air",
+    "please_select_pdf": "Silakan pilih file PDF",
+    "please_enter_watermark": "Silakan masukkan teks tanda air",
+    "success": "Tanda air berhasil ditambahkan!",
+    "failed": "Gagal menambahkan tanda air ke pdf. Silakan coba lagi."
+  },
+  "word_to_pdf": {
+    "title": "Konversi Word ke PDF",
+    "desc": "Unggah dokumen Word (.doc atau .docx) dan konversikan ke format PDF sambil mempertahankan format.",
+    "upload_label": "Unggah Dokumen Word",
+    "upload_btn": "Unggah dokumen",
+    "file_hint": "DOC atau DOCX hingga 20MB",
+    "selected_file": "File terpilih",
+    "convert_btn": "Konversi ke PDF",
+    "converting": "Mengkonversi...",
+    "download_btn": "Unduh PDF",
+    "please_select_word": "Silakan pilih dokumen Word",
+    "success": "Dokumen berhasil dikonversi ke PDF!",
+    "failed": "Gagal mengkonversi word ke pdf. Silakan coba lagi."
+  },
+  "terms_conditions": {
+    "title": "Ketentuan Layanan",
+    "acceptance": {
+      "title": "1. Penerimaan Ketentuan",
+      "content": "Dengan menggunakan PDFPivot, Anda setuju untuk mengikuti Ketentuan ini dan hukum yang berlaku. Ketentuan ini membentuk perjanjian yang mengikat antara Anda dan PDFPivot."
+    },
+    "eligibility": {
+      "title": "2. Kelayakan",
+      "content": "Anda harus berusia minimal 13 tahun untuk menggunakan layanan kami. Dengan mengakses situs web kami, Anda mengonfirmasi bahwa Anda memenuhi persyaratan usia ini."
+    },
+    "services": {
+      "title": "3. Layanan yang Disediakan",
+      "content": "PDFPivot menawarkan alat terkait PDF termasuk konversi, penggabungan, pemisahan, kompresi, dan pengeditan file PDF. Kami dapat menambah, memodifikasi, atau menghapus fitur tanpa pemberitahuan."
+    },
+    "account": {
+      "title": "4. Akun dan Akses",
+      "content": "Beberapa fitur mungkin memerlukan pendaftaran. Anda bertanggung jawab untuk menjaga kerahasiaan informasi akun Anda dan bertanggung jawab atas semua aktivitas di bawah akun Anda."
+    },
+    "acceptable_use": {
+      "title": "5. Penggunaan yang Dapat Diterima",
+      "intro": "Anda setuju untuk tidak menyalahgunakan situs web. Anda tidak boleh:",
+      "item1": "Mengunggah konten berbahaya atau jahat",
+      "item2": "Melanggar hak kekayaan intelektual",
+      "item3": "Mencoba akses tidak sah",
+      "item4": "Melanggar hukum yang berlaku"
+    },
+    "intellectual_property": {
+      "title": "6. Hak Kekayaan Intelektual",
+      "content": "Semua konten dan alat di PDFPivot adalah kekayaan intelektual situs web atau pemberi lisensinya. Anda tidak boleh menyalin, memodifikasi, atau mendistribusikannya tanpa izin tertulis."
+    },
+    "user_content": {
+      "title": "7. Konten Pengguna dan Unggahan File",
+      "content": "Anda mempertahankan kepemilikan file yang Anda unggah. Dengan menggunakan alat kami, Anda memberi kami izin untuk memproses dan menyimpan file sementara untuk memberikan layanan."
+    },
+    "payment": {
+      "title": "8. Pembayaran dan Harga",
+      "content": "Layanan tertentu mungkin memerlukan pembayaran. Semua biaya ditampilkan dengan jelas. PDFPivot berhak untuk mengubah harga kapan saja."
+    },
+    "refund": {
+      "title": "9. Pengembalian Dana dan Pembatalan",
+      "content": "Semua pembelian tidak dapat dikembalikan. Karena sifat digital dan instan dari layanan kami, kami tidak menawarkan pembatalan atau pengembalian dana setelah proses dimulai."
+    },
+    "liability": {
+      "title": "10. Batasan Tanggung Jawab",
+      "content": "PDFPivot tidak bertanggung jawab atas kerusakan langsung, tidak langsung, atau konsekuensial yang timbul dari penggunaan atau ketidakmampuan untuk menggunakan situs web atau layanan."
+    },
+    "warranties": {
+      "title": "11. Penafian Jaminan",
+      "content": "Layanan disediakan \"sebagaimana adanya.\" Kami tidak menjamin layanan tanpa gangguan, akurasi output, atau kompatibilitas dengan jenis file tertentu."
+    },
+    "third_party": {
+      "title": "12. Tautan Pihak Ketiga",
+      "content": "Situs web dapat berisi tautan ke layanan pihak ketiga. Kami tidak bertanggung jawab atas konten, ketentuan, atau praktik privasi situs web eksternal."
+    },
+    "termination": {
+      "title": "13. Penghentian Akses",
+      "content": "Kami dapat menangguhkan atau menghentikan akses Anda ke PDFPivot kapan saja jika Anda melanggar ketentuan ini atau menyalahgunakan platform."
+    },
+    "modifications": {
+      "title": "14. Modifikasi Ketentuan",
+      "content": "PDFPivot dapat memperbarui Ketentuan ini kapan saja. Perubahan akan diposting di halaman ini, dan penggunaan yang berkelanjutan setelah perubahan berarti Anda menerima ketentuan baru."
+    },
+    "contact": {
+      "title": "15. Hubungi Kami",
+      "intro": "Jika Anda memiliki pertanyaan tentang Ketentuan ini, silakan hubungi kami:",
+      "email": "Email",
+      "website": "Situs web"
+    }
+  },
+  "subscription_plans": {
+    "expired_on": "kedaluwarsa pada",
+    "will_expire_on": "akan kedaluwarsa pada",
+    "your_plan_status": "Paket {{planName}} Anda {{expiryText}} {{expiryDate}}",
+    "session_expired": "Sesi Anda telah kedaluwarsa. Silakan masuk lagi.",
+    "service_unavailable": "Layanan langganan saat ini tidak tersedia. Silakan coba lagi nanti.",
+    "failed_load_plans": "Gagal memuat paket langganan. Silakan coba lagi nanti.",
+    "go_to_login": "Pergi ke Masuk",
+    "retry": "Coba lagi",
+    "current_plan": "Paket Saat Ini",
+    "free": "Gratis",
+    "price_per_month": "${{price}}/bulan",
+    "unlimited": "Tidak terbatas",
+    "quota_per_month": "{{quota}}/bulan",
+    "start_free": "Mulai Gratis",
+    "select_plan": "Pilih Paket"
+  },
+  "subscribe_page": {
+    "subscribe_to": "Berlangganan",
+    "choose_billing_desc": "Pilih siklus penagihan Anda dan lanjutkan ke pembayaran yang aman.",
+    "billing_type": "Jenis Penagihan",
+    "monthly_option": "Bulanan - ${{price}}",
+    "annual_option": "Tahunan - ${{price}}",
+    "pay_now": "Bayar ${{price}} Sekarang",
+    "redirecting": "Mengalihkan...",
+    "loading_plan": "Memuat detail paket...",
+    "plan_not_loaded": "Paket tidak dimuat",
+    "payment_failed": "Pembayaran gagal"
+  },
+  "split_pdf_page": {
+    "title": "Pisahkan PDF",
+    "desc": "Unggah PDF dan pisahkan menjadi halaman individual. Unduh semua halaman sebagai file ZIP.",
+    "split_pdf_btn": "Pisahkan PDF",
+    "splitting": "Memisahkan...",
+    "download_split_pages": "Unduh Halaman yang Dipisahkan (ZIP)",
+    "please_select_pdf_only": "Silakan pilih file PDF saja.",
+    "failed_split": "Gagal memisahkan pdf. Silakan coba lagi."
+  },
+  "rotate_pdf_page": {
+    "title": "Putar Halaman PDF",
+    "desc": "Unggah PDF dan pratinjau halaman pertama. Gunakan tombol untuk memutar pratinjau ke kiri atau kanan. Unduh PDF yang diputar.",
+    "pdf_preview": "Pratinjau PDF",
+    "rotation_degrees": "Rotasi: {{degrees}}°",
+    "current_rotation": "Rotasi saat ini: {{degrees}}°",
+    "rotate_left": "Putar Kiri",
+    "rotate_right": "Putar Kanan",
+    "generating": "Menghasilkan...",
+    "download_rotated_pdf": "Unduh PDF yang Diputar",
+    "click_to_download": "Klik di sini untuk mengunduh",
+    "please_select_pdf": "Silakan pilih file PDF.",
+    "failed_generate": "Gagal menghasilkan PDF yang diputar. {{message}}",
+    "please_try_again": "Silakan coba lagi."
+  },
+  "rotate_page": {
+    "title": "Putar Gambar",
+    "desc": "Putar gambar Anda dengan presisi sambil menjaga kualitas",
+    "upload_image": "Unggah Gambar",
+    "upload_a_file": "Unggah file",
+    "rotating": "Memutar...",
+    "rotate_left": "Putar Kiri",
+    "rotate_right": "Putar Kanan",
+    "download_rotated_image": "Unduh Gambar yang Diputar",
+    "please_upload_image": "Silakan unggah gambar terlebih dahulu.",
+    "failed_track_usage": "Gagal melacak penggunaan. Silakan coba lagi nanti.",
+    "failed_rotate": "Gagal memutar gambar. Silakan coba lagi."
+  },
+  "remove_pdf": {
+    "title": "Hapus Halaman PDF",
+    "desc": "Unggah PDF dan hapus halaman tertentu. Masukkan nomor halaman yang dipisahkan oleh koma (misalnya, 1,3,5).",
+    "pages_to_remove": "Halaman yang Akan Dihapus (dipisahkan koma)",
+    "page_numbers_placeholder": "misalnya, 1,3,5",
+    "remove_pages_btn": "Hapus Halaman",
+    "removing": "Menghapus...",
+    "download_btn": "Unduh PDF yang Dimodifikasi",
+    "please_select_pdf_only": "Silakan pilih file PDF saja.",
+    "enter_page_numbers": "Silakan masukkan setidaknya satu nomor halaman untuk dihapus.",
+    "invalid_page_numbers": "Nomor halaman tidak valid. Silakan masukkan nomor antara 1 dan {{pageCount}}",
+    "failed_remove": "Gagal menghapus halaman. Silakan coba lagi."
+  },
+  "register": {
+    "title": "Buat Akun",
+    "subtitle": "Bergabunglah dengan kami untuk memulai perjalanan Anda",
+    "full_name": "Nama Lengkap",
+    "full_name_placeholder": "Masukkan nama lengkap Anda",
+    "email_label": "Alamat email",
+    "email_placeholder": "Masukkan email Anda",
+    "password_label": "Kata Sandi",
+    "password_placeholder": "Masukkan kata sandi Anda",
+    "confirm_password_label": "Konfirmasi Kata Sandi",
+    "confirm_password_placeholder": "Konfirmasi kata sandi Anda",
+    "country_label": "Negara",
+    "select_country": "Pilih negara Anda",
+    "fav_book_question": "Apa buku favorit Anda?",
+    "fav_book_placeholder": "Masukkan buku favorit Anda",
+    "fav_meal_question": "Apa makanan favorit Anda?",
+    "fav_meal_placeholder": "Masukkan makanan favorit Anda",
+    "create_account_btn": "Buat Akun",
+    "already_have_account": "Sudah punya akun?",
+    "sign_in_link": "Masuk",
+    "passwords_do_not_match": "Kata sandi tidak cocok"
+  },
+  "privacy_policy": {
+    "title": "Kebijakan Privasi",
+    "introduction": {
+      "title": "1. Pengantar",
+      "content": "Selamat datang di PDFPivot ('kami,' 'milik kami,' atau 'kita'). Kebijakan ini berlaku untuk semua pengunjung, pengguna, dan pelanggan yang mengakses"
+    },
+    "information_collection": {
+      "title": "2. Informasi yang Kami Kumpulkan",
+      "content": "Kami mengumpulkan data pribadi seperti nama, email, detail kontak, file yang diunggah, alamat IP, dan informasi browser/perangkat."
+    },
+    "how_we_use": {
+      "title": "3. Bagaimana Kami Menggunakan Informasi Anda",
+      "item1": "Untuk menyediakan alat dan layanan terkait PDF",
+      "item2": "Untuk meningkatkan kinerja dan fungsionalitas situs",
+      "item3": "Untuk berkomunikasi dengan pengguna",
+      "item4": "Untuk mematuhi persyaratan hukum"
+    },
+    "legal_basis": {
+      "title": "4. Dasar Hukum untuk Pemrosesan Data",
+      "content": "Kami memproses data berdasarkan persetujuan, kebutuhan kontraktual, dan kepentingan bisnis yang sah seperti meningkatkan penyampaian layanan dan memastikan keamanan."
+    },
+    "cookies": {
+      "title": "5. Cookie dan Pelacakan",
+      "content": "PDFPivot menggunakan cookie untuk mempersonalisasi konten, menganalisis penggunaan, dan meningkatkan pengalaman Anda. Anda dapat menonaktifkan cookie di pengaturan browser Anda."
+    },
+    "uploaded_files": {
+      "title": "6. Penggunaan File yang Diunggah",
+      "content": "File yang diunggah untuk konversi atau pengeditan disimpan sementara dan dihapus setelah pemrosesan. Kami tidak mengakses, membaca, atau membagikan konten file dengan pihak ketiga."
+    },
+    "third_party": {
+      "title": "7. Layanan Pihak Ketiga",
+      "content": "Kami dapat menggunakan penyedia pihak ketiga yang tepercaya untuk analitik, hosting, atau layanan pembayaran. Penyedia ini harus mematuhi standar privasi data yang ketat."
+    },
+    "data_security": {
+      "title": "8. Keamanan Data",
+      "content": "Kami menerapkan enkripsi yang kuat dan kontrol akses untuk melindungi data Anda dari akses, kehilangan, atau penyalahgunaan yang tidak sah."
+    },
+    "data_retention": {
+      "title": "9. Retensi Data",
+      "content": "Kami menyimpan data pribadi Anda hanya selama diperlukan untuk layanan kami atau untuk memenuhi kewajiban hukum. File yang diunggah dihapus secara otomatis setelah pemrosesan."
+    },
+    "international_transfers": {
+      "title": "10. Transfer Internasional",
+      "content": "Data Anda dapat ditransfer ke server di luar negara Anda. Kami mengambil langkah-langkah untuk memastikan data Anda dilindungi sesuai dengan Kebijakan Privasi ini."
+    },
+    "children_privacy": {
+      "title": "11. Privasi Anak-anak",
+      "content": "PDFPivot tidak ditujukan untuk anak-anak di bawah 13 tahun. Kami tidak secara sadar mengumpulkan data dari anak-anak. Jika ditemukan, data tersebut akan segera dihapus."
+    },
+    "your_rights": {
+      "title": "12. Hak Anda",
+      "content": "Bergantung pada wilayah Anda, Anda mungkin memiliki hak untuk mengakses, mengoreksi, menghapus, atau membatasi data pribadi Anda. Hubungi kami untuk menggunakan hak-hak ini."
+    },
+    "third_party_links": {
+      "title": "13. Tautan Pihak Ketiga",
+      "content": "Situs kami dapat berisi tautan ke situs web eksternal. Kami tidak bertanggung jawab atas praktik privasi mereka. Harap tinjau kebijakan mereka secara terpisah."
+    },
+    "policy_updates": {
+      "title": "14. Pembaruan Kebijakan",
+      "content": "Kebijakan Privasi ini dapat diperbarui. Setiap perubahan akan diposting di halaman ini dengan tanggal efektif baru."
+    },
+    "contact": {
+      "title": "15. Hubungi Kami",
+      "intro": "Jika Anda memiliki pertanyaan atau kekhawatiran tentang data Anda:",
+      "email": "Email",
+      "website": "Situs web"
+    }
+  },
+  "unlock_pdf_page": {
+    "title": "Buka Kunci PDF",
+    "desc": "Hapus perlindungan kata sandi dari file PDF Anda. Unggah PDF yang dilindungi kata sandi dan masukkan kata sandi untuk membukanya.",
+    "upload_label": "Unggah PDF yang Dilindungi Kata Sandi",
+    "pdf_password": "Kata Sandi PDF",
+    "enter_password_placeholder": "Masukkan kata sandi PDF",
+    "unlock_pdf_btn": "Buka Kunci PDF",
+    "unlocking": "Membuka kunci...",
+    "unlocked_successfully": "PDF berhasil dibuka!",
+    "please_upload_pdf": "Silakan unggah file PDF",
+    "please_enter_password": "Silakan masukkan kata sandi PDF",
+    "failed_unlock": "Gagal membuka kunci pdf. Silakan coba lagi."
+  },
+  "pdf_to_text": {
+    "title": "Konversi PDF ke Teks Biasa",
+    "desc": "Unggah file PDF dan konversikan ke format teks biasa (.txt).",
+    "upload_label": "Unggah File PDF",
+    "selected_file": "File terpilih",
+    "convert_btn": "Konversi ke Teks",
+    "converting": "Mengkonversi...",
+    "download_btn": "Unduh Teks",
+    "select_pdf": "Silakan pilih file PDF",
+    "success": "PDF berhasil dikonversi ke teks biasa!",
+    "failed": "Gagal mengkonversi PDF ke teks. Silakan coba lagi."
+  },
+  "pdf_to_text_desc": "Ekstrak teks biasa dengan mudah",
+  "unlock_pdf_desc": "Hapus perlindungan kata sandi dari PDF.",
+  "protect_pdf": {
+    "title": "Tambahkan Perlindungan ke PDF",
+    "desc": "Unggah file PDF dan atur kata sandi untuk melindunginya dari akses tidak sah.",
+    "set_password": "Atur Kata Sandi",
+    "password_placeholder": "Masukkan kata sandi",
+    "selected_file": "File terpilih",
+    "protect_btn": "Lindungi PDF",
+    "protecting": "Melindungi...",
+    "download_btn": "Unduh PDF yang Dilindungi",
+    "select_pdf_and_password": "Silakan pilih PDF dan masukkan kata sandi.",
+    "success": "PDF berhasil dilindungi!",
+    "failed": "Gagal melindungi pdf. Silakan coba lagi."
+  },
+  "protect_pdf_desc": "Tambahkan perlindungan kata sandi ke PDF Anda.",
+  "add_page_numbers_desc": "Tambahkan nomor halaman ke PDF Anda.",
+  "add_watermark_desc": "Tambahkan teks tanda air atau gambar ke PDF Anda.",
+  "compress_pdf_desc": "Kurangi ukuran file PDF untuk berbagi dengan mudah.",
+  "refund_policy": {
+    "title": "Kebijakan Pengembalian Dana & Pembatalan",
+    "no_refund": {
+      "title": "1. Kebijakan Tanpa Pengembalian Dana",
+      "content": "Semua pembayaran yang dilakukan di PDFPivot tidak dapat dikembalikan. Setelah layanan dimulai atau diselesaikan, kami tidak dapat membalikkan atau mengembalikan transaksi."
+    },
+    "instant_service": {
+      "title": "2. Layanan Digital Instan",
+      "content": "Layanan kami otomatis dan mulai memproses segera setelah file diunggah atau pembayaran dilakukan. Oleh karena itu, setelah proses dimulai, tidak ada pembatalan atau pengembalian dana yang mungkin dilakukan."
+    },
+    "order_cancellation": {
+      "title": "3. Pembatalan Pesanan",
+      "content": "Anda tidak dapat membatalkan pesanan setelah dikirim dan pemrosesan telah dimulai. Harap verifikasi semua detail sebelum melakukan pesanan."
+    },
+    "wrong_file": {
+      "title": "4. Unggahan File yang Salah",
+      "content": "PDFPivot tidak bertanggung jawab jika Anda mengunggah file yang salah atau tidak benar. Harap periksa kembali file Anda sebelum mengirimkannya."
+    },
+    "duplicate_payments": {
+      "title": "5. Pembayaran Ganda",
+      "content": "Jika terjadi pembayaran ganda yang tidak disengaja, Anda harus memberi tahu kami dalam waktu 24 jam. Kami akan memverifikasi dan mengeluarkan pengembalian dana hanya untuk jumlah ganda, jika memenuhi syarat."
+    },
+    "failed_services": {
+      "title": "6. Layanan Gagal",
+      "content": "Jika layanan gagal karena masalah teknis di pihak kami (misalnya, file tidak diproses, kesalahan server), kami dapat menawarkan pemrosesan ulang gratis. Tidak ada pengembalian dana yang akan diberikan."
+    },
+    "user_mistakes": {
+      "title": "7. Kesalahan Pengguna",
+      "content": "Pengembalian dana tidak akan diberikan untuk kesalahan pengguna, seperti pengaturan yang salah, format output, atau opsi yang terlewat selama pemrosesan."
+    },
+    "subscription_services": {
+      "title": "8. Layanan Langganan",
+      "content": "Jika PDFPivot memperkenalkan paket langganan, pengguna harus membatalkan langganan mereka sebelum siklus penagihan berikutnya. Tidak ada pengembalian dana pro-rata atau paruh waktu yang akan diberikan."
+    },
+    "unauthorized_use": {
+      "title": "9. Penggunaan Tidak Sah",
+      "content": "Kami tidak bertanggung jawab atas penggunaan akun Anda yang tidak sah atau curang. Lindungi detail login Anda untuk menghindari penyalahgunaan."
+    },
+    "file_retention": {
+      "title": "10. Retensi & Penghapusan File",
+      "content": "Kami tidak menyimpan file secara permanen. Semua file dihapus secara otomatis setelah periode singkat. Kegagalan pengiriman karena file kedaluwarsa tidak memenuhi syarat untuk pengembalian dana."
+    },
+    "service_downtime": {
+      "title": "11. Waktu Henti Layanan",
+      "content": "Waktu henti sesekali untuk pemeliharaan atau masalah teknis diharapkan. Pengembalian dana tidak akan diberikan untuk ketidaktersediaan layanan sementara."
+    },
+    "promotional_purchases": {
+      "title": "12. Pembelian Promosi & Diskon",
+      "content": "Tidak ada pengembalian dana yang akan diberikan untuk layanan yang diperoleh selama penjualan, diskon berbasis kupon, atau penawaran promosi."
+    },
+    "chargebacks": {
+      "title": "13. Tagihan Balik",
+      "content": "Pengguna yang memulai tagihan balik yang curang dapat akunnya dilarang secara permanen dan aksesnya dicabut."
+    },
+    "policy_agreement": {
+      "title": "14. Persetujuan Kebijakan",
+      "content": "Dengan menggunakan layanan kami, Anda menyetujui Kebijakan Pengembalian Dana & Pembatalan ini. Merupakan tanggung jawab pengguna untuk membaca dan memahaminya sebelum melakukan pembelian."
+    },
+    "contact": {
+      "title": "15. Hubungi Kami",
+      "intro": "Jika Anda memiliki pertanyaan atau keadaan luar biasa, silakan hubungi kami:",
+      "email": "Email",
+      "website": "Situs web"
+    }
+  },
+  "update_metadata_page": {
+    "title": "Perbarui Metadata PDF",
+    "desc": "Unggah PDF dan perbarui metadatanya seperti judul, penulis, dan lainnya.",
+    "selected_file": "File terpilih",
+    "title_placeholder": "Judul",
+    "author_placeholder": "Penulis",
+    "subject_placeholder": "Subjek",
+    "keywords_placeholder": "Kata kunci (dipisahkan koma)",
+    "update_metadata_btn": "Perbarui Metadata",
+    "updating": "Memperbarui...",
+    "download_updated_pdf": "Unduh PDF yang Diperbarui",
+    "updated_successfully": "Metadata berhasil diperbarui!",
+    "please_select_pdf": "Silakan pilih file PDF",
+    "failed_update": "Gagal memperbarui metadata pdf. Silakan coba lagi."
+  },
+  "display_plans": {
+    "title": "Paket Langganan",
+    "desc": "Pilih paket yang sesuai dengan kebutuhan Anda. Tingkatkan kapan saja."
+  },
+  "faq": {
+    "title": "FAQ PdfPivot",
+    "convert_file": {
+      "question": "Bagaimana cara mengkonversi file ke PDF?",
+      "answer": "Pilih alat konversi seperti Word ke PDF, unggah file Anda, dan klik Konversi. PDF Anda akan siap untuk diunduh secara instan."
+    },
+    "limits": {
+      "question": "Apakah ada batasan jumlah tugas PDF yang dapat saya lakukan?",
+      "answer": "Ya, setiap paket langganan dilengkapi dengan kuota bulanan. Pengguna gratis mendapatkan konversi terbatas. Paket berbayar menawarkan penggunaan lebih banyak atau tidak terbatas."
+    },
+    "security": {
+      "question": "Apakah data PDF saya aman?",
+      "answer": "Tentu saja. Semua file diproses dengan enkripsi yang aman dan dihapus secara otomatis setelah pemrosesan. Kami tidak pernah menyimpan data Anda."
+    },
+    "mobile": {
+      "question": "Dapatkah saya menggunakan PdfPivot di ponsel saya?",
+      "answer": "Ya! PdfPivot sepenuhnya responsif dan berfungsi di semua browser seluler modern."
+    },
+    "formats": {
+      "question": "Format file apa yang dapat saya konversi ke dan dari PDF?",
+      "answer": "Anda dapat mengkonversi Word, Excel, PowerPoint, JPG, dan HTML ke PDF — dan sebaliknya. Kami juga mendukung PDF ke PDF/A dan OCR untuk file yang dipindai."
+    },
+    "ocr": {
+      "question": "Bagaimana cara kerja fitur OCR?",
+      "answer": "OCR secara otomatis mengekstrak teks dari PDF yang dipindai, memungkinkan Anda mencari dan mengedit konten. Ini tersedia untuk semua alat PDF."
+    }
+  },
+  "hero": {
+    "title_line1": "Cepat, Aman &",
+    "title_line2": "Kuat",
+    "title_line3": "Alat PDF Online",
+    "description": "Edit, konversi, kompres, dan amankan PDF Anda dengan mudah — semuanya di browser Anda. Dipercaya oleh para profesional di seluruh dunia.",
+    "live_chat": "Obrolan Langsung",
+    "image_alt": "Ilustrasi pengeditan gambar"
+  },
+  "how_it_works": {
+    "title": "PdfPivot, Alat PDF all-in-one Anda.",
+    "subtitle": "Cara mengkonversi PDF ke Word",
+    "description": "Ikuti langkah-langkah sederhana ini untuk mengkonversi PDF ke Word menggunakan Xodo:",
+    "step1": "Unggah PDF Anda ke konverter online gratis PDF ke Word.",
+    "step2": "Klik \"Konversi\" – OCR secara otomatis diterapkan ke PDF yang dipindai.",
+    "step3": "Unduh file Word (.docx) Anda yang dapat diedit.",
+    "image_alt": "Cara mengkonversi"
+  },
+  "payment_form": {
+    "cancel": "Batal",
+    "pay_now": "Bayar Sekarang",
+    "processing": "Memproses...",
+    "default_error": "Terjadi kesalahan"
+  },
+  "trusted_by": {
+    "title": "Alat PDF yang dipercaya oleh ribuan pengguna",
+    "description": "PDFPivot adalah platform all-in-one yang aman untuk mengkonversi, mengedit, dan mengatur file PDF. Performa cepat, pemrosesan pribadi — tidak ada data yang disimpan.",
+    "iso_27001": "ISO 27001",
+    "secure_processing": "Pemrosesan Aman",
+    "trusted_by_enterprises": "Dipercaya oleh Perusahaan"
+  },
+  "why_us": {
+    "title": "PDFPivot, Alat PDF Lengkap Anda dalam Satu Tempat",
+    "feature1": {
+      "title": "Alat PDF All-in-One",
+      "description": "Gabungkan, pisahkan, konversi, kompres, amankan, dan edit PDF Anda — semuanya dari satu platform yang mudah digunakan."
+    },
+    "feature2": {
+      "title": "Konversi Cepat & Andal",
+      "description": "Konversi file ke dan dari format PDF dalam hitungan detik. OCR secara otomatis diterapkan pada dokumen yang dipindai."
+    },
+    "feature3": {
+      "title": "Akses Berbasis Kuota Cerdas",
+      "description": "Nikmati paket langganan yang fleksibel dengan kuota bulanan atau penggunaan tak terbatas — dibuat untuk individu dan tim."
+    }
+  },
+  "metadata_viewer": {
+    "title": "Penampil Metadata PDF",
+    "upload_text": "Unggah file PDF atau seret dan lepas di sini",
+    "view_btn": "Lihat Metadata",
+    "fetching": "Mengambil...",
+    "metadata_label": "Metadata",
+    "select_pdf": "Silakan pilih file PDF.",
+    "success": "Metadata berhasil diambil!",
+    "failed": "Gagal melihat metadata PDF. Silakan coba lagi."
+  },
+  "organize_pdf": {
+    "title": "Atur Halaman PDF",
+    "desc": "Unggah PDF, seret untuk menyusun ulang halaman, dan unduh PDF yang disusun ulang.",
+    "select_pdf_only": "Silakan pilih file PDF saja.",
+    "failed_load_pdf": "Gagal memuat PDF.",
+    "upload_pdf": "Silakan unggah file PDF.",
+    "success": "PDF berhasil disusun ulang!",
+    "failed": "Gagal mengatur PDF. Silakan coba lagi.",
+    "pages": "halaman",
+    "drag_reorder": "Seret untuk menyusun ulang halaman",
+    "reordering": "Menyusun ulang...",
+    "reorder_btn": "Susun Ulang dan Unduh",
+    "download_btn": "Unduh PDF yang Disusun Ulang"
+  },
+  "plan_management": {
+    "title": "Manajemen Paket",
+    "plan_name": "Nama Paket",
+    "monthly_fee": "Biaya Bulanan",
+    "annual_fee": "Biaya Tahunan",
+    "service_quotas": "Kuota Layanan",
+    "set_all_quotas": "Atur Semua Kuota Layanan",
+    "monthly_quota_all": "Kuota Bulanan (Semua Layanan)",
+    "annual_quota_all": "Kuota Tahunan (Semua Layanan)",
+    "set_monthly_quota_placeholder": "Atur kuota bulanan untuk semua layanan",
+    "set_annual_quota_placeholder": "Atur kuota tahunan untuk semua layanan",
+    "individual_quotas": "Kuota Layanan Individual",
+    "monthly_quota": "Kuota Bulanan",
+    "annual_quota": "Kuota Tahunan",
+    "create_plan": "Buat Paket",
+    "update_plan": "Perbarui Paket",
+    "cancel": "Batal",
+    "existing_plans": "Paket yang Ada",
+    "monthly": "Bulanan",
+    "annual": "Tahunan",
+    "edit": "Edit",
+    "delete": "Hapus",
+    "features": "Fitur",
+    "month": "bulan",
+    "year": "tahun",
+    "all_services_included": "Semua layanan termasuk",
+    "failed_fetch_plans": "Gagal mengambil paket",
+    "failed_save_plan": "Gagal menyimpan paket",
+    "failed_delete_plan": "Gagal menghapus paket",
+    "confirm_delete": "Apakah Anda yakin ingin menghapus paket ini?"
+  },
+  "ppt_to_pdf": {
+    "title": "Konversi PPT ke PDF",
+    "desc": "Unggah presentasi PowerPoint (.ppt atau .pptx) dan konversikan ke format PDF sambil mempertahankan tata letak presentasi.",
+    "upload_label": "Unggah File PowerPoint",
+    "upload_btn": "Unggah presentasi",
+    "file_hint": "PPT atau PPTX hingga 20MB",
+    "selected_file": "File terpilih",
+    "convert_btn": "Konversi ke PDF",
+    "converting": "Mengkonversi...",
+    "download_btn": "Unduh PDF",
+    "select_ppt": "Silakan pilih file PowerPoint",
+    "success": "Presentasi berhasil dikonversi ke PDF!",
+    "failed": "Gagal mengkonversi PPT ke PDF. Silakan coba lagi."
+  },
+  "pdf_to_excel": {
+    "title": "Konversi PDF ke Excel",
+    "desc": "Unggah file PDF dan konversikan ke format Excel (.xlsx) sambil mempertahankan struktur data.",
+    "upload_label": "Unggah File PDF",
+    "selected_file": "File terpilih",
+    "select_pdf": "Silakan pilih file PDF",
+    "success": "PDF berhasil dikonversi ke Excel!",
+    "failed": "Gagal mengkonversi ke Excel. Silakan coba lagi.",
+    "converting": "Mengkonversi...",
+    "convert_btn": "Konversi ke Excel",
+    "download_btn": "Unduh Excel"
+  },
+  "pdf_to_jpg": {
+    "title": "Konversi PDF ke JPG",
+    "desc": "Unggah PDF dan konversikan setiap halaman ke gambar JPG. Unduh semua gambar sebagai file ZIP.",
+    "upload_valid_pdf": "Silakan unggah file PDF yang valid.",
+    "failed": "Gagal mengkonversi PDF ke JPG. Silakan coba lagi.",
+    "converting": "Mengkonversi PDF ke gambar...",
+    "page_alt": "Halaman {{page}}",
+    "download_btn": "Unduh JPG ZIP"
+  },
+  "pdf_to_pdfa": {
+    "title": "Konversi PDF ke PDF/A",
+    "desc": "Unggah PDF dan konversikan ke file standar arsip PDF/A.",
+    "upload_text": "Unggah file PDF atau seret dan lepas di sini",
+    "select_pdf": "Silakan pilih file PDF",
+    "success": "PDF berhasil dikonversi ke PDF/A!",
+    "failed": "Gagal mengkonversi ke PDF/A. Silakan coba lagi.",
+    "converting": "Mengkonversi...",
+    "convert_btn": "Konversi ke PDF/A",
+    "download_btn": "Unduh PDF/A"
+  },
+  "pdf_to_ppt": {
+    "title": "Konversi PDF ke PowerPoint",
+    "desc": "Unggah file PDF dan konversikan ke format PowerPoint (.pptx) sambil mempertahankan tata letak.",
+    "upload_label": "Unggah File PDF",
+    "selected_file": "File terpilih",
+    "select_pdf": "Silakan pilih file PDF",
+    "success": "PDF berhasil dikonversi ke PPT!",
+    "failed": "Gagal mengkonversi PDF ke PPT. Silakan coba lagi.",
+    "converting": "Mengkonversi...",
+    "convert_btn": "Konversi ke PPT",
+    "download_btn": "Unduh PPT"
+  },
+  "payment_failed": {
+    "alt_text": "Pembayaran Gagal",
+    "title": "Pembayaran Gagal",
+    "description": "Sayangnya, transaksi Anda tidak dapat diselesaikan.",
+    "try_again": "Silakan coba lagi atau hubungi dukungan jika masalah terus berlanjut.",
+    "go_to_dashboard": "Pergi ke Dasbor"
+  },
+  "payment_success": {
+    "alt_text": "Pembayaran Berhasil",
+    "title": "Pembayaran Berhasil!",
+    "thank_you": "Terima kasih atas pembelian Anda.",
+    "redirecting": "Mengalihkan ke dasbor Anda dalam <1>{{seconds}}</1> detik...",
+    "not_redirected": "Tidak dialihkan?",
+    "go_to_dashboard": "Pergi ke Dasbor"
+  },
+  "pdf_to_text": "PDF ke Teks",
+  "login": {
+    "welcome": "Selamat datang kembali",
+    "subtitle": "Masuk ke akun Anda untuk melanjutkan",
+    "email_label": "Alamat email",
+    "email_placeholder": "Masukkan email Anda",
+    "password_label": "Kata sandi",
+    "password_placeholder": "Masukkan kata sandi Anda",
+    "sign_in": "Masuk",
+    "no_account": "Tidak punya akun?",
+    "sign_up": "Daftar",
+    "forgot_password": "Lupa kata sandi Anda?",
+    "failed": "Masuk gagal. Silakan periksa kredensial Anda."
+  },
+  "footer": {
+    "pdfpivot": "PdfPivot",
+    "home": "Beranda",
+    "pricing": "Harga",
+    "security": "Keamanan",
+    "tools": "Alat",
+    "faq": "FAQ",
+    "product": "Produk",
+    "desktop": "PdfPivot Desktop",
+    "mobile": "PdfPivot Seluler",
+    "developers": "Pengembang",
+    "features": "Fitur",
+    "solutions": "Solusi",
+    "business": "Bisnis",
+    "education": "Pendidikan",
+    "company": "Perusahaan",
+    "privacy_policy": "Kebijakan Privasi",
+    "terms_conditions": "Ketentuan & Kondisi",
+    "refund_policy": "Kebijakan Pengembalian Dana",
+    "copyright": "© 2025 PdfPivot. Semua hak dilindungi undang-undang.",
+    "trusted_by": "Alat PDF yang dipercaya oleh ribuan pengguna",
+    "login": "Masuk",
+    "register": "Daftar",
+    "plans": "Paket",
+    "services": "Layanan",
+    "merge_pdf": "Gabungkan PDF",
+    "split_pdf": "Pisahkan PDF",
+    "remove_pages": "Hapus Halaman",
+    "extract_pages": "Ekstrak Halaman",
+    "security_tools": "Alat Keamanan",
+    "update_metadata": "Perbarui Metadata",
+    "view_metadata": "Lihat Metadata",
+    "add_watermark": "Tambahkan Tanda Air",
+    "protect_pdf": "Lindungi PDF"
+  },
+  "pdfvoicereader": {
+    "pdf_voice_reader": "Pembaca Suara PDF",
+    "pdf_voice_reader_desc": "Konversi konten PDF ke narasi audio.",
+    "upload_pdf": "Unggah PDF",
+    "upload_a_file": "Unggah file",
+    "pdf_formats": "Hanya format PDF",
+    "selected": "Terpilih",
+    "convert_to_audio": "Konversi ke Audio",
+    "converting": "Mengkonversi...",
+    "download_audio": "Unduh MP3",
+    "invalid_pdf": "Silakan pilih file PDF yang valid.",
+    "conversion_failed": "Gagal mengkonversi PDF ke audio. Coba lagi."
+  },
+  "pdftranslator": {
+    "smart_pdf_translator": "Penerjemah PDF Cerdas",
+    "smart_pdf_translator_desc": "Terjemahkan seluruh PDF sambil mempertahankan format aslinya.",
+    "invalid_pdf": "Silakan unggah file PDF yang valid.",
+    "upload_pdf": "Unggah PDF",
+    "upload_a_file": "Klik untuk mengunggah file",
+    "pdf_formats": "Hanya file PDF yang didukung.",
+    "selected": "Terpilih",
+    "select_language": "Pilih Bahasa Target",
+    "translate_pdf": "Terjemahkan PDF",
+    "translating": "Menerjemahkan...",
+    "translation_failed": "Terjemahan gagal. Silakan coba lagi.",
+    "download_translated": "Unduh PDF yang Diterjemahkan"
+  },
+  "pdfhandwriter": {
+    "handwriting_simulation": "Simulasi Tulisan Tangan",
+    "desc": "Unggah PDF dan konversikan menjadi versi tulisan tangan yang disimulasikan.",
+    "invalid_pdf": "Silakan unggah file PDF yang valid.",
+    "failed": "Gagal mensimulasikan tulisan tangan. Silakan coba lagi.",
+    "upload_pdf": "Unggah PDF",
+    "upload_a_file": "Unggah file",
+    "pdf_formats": "Hanya file PDF yang didukung.",
+    "selected": "File terpilih",
+    "simulate_pdf": "Simulasikan PDF",
+    "simulating": "Mensimulasikan...",
+    "download_handwritten": "Unduh PDF Tulisan Tangan"
+  },
+  "pdfexpiry": {
+    "upload_pdf_title": "Unggah dan Bagikan PDF dengan Kedaluwarsa",
+    "desc": "Unggah PDF dan hasilkan tautan yang dapat dibagikan yang secara otomatis kedaluwarsa setelah jumlah hari yang dipilih.",
+    "invalid_pdf": "Silakan unggah file PDF yang valid.",
+    "failed": "Ada yang salah. Silakan coba lagi.",
+    "upload_pdf": "Unggah File PDF",
+    "upload_a_file": "Klik untuk mengunggah file",
+    "pdf_formats": "Hanya format PDF yang didukung",
+    "selected": "File Terpilih",
+    "expiry_days": "Kedaluwarsa (dalam hari)",
+    "days_note": "Maksimum 30 hari",
+    "uploading": "Mengunggah...",
+    "upload_pdf_btn": "Unggah & Hasilkan Tautan",
+    "link_expires": "Tautan kedaluwarsa pada",
+    "open_pdf": "Buka PDF"
+  },
+  "pdfEditor": {
+    "title": "Editor PDF",
+    "uploadPDF": "Unggah PDF",
+    "uploadImage": "Unggah Gambar",
+    "clearSignature": "Hapus Tanda Tangan",
+    "placeImage": "Tempatkan Gambar",
+    "placeSignature": "Tempatkan Tanda Tangan",
+    "placeText": "Tempatkan Teks",
+    "submitPDF": "Kirim PDF",
+    "sampleText": "Teks Contoh",
+    "uploadPDFFirst": "Unggah PDF terlebih dahulu!",
+    "failedToCreatePDF": "Gagal membuat PDF"
+  }
+}

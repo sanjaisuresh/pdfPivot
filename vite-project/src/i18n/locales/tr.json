@@ -1,0 +1,972 @@
+{
+  "welcome": "PDFPivot'a Hoş Geldiniz",
+  "choose_language": "Tercih ettiğiniz dili seçin",
+  "PdfPivot": "PdfPivot",
+  "Dashboard": "Kontrol Paneli",
+  "Users": "Kullanıcılar",
+  "Plans Management": "Plan Yönetimi",
+  "Payment History": "Ödeme Geçmişi",
+  "payment_history_desc": "Önceki tüm işlemlerinizi inceleyin",
+  "Features": "Özellikler",
+  "Merge PDF": "PDF Birleştir",
+  "Split PDF": "PDF Böl",
+  "Remove Pages": "Sayfa Sil",
+  "Extract Pages": "Sayfa Ayıkla",
+  "Organize PDF": "PDF Düzenle",
+  "Rotate PDF": "PDF Döndür",
+  "Compress PDF": "PDF Sıkıştır",
+  "JPG to PDF": "JPG'den PDF'e",
+  "Word to PDF": "Word'den PDF'e",
+  "PowerPoint to PDF": "PowerPoint'ten PDF'e",
+  "Excel to PDF": "Excel'den PDF'e",
+  "HTML to PDF": "HTML'den PDF'e",
+  "PDF to JPG": "PDF'den JPG'ye",
+  "PDF to Word": "PDF'den Word'e",
+  "PDF to PowerPoint": "PDF'den PowerPoint'e",
+  "PDF to Excel": "PDF'den Excel'e",
+  "PDF to PDF/A": "PDF'den PDF/A'ya",
+  "Add Page Numbers": "Sayfa Numarası Ekle",
+  "Add Watermark": "Filigran Ekle",
+  "Unlock PDF": "PDF Kilidini Aç",
+  "Protect PDF": "PDF Koru",
+  "Sign PDF": "PDF İmzala",
+  "Compare PDF": "PDF Karşılaştır",
+  "Plans": "Planlar",
+  "Login": "Giriş Yap",
+  "Sign Up": "Kaydol",
+  "Logout": "Çıkış Yap",
+  "add_page_numbers_title": "PDF'e Sayfa Numarası Ekle",
+  "add_page_numbers_desc": "Bir PDF yükleyin ve her sayfaya özelleştirilebilir sayfa numaraları ekleyin.",
+  "upload_pdf": "PDF Yükle",
+  "upload_pdf_file": "PDF dosyasını yükle",
+  "or_drag_and_drop": "veya sürükle ve bırak",
+  "pdf_up_to_20mb": "20 MB'a kadar PDF",
+  "selected_file": "Seçilen dosya: {{name}} ({{size}} MB)",
+  "position": "Konum",
+  "top_left": "Sol Üst",
+  "top_center": "Orta Üst",
+  "top_right": "Sağ Üst",
+  "bottom_left": "Sol Alt",
+  "bottom_center": "Orta Alt",
+  "bottom_right": "Sağ Alt",
+  "format": "Format",
+  "format_placeholder": "Sayfa {n} / {total}",
+  "format_help": "Sayfa numarası için {n} ve toplam sayfa sayısı için {total} kullanın",
+  "font_size": "Yazı Tipi Boyutu",
+  "color": "Renk",
+  "margin": "Kenar Boşluğu (nokta)",
+  "add_page_numbers": "Sayfa Numaraları Ekle",
+  "adding_page_numbers": "Sayfa numaraları ekleniyor...",
+  "please_select_pdf": "Lütfen önce bir PDF dosyası seçin",
+  "please_login": "Bu özelliği kullanmak için lütfen giriş yapın",
+  "limit_reached": "PDF işleme limitinize ulaştınız. Lütfen planınızı yükseltin.",
+  "failed_add_page_number": "PDF'e sayfa numarası eklenirken hata oluştu. Lütfen tekrar deneyin.",
+  "success_add_page_numbers": "Sayfa numaraları başarıyla eklendi!",
+  "admin_dashboard": "Yönetici Kontrol Paneli",
+  "total_users": "Toplam Kullanıcı",
+  "active_subscriptions": "Aktif Abonelikler",
+  "feature_usage": "Özellik Kullanımı",
+  "compare_two_pdfs": "İki PDF'i Karşılaştır",
+  "upload_exactly_two": "Lütfen tam olarak iki PDF dosyası yükleyin.",
+  "drag_drop_two_pdfs": "Tam olarak iki PDF'i sürükleyip bırakın veya seçmek için tıklayın.",
+  "comparing": "Karşılaştırılıyor...",
+  "compare": "Karşılaştır",
+  "download_diff_pdf": "Farklı PDF'i İndir",
+  "comparison_done": "Karşılaştırma tamamlandı!",
+  "pdf_limit_reached": "PDF limitinize ulaştınız. Lütfen planınızı yükseltin.",
+  "failed_compare_pdf": "PDF'ler karşılaştırılamadı. Lütfen tekrar deneyin.",
+  "compress_image": "Görüntüyü Sıkıştır",
+  "compress_image_desc": "Görsel kalitesini koruyarak özelleştirilebilir sıkıştırma ayarlarıyla görüntülerinizi optimize edin",
+  "upload_image": "Görüntü Yükle",
+  "upload_a_file": "Bir dosya yükle",
+  "image_formats": "PNG, JPG, WEBP, 10 MB'a kadar",
+  "selected": "Seçildi",
+  "compression_quality": "Sıkıştırma Kalitesi",
+  "width_optional": "Genişlik (isteğe bağlı)",
+  "height_optional": "Yükseklik (isteğe bağlı)",
+  "original_width": "Orijinal Genişlik",
+  "original_height": "Orijinal Yükseklik",
+  "compressing": "Sıkıştırılıyor...",
+  "compress_image_btn": "Görüntüyü Sıkıştır",
+  "download_compressed_image": "Sıkıştırılmış Görüntüyü İndir",
+  "image_limit_reached": "Görüntü işleme limitinize ulaştınız. Lütfen planınızı yükseltin.",
+  "failed_compress_image": "Görüntü sıkıştırılamadı. Lütfen tekrar deneyin.",
+  "compress_pdf": "PDF Sıkıştır",
+  "compress_pdf_desc": "Kolay paylaşım için PDF dosya boyutunu küçültün.",
+  "compression_level": "Sıkıştırma Seviyesi",
+  "low_better_quality": "Düşük (Daha İyi Kalite)",
+  "medium_balanced": "Orta (Dengeli)",
+  "high_smaller_size": "Yüksek (Daha Küçük Boyut)",
+  "compression_hint": "Daha yüksek sıkıştırma, daha küçük dosya boyutu ancak daha düşük kalite anlamına gelir",
+  "compress_pdf_btn": "PDF Sıkıştır",
+  "download_compressed_pdf": "Sıkıştırılmış PDF'i İndir",
+  "failed_compress_pdf": "PDF sıkıştırılamadı. Lütfen tekrar deneyin.",
+  "pdf_compressed_success": "PDF başarıyla sıkıştırıldı!",
+  "convert_image": "Görüntüyü Dönüştür",
+  "convert_image_desc": "Görüntülerinizi kalitesini koruyarak farklı formatlara dönüştürün",
+  "convert_to_format": "Şu formata dönüştür:",
+  "converting": "Dönüştürülüyor...",
+  "convert_image_btn": "Görüntüyü Dönüştür",
+  "download_converted_image": "Dönüştürülmüş Görüntüyü İndir",
+  "failed_convert_image": "Görüntü dönüştürülemedi. Lütfen tekrar deneyin.",
+  "pdf_processed": "İşlenmiş PDF'ler",
+  "check_transactions": "Önceki tüm işlemlerinizi inceleyin",
+  "current_plan": "Mevcut Plan",
+  "free": "Ücretsiz",
+  "convert_pdf": "PDF Dönüştür",
+  "convert_pdf_desc": "PDF'i farklı formatlar arasında dönüştürün",
+  "compress_images": "Görüntüleri Sıkıştır",
+  "compress_images_desc": "Görsel kalitesini koruyarak görüntü boyutunu küçültün",
+  "upgrade_plan": "Planı Yükselt",
+  "upgrade_plan_desc": "Daha fazla özellik ve daha yüksek limitler edinin",
+  "failed_fetch_stats": "Kullanıcı istatistikleri alınamadı",
+  "excel_to_pdf": {
+    "title": "Excel'den PDF'e Dönüştür",
+    "desc": "Bir Excel (.xls veya .xlsx) dosyası yükleyin ve düzenini koruyarak PDF formatına dönüştürün.",
+    "upload_label": "Excel dosyasını yükle",
+    "upload_btn": "Çalışma sayfasını yükle",
+    "file_hint": "20 MB'a kadar XLS veya XLSX",
+    "selected_file": "Seçilen dosya:",
+    "convert_btn": "PDF'e Dönüştür",
+    "converting": "Dönüştürülüyor...",
+    "download_btn": "PDF'i İndir",
+    "please_select_excel": "Lütfen bir Excel dosyası seçin",
+    "success": "Excel başarıyla PDF'e dönüştürüldü!",
+    "failed": "Excel dönüştürülemedi. Lütfen tekrar deneyin."
+  },
+  "extract_pdf": {
+    "title": "PDF Sayfalarını Ayıkla",
+    "desc": "Bir PDF yükleyin ve belirli sayfaları yeni bir PDF'e ayıklayın. Sayfa numaralarını virgülle ayırarak girin (örn. 1,3,5).",
+    "please_select_pdf_only": "Lütfen yalnızca bir PDF dosyası seçin.",
+    "failed_load_pdf": "PDF dosyası yüklenemedi. Lütfen başka bir dosya deneyin.",
+    "enter_page_numbers": "Lütfen ayıklamak için en az bir sayfa numarası girin.",
+    "invalid_page_numbers": "Geçersiz sayfa numaraları. Lütfen 1 ile {{totalPages}} arasında sayılar girin",
+    "failed_extract": "PDF ayıklanamadı. Lütfen tekrar deneyin.",
+    "pages": "sayfa",
+    "pages_to_extract": "Ayıklanacak sayfalar (virgülle ayrılmış)",
+    "page_numbers_placeholder": "örn. 1,3,5",
+    "enter_page_numbers_range": "Lütfen 1 ile {{totalPages}} arasında sayfa numarası girin",
+    "extracting": "Ayıklanıyor...",
+    "extract_btn": "Sayfaları Ayıkla",
+    "download_btn": "Ayıklanmış Sayfaları İndir"
+  },
+  "forgot_password": {
+    "title": "Şifreyi Sıfırla",
+    "step1": "E-postanızı girin",
+    "step2": "Güvenlik sorularını yanıtlayın",
+    "step3": "Yeni şifre oluşturun",
+    "email_label": "E-posta Adresi",
+    "email_placeholder": "E-posta adresinizi girin",
+    "checking": "Kontrol ediliyor...",
+    "continue": "Devam Et",
+    "fav_book": "En sevdiğiniz kitap hangisi?",
+    "fav_meal": "En sevdiğiniz yemek hangisi?",
+    "answer_placeholder": "Cevabınızı girin",
+    "verify_answers": "Cevapları Doğrula",
+    "new_password": "Yeni Şifre",
+    "new_password_placeholder": "Yeni şifreyi girin",
+    "confirm_password": "Şifreyi Onayla",
+    "confirm_password_placeholder": "Yeni şifreyi tekrar girin",
+    "resetting": "Sıfırlanıyor...",
+    "reset_password": "Şifreyi Sıfırla",
+    "back_to_login": "Giriş Yap'a geri dön",
+    "email_not_found": "E-posta adresi bulunamadı",
+    "incorrect_answers": "Yanlış cevaplar",
+    "passwords_do_not_match": "Şifreler eşleşmiyor",
+    "reset_success": "Şifre başarıyla sıfırlandı. Yeni şifrenizle giriş yapın.",
+    "failed_reset": "Şifre sıfırlanamadı"
+  },
+  "home": {
+    "merge_pdf_desc": "Birden çok PDF dosyasını tek bir dosyada birleştirin.",
+    "split_pdf_desc": "Bir PDF dosyasını ayrı dosyalara bölün.",
+    "remove_pages_desc": "Bir PDF'ten belirli sayfaları silin.",
+    "extract_pages_desc": "Seçili sayfaları yeni bir PDF olarak ayıklayın.",
+    "organize_pdf_desc": "PDF sayfalarının sırasını değiştirin veya düzenleyin.",
+    "rotate_pdf_desc": "PDF sayfalarınızı döndürün.",
+    "metadata_viewer": "Meta Veri Görüntüleyici",
+    "metadata_viewer_desc": "Herhangi bir PDF dosyasının tüm ayrıntılarını kontrol edin.",
+    "update_metadata": "Meta Veri Güncelle",
+    "update_metadata_desc": "Bir PDF'in yazarını, başlığını ve diğer meta verilerini düzenleyin",
+    "compare_pdf_desc": "Farklılıklar için iki PDF'i karşılaştırın.",
+    "pdf_to_pdfa_desc": "PDF'leri arşivleme için PDF/A formatına dönüştürün.",
+    "jpg_to_pdf_desc": "JPG görüntülerini PDF'e dönüştürün.",
+    "word_to_pdf_desc": "Word belgelerini PDF'e dönüştürün.",
+    "powerpoint_to_pdf_desc": "PowerPoint dosyalarını PDF'e dönüştürün.",
+    "excel_to_pdf_desc": "Excel sayfalarını PDF'e dönüştürün.",
+    "html_to_pdf_desc": "HTML dosyalarını PDF'e dönüştürün.",
+    "pdf_to_jpg_desc": "PDF sayfalarını JPG görüntülerine dönüştürün.",
+    "pdf_to_word_desc": "PDF dosyalarını düzenlenebilir Word belgelerine dönüştürün.",
+    "pdf_to_powerpoint_desc": "PDF dosyalarını PowerPoint sunumlarına dönüştürün.",
+    "pdf_to_excel_desc": "PDF dosyalarını Excel sayfalarına dönüştürün.",
+    "pdf_to_text_converter": "PDF'den Metne Dönüştürücü",
+    "pdf_voice_reader": "PDF Sesli Okuyucu",
+    "pdf_voice_reader_desc": "PDF içeriğinizi doğal sesle dinleyin.",
+    "translate": "PDF Çevir",
+    "translate_desc": "PDF içindeki metni birden fazla dile çevirin.",
+    "handwriting": "El yazısı PDF'e",
+    "handwriting_desc": "El yazısı notları veya metinleri dijital PDF formatına dönüştürün.",
+    "pdf_expire": "Süreli PDF",
+    "pdf_expire_desc": "Güvenli erişim için son kullanma tarihli PDF'ler paylaşın.",
+    "e_sign": "PDF'yi e-imza ile imzala",
+    "e_sign_desc": "PDF belgelerinizi elektronik olarak imzalayın"
+  },
+  "user_management": {
+    "title": "Kullanıcı Yönetimi",
+    "search_placeholder": "Kullanıcıları ara...",
+    "failed_fetch_users": "Kullanıcılar alınamadı",
+    "table": {
+      "name": "Ad",
+      "email": "E-posta",
+      "role": "Rol",
+      "subscription": "Abonelik",
+      "country": "Ülke"
+    },
+    "roles": {
+      "admin": "Yönetici",
+      "user": "Kullanıcı"
+    },
+    "plans": {
+      "basic": "Temel"
+    },
+    "not_available": "Yok"
+  },
+  "payment_history": {
+    "title": "Ödeme Geçmişi",
+    "auth_error": "Kimlik doğrulama hatası. Lütfen tekrar giriş yapın.",
+    "plan": "Plan",
+    "not_available": "Yok",
+    "hide_details": "Ayrıntıları gizle",
+    "more_details": "Daha fazla ayrıntı",
+    "card": "Kart",
+    "receipt": "Makbuz",
+    "view_receipt": "Makbuzu görüntüle",
+    "billing_name": "Fatura Adı",
+    "email": "E-posta",
+    "paid_on": "Ödeme tarihi"
+  },
+  "merge_pdf": {
+    "title": "PDF'leri Birleştir",
+    "desc": "Birden çok PDF dosyasını tek bir belgeye birleştirin. Birleştirmeden önce yeniden sıralamak için sürükle ve bırak.",
+    "upload_pdfs": "PDF'leri yükle",
+    "upload_btn": "PDF'leri yükle",
+    "remove": "Kaldır",
+    "merge_btn": "PDF'leri Birleştir",
+    "merging": "Birleştiriliyor...",
+    "download_btn": "Birleştirilmiş PDF'i İndir",
+    "select_pdf_only": "Lütfen yalnızca PDF dosyalarını seçin.",
+    "failed_merge": "PDF'ler birleştirilemedi",
+    "failed": "PDF birleştirilemedi. Lütfen tekrar deneyin."
+  },
+  "watermark_pdf": {
+    "title": "PDF'e Filigran Ekle",
+    "desc": "Bir PDF yükleyin ve her sayfaya özel bir metin filigranı ekleyin.",
+    "upload_text": "PDF dosyasını yükle veya buraya sürükle ve bırak",
+    "watermark_text": "Filigran metni",
+    "watermark_placeholder": "örn. Gizli",
+    "add_watermark": "Filigran Ekle",
+    "adding": "Ekleniyor...",
+    "download_watermarked": "Filigranlı PDF'i İndir",
+    "please_select_pdf": "Lütfen bir PDF dosyası seçin",
+    "please_enter_watermark": "Lütfen bir filigran metni girin",
+    "success": "Filigran başarıyla eklendi!",
+    "failed": "PDF'e filigran eklenirken hata oluştu. Lütfen tekrar deneyin."
+  },
+  "word_to_pdf": {
+    "title": "Word'den PDF'e Dönüştür",
+    "desc": "Bir Word (.doc veya .docx) belgesini yükleyin ve biçimlendirmeyi koruyarak PDF formatına dönüştürün.",
+    "upload_label": "Word belgesini yükle",
+    "upload_btn": "Belgeyi yükle",
+    "file_hint": "20 MB'a kadar DOC veya DOCX",
+    "selected_file": "Seçilen dosya",
+    "convert_btn": "PDF'e Dönüştür",
+    "converting": "Dönüştürülüyor...",
+    "download_btn": "PDF'i İndir",
+    "please_select_word": "Lütfen bir Word belgesi seçin",
+    "success": "Belge başarıyla PDF'e dönüştürüldü!",
+    "failed": "Word'den PDF'e dönüştürme başarısız oldu. Lütfen tekrar deneyin."
+  },
+  "terms_conditions": {
+    "title": "Hizmet Şartları",
+    "acceptance": {
+      "title": "1. Şartların Kabulü",
+      "content": "PDFPivot'u kullanarak, bu şartlara ve geçerli yasalara uymayı kabul edersiniz. Bu şartlar, sizinle PDFPivot arasında bağlayıcı bir anlaşma teşkil eder."
+    },
+    "eligibility": {
+      "title": "2. Kullanım Uygunluğu",
+      "content": "Hizmetlerimizi kullanmak için en az 13 yaşında olmalısınız. Web sitemize erişerek, bu yaş gereksinimini karşıladığınızı onaylarsınız."
+    },
+    "services": {
+      "title": "3. Sağlanan Hizmetler",
+      "content": "PDFPivot, dönüştürme, birleştirme, bölme, sıkıştırma ve PDF düzenleme gibi PDF ile ilgili araçlar sunar. Özellikleri önceden haber vermeksizin ekleyebilir, değiştirebilir veya kaldırabiliriz."
+    },
+    "account": {
+      "title": "4. Hesap ve Erişim",
+      "content": "Bazı özellikler kayıt gerektirebilir. Hesap bilgilerinizin gizliliğini korumaktan siz sorumlusunuz ve hesabınız altında gerçekleşen tüm faaliyetlerden siz sorumlu olacaksınız."
+    },
+    "acceptable_use": {
+      "title": "5. Kabul Edilebilir Kullanım",
+      "intro": "Web sitesini kötüye kullanmamayı kabul edersiniz. Şunları yapamazsınız:",
+      "item1": "Zararlı veya kötü amaçlı içerik yüklemek",
+      "item2": "Fikri mülkiyet haklarını ihlal etmek",
+      "item3": "Yetkisiz erişim sağlamaya çalışmak",
+      "item4": "Geçerli yasaları ihlal etmek"
+    },
+    "intellectual_property": {
+      "title": "6. Fikri Mülkiyet Hakları",
+      "content": "PDFPivot'taki tüm içerik ve araçlar, web sitesinin veya lisans verenlerinin fikri mülkiyetidir. Yazılı izin alınmadan kopyalayamaz, değiştiremez veya dağıtamazsınız."
+    },
+    "user_content": {
+      "title": "7. Kullanıcı İçeriği ve Dosya Yüklemeleri",
+      "content": "Yüklediğiniz dosyaların sahipliğini korursunuz. Araçlarımızı kullanarak, hizmeti sağlamak amacıyla dosyaları geçici olarak işlememize ve depolamamıza izin verirsiniz."
+    },
+    "payment": {
+      "title": "8. Ödemeler ve Fiyatlandırma",
+      "content": "Bazı hizmetler ücretli olabilir. Tüm ücretler açıkça belirtilir. PDFPivot, fiyatları herhangi bir zamanda değiştirme hakkını saklı tutar."
+    },
+    "refund": {
+      "title": "9. İadeler ve İptaller",
+      "content": "Tüm satın alımlar iade edilmez. Hizmetlerimizin dijital ve anlık yapısı nedeniyle, işlem başladıktan sonra iptal veya iade sunmuyoruz."
+    },
+    "liability": {
+      "title": "10. Sorumluluk Sınırlaması",
+      "content": "PDFPivot, web sitesinin veya hizmetlerinin kullanımından veya kullanılamamasından kaynaklanan herhangi bir doğrudan, dolaylı veya sonuçsal zarardan sorumlu değildir."
+    },
+    "warranties": {
+      "title": "11. Garanti Reddi",
+      "content": "Hizmetler 'olduğu gibi' sağlanır. Kesintisiz hizmet, sonuçların doğruluğu veya belirli dosya türleriyle uyumluluk garantisi vermiyoruz."
+    },
+    "third_party": {
+      "title": "12. Üçüncü Taraf Bağlantıları",
+      "content": "Web sitesi, üçüncü taraf hizmetlere bağlantılar içerebilir. Harici web sitelerinin içeriğinden, şartlarından veya gizlilik uygulamalarından sorumlu değiliz."
+    },
+    "termination": {
+      "title": "13. Erişimin Sona Ermesi",
+      "content": "Bu şartları ihlal etmeniz veya platformu kötüye kullanmanız durumunda PDFPivot'a erişiminizi herhangi bir zamanda askıya alabilir veya sonlandırabiliriz."
+    },
+    "modifications": {
+      "title": "14. Şartlarda Değişiklikler",
+      "content": "PDFPivot, bu şartları herhangi bir zamanda güncelleyebilir. Değişiklikler bu sayfada yayınlanacak ve değişikliklerden sonraki sürekli kullanımınız, yeni şartları kabul ettiğiniz anlamına gelir."
+    },
+    "contact": {
+      "title": "15. Bize Ulaşın",
+      "intro": "Bu şartlar hakkında herhangi bir sorunuz varsa, lütfen bize ulaşın:",
+      "email": "E-posta",
+      "website": "Web sitesi"
+    }
+  },
+  "subscription_plans": {
+    "expired_on": "sona erdi",
+    "will_expire_on": "sona erecek",
+    "your_plan_status": "Planınız {{planName}} {{expiryDate}} tarihinde {{expiryText}}",
+    "session_expired": "Oturumunuzun süresi doldu. Lütfen tekrar giriş yapın.",
+    "service_unavailable": "Abonelik hizmeti geçici olarak kullanılamıyor. Lütfen daha sonra tekrar deneyin.",
+    "failed_load_plans": "Abonelik planları yüklenemedi. Lütfen daha sonra tekrar deneyin.",
+    "go_to_login": "Giriş Yap'a git",
+    "retry": "Tekrar dene",
+    "current_plan": "Mevcut Plan",
+    "free": "Ücretsiz",
+    "price_per_month": "${{price}}/ay",
+    "unlimited": "Sınırsız",
+    "quota_per_month": "{{quota}}/ay",
+    "start_free": "Ücretsiz Başla",
+    "select_plan": "Plan Seç"
+  },
+  "subscribe_page": {
+    "subscribe_to": "Abone Ol",
+    "choose_billing_desc": "Fatura döngüsünü seçin ve güvenli ödemeye geçin.",
+    "billing_type": "Fatura Türü",
+    "monthly_option": "Aylık - ${{price}}",
+    "annual_option": "Yıllık - ${{price}}",
+    "pay_now": "Şimdi ${{price}} Öde",
+    "redirecting": "Yönlendiriliyor...",
+    "loading_plan": "Plan detayları yükleniyor...",
+    "plan_not_loaded": "Plan yüklenemedi",
+    "payment_failed": "Ödeme başarısız oldu"
+  },
+  "split_pdf_page": {
+    "title": "PDF Böl",
+    "desc": "Bir PDF dosyası yükleyin ve ayrı sayfalara bölün. Tüm sayfaları tek bir ZIP dosyası olarak indirin.",
+    "split_pdf_btn": "PDF Böl",
+    "splitting": "Bölünüyor...",
+    "download_split_pages": "Bölünmüş Sayfaları İndir (ZIP)",
+    "please_select_pdf_only": "Lütfen yalnızca bir PDF dosyası seçin.",
+    "failed_split": "PDF bölünemedi. Lütfen tekrar deneyin."
+  },
+  "rotate_pdf_page": {
+    "title": "PDF Sayfasını Döndür",
+    "desc": "Bir PDF dosyası yükleyin ve ilk sayfanın önizlemesini görüntüleyin. Görüntüyü sola veya sağa döndürmek için düğmeleri kullanın. Döndürülmüş PDF'i indirin.",
+    "pdf_preview": "PDF Önizleme",
+    "rotation_degrees": "Döndürme: {{degrees}}°",
+    "current_rotation": "Mevcut döndürme: {{degrees}}°",
+    "rotate_left": "Sola Döndür",
+    "rotate_right": "Sağa Döndür",
+    "generating": "Oluşturuluyor...",
+    "download_rotated_pdf": "Döndürülmüş PDF'i İndir",
+    "click_to_download": "İndirmek için buraya tıklayın",
+    "please_select_pdf": "Lütfen bir PDF dosyası seçin.",
+    "failed_generate": "Döndürülmüş PDF oluşturulamadı. {{message}}",
+    "please_try_again": "Lütfen tekrar deneyin."
+  },
+  "rotate_page": {
+    "title": "Görüntüyü Döndür",
+    "desc": "Kalitesini koruyarak görüntülerinizi doğru bir şekilde döndürün",
+    "upload_image": "Görüntü Yükle",
+    "upload_a_file": "Bir dosya yükle",
+    "rotating": "Döndürülüyor...",
+    "rotate_left": "Sola Döndür",
+    "rotate_right": "Sağa Döndür",
+    "download_rotated_image": "Döndürülmüş Görüntüyü İndir",
+    "please_upload_image": "Lütfen önce bir görüntü yükleyin.",
+    "failed_track_usage": "Kullanım izlenemedi. Lütfen daha sonra tekrar deneyin.",
+    "failed_rotate": "Görüntü döndürülemedi. Lütfen tekrar deneyin."
+  },
+  "remove_pdf": {
+    "title": "PDF Sayfalarını Sil",
+    "desc": "Bir PDF dosyası yükleyin ve belirli sayfaları silin. Sayfa numaralarını virgülle ayırarak girin (örn. 1,3,5).",
+    "pages_to_remove": "Silinecek sayfalar (virgülle ayrılmış)",
+    "page_numbers_placeholder": "örn. 1,3,5",
+    "remove_pages_btn": "Sayfaları Sil",
+    "removing": "Siliniyor...",
+    "download_btn": "Değiştirilmiş PDF'i İndir",
+    "please_select_pdf_only": "Lütfen yalnızca bir PDF dosyası seçin.",
+    "enter_page_numbers": "Lütfen silmek için en az bir sayfa numarası girin.",
+    "invalid_page_numbers": "Geçersiz sayfa numaraları. Lütfen 1 ile {{pageCount}} arasında sayılar girin",
+    "failed_remove": "Sayfalar silinemedi. Lütfen tekrar deneyin."
+  },
+  "register": {
+    "title": "Hesap Oluştur",
+    "subtitle": "Yolculuğunuza başlamak için bize katılın",
+    "full_name": "Tam Adı",
+    "full_name_placeholder": "Tam adınızı girin",
+    "email_label": "E-posta Adresi",
+    "email_placeholder": "E-posta adresinizi girin",
+    "password_label": "Şifre",
+    "password_placeholder": "Şifrenizi girin",
+    "confirm_password_label": "Şifreyi Onayla",
+    "confirm_password_placeholder": "Şifrenizi tekrar girin",
+    "country_label": "Ülke",
+    "select_country": "Ülkenizi seçin",
+    "fav_book_question": "En sevdiğiniz kitap hangisi?",
+    "fav_book_placeholder": "En sevdiğiniz kitabı girin",
+    "fav_meal_question": "En sevdiğiniz yemek hangisi?",
+    "fav_meal_placeholder": "En sevdiğiniz yemeği girin",
+    "create_account_btn": "Hesap Oluştur",
+    "already_have_account": "Zaten bir hesabınız var mı?",
+    "sign_in_link": "Giriş Yap",
+    "passwords_do_not_match": "Şifreler eşleşmiyor"
+  },
+  "privacy_policy": {
+    "title": "Gizlilik Politikası",
+    "introduction": {
+      "title": "1. Giriş",
+      "content": "PDFPivot'a ('biz', 'bize' veya 'bizim') hoş geldiniz. Bu politika, erişen tüm ziyaretçiler, kullanıcılar ve müşteriler için geçerlidir."
+    },
+    "information_collection": {
+      "title": "2. Topladığımız Bilgiler",
+      "content": "Ad, e-posta adresi, iletişim bilgileri, yüklenen dosyalar, IP adresleri ve tarayıcı/cihaz bilgileri gibi kişisel verileri toplarız."
+    },
+    "how_we_use": {
+      "title": "3. Bilgilerinizi Nasıl Kullanırız",
+      "item1": "PDF ile ilgili araçları ve hizmetleri sağlamak için",
+      "item2": "Site performansını ve işlevselliğini geliştirmek için",
+      "item3": "Kullanıcılarla iletişim kurmak için",
+      "item4": "Yasal gerekliliklere uymak için"
+    },
+    "legal_basis": {
+      "title": "4. Veri İşleme için Yasal Dayanak",
+      "content": "Verileri rıza, sözleşme gerekliliği ve hizmet sunumunu geliştirme ve güvenliği sağlama gibi meşru ticari çıkarlara dayanarak işleriz."
+    },
+    "cookies": {
+      "title": "5. Çerezler ve Takip",
+      "content": "PDFPivot, içeriği kişiselleştirmek, kullanımı analiz etmek ve deneyiminizi geliştirmek için çerezler kullanır. Tarayıcı ayarlarınızdan çerezleri devre dışı bırakabilirsiniz."
+    },
+    "uploaded_files": {
+      "title": "6. Yüklenen Dosyaların Kullanımı",
+      "content": "Dönüştürme veya düzenleme için yüklenen dosyalar geçici olarak depolanır ve işlemden sonra silinir. Dosyalarınızın içeriğine asla erişmez, okumaz veya üçüncü taraflarla paylaşmayız."
+    },
+    "third_party": {
+      "title": "7. Üçüncü Taraf Hizmetleri",
+      "content": "Analitik, barındırma veya ödeme amaçları için güvenilir üçüncü taraf sağlayıcıları kullanabiliriz. Bu sağlayıcılar, katı veri gizliliği standartlarına uymak zorundadır."
+    },
+    "data_security": {
+      "title": "8. Veri Güvenliği",
+      "content": "Verilerinizi yetkisiz erişim, kayıp veya kötüye kullanımdan korumak için güçlü şifreleme ve erişim kontrolleri uygularız."
+    },
+    "data_retention": {
+      "title": "9. Veri Saklama",
+      "content": "Kişisel verilerinizi yalnızca hizmetlerimizi sunmak veya yasal yükümlülüklere uymak için gerektiği kadar saklarız. Yüklenen dosyalar işlemden sonra otomatik olarak silinir."
+    },
+    "international_transfers": {
+      "title": "10. Uluslararası Transferler",
+      "content": "Verileriniz, ülkeniz dışındaki sunuculara aktarılabilir. Verilerinizin bu gizlilik politikasına uygun olarak korunmasını sağlamak için adımlar atarız."
+    },
+    "children_privacy": {
+      "title": "11. Çocuk Gizliliği",
+      "content": "PDFPivot, 13 yaşın altındaki çocuklar için tasarlanmamıştır. Bilinçli olarak çocuklardan veri toplamayız. Bu tür veriler bulunursa, derhal silinecektir."
+    },
+    "your_rights": {
+      "title": "12. Haklarınız",
+      "content": "Bulunduğunuz bölgeye bağlı olarak, kişisel verilerinize erişme, düzeltme, silme veya kısıtlama hakkınız olabilir. Bu haklarınızı kullanmak için bizimle iletişime geçin."
+    },
+    "third_party_links": {
+      "title": "13. Üçüncü Taraf Bağlantıları",
+      "content": "Sitemiz, harici web sitelerine bağlantılar içerebilir. Bunların gizlilik uygulamalarından sorumlu değiliz. Lütfen kendi politikalarını ayrı olarak inceleyin."
+    },
+    "policy_updates": {
+      "title": "14. Politika Güncellemeleri",
+      "content": "Bu gizlilik politikası güncellenebilir. Herhangi bir değişiklik, yeni bir yürürlük tarihiyle bu sayfada yayınlanacaktır."
+    },
+    "contact": {
+      "title": "15. Bize Ulaşın",
+      "intro": "Verileriniz hakkında herhangi bir sorunuz veya endişeniz varsa:",
+      "email": "E-posta",
+      "website": "Web sitesi"
+    }
+  },
+  "unlock_pdf_page": {
+    "title": "PDF Kilidini Aç",
+    "desc": "PDF'lerinizden şifre korumasını kaldırın. Şifre korumalı PDF dosyanızı yükleyin ve kilidi açmak için şifreyi girin.",
+    "upload_label": "Şifre korumalı PDF dosyasını yükle",
+    "pdf_password": "PDF Şifresi",
+    "enter_password_placeholder": "PDF şifresini girin",
+    "unlock_pdf_btn": "PDF Kilidini Aç",
+    "unlocking": "Kilidi açılıyor...",
+    "unlocked_successfully": "PDF başarıyla kilidi açıldı!",
+    "please_upload_pdf": "Lütfen bir PDF dosyası yükleyin",
+    "please_enter_password": "Lütfen PDF şifresini girin",
+    "failed_unlock": "PDF'in kilidi açılamadı. Lütfen tekrar deneyin."
+  },
+  "pdf_to_text": {
+    "title": "PDF'den Metne Dönüştür",
+    "desc": "Bir PDF dosyası yükleyin ve metin formatına (.txt) dönüştürün.",
+    "upload_label": "PDF dosyasını yükle",
+    "selected_file": "Seçilen dosya",
+    "convert_btn": "Metne Dönüştür",
+    "converting": "Dönüştürülüyor...",
+    "download_btn": "Metni İndir",
+    "select_pdf": "Lütfen bir PDF dosyası seçin",
+    "success": "PDF başarıyla metne dönüştürüldü!",
+    "failed": "PDF metne dönüştürülemedi. Lütfen tekrar deneyin."
+  },
+  "pdf_to_text_desc": "Metni kolayca çıkarın",
+  "unlock_pdf_desc": "PDF'lerden şifre korumasını kaldırın.",
+  "protect_pdf": {
+    "title": "PDF'e Koruma Ekle",
+    "desc": "Bir PDF dosyası yükleyin ve yetkisiz erişimi önlemek için bir şifre belirleyin.",
+    "set_password": "Şifre belirle",
+    "password_placeholder": "Şifre girin",
+    "selected_file": "Seçilen dosya",
+    "protect_btn": "PDF'i Koru",
+    "protecting": "Korunuyor...",
+    "download_btn": "Korumalı PDF'i İndir",
+    "select_pdf_and_password": "Lütfen bir PDF dosyası seçin ve bir şifre girin.",
+    "success": "PDF başarıyla korundu!",
+    "failed": "PDF korunamadı. Lütfen tekrar deneyin."
+  },
+  "protect_pdf_desc": "PDF'lerinize şifre koruması ekleyin.",
+  "add_page_numbers_desc": "PDF'inize sayfa numaraları ekleyin.",
+  "add_watermark_desc": "PDF'inize metin veya görüntü olarak filigran ekleyin.",
+  "compress_pdf_desc": "Kolay paylaşım için PDF dosya boyutunu küçültün.",
+  "refund_policy": {
+    "title": "İade ve İptal Politikası",
+    "no_refund": {
+      "title": "1. İade Yok Politikası",
+      "content": "PDFPivot'ta yapılan tüm ödemeler iade edilmez. Bir hizmet başladığında veya tamamlandığında işlemi iptal edemez veya iade edemeyiz."
+    },
+    "instant_service": {
+      "title": "2. Anlık Dijital Hizmet",
+      "content": "Hizmetlerimiz otomatiktir ve dosya yüklendiğinde veya ödeme yapıldığında anında işlemeye başlar. Bu nedenle, işlem başladıktan sonra iptal veya iade mümkün değildir."
+    },
+    "order_cancellation": {
+      "title": "3. Sipariş İptali",
+      "content": "Sipariş verildikten ve işleme başladıktan sonra siparişi iptal edemezsiniz. Lütfen sipariş vermeden önce tüm ayrıntıları kontrol edin."
+    },
+    "wrong_file": {
+      "title": "4. Yanlış Dosya Yüklemesi",
+      "content": "Yanlış veya hatalı bir dosya yüklemenizden PDFPivot sorumlu değildir. Lütfen dosyalarınızı yüklemeden önce iki kez kontrol edin."
+    },
+    "duplicate_payments": {
+      "title": "5. Yinelenen Ödemeler",
+      "content": "Yanlışlıkla yinelenen bir ödeme durumunda, bizi 24 saat içinde bilgilendirmeniz gerekmektedir. Bunu doğrulayacağız ve yalnızca yinelenen miktar için iade yapacağız."
+    },
+    "failed_services": {
+      "title": "6. Başarısız Hizmetler",
+      "content": "Hizmet bizden kaynaklanan teknik bir sorun nedeniyle başarısız olursa (örn. işlenemeyen dosya, sunucu hatası), ücretsiz olarak yeniden işleme teklif edebiliriz. Para iadesi yapılmayacaktır."
+    },
+    "user_mistakes": {
+      "title": "7. Kullanıcı Hataları",
+      "content": "Yanlış ayarlar, çıktı formatları veya işlem sırasında atlanan seçenekler gibi kullanıcı hataları için iade yapılmayacaktır."
+    },
+    "subscription_services": {
+      "title": "8. Abonelik Hizmetleri",
+      "content": "PDFPivot abonelik planları sunarsa, kullanıcıların bir sonraki fatura döngüsünden önce aboneliklerini iptal etmeleri gerekir. Oransal veya kısmi dönem iadeleri yapılmayacaktır."
+    },
+    "unauthorized_use": {
+      "title": "9. Yetkisiz Kullanım",
+      "content": "Hesabınızın yetkisiz veya dolandırıcılık amaçlı kullanımından sorumlu değiliz. Kötüye kullanımı önlemek için lütfen giriş bilgilerinizi koruyun."
+    },
+    "file_retention": {
+      "title": "10. Dosya Saklama ve Silme",
+      "content": "Dosyaları kalıcı olarak saklamıyoruz. Tüm dosyalar kısa bir süre sonra otomatik olarak silinir. Süresi dolmuş dosyalar nedeniyle teslimatın yapılamaması iade için uygun değildir."
+    },
+    "service_downtime": {
+      "title": "11. Hizmet Kesintisi",
+      "content": "Bakım veya teknik sorunlar nedeniyle periyodik hizmet kesintileri beklenir. Geçici hizmetin kullanılamaması için iade yapılmayacaktır."
+    },
+    "promotional_purchases": {
+      "title": "12. Promosyon ve İndirimli Satın Alımlar",
+      "content": "İndirimler, kupon indirimleri veya promosyon teklifleri sırasında alınan hizmetler için iade yapılmayacaktır."
+    },
+    "chargebacks": {
+      "title": "13. Geri Ödemeler (Chargebacks)",
+      "content": "Dolandırıcılık amaçlı geri ödeme başlatan kullanıcılar kalıcı olarak yasaklanabilir ve erişimleri iptal edilebilir."
+    },
+    "policy_agreement": {
+      "title": "14. Politika Kabulü",
+      "content": "Hizmetlerimizi kullanarak, bu iade ve iptal politikasını kabul etmiş olursunuz. Satın alma işlemi yapmadan önce bu politikayı okumak ve anlamak kullanıcının sorumluluğundadır."
+    },
+    "contact": {
+      "title": "15. Bize Ulaşın",
+      "intro": "Sorularınız veya özel durumlarınız varsa, lütfen bize ulaşın:",
+      "email": "E-posta",
+      "website": "Web sitesi"
+    }
+  },
+  "update_metadata_page": {
+    "title": "PDF Meta Verilerini Güncelle",
+    "desc": "Bir PDF dosyası yükleyin ve başlık, yazar ve diğerleri gibi meta verilerini güncelleyin.",
+    "selected_file": "Seçilen dosya",
+    "title_placeholder": "Başlık",
+    "author_placeholder": "Yazar",
+    "subject_placeholder": "Konu",
+    "keywords_placeholder": "Anahtar Kelimeler (virgülle ayrılmış)",
+    "update_metadata_btn": "Meta Verileri Güncelle",
+    "updating": "Güncelleniyor...",
+    "download_updated_pdf": "Güncellenmiş PDF'i İndir",
+    "updated_successfully": "Meta veriler başarıyla güncellendi!",
+    "please_select_pdf": "Lütfen bir PDF dosyası seçin",
+    "failed_update": "PDF meta verileri güncellenemedi. Lütfen tekrar deneyin."
+  },
+  "display_plans": {
+    "title": "Abonelik Planları",
+    "desc": "İhtiyaçlarınıza uygun planı seçin. Planınızı istediğiniz zaman değiştirebilirsiniz."
+  },
+  "faq": {
+    "title": "PdfPivot Hakkında Sıkça Sorulan Sorular",
+    "convert_file": {
+      "question": "Bir dosyayı PDF'e nasıl dönüştürürüm?",
+      "answer": "Word'den PDF'e gibi bir dönüştürme aracını seçin, dosyanızı yükleyin ve 'Dönüştür'e tıklayın. PDF'iniz anında indirilmeye hazır olacaktır."
+    },
+    "limits": {
+      "question": "Yapabileceğim PDF görevlerinin sayısında bir limit var mı?",
+      "answer": "Evet, her abonelik planının aylık limitleri vardır. Ücretsiz kullanıcıların sınırlı sayıda dönüştürmesi vardır. Ücretli planlar daha fazla veya sınırsız kullanım sunar."
+    },
+    "security": {
+      "question": "PDF verilerim güvende mi?",
+      "answer": "Kesinlikle. Tüm dosyalar güvenli şifreleme ile işlenir ve işlemden sonra otomatik olarak silinir. Verilerinizi asla saklamıyoruz."
+    },
+    "mobile": {
+      "question": "PdfPivot'u telefonumda kullanabilir miyim?",
+      "answer": "Evet! PdfPivot tamamen duyarlıdır ve tüm modern mobil tarayıcılarda çalışır."
+    },
+    "formats": {
+      "question": "Hangi dosya türlerini PDF'e ve PDF'den dönüştürebilirim?",
+      "answer": "Word, Excel, PowerPoint, JPG ve HTML'i PDF'e dönüştürebilir ve tam tersini yapabilirsiniz. Ayrıca taranmış dosyalar için PDF'den PDF/A'ya ve OCR'ye de destek veriyoruz."
+    },
+    "ocr": {
+      "question": "OCR özelliği nasıl çalışır?",
+      "answer": "OCR, taranmış PDF'lerden metni otomatik olarak ayıklar, böylece içeriği arayabilir ve düzenleyebilirsiniz. Tüm PDF araçlarımız için mevcuttur."
+    }
+  },
+  "hero": {
+    "title_line1": "Çevrimiçi PDF araçları",
+    "title_line2": "hızlı, güvenli ve",
+    "title_line3": "verimli",
+    "description": "PDF'lerinizi kolayca düzenleyin, dönüştürün, sıkıştırın ve koruyun, hepsi tarayıcınızda. Dünya çapında profesyoneller tarafından güvenilir.",
+    "live_chat": "Canlı Sohbet",
+    "image_alt": "Görüntü düzenleme illüstrasyonu"
+  },
+  "how_it_works": {
+    "title": "PdfPivot, Hepsi Bir Arada PDF Araç Setiniz.",
+    "subtitle": "PDF'i Word'e nasıl dönüştürülür",
+    "description": "PDF'i Word'e dönüştürmek için Xodo'yu kullanarak bu basit adımları izleyin:",
+    "step1": "PDF'inizi ücretsiz çevrimiçi PDF'den Word'e dönüştürücüye yükleyin.",
+    "step2": "'Dönüştür'e tıklayın - OCR, taranmış PDF'ler için otomatik olarak uygulanır.",
+    "step3": "Düzenlenebilir Word (.docx) dosyanızı indirin.",
+    "image_alt": "Nasıl dönüştürülür"
+  },
+  "payment_form": {
+    "cancel": "İptal",
+    "pay_now": "Şimdi öde",
+    "processing": "İşleniyor...",
+    "default_error": "Bir hata oluştu"
+  },
+  "trusted_by": {
+    "title": "Binlerce Kişi Tarafından Güvenilen PDF Araç Seti",
+    "description": "PDFPivot, PDF'leri dönüştürmek, düzenlemek ve düzenlemek için güvenli ve çok yönlü bir platformdur. Hızlı performans, özel işleme - hiçbir veri saklanmaz.",
+    "iso_27001": "ISO 27001",
+    "secure_processing": "Güvenli İşleme",
+    "trusted_by_enterprises": "Kurumsal Firmalar Tarafından Güvenilir"
+  },
+  "why_us": {
+    "title": "PdfPivot, Tek Bir Yerde Komple PDF Araç Setiniz",
+    "feature1": {
+      "title": "Komple PDF Araç Seti",
+      "description": "PDF'lerinizi birleştirin, bölün, dönüştürün, sıkıştırın, koruyun ve düzenleyin, hepsi kullanımı kolay tek bir platformdan."
+    },
+    "feature2": {
+      "title": "Hızlı ve Güvenilir Dönüştürmeler",
+      "description": "Dosyaları saniyeler içinde PDF formatlarına dönüştürün. OCR, taranmış belgeler için otomatik olarak uygulanır."
+    },
+    "feature3": {
+      "title": "Akıllı Kota Bazlı Erişim",
+      "description": "Bireyler ve ekipler için tasarlanmış aylık kotalara veya sınırsız kullanıma sahip esnek abonelik planlarından yararlanın."
+    }
+  },
+  "metadata_viewer": {
+    "title": "PDF Meta Veri Görüntüleyici",
+    "upload_text": "PDF dosyasını yükle veya buraya sürükle ve bırak",
+    "view_btn": "Meta Verileri Görüntüle",
+    "fetching": "Alınıyor...",
+    "metadata_label": "Meta Veri",
+    "select_pdf": "Lütfen bir PDF dosyası seçin.",
+    "success": "Meta veriler başarıyla alındı!",
+    "failed": "PDF meta verileri görüntülenemedi. Lütfen tekrar deneyin."
+  },
+  "organize_pdf": {
+    "title": "PDF Sayfalarını Düzenle",
+    "desc": "Bir PDF dosyası yükleyin, sayfaların sırasını değiştirmek için sürükle ve bırakın ve düzenlenmiş PDF'i indirin.",
+    "select_pdf_only": "Lütfen yalnızca bir PDF dosyası seçin.",
+    "failed_load_pdf": "PDF dosyası yüklenemedi.",
+    "upload_pdf": "PDF dosyasını yükle.",
+    "success": "PDF başarıyla düzenlendi!",
+    "failed": "PDF düzenlenemedi. Lütfen tekrar deneyin.",
+    "pages": "sayfa",
+    "drag_reorder": "Yeniden sıralamak için sayfaları sürükleyin",
+    "reordering": "Yeniden sıralanıyor...",
+    "reorder_btn": "Yeniden Sırala ve İndir",
+    "download_btn": "Düzenlenmiş PDF'i İndir"
+  },
+  "plan_management": {
+    "title": "Plan Yönetimi",
+    "plan_name": "Plan Adı",
+    "monthly_fee": "Aylık Ücret",
+    "annual_fee": "Yıllık Ücret",
+    "service_quotas": "Hizmet Kotaları",
+    "set_all_quotas": "Tüm Hizmet Kotalarını Ayarla",
+    "monthly_quota_all": "Aylık Kota (Tüm Hizmetler)",
+    "annual_quota_all": "Yıllık Kota (Tüm Hizmetler)",
+    "set_monthly_quota_placeholder": "Tüm hizmetler için aylık kota belirle",
+    "set_annual_quota_placeholder": "Tüm hizmetler için yıllık kota belirle",
+    "individual_quotas": "Bireysel Hizmet Kotaları",
+    "monthly_quota": "Aylık Kota",
+    "annual_quota": "Yıllık Kota",
+    "create_plan": "Plan Oluştur",
+    "update_plan": "Planı Güncelle",
+    "cancel": "İptal",
+    "existing_plans": "Mevcut Planlar",
+    "monthly": "Aylık",
+    "annual": "Yıllık",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "features": "Özellikler",
+    "month": "ay",
+    "year": "yıl",
+    "all_services_included": "Tüm hizmetler dahil",
+    "failed_fetch_plans": "Planlar alınamadı",
+    "failed_save_plan": "Plan kaydedilemedi",
+    "failed_delete_plan": "Plan silinemedi",
+    "confirm_delete": "Bu planı silmek istediğinizden emin misiniz?"
+  },
+  "ppt_to_pdf": {
+    "title": "PPT'den PDF'e Dönüştür",
+    "desc": "Bir PowerPoint (.ppt veya .pptx) sunumu yükleyin ve sunumun düzenini koruyarak PDF formatına dönüştürün.",
+    "upload_label": "PowerPoint dosyasını yükle",
+    "upload_btn": "Sunumu yükle",
+    "file_hint": "20 MB'a kadar PPT veya PPTX",
+    "selected_file": "Seçilen dosya",
+    "convert_btn": "PDF'e Dönüştür",
+    "converting": "Dönüştürülüyor...",
+    "download_btn": "PDF'i İndir",
+    "select_ppt": "Lütfen bir PowerPoint dosyası seçin",
+    "success": "Sunum başarıyla PDF'e dönüştürüldü!",
+    "failed": "PPT'den PDF'e dönüştürme başarısız oldu. Lütfen tekrar deneyin."
+  },
+  "pdf_to_excel": {
+    "title": "PDF'den Excel'e Dönüştür",
+    "desc": "Bir PDF dosyası yükleyin ve veri yapısını koruyarak Excel formatına (.xlsx) dönüştürün.",
+    "upload_label": "PDF dosyasını yükle",
+    "selected_file": "Seçilen dosya",
+    "select_pdf": "Lütfen bir PDF dosyası seçin",
+    "success": "PDF başarıyla Excel'e dönüştürüldü!",
+    "failed": "Excel'e dönüştürülemedi. Lütfen tekrar deneyin.",
+    "converting": "Dönüştürülüyor...",
+    "convert_btn": "Excel'e Dönüştür",
+    "download_btn": "Excel'i İndir"
+  },
+  "pdf_to_jpg": {
+    "title": "PDF'den JPG'ye Dönüştür",
+    "desc": "Bir PDF dosyası yükleyin ve her sayfayı bir JPG görüntüsüne dönüştürün. Tüm görüntüleri tek bir ZIP dosyası olarak indirin.",
+    "upload_valid_pdf": "Lütfen geçerli bir PDF dosyası yükleyin.",
+    "failed": "PDF'den JPG'ye dönüştürme başarısız oldu. Lütfen tekrar deneyin.",
+    "converting": "PDF görüntülere dönüştürülüyor...",
+    "page_alt": "Sayfa {{page}}",
+    "download_btn": "JPG ZIP'ini İndir"
+  },
+  "pdf_to_pdfa": {
+    "title": "PDF'den PDF/A'ya Dönüştür",
+    "desc": "Bir PDF dosyası yükleyin ve onu arşivleme standardı PDF/A dosyasına dönüştürün.",
+    "upload_text": "PDF dosyasını yükle veya buraya sürükle ve bırak",
+    "select_pdf": "Lütfen bir PDF dosyası seçin",
+    "success": "PDF başarıyla PDF/A'ya dönüştürüldü!",
+    "failed": "PDF/A'ya dönüştürülemedi. Lütfen tekrar deneyin.",
+    "converting": "Dönüştürülüyor...",
+    "convert_btn": "PDF/A'ya Dönüştür",
+    "download_btn": "PDF/A'yı İndir"
+  },
+  "pdf_to_ppt": {
+    "title": "PDF'den PowerPoint'e Dönüştür",
+    "desc": "Bir PDF dosyası yükleyin ve düzenini koruyarak PowerPoint formatına (.pptx) dönüştürün.",
+    "upload_label": "PDF dosyasını yükle",
+    "selected_file": "Seçilen dosya",
+    "select_pdf": "Lütfen bir PDF dosyası seçin",
+    "success": "PDF başarıyla PPT'ye dönüştürüldü!",
+    "failed": "PDF'den PPT'ye dönüştürme başarısız oldu. Lütfen tekrar deneyin.",
+    "converting": "Dönüştürülüyor...",
+    "convert_btn": "PPT'ye Dönüştür",
+    "download_btn": "PPT'yi İndir"
+  },
+  "payment_failed": {
+    "alt_text": "Ödeme başarısız oldu",
+    "title": "Ödeme Başarısız Oldu",
+    "description": "Maalesef işleminiz tamamlanamadı.",
+    "try_again": "Lütfen tekrar deneyin veya sorun devam ederse destek ekibimizle iletişime geçin.",
+    "go_to_dashboard": "Kontrol paneline git"
+  },
+  "payment_success": {
+    "alt_text": "Ödeme başarılı oldu",
+    "title": "Ödeme Başarılı!",
+    "thank_you": "Satın alma işleminiz için teşekkür ederiz.",
+    "redirecting": "Kontrol paneline {{seconds}} saniye içinde yönlendiriliyorsunuz...",
+    "not_redirected": "Yönlendirilmediniz mi?",
+    "go_to_dashboard": "Kontrol paneline git"
+  },
+  "pdf_to_text": "PDF'den Metne",
+  "login": {
+    "welcome": "Tekrar Hoş Geldiniz",
+    "subtitle": "Devam etmek için hesabınıza giriş yapın",
+    "email_label": "E-posta Adresi",
+    "email_placeholder": "E-posta adresinizi girin",
+    "password_label": "Şifre",
+    "password_placeholder": "Şifrenizi girin",
+    "sign_in": "Giriş Yap",
+    "no_account": "Hesabınız yok mu?",
+    "sign_up": "Kaydol",
+    "forgot_password": "Şifremi unuttum?",
+    "failed": "Giriş başarısız. Lütfen bilgilerinizi kontrol edin."
+  },
+  "footer": {
+    "pdfpivot": "PdfPivot",
+    "home": "Anasayfa",
+    "pricing": "Fiyatlandırma",
+    "security": "Güvenlik",
+    "tools": "Araçlar",
+    "faq": "SSS",
+    "product": "Ürün",
+    "desktop": "Masaüstü için PdfPivot",
+    "mobile": "Mobil için PdfPivot",
+    "developers": "Geliştiriciler",
+    "features": "Özellikler",
+    "solutions": "Çözümler",
+    "business": "İş",
+    "education": "Eğitim",
+    "company": "Şirket",
+    "privacy_policy": "Gizlilik Politikası",
+    "terms_conditions": "Hizmet Şartları",
+    "refund_policy": "İade Politikası",
+    "copyright": "© 2025 PdfPivot. Tüm hakları saklıdır.",
+    "trusted_by": "Binlerce Kişi Tarafından Güvenilen PDF Araç Seti",
+    "login": "Giriş Yap",
+    "register": "Kaydol",
+    "plans": "Planlar",
+    "services": "Hizmetler",
+    "merge_pdf": "PDF Birleştir",
+    "split_pdf": "PDF Böl",
+    "remove_pages": "Sayfa Sil",
+    "extract_pages": "Sayfa Ayıkla",
+    "security_tools": "Güvenlik Araçları",
+    "update_metadata": "Meta Veri Güncelle",
+    "view_metadata": "Meta Veri Görüntüle",
+    "add_watermark": "Filigran Ekle",
+    "protect_pdf": "PDF Koru"
+  },
+  "pdfvoicereader": {
+    "pdf_voice_reader": "PDF Sesli Okuyucu",
+    "pdf_voice_reader_desc": "PDF içeriğini sesli anlatıma dönüştürün.",
+    "upload_pdf": "PDF Yükle",
+    "upload_a_file": "Bir dosya yükle",
+    "pdf_formats": "Sadece PDF formatı",
+    "selected": "Seçildi",
+    "convert_to_audio": "Sese Dönüştür",
+    "converting": "Dönüştürülüyor...",
+    "download_audio": "MP3 İndir",
+    "invalid_pdf": "Lütfen geçerli bir PDF dosyası seçin.",
+    "conversion_failed": "PDF'i sese dönüştürme başarısız oldu. Tekrar deneyin."
+  },
+  "pdftranslator": {
+    "smart_pdf_translator": "Akıllı PDF Çevirmen  ",
+    "smart_pdf_translator_desc": "Orijinal biçimlendirmeyi koruyarak tüm PDF'i çevirin.",
+    "invalid_pdf": "Lütfen geçerli bir PDF dosyası yükleyin.",
+    "upload_pdf": "PDF Yükle",
+    "upload_a_file": "Dosya yüklemek için tıkla",
+    "pdf_formats": "Sadece PDF dosyaları desteklenmektedir.",
+    "selected": "Seçildi",
+    "select_language": "Hedef Dili Seç",
+    "translate_pdf": "PDF Çevir",
+    "translating": "Çevriliyor...",
+    "translation_failed": "Çeviri başarısız oldu. Lütfen tekrar deneyin.",
+    "download_translated": "Çevrilen PDF'i İndir"
+  },
+  "pdfhandwriter": {
+    "handwriting_simulation": "El Yazısı Simülasyonu",
+    "desc": "Bir PDF yükleyin ve simüle edilmiş el yazısı versiyonuna dönüştürün.",
+    "invalid_pdf": "Lütfen geçerli bir PDF dosyası yükleyin.",
+    "failed": "El yazısı simülasyonu başarısız oldu. Lütfen tekrar deneyin.",
+    "upload_pdf": "PDF Yükle",
+    "upload_a_file": "Bir dosya yükle",
+    "pdf_formats": "Sadece PDF dosyaları desteklenmektedir.",
+    "selected": "Seçilen dosya",
+    "simulate_pdf": "PDF'i Simüle Et",
+    "simulating": "Simüle ediliyor...",
+    "download_handwritten": "El Yazısı PDF'i İndir"
+  },
+  "pdfexpiry": {
+    "upload_pdf_title": "Süresi Dolacak PDF Yükle ve Paylaş",
+    "desc": "Bir PDF yükleyin ve seçilen gün sayısından sonra otomatik olarak süresi dolacak bir paylaşılabilir bağlantı oluşturun.",
+    "invalid_pdf": "Lütfen geçerli bir PDF dosyası yükleyin.",
+    "failed": "Bir şeyler yanlış gitti. Lütfen tekrar deneyin.",
+    "upload_pdf": "PDF Dosyası Yükle",
+    "upload_a_file": "Dosya yüklemek için tıkla",
+    "pdf_formats": "Sadece PDF formatı desteklenmektedir",
+    "selected": "Seçilen Dosya",
+    "expiry_days": "Süre (gün olarak)",
+    "days_note": "Maksimum 30 gün",
+    "uploading": "Yükleniyor...",
+    "upload_pdf_btn": "Yükle ve Bağlantı Oluştur",
+    "link_expires": "Bağlantı şu tarihte sona eriyor",
+    "open_pdf": "PDF Aç"
+  },
+  "pdfEditor": {
+    "title": "PDF Düzenleyici",
+    "uploadPDF": "PDF Yükle",
+    "uploadImage": "Resim Yükle",
+    "clearSignature": "İmzayı Temizle",
+    "placeImage": "Resmi Yerleştir",
+    "placeSignature": "İmzayı Yerleştir",
+    "placeText": "Metni Yerleştir",
+    "submitPDF": "PDF'yi Gönder",
+    "sampleText": "Örnek Metin",
+    "uploadPDFFirst": "Önce PDF yükleyin!",
+    "failedToCreatePDF": "PDF oluşturulamadı"
+  }
+}

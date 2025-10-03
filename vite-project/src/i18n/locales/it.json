@@ -1,0 +1,1002 @@
+{
+  "PdfPivot": "PdfPivot",
+  "Dashboard": "Dashboard",
+  "Users": "Utenti",
+  "Plans Management": "Gestione piani",
+  "Payment History": "Cronologia pagamenti",
+  "Features": "Funzionalità",
+  "Merge PDF": "Unisci PDF",
+  "Split PDF": "Dividi PDF",
+  "Remove Pages": "Rimuovi pagine",
+  "Extract Pages": "Estrai pagine",
+  "Organize PDF": "Organizza PDF",
+  "Rotate PDF": "Ruota PDF",
+  "Compress PDF": "Comprimi PDF",
+  "JPG to PDF": "JPG a PDF",
+  "Word to PDF": "Word a PDF",
+  "PowerPoint to PDF": "PowerPoint a PDF",
+  "Excel to PDF": "Excel a PDF",
+  "HTML to PDF": "HTML a PDF",
+  "PDF to JPG": "PDF a JPG",
+  "PDF to Word": "PDF a Word",
+  "PDF to PowerPoint": "PDF a PowerPoint",
+  "PDF to Excel": "PDF a Excel",
+  "PDF to PDF/A": "PDF a PDF/A",
+  "Add Page Numbers": "Aggiungi numeri di pagina",
+  "Add Watermark": "Aggiungi filigrana",
+  "Unlock PDF": "Sblocca PDF",
+  "Protect PDF": "Proteggi PDF",
+  "Sign PDF": "Firma PDF",
+  "Compare PDF": "Confronta PDF",
+  "Plans": "Piani",
+  "Login": "Accedi",
+  "Sign Up": "Registrati",
+  "Logout": "Disconnettersi",
+  "add_page_numbers_title": "Aggiungi numeri di pagina al PDF",
+  "add_page_numbers_desc": "Carica un PDF e aggiungi numeri di pagina personalizzabili a ogni pagina.",
+  "upload_pdf": "Carica PDF",
+  "upload_pdf_file": "Carica file PDF",
+  "or_drag_and_drop": "o trascina e rilascia",
+  "pdf_up_to_20mb": "PDF fino a 20MB",
+  "selected_file": "Selezionato: {{name}} ({{size}} MB)",
+  "position": "Posizione",
+  "top_left": "In alto a sinistra",
+  "top_center": "In alto al centro",
+  "top_right": "In alto a destra",
+  "bottom_left": "In basso a sinistra",
+  "bottom_center": "In basso al centro",
+  "bottom_right": "In basso a destra",
+  "format": "Formato",
+  "format_placeholder": "Pagina {n} di {total}",
+  "format_help": "Usa {n} per il numero di pagina e {total} per il totale delle pagine",
+  "font_size": "Dimensione carattere",
+  "color": "Colore",
+  "margin": "Margine (punti)",
+  "add_page_numbers": "Aggiungi numeri di pagina",
+  "adding_page_numbers": "Aggiunta dei numeri di pagina...",
+  "please_select_pdf": "Seleziona prima un file PDF",
+  "please_login": "Accedi per utilizzare questa funzione",
+  "limit_reached": "Hai raggiunto il limite di elaborazione PDF. Aggiorna il tuo piano.",
+  "failed_add_page_number": "Impossibile aggiungere il numero di pagina al PDF. Riprova.",
+  "success_add_page_numbers": "Numeri di pagina aggiunti con successo!",
+  "admin_dashboard": "Dashboard amministratore",
+  "total_users": "Utenti totali",
+  "active_subscriptions": "Abbonamenti attivi",
+  "feature_usage": "Utilizzo funzionalità",
+  "compare_two_pdfs": "2つのPDFを比較",
+  "upload_exactly_two": "正確に2つのPDFファイルをアップロードしてください。",
+  "drag_drop_two_pdfs": "正確に2つのPDFファイルをドラッグ＆ドロップするか、クリックして選択してください。",
+  "comparing": "比較中...",
+  "compare": "比較",
+  "download_diff_pdf": "差分PDFをダウンロード",
+  "comparison_done": "比較完了！",
+  "pdf_limit_reached": "PDFの制限に達しました。プランをアップグレードしてください。",
+  "failed_compare_pdf": "PDFの比較に失敗しました。再試行してください。",
+  "compress_image": "Comprimi Immagine",
+  "compress_image_desc": "Ottimizza le tue immagini con impostazioni di compressione personalizzate mantenendo la qualità visiva",
+  "upload_image": "Carica Immagine",
+  "upload_a_file": "Carica file",
+  "image_formats": "PNG, JPG, WEBP fino a 10MB",
+  "selected": "Selezionato",
+  "compression_quality": "Qualità di Compressione",
+  "width_optional": "Larghezza (opzionale)",
+  "height_optional": "Altezza (opzionale)",
+  "original_width": "Larghezza originale",
+  "original_height": "Altezza originale",
+  "compressing": "Compressione in corso...",
+  "compress_image_btn": "Comprimi Immagine",
+  "download_compressed_image": "Scarica Immagine Compressa",
+  "image_limit_reached": "Hai raggiunto il limite di elaborazione immagini. Aggiorna il tuo piano.",
+  "failed_compress_image": "Impossibile comprimere l'immagine. Riprova.",
+  "compress_pdf": "Comprimi PDF",
+  "compress_pdf_desc": "Riduci la dimensione del file PDF per una condivisione facile.",
+  "compression_level": "Livello di compressione",
+  "low_better_quality": "Basso (Migliore qualità)",
+  "medium_balanced": "Medio (Bilanciato)",
+  "high_smaller_size": "Alto (Dimensione minore)",
+  "compression_hint": "Una compressione maggiore significa una dimensione del file più piccola ma una qualità inferiore",
+  "compress_pdf_btn": "Comprimi PDF",
+  "download_compressed_pdf": "Scarica PDF compresso",
+  "failed_compress_pdf": "Impossibile comprimere il PDF. Riprova.",
+  "pdf_compressed_success": "PDF compresso con successo!",
+  "pdf_processed": "PDF elaborati",
+  "check_transactions": "Controlla tutte le tue transazioni fino ad ora",
+  "current_plan": "Piano attuale",
+  "free": "Gratuito",
+  "convert_pdf": "Converti PDF",
+  "convert_pdf_desc": "Converti PDF tra diversi formati",
+  "compress_images": "Comprimi immagini",
+  "compress_images_desc": "Riduci la dimensione del file PDF mantenendo la qualità",
+  "upgrade_plan": "Aggiorna piano",
+  "upgrade_plan_desc": "Ottieni più funzionalità e limiti più alti",
+  "failed_fetch_stats": "Impossibile recuperare le statistiche utente",
+  "excel_to_pdf": {
+    "title": "Converti Excel in PDF",
+    "desc": "Carica un file Excel (.xls o .xlsx) e convertilo in PDF mantenendo il layout.",
+    "upload_label": "Carica file Excel",
+    "upload_btn": "Carica foglio di calcolo",
+    "file_hint": "XLS o XLSX fino a 20MB",
+    "selected_file": "File selezionato:",
+    "convert_btn": "Converti in PDF",
+    "converting": "Conversione in corso...",
+    "download_btn": "Scarica PDF",
+    "please_select_excel": "Seleziona un file Excel",
+    "success": "Excel convertito in PDF con successo!",
+    "failed": "Impossibile convertire Excel. Riprova."
+  },
+  "extract_pdf": {
+    "title": "Estrai pagine PDF",
+    "desc": "Carica un PDF ed estrai pagine specifiche in un nuovo PDF. Inserisci i numeri di pagina separati da virgole (es., 1,3,5).",
+    "please_select_pdf_only": "Seleziona solo un file PDF.",
+    "failed_load_pdf": "Impossibile caricare il PDF. Prova un altro file.",
+    "enter_page_numbers": "Inserisci almeno un numero di pagina da estrarre.",
+    "invalid_page_numbers": "Numeri di pagina non validi. Inserisci numeri tra 1 e {{totalPages}}",
+    "failed_extract": "Impossibile estrarre il PDF. Riprova.",
+    "pages": "pagine",
+    "pages_to_extract": "Pagine da estrarre (separate da virgole)",
+    "page_numbers_placeholder": "es., 1,3,5",
+    "enter_page_numbers_range": "Inserisci numeri di pagina tra 1 e {{totalPages}}",
+    "extracting": "Estrazione...",
+    "extract_btn": "Estrai pagine",
+    "download_btn": "Scarica pagine estratte"
+  },
+  "forgot_password": {
+    "title": "Reimposta password",
+    "step1": "Inserisci il tuo indirizzo email",
+    "step2": "Rispondi alle tue domande di sicurezza",
+    "step3": "Crea una nuova password",
+    "email_label": "Indirizzo email",
+    "email_placeholder": "Inserisci la tua email",
+    "checking": "Verifica...",
+    "continue": "Continua",
+    "fav_book": "Qual è il tuo libro preferito?",
+    "fav_meal": "Qual è il tuo pasto preferito?",
+    "answer_placeholder": "Inserisci la tua risposta",
+    "verify_answers": "Verifica risposte",
+    "new_password": "Nuova password",
+    "new_password_placeholder": "Inserisci nuova password",
+    "confirm_password": "Conferma password",
+    "confirm_password_placeholder": "Reinserisci la nuova password",
+    "resetting": "Reimpostazione...",
+    "reset_password": "Reimposta password",
+    "back_to_login": "Torna al login",
+    "email_not_found": "Email non trovata",
+    "incorrect_answers": "Risposte errate",
+    "passwords_do_not_match": "Le password non corrispondono",
+    "reset_success": "Password reimpostata con successo. Accedi con la nuova password.",
+    "failed_reset": "Impossibile reimpostare la password"
+  },
+  "home": {
+    "merge_pdf_desc": "Combina più PDF in uno.",
+    "split_pdf_desc": "Dividi un PDF in file separati.",
+    "remove_pages_desc": "Elimina pagine specifiche da un PDF.",
+    "extract_pages_desc": "Estrai pagine selezionate come nuovo PDF.",
+    "organize_pdf_desc": "Riordina o organizza pagine PDF.",
+    "rotate_pdf_desc": "Ruota pagine nel tuo PDF.",
+    "metadata_viewer": "Visualizzatore Metadati",
+    "metadata_viewer_desc": "Visualizza tutti i dettagli di qualsiasi PDF.",
+    "update_metadata": "Aggiorna Metadati",
+    "update_metadata_desc": "Modifica autore, titolo e altro del PDF",
+    "compare_pdf_desc": "Confronta due file PDF per trovare differenze.",
+    "pdf_to_pdfa_desc": "Converti PDF in PDF/A per l'archiviazione.",
+    "jpg_to_pdf_desc": "Converti immagini JPG in PDF.",
+    "word_to_pdf_desc": "Converti documenti Word in PDF.",
+    "powerpoint_to_pdf_desc": "Converti file PowerPoint in PDF.",
+    "excel_to_pdf_desc": "Converti fogli di calcolo Excel in PDF.",
+    "html_to_pdf_desc": "Converti file HTML in PDF.",
+    "pdf_to_jpg_desc": "Converti pagine PDF in immagini JPG.",
+    "pdf_to_word_desc": "Converti PDF in documenti Word modificabili.",
+    "pdf_to_powerpoint_desc": "Converti PDF in presentazioni PowerPoint.",
+    "pdf_to_excel_desc": "Converti PDF in fogli di calcolo Excel.",
+    "pdf_to_text": "Convertitore PDF a Testo",
+    "pdf_to_text_desc": "Estrai testo semplice facilmente",
+    "unlock_pdf_desc": "Rimuovi la protezione con password dai PDF.",
+    "protect_pdf": "Proteggi PDF",
+    "protect_pdf_desc": "Aggiungi protezione con password ai tuoi PDF.",
+    "add_page_numbers_desc": "Aggiungi numeri di pagina al tuo PDF.",
+    "add_watermark_desc": "Aggiungi testo o immagine filigrana al tuo PDF.",
+    "compress_pdf_desc": "Riduci la dimensione del file PDF per una condivisione facile.",
+    "pdf_voice_reader": "Lettore vocale PDF",
+    "pdf_voice_reader_desc": "Ascolta il contenuto del PDF con una voce naturale.",
+    "translate": "Traduci PDF",
+    "translate_desc": "Traduci il testo del PDF in più lingue.",
+    "handwriting": "Scrittura a mano in PDF",
+    "handwriting_desc": "Converti appunti o testi scritti a mano in formato PDF digitale.",
+    "pdf_expire": "PDF a scadenza",
+    "pdf_expire_desc": "Condividi PDF con una data di scadenza per un accesso sicuro.",
+    "e_sign": "Firma PDF",
+    "e_sign_desc": "Firma elettronicamente i tuoi documenti PDF"
+  },
+  "html_to_pdf": {
+    "desc": "Incolla il tuo codice HTML qui sotto e scaricalo come PDF.",
+    "html_content": "Contenuto HTML",
+    "html_placeholder": "<html><body><h1>Ciao PDF!</h1></body></html>",
+    "pdf_filename": "Nome file PDF",
+    "convert_btn": "Converti in PDF",
+    "converting": "Conversione...",
+    "enter_html_content": "Inserisci contenuto HTML.",
+    "failed_convert": "Impossibile convertire HTML in PDF",
+    "server_error": "Il server non ha restituito un PDF. Risposta: ",
+    "download_success": "PDF scaricato!"
+  },
+  "jpg_to_pdf": {
+    "title": "Converti immagini in PDF",
+    "desc": "Carica una o più immagini e convertili in un unico file PDF. Ogni immagine sarà una pagina separata.",
+    "upload_images": "Carica immagini",
+    "upload_btn": "Carica immagini",
+    "file_hint": "JPG, JPEG o PNG fino a 20MB ciascuna",
+    "selected_files": "{{count}} file selezionato/i",
+    "convert_btn": "Converti in PDF",
+    "converting": "Conversione...",
+    "download_btn": "Scarica PDF",
+    "select_images": "Seleziona almeno un'immagine",
+    "success": "Immagini convertite in PDF con successo!",
+    "failed": "Impossibile convertire in PDF. Riprova."
+  },
+  "login": {
+    "welcome": "Bentornato",
+    "subtitle": "Accedi al tuo account per continuare",
+    "email_label": "Indirizzo email",
+    "email_placeholder": "Inserisci la tua email",
+    "password_label": "Password",
+    "password_placeholder": "Inserisci la tua password",
+    "sign_in": "Accedi",
+    "no_account": "Non hai un account?",
+    "sign_up": "Registrati",
+    "forgot_password": "Hai dimenticato la password?",
+    "failed": "Accesso fallito. Controlla le tue credenziali."
+  },
+  "merge_pdf": {
+    "title": "Unisci file PDF",
+    "desc": "Combina più file PDF in un unico documento. Trascina per riordinare prima dell'unione.",
+    "upload_pdfs": "Carica PDFs",
+    "upload_btn": "Carica file PDF",
+    "remove": "Rimuovi",
+    "merge_btn": "Unisci PDFs",
+    "merging": "Unione...",
+    "download_btn": "Scarica PDF unito",
+    "select_pdf_only": "Seleziona solo file PDF.",
+    "failed_merge": "Impossibile unire i PDFs",
+    "failed": "Impossibile unire il PDF. Riprova."
+  },
+  "metadata_viewer": {
+    "title": "Visualizzatore Metadati PDF",
+    "upload_text": "Carica un file PDF o trascina qui",
+    "view_btn": "Visualizza Metadati",
+    "fetching": "Recuperando...",
+    "metadata_label": "Metadati",
+    "select_pdf": "Seleziona un file PDF.",
+    "success": "Metadati recuperati con successo!",
+    "failed": "Impossibile visualizzare i metadati del PDF. Riprova."
+  },
+  "organize_pdf": {
+    "title": "Organizza Pagine PDF",
+    "desc": "Carica un PDF, trascina per riordinare le pagine e scarica il PDF riordinato.",
+    "select_pdf_only": "Seleziona solo un file PDF.",
+    "failed_load_pdf": "Impossibile caricare PDF.",
+    "upload_pdf": "Carica un file PDF.",
+    "success": "PDF riordinato!",
+    "failed": "Impossibile organizzare PDF. Riprova.",
+    "pages": "pagine",
+    "drag_reorder": "Trascina per riordinare le pagine",
+    "reordering": "Riordinando...",
+    "reorder_btn": "Riordina e Scarica",
+    "download_btn": "Scarica PDF Riordinato"
+  },
+  "payment_failed": {
+    "alt_text": "Pagamento Fallito",
+    "title": "Pagamento Fallito",
+    "description": "Sfortunatamente, la tua transazione non è potuta essere completata.",
+    "try_again": "Riprova o contatta il supporto se il problema persiste.",
+    "go_to_dashboard": "Vai alla Dashboard"
+  },
+  "payment_success": {
+    "alt_text": "Pagamento Riuscito",
+    "title": "Pagamento Riuscito!",
+    "thank_you": "Grazie per il tuo acquisto.",
+    "redirecting": "Reindirizzamento alla dashboard in <1>{{seconds}}</1> secondi...",
+    "not_redirected": "Non reindirizzato?",
+    "go_to_dashboard": "Vai alla Dashboard"
+  },
+  "pdf_to_excel": {
+    "title": "Converti PDF in Excel",
+    "desc": "Carica un file PDF e convertilo in formato Excel (.xlsx) preservando la struttura dei dati.",
+    "upload_label": "Carica File PDF",
+    "selected_file": "File selezionato",
+    "select_pdf": "Seleziona un file PDF",
+    "success": "PDF convertito in Excel con successo!",
+    "failed": "Impossibile convertire in Excel. Riprova.",
+    "converting": "Conversione...",
+    "convert_btn": "Converti in Excel",
+    "download_btn": "Scarica Excel"
+  },
+  "pdf_to_jpg": {
+    "title": "Converti PDF in JPG",
+    "desc": "Carica un PDF e converti ogni pagina in un'immagine JPG. Scarica tutte le immagini come file ZIP.",
+    "upload_valid_pdf": "Carica un file PDF valido.",
+    "failed": "Impossibile convertire PDF in JPG. Riprova.",
+    "converting": "Conversione PDF in immagini...",
+    "page_alt": "Pagina {{page}}",
+    "download_btn": "Scarica JPG ZIP"
+  },
+  "pdf_to_pdfa": {
+    "title": "Converti PDF in PDF/A",
+    "desc": "Carica un PDF e convertilo in un file PDF/A di standard archivistico.",
+    "upload_text": "Carica file PDF o trascina qui",
+    "select_pdf": "Seleziona un file PDF",
+    "success": "PDF convertito in PDF/A con successo!",
+    "failed": "Impossibile convertire in PDF/A. Riprova.",
+    "converting": "Conversione...",
+    "convert_btn": "Converti in PDF/A",
+    "download_btn": "Scarica PDF/A"
+  },
+  "pdf_to_ppt": {
+    "title": "Converti PDF in PowerPoint",
+    "desc": "Carica un file PDF e convertilo in formato PowerPoint (.pptx) preservando il layout.",
+    "upload_label": "Carica File PDF",
+    "selected_file": "File selezionato",
+    "select_pdf": "Seleziona un file PDF",
+    "success": "PDF convertito in PPT con successo!",
+    "failed": "Impossibile convertire PDF in PPT. Riprova.",
+    "converting": "Conversione...",
+    "convert_btn": "Converti in PPT",
+    "download_btn": "Scarica PPT"
+  },
+  "pdf_to_text": {
+    "title": "Converti PDF in Testo",
+    "desc": "Carica un file PDF e convertilo in formato testo semplice (.txt).",
+    "upload_label": "Carica File PDF",
+    "selected_file": "File selezionato",
+    "convert_btn": "Converti in Testo",
+    "converting": "Conversione...",
+    "download_btn": "Scarica Testo",
+    "select_pdf": "Seleziona un file PDF",
+    "success": "PDF convertito in testo con successo!",
+    "failed": "Impossibile convertire PDF in testo. Riprova."
+  },
+  "pdf_to_word": {
+    "title": "Converti PDF in Word",
+    "desc": "Carica un file PDF e convertilo in formato Word modificabile (.docx).",
+    "upload_label": "Carica File PDF",
+    "selected_file": "File selezionato",
+    "convert_btn": "Converti in Word",
+    "converting": "Conversione...",
+    "download_btn": "Scarica Word",
+    "select_pdf": "Seleziona un file PDF",
+    "success": "PDF convertito in Word con successo!",
+    "failed": "Impossibile convertire PDF in Word. Riprova."
+  },
+  "plan_management": {
+    "title": "Gestione Piani",
+    "plan_name": "Nome Piano",
+    "monthly_fee": "Tariffa Mensile",
+    "annual_fee": "Tariffa Annuale",
+    "service_quotas": "Quote Servizi",
+    "set_all_quotas": "Imposta Tutte le Quote Servizi",
+    "monthly_quota_all": "Quota Mensile (Tutti i Servizi)",
+    "annual_quota_all": "Quota Annuale (Tutti i Servizi)",
+    "set_monthly_quota_placeholder": "Imposta quota mensile per tutti i servizi",
+    "set_annual_quota_placeholder": "Imposta quota annuale per tutti i servizi",
+    "individual_quotas": "Quote Individuali Servizi",
+    "monthly_quota": "Quota Mensile",
+    "annual_quota": "Quota Annuale",
+    "create_plan": "Crea Piano",
+    "update_plan": "Aggiorna Piano",
+    "cancel": "Annulla",
+    "existing_plans": "Piani Esistenti",
+    "monthly": "Mensile",
+    "annual": "Annuale",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "features": "Funzionalità",
+    "month": "mese",
+    "year": "anno",
+    "all_services_included": "Tutti i servizi inclusi",
+    "failed_fetch_plans": "Impossibile recuperare i piani",
+    "failed_save_plan": "Impossibile salvare il piano",
+    "failed_delete_plan": "Impossibile eliminare il piano",
+    "confirm_delete": "Sei sicuro di voler eliminare questo piano?"
+  },
+  "ppt_to_pdf": {
+    "title": "Converti PPT in PDF",
+    "desc": "Carica una presentazione PowerPoint (.ppt o .pptx) e convertila in formato PDF preservando il layout della presentazione.",
+    "upload_label": "Carica File PowerPoint",
+    "upload_btn": "Carica presentazione",
+    "file_hint": "PPT o PPTX fino a 20MB",
+    "selected_file": "File selezionato",
+    "convert_btn": "Converti in PDF",
+    "converting": "Conversione...",
+    "download_btn": "Scarica PDF",
+    "select_ppt": "Seleziona un file PowerPoint",
+    "success": "Presentazione convertita in PDF con successo!",
+    "failed": "Impossibile convertire PPT in PDF. Riprova."
+  },
+  "privacy_policy": {
+    "title": "Informativa sulla Privacy",
+    "introduction": {
+      "title": "1. Introduzione",
+      "content": "Benvenuto in PDFPivot ('noi', 'nostro' o 'ci'). Questa politica si applica a tutti i visitatori, utenti e clienti che accedono a"
+    },
+    "information_collection": {
+      "title": "2. Informazioni che Raccogliamo",
+      "content": "Raccogliamo dati personali come nome, email, dettagli di contatto, file caricati, indirizzi IP e informazioni su browser/dispositivo."
+    },
+    "how_we_use": {
+      "title": "3. Come Utilizziamo le Vostre Informazioni",
+      "item1": "Per fornire strumenti e servizi relativi ai PDF",
+      "item2": "Per migliorare le prestazioni e la funzionalità del sito",
+      "item3": "Per comunicare con gli utenti",
+      "item4": "Per rispettare i requisiti legali"
+    },
+    "legal_basis": {
+      "title": "4. Base Legale per il Trattamento dei Dati",
+      "content": "Trattiamo i dati sulla base del consenso, della necessità contrattuale e degli interessi commerciali legittimi come migliorare la fornitura di servizi e garantire la sicurezza."
+    },
+    "cookies": {
+      "title": "5. Cookie e Tracciamento",
+      "content": "PDFPivot utilizza i cookie per personalizzare i contenuti, analizzare l'utilizzo e migliorare la vostra esperienza. Potete disabilitare i cookie nelle impostazioni del browser."
+    },
+    "uploaded_files": {
+      "title": "6. Utilizzo dei File Caricati",
+      "content": "I file caricati per conversione o modifica vengono memorizzati temporaneamente e eliminati dopo l'elaborazione. Non accediamo, leggiamo o condividiamo i contenuti dei file con terze parti."
+    },
+    "third_party": {
+      "title": "7. Servizi di Terze Parti",
+      "content": "Potremmo utilizzare fornitori di terze parti affidabili per analisi, hosting o servizi di pagamento. Questi fornitori devono rispettare rigorosi standard di privacy dei dati."
+    },
+    "data_security": {
+      "title": "8. Sicurezza dei Dati",
+      "content": "Implementiamo crittografia forte e controlli di accesso per proteggere i vostri dati da accesso non autorizzato, perdita o uso improprio."
+    },
+    "data_retention": {
+      "title": "9. Conservazione dei Dati",
+      "content": "Conserviamo i vostri dati personali solo per il tempo necessario per i nostri servizi o per rispettare gli obblighi legali. I file caricati vengono eliminati automaticamente dopo l'elaborazione."
+    },
+    "international_transfers": {
+      "title": "10. Trasferimenti Internazionali",
+      "content": "I vostri dati potrebbero essere trasferiti su server al di fuori del vostro paese. Adottiamo misure per garantire che i vostri dati siano protetti secondo questa Informativa sulla Privacy."
+    },
+    "children_privacy": {
+      "title": "11. Privacy dei Minori",
+      "content": "PDFPivot non è destinato a minori di 13 anni. Non raccogliamo consapevolmente dati da minori. Se trovati, tali dati saranno eliminati immediatamente."
+    },
+    "your_rights": {
+      "title": "12. I Vostri Diritti",
+      "content": "A seconda della vostra regione, potreste avere diritti di accesso, correzione, cancellazione o limitazione dei vostri dati personali. Contattateci per esercitare questi diritti."
+    },
+    "third_party_links": {
+      "title": "13. Link di Terze Parti",
+      "content": "Il nostro sito potrebbe contenere link a siti web esterni. Non siamo responsabili delle loro pratiche di privacy. Si prega di rivedere le loro politiche separatamente."
+    },
+    "policy_updates": {
+      "title": "14. Aggiornamenti della Politica",
+      "content": "Questa Informativa sulla Privacy potrebbe essere aggiornata. Qualsiasi modifica sarà pubblicata su questa pagina con una nuova data di efficacia."
+    },
+    "contact": {
+      "title": "15. Contattateci",
+      "intro": "Se avete domande o preoccupazioni sui vostri dati:",
+      "email": "Email",
+      "website": "Sito web"
+    }
+  },
+  "protect_pdf": {
+    "title": "Aggiungi Protezione al PDF",
+    "desc": "Carica un file PDF e imposta una password per proteggerlo dall'accesso non autorizzato.",
+    "set_password": "Imposta Password",
+    "password_placeholder": "Inserisci password",
+    "selected_file": "File selezionato",
+    "protect_btn": "Proteggi PDF",
+    "protecting": "Proteggendo...",
+    "download_btn": "Scarica PDF Protetto",
+    "select_pdf_and_password": "Seleziona un PDF e inserisci una password.",
+    "success": "PDF protetto con successo!",
+    "failed": "Impossibile proteggere il PDF. Riprova."
+  },
+  "refund_policy": {
+    "title": "Politica di Rimborso e Cancellazione",
+    "no_refund": {
+      "title": "1. Politica di Nessun Rimborso",
+      "content": "Tutti i pagamenti effettuati su PDFPivot non sono rimborsabili. Una volta che un servizio è avviato o completato, non possiamo annullare o rimborsare la transazione."
+    },
+    "instant_service": {
+      "title": "2. Servizio Digitale Istantaneo",
+      "content": "I nostri servizi sono automatizzati e iniziano a elaborare immediatamente dopo il caricamento del file o il pagamento. Pertanto, una volta che il processo inizia, non sono possibili cancellazioni o rimborsi."
+    },
+    "order_cancellation": {
+      "title": "3. Cancellazione Ordini",
+      "content": "Non è possibile cancellare un ordine una volta che è stato inviato e l'elaborazione è iniziata. Si prega di verificare tutti i dettagli prima di effettuare un ordine."
+    },
+    "wrong_file": {
+      "title": "4. Caricamenti di File Errati",
+      "content": "PDFPivot non è responsabile se caricate il file sbagliato o errato. Si prega di controllare i vostri file prima di inviarli."
+    },
+    "duplicate_payments": {
+      "title": "5. Pagamenti Duplicati",
+      "content": "In caso di pagamenti duplicati accidentali, dovete notificarci entro 24 ore. Verificheremo ed emetteremo un rimborso solo per l'importo duplicato, se idoneo."
+    },
+    "failed_services": {
+      "title": "6. Servizi Falliti",
+      "content": "Se il servizio fallisce a causa di un problema tecnico dalla nostra parte (es. file non elaborato, errore del server), possiamo offrire una rielaborazione gratuita. Nessun rimborso sarà emesso."
+    },
+    "user_mistakes": {
+      "title": "7. Errori dell'Utente",
+      "content": "I rimborsi non saranno concessi per errori dell'utente, come impostazioni errate, formati di output o opzioni mancate durante l'elaborazione."
+    },
+    "subscription_services": {
+      "title": "8. Servizi di Abbonamento",
+      "content": "Se PDFPivot introduce piani di abbonamento, gli utenti devono cancellare i loro abbonamenti prima del prossimo ciclo di fatturazione. Nessun rimborso pro-rata o a medio termine sarà emesso."
+    },
+    "unauthorized_use": {
+      "title": "9. Uso Non Autorizzato",
+      "content": "Non siamo responsabili per qualsiasi uso non autorizzato o fraudolento del vostro account. Proteggete i vostri dettagli di accesso per evitare abusi."
+    },
+    "file_retention": {
+      "title": "10. Conservazione ed Eliminazione File",
+      "content": "Non memorizziamo i file permanentemente. Tutti i file vengono eliminati automaticamente dopo un breve periodo. La mancata consegna dovuta a file scaduti non è idonea per il rimborso."
+    },
+    "service_downtime": {
+      "title": "11. Tempo di Inattività del Servizio",
+      "content": "Sono previsti tempi di inattività occasionali per manutenzione o problemi tecnici. I rimborsi non saranno emessi per la temporanea indisponibilità dei servizi."
+    },
+    "promotional_purchases": {
+      "title": "12. Acquisti Promozionali e Scontati",
+      "content": "Nessun rimborso sarà emesso per servizi utilizzati durante vendite, sconti basati su coupon o offerte promozionali."
+    },
+    "chargebacks": {
+      "title": "13. Chargeback",
+      "content": "Gli utenti che avviano chargeback fraudolenti possono avere i loro account permanentemente banditi e l'accesso revocato."
+    },
+    "policy_agreement": {
+      "title": "14. Accordo sulla Politica",
+      "content": "Utilizzando i nostri servizi, accettate questa Politica di Rimborso e Cancellazione. È responsabilità dell'utente leggerla e comprenderla prima di effettuare un acquisto."
+    },
+    "contact": {
+      "title": "15. Contattateci",
+      "intro": "Se avete domande o circostanze eccezionali, contattateci:",
+      "email": "Email",
+      "website": "Sito web"
+    }
+  },
+  "rotate_pdf_page": {
+    "title": "Ruota Pagina PDF",
+    "desc": "Carica un PDF e visualizza l'anteprima della prima pagina. Usa i pulsanti per ruotare l'anteprima a sinistra o a destra. Scarica il PDF ruotato.",
+    "pdf_preview": "Anteprima PDF",
+    "rotation_degrees": "Rotazione: {{degrees}}°",
+    "current_rotation": "Rotazione attuale: {{degrees}}°",
+    "rotate_left": "Ruota a Sinistra",
+    "rotate_right": "Ruota a Destra",
+    "generating": "Generando...",
+    "download_rotated_pdf": "Scarica PDF Ruotato",
+    "click_to_download": "Clicca qui per scaricare",
+    "please_select_pdf": "Seleziona un file PDF.",
+    "failed_generate": "Impossibile generare PDF ruotato. {{message}}",
+    "please_try_again": "Riprova."
+  },
+  "rotate_page": {
+    "title": "Ruota Immagine",
+    "desc": "Ruota le tue immagini con precisione mantenendo la qualità",
+    "upload_image": "Carica Immagine",
+    "upload_a_file": "Carica un file",
+    "rotating": "Ruotando...",
+    "rotate_left": "Ruota a Sinistra",
+    "rotate_right": "Ruota a Destra",
+    "download_rotated_image": "Scarica Immagine Ruotata",
+    "please_upload_image": "Carica prima un'immagine.",
+    "failed_track_usage": "Impossibile tracciare l'utilizzo. Riprova più tardi.",
+    "failed_rotate": "Impossibile ruotare l'immagine. Riprova."
+  },
+  "remove_pdf": {
+    "title": "Rimuovi Pagine PDF",
+    "desc": "Carica un PDF e rimuovi pagine specifiche. Inserisci i numeri di pagina separati da virgole (es., 1,3,5).",
+    "pages_to_remove": "Pagine da Rimuovere (separate da virgole)",
+    "page_numbers_placeholder": "es., 1,3,5",
+    "remove_pages_btn": "Rimuovi Pagine",
+    "removing": "Rimuovendo...",
+    "download_btn": "Scarica PDF Modificato",
+    "please_select_pdf_only": "Seleziona solo un file PDF.",
+    "enter_page_numbers": "Inserisci almeno un numero di pagina da rimuovere.",
+    "invalid_page_numbers": "Numeri di pagina non validi. Inserisci numeri tra 1 e {{pageCount}}",
+    "failed_remove": "Impossibile rimuovere le pagine. Riprova."
+  },
+  "register": {
+    "title": "Crea Account",
+    "subtitle": "Unisciti a noi per iniziare il tuo viaggio",
+    "full_name": "Nome Completo",
+    "full_name_placeholder": "Inserisci il tuo nome completo",
+    "email_label": "Indirizzo email",
+    "email_placeholder": "Inserisci la tua email",
+    "password_label": "Password",
+    "password_placeholder": "Inserisci la tua password",
+    "confirm_password_label": "Conferma Password",
+    "confirm_password_placeholder": "Conferma la tua password",
+    "country_label": "Paese",
+    "select_country": "Seleziona il tuo paese",
+    "fav_book_question": "Qual è il tuo libro preferito?",
+    "fav_book_placeholder": "Inserisci il tuo libro preferito",
+    "fav_meal_question": "Qual è il tuo pasto preferito?",
+    "fav_meal_placeholder": "Inserisci il tuo pasto preferito",
+    "create_account_btn": "Crea Account",
+    "already_have_account": "Hai già un account?",
+    "sign_in_link": "Accedi",
+    "passwords_do_not_match": "Le password non corrispondono"
+  },
+  "terms_conditions": {
+    "title": "Termini di Servizio",
+    "acceptance": {
+      "title": "1. Accettazione dei Termini",
+      "content": "Utilizzando PDFPivot, accetti di seguire questi Termini e le leggi applicabili. Questi termini formano un accordo vincolante tra te e PDFPivot."
+    },
+    "eligibility": {
+      "title": "2. Idoneità",
+      "content": "Devi avere almeno 13 anni per utilizzare i nostri servizi. Accedendo al nostro sito web, confermi di soddisfare questo requisito di età."
+    },
+    "services": {
+      "title": "3. Servizi Forniti",
+      "content": "PDFPivot offre strumenti relativi ai PDF inclusi conversione, unione, divisione, compressione e modifica di file PDF. Possiamo aggiungere, modificare o rimuovere funzionalità senza preavviso."
+    },
+    "account": {
+      "title": "4. Account e Accesso",
+      "content": "Alcune funzionalità potrebbero richiedere la registrazione. Sei responsabile del mantenimento della riservatezza delle informazioni del tuo account e sei responsabile di tutte le attività sotto il tuo account."
+    },
+    "acceptable_use": {
+      "title": "5. Uso Accettabile",
+      "intro": "Accetti di non abusare del sito web. Non devi:",
+      "item1": "Caricare contenuti dannosi o malevoli",
+      "item2": "Violare i diritti di proprietà intellettuale",
+      "item3": "Tentare accesso non autorizzato",
+      "item4": "Violare leggi applicabili"
+    },
+    "intellectual_property": {
+      "title": "6. Diritti di Proprietà Intellettuale",
+      "content": "Tutti i contenuti e gli strumenti su PDFPivot sono proprietà intellettuale del sito web o dei suoi licenziatari. Non puoi copiarli, modificarli o distribuirli senza permesso scritto."
+    },
+    "user_content": {
+      "title": "7. Contenuto Utente e Caricamento File",
+      "content": "Conservi la proprietà dei file che carichi. Utilizzando i nostri strumenti, ci concedi il permesso di elaborare e memorizzare temporaneamente i file per fornire il servizio."
+    },
+    "payment": {
+      "title": "8. Pagamento e Prezzi",
+      "content": "Alcuni servizi potrebbero richiedere il pagamento. Tutte le tariffe sono chiaramente visualizzate. PDFPivot si riserva il diritto di modificare i prezzi in qualsiasi momento."
+    },
+    "refund": {
+      "title": "9. Rimborso e Cancellazione",
+      "content": "Tutti gli acquisti non sono rimborsabili. A causa della natura digitale e istantanea dei nostri servizi, non offriamo cancellazioni o rimborsi una volta che il processo è iniziato."
+    },
+    "liability": {
+      "title": "10. Limitazione di Responsabilità",
+      "content": "PDFPivot non è responsabile per danni diretti, indiretti o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare il sito web o i servizi."
+    },
+    "warranties": {
+      "title": "11. Esclusione di Garanzie",
+      "content": "I servizi sono forniti \"così come sono\". Non garantiamo servizio ininterrotto, accuratezza dell'output o compatibilità con tipi di file specifici."
+    },
+    "third_party": {
+      "title": "12. Link di Terze Parti",
+      "content": "Il sito web può contenere link a servizi di terze parti. Non siamo responsabili per il contenuto, i termini o le pratiche sulla privacy di siti web esterni."
+    },
+    "termination": {
+      "title": "13. Terminazione dell'Accesso",
+      "content": "Possiamo sospendere o terminare il tuo accesso a PDFPivot in qualsiasi momento se violi questi termini o abusi della piattaforma."
+    },
+    "modifications": {
+      "title": "14. Modifiche ai Termini",
+      "content": "PDFPivot può aggiornare questi Termini in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina e l'uso continuato dopo le modifiche significa che accetti i nuovi termini."
+    },
+    "contact": {
+      "title": "15. Contattaci",
+      "intro": "Se hai domande su questi Termini, contattaci:",
+      "email": "Email",
+      "website": "Sito web"
+    }
+  },
+  "subscription_plans": {
+    "expired_on": "scaduto il",
+    "will_expire_on": "scadrà il",
+    "your_plan_status": "Il tuo piano {{planName}} {{expiryText}} {{expiryDate}}",
+    "session_expired": "La tua sessione è scaduta. Effettua nuovamente l'accesso.",
+    "service_unavailable": "Il servizio di abbonamento non è attualmente disponibile. Riprova più tardi.",
+    "failed_load_plans": "Impossibile caricare i piani di abbonamento. Riprova più tardi.",
+    "go_to_login": "Vai al Login",
+    "retry": "Riprova",
+    "current_plan": "Piano Attuale",
+    "free": "Gratuito",
+    "price_per_month": "${{price}}/mese",
+    "unlimited": "Illimitato",
+    "quota_per_month": "{{quota}}/mese",
+    "start_free": "Inizia Gratuito",
+    "select_plan": "Seleziona Piano"
+  },
+  "subscribe_page": {
+    "subscribe_to": "Abbonati a",
+    "choose_billing_desc": "Scegli il tuo ciclo di fatturazione e continua con il pagamento sicuro.",
+    "billing_type": "Tipo di Fatturazione",
+    "monthly_option": "Mensile - ${{price}}",
+    "annual_option": "Annuale - ${{price}}",
+    "pay_now": "Paga ${{price}} Ora",
+    "redirecting": "Reindirizzamento...",
+    "loading_plan": "Caricamento dettagli piano...",
+    "plan_not_loaded": "Piano non caricato",
+    "payment_failed": "Pagamento fallito"
+  },
+  "split_pdf_page": {
+    "title": "Dividi PDF",
+    "desc": "Carica un PDF e dividilo in pagine singole. Scarica tutte le pagine come file ZIP.",
+    "split_pdf_btn": "Dividi PDF",
+    "splitting": "Dividendo...",
+    "download_split_pages": "Scarica Pagine Divise (ZIP)",
+    "please_select_pdf_only": "Seleziona solo un file PDF.",
+    "failed_split": "Impossibile dividere il PDF. Riprova."
+  },
+  "update_metadata_page": {
+    "title": "Aggiorna Metadati PDF",
+    "desc": "Carica un PDF e aggiorna i suoi metadati come titolo, autore e altro.",
+    "selected_file": "File selezionato",
+    "title_placeholder": "Titolo",
+    "author_placeholder": "Autore",
+    "subject_placeholder": "Oggetto",
+    "keywords_placeholder": "Parole chiave (separate da virgole)",
+    "update_metadata_btn": "Aggiorna Metadati",
+    "updating": "Aggiornando...",
+    "download_updated_pdf": "Scarica PDF Aggiornato",
+    "updated_successfully": "Metadati aggiornati con successo!",
+    "please_select_pdf": "Seleziona un file PDF",
+    "failed_update": "Impossibile aggiornare i metadati del PDF. Riprova."
+  },
+  "unlock_pdf_page": {
+    "title": "Sblocca PDF",
+    "desc": "Rimuovi la protezione con password dai tuoi file PDF. Carica il tuo PDF protetto da password e inserisci la password per sbloccarlo.",
+    "upload_label": "Carica PDF Protetto da Password",
+    "pdf_password": "Password PDF",
+    "enter_password_placeholder": "Inserisci la password del PDF",
+    "unlock_pdf_btn": "Sblocca PDF",
+    "unlocking": "Sbloccando...",
+    "unlocked_successfully": "PDF sbloccato con successo!",
+    "please_upload_pdf": "Carica un file PDF",
+    "please_enter_password": "Inserisci la password del PDF",
+    "failed_unlock": "Impossibile sbloccare il PDF. Riprova."
+  },
+  "user_management": {
+    "title": "Gestione Utenti",
+    "search_placeholder": "Cerca utenti...",
+    "failed_fetch_users": "Impossibile recuperare gli utenti",
+    "table": {
+      "name": "Nome",
+      "email": "Email",
+      "role": "Ruolo",
+      "subscription": "Abbonamento",
+      "country": "Paese"
+    },
+    "roles": {
+      "admin": "Amministratore",
+      "user": "Utente"
+    },
+    "plans": {
+      "basic": "Base"
+    },
+    "not_available": "N/D"
+  },
+  "payment_history": {
+    "title": "Cronologia Pagamenti",
+    "auth_error": "Errore di autenticazione. Effettua nuovamente l'accesso.",
+    "plan": "Piano",
+    "not_available": "N/D",
+    "hide_details": "Nascondi Dettagli",
+    "more_details": "Altri Dettagli",
+    "card": "Carta",
+    "receipt": "Ricevuta",
+    "view_receipt": "Visualizza Ricevuta",
+    "billing_name": "Nome Fatturazione",
+    "email": "Email",
+    "paid_on": "Pagato il",
+    "payment_history_desc": "Controlla tutte le tue transazioni fino ad ora"
+  },
+  "watermark_pdf": {
+    "title": "Aggiungi Filigrana al PDF",
+    "desc": "Carica un PDF e aggiungi un testo di filigrana personalizzato a ogni pagina.",
+    "upload_text": "Carica file PDF o trascina e rilascia qui",
+    "watermark_text": "Testo Filigrana",
+    "watermark_placeholder": "es., Riservato",
+    "add_watermark": "Aggiungi Filigrana",
+    "adding": "Aggiungendo...",
+    "download_watermarked": "Scarica PDF con Filigrana",
+    "please_select_pdf": "Seleziona un file PDF",
+    "please_enter_watermark": "Inserisci un testo di filigrana",
+    "success": "Filigrana aggiunta con successo!",
+    "failed": "Impossibile aggiungere filigrana al PDF. Riprova."
+  },
+  "word_to_pdf": {
+    "title": "Converti Word in PDF",
+    "desc": "Carica un documento Word (.doc o .docx) e convertilo in formato PDF preservando la formattazione.",
+    "upload_label": "Carica Documento Word",
+    "upload_btn": "Carica documento",
+    "file_hint": "DOC o DOCX fino a 20MB",
+    "selected_file": "File selezionato",
+    "convert_btn": "Converti in PDF",
+    "converting": "Convertendo...",
+    "download_btn": "Scarica PDF",
+    "please_select_word": "Seleziona un documento Word",
+    "success": "Documento convertito in PDF con successo!",
+    "failed": "Impossibile convertire Word in PDF. Riprova."
+  },
+  "display_plans": {
+    "title": "Piani di Abbonamento",
+    "desc": "Scegli un piano adatto alle tue esigenze. Puoi eseguire l'upgrade in qualsiasi momento."
+  },
+  "faq": {
+    "title": "PdfPivot FAQ",
+    "convert_file": {
+      "question": "Come converto un file in PDF?",
+      "answer": "Seleziona uno strumento di conversione come Word in PDF, carica il tuo file e clicca Converti. Il tuo PDF sarà pronto per il download istantaneamente."
+    },
+    "limits": {
+      "question": "C'è un limite al numero di attività PDF che posso fare?",
+      "answer": "Sì, ogni piano di abbonamento viene con quote mensili. Gli utenti gratuiti ottengono conversioni limitate. I piani a pagamento offrono più o uso illimitato."
+    },
+    "security": {
+      "question": "I miei dati PDF sono sicuri?",
+      "answer": "Assolutamente. Tutti i file vengono elaborati con crittografia sicura e eliminati automaticamente dopo l'elaborazione. Non memorizziamo mai i tuoi dati."
+    },
+    "mobile": {
+      "question": "Posso usare PdfPivot sul mio telefono?",
+      "answer": "Sì! PdfPivot è completamente reattivo e funziona su tutti i browser mobili moderni."
+    },
+    "formats": {
+      "question": "Quali formati di file posso convertire da e verso PDF?",
+      "answer": "Puoi convertire Word, Excel, PowerPoint, JPG e HTML in PDF — e viceversa. Supportiamo anche PDF in PDF/A e OCR per file scansionati."
+    },
+    "ocr": {
+      "question": "Come funziona la funzione OCR?",
+      "answer": "OCR estrae automaticamente il testo dai PDF scansionati, permettendoti di cercare e modificare il contenuto. È disponibile per tutti gli strumenti PDF."
+    }
+  },
+  "hero": {
+    "title_line1": "Veloci, Sicuri &",
+    "title_line2": "Potenti",
+    "title_line3": "Strumenti PDF Online",
+    "description": "Modifica, converti, comprimi e proteggi i tuoi PDF con facilità — tutto nel tuo browser. Fidato da professionisti in tutto il mondo.",
+    "live_chat": "Chat Live",
+    "image_alt": "Illustrazione di modifica delle immagini"
+  },
+  "how_it_works": {
+    "title": "PdfPivot, Il tuo kit di strumenti PDF tutto in uno.",
+    "subtitle": "Come convertire PDF in Word",
+    "description": "Segui questi semplici passaggi per convertire un PDF in Word usando Xodo:",
+    "step1": "Carica il tuo PDF nel convertitore gratuito online da PDF a Word.",
+    "step2": "Clicca \"Converti\" – OCR viene applicato automaticamente ai PDF scansionati.",
+    "step3": "Scarica il tuo file Word (.docx) modificabile.",
+    "image_alt": "Come convertire"
+  },
+  "payment_form": {
+    "cancel": "Annulla",
+    "pay_now": "Paga Ora",
+    "processing": "Elaborazione...",
+    "default_error": "Si è verificato un errore"
+  },
+  "trusted_by": {
+    "title": "Il kit di strumenti PDF fidato da migliaia di utenti",
+    "description": "PDFPivot è la tua piattaforma sicura tutto in uno per convertire, modificare e organizzare file PDF. Prestazioni veloci, elaborazione privata — nessun dato memorizzato.",
+    "iso_27001": "ISO 27001",
+    "secure_processing": "Elaborazione Sicura",
+    "trusted_by_enterprises": "Fidato dalle Aziende"
+  },
+  "why_us": {
+    "title": "PDFPivot, Il Tuo Kit di Strumenti PDF Completo in un Unico Posto",
+    "feature1": {
+      "title": "Kit di Strumenti PDF Tutto in Uno",
+      "description": "Unisci, dividi, converti, comprimi, proteggi e modifica i tuoi PDF — tutto da una singola piattaforma facile da usare."
+    },
+    "feature2": {
+      "title": "Conversioni Veloci e Affidabili",
+      "description": "Converti file da e verso formati PDF in secondi. OCR viene applicato automaticamente ai documenti scansionati."
+    },
+    "feature3": {
+      "title": "Accesso Intelligente Basato su Quote",
+      "description": "Goditi piani di abbonamento flessibili con quote mensili o uso illimitato — costruito per individui e team."
+    }
+  },
+  "footer": {
+    "pdfpivot": "PdfPivot",
+    "home": "Home",
+    "pricing": "Prezzi",
+    "security": "Sicurezza",
+    "tools": "Strumenti",
+    "faq": "FAQ",
+    "product": "Prodotto",
+    "desktop": "PdfPivot Desktop",
+    "mobile": "PdfPivot Mobile",
+    "developers": "Sviluppatori",
+    "features": "Funzionalità",
+    "solutions": "Soluzioni",
+    "business": "Business",
+    "education": "Istruzione",
+    "company": "Azienda",
+    "privacy_policy": "Privacy Policy",
+    "terms_conditions": "Termini e Condizioni",
+    "refund_policy": "Politica di Rimborso",
+    "copyright": "© 2025 PdfPivot. Tutti i diritti riservati.",
+    "trusted_by": "Il toolkit PDF di fiducia di migliaia di utenti",
+    "login": "Accedi",
+    "register": "Registrati",
+    "plans": "Piani",
+    "services": "Servizi",
+    "merge_pdf": "Unisci PDF",
+    "split_pdf": "Dividi PDF",
+    "remove_pages": "Rimuovi pagine",
+    "extract_pages": "Estrai pagine",
+    "security_tools": "Strumenti di sicurezza",
+    "update_metadata": "Aggiorna metadati",
+    "view_metadata": "Visualizza metadati",
+    "add_watermark": "Aggiungi filigrana",
+    "protect_pdf": "Proteggi PDF"
+  },
+  "choose_language": "Scegli la tua lingua preferita",
+  "pdfvoicereader": {
+    "pdf_voice_reader": "Lettore vocale PDF",
+    "pdf_voice_reader_desc": "Converti il contenuto del PDF in una narrazione audio.",
+    "upload_pdf": "Carica PDF",
+    "upload_a_file": "Carica un file",
+    "pdf_formats": "Solo formato PDF",
+    "selected": "Selezionato",
+    "convert_to_audio": "Converti in audio",
+    "converting": "Conversione in corso...",
+    "download_audio": "Scarica MP3",
+    "invalid_pdf": "Seleziona un file PDF valido.",
+    "conversion_failed": "Impossibile convertire il PDF in audio. Riprova."
+  },
+  "pdftranslator": {
+    "smart_pdf_translator": "Traduttore PDF intelligente  ",
+    "smart_pdf_translator_desc": "Traduce l'intero PDF mantenendo la formattazione originale.",
+    "invalid_pdf": "Carica un file PDF valido.",
+    "upload_pdf": "Carica PDF",
+    "upload_a_file": "Clicca per caricare un file",
+    "pdf_formats": "Sono supportati solo i file PDF.",
+    "selected": "Selezionato",
+    "select_language": "Seleziona lingua di destinazione",
+    "translate_pdf": "Traduci PDF",
+    "translating": "Traduzione in corso...",
+    "translation_failed": "Traduzione fallita. Riprova.",
+    "download_translated": "Scarica PDF tradotto"
+  },
+  "pdfhandwriter": {
+    "handwriting_simulation": "Simulazione di scrittura a mano",
+    "desc": "Carica un PDF e convertilo in una versione simulata scritta a mano.",
+    "invalid_pdf": "Carica un file PDF valido.",
+    "failed": "Simulazione della scrittura a mano fallita. Riprova.",
+    "upload_pdf": "Carica PDF",
+    "upload_a_file": "Carica un file",
+    "pdf_formats": "Sono supportati solo i file PDF.",
+    "selected": "File selezionato",
+    "simulate_pdf": "Simula PDF",
+    "simulating": "Simulazione in corso...",
+    "download_handwritten": "Scarica PDF scritto a mano"
+  },
+  "pdfexpiry": {
+    "upload_pdf_title": "Carica e condividi PDF con scadenza",
+    "desc": "Carica un PDF e genera un link condivisibile che scade automaticamente dopo il numero di giorni scelto.",
+    "invalid_pdf": "Carica un file PDF valido.",
+    "failed": "Qualcosa è andato storto. Riprova.",
+    "upload_pdf": "Carica file PDF",
+    "upload_a_file": "Clicca per caricare un file",
+    "pdf_formats": "È supportato solo il formato PDF",
+    "selected": "File selezionato",
+    "expiry_days": "Scadenza (in giorni)",
+    "days_note": "Massimo 30 giorni",
+    "uploading": "Caricamento in corso...",
+    "upload_pdf_btn": "Carica e genera link",
+    "link_expires": "Il link scade il",
+    "open_pdf": "Apri PDF"
+  },
+  "pdfEditor": {
+    "title": "Editor PDF",
+    "uploadPDF": "Carica PDF",
+    "uploadImage": "Carica immagine",
+    "clearSignature": "Cancella firma",
+    "placeImage": "Posiziona immagine",
+    "placeSignature": "Posiziona firma",
+    "placeText": "Posiziona testo",
+    "submitPDF": "Invia PDF",
+    "sampleText": "Testo di esempio",
+    "uploadPDFFirst": "Carica prima un PDF!",
+    "failedToCreatePDF": "Impossibile creare il PDF"
+  }
+}
