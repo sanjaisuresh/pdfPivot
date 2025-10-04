@@ -84,6 +84,7 @@ const shareEmailAll = async (params) => {
           email_id: user.user_email,
           user_role: user.user_role,
           user_validation: user.user_validation,
+          user_password: user.user_password,
         });
 
         shared_ids.push({ email: user.user_email, shared_id: shareDoc._id });
@@ -141,7 +142,65 @@ const sharePdf = async (params) => {
   }
 };
 
+const sharedDocList = async (params) => {
+  try {
+    let { user_id } = params;
+
+    let shared_docs = await EsignDoc.find(
+      {
+        user_id: user_id,
+      },
+      {
+        _id: 1,
+        user_id: 1,
+        file_name: 1,
+        file_path: 1,
+        createdAt: 1,
+      }
+    );
+
+    let result = {
+      status: "success",
+      message: "Shared PDF docs list.",
+      data: shared_docs,
+    };
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const sharedDocInfoList = async (params) => {
+  try {
+    let { user_id, file_id } = params;
+
+    let shared_docs_info = await EsignMembersDoc.find(
+      {
+        file_id: file_id,
+      },
+      {
+        _id: 1,
+        file_name: 1,
+        signed_file_path: 1,
+        status: 1,
+        createdAt: 1,
+      }
+    );
+
+    let result = {
+      status: "success",
+      message: "Shared PDF docs info list.",
+      data: shared_docs_info,
+    };
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   uploadPdf,
   sharePdf,
+  sharedDocList,
+  sharedDocInfoList,
 };

@@ -4,14 +4,20 @@ const { auth } = require("../middleware/auth");
 const {
   uploadPdfController,
   sharePdfController,
+  getSharedFileController,
+  getSharedFileInfoController,
 } = require("../controller/esignController");
 const uploadPdf = require("../middleware/csvUpload");
 
 // Middleware
-// router.use(auth);
+router.use(auth);
 
 router.post("/upload", uploadPdf.single("pdf-file"), uploadPdfController);
 
 router.post("/share", sharePdfController);
+
+router.get("/owner-docs/list", getSharedFileController);
+
+router.get("/owner-docs/file-info", getSharedFileInfoController);
 
 module.exports = router;
