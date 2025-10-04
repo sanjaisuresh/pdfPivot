@@ -1,10 +1,10 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const connectDB = require("./config/db");
-const fs = require('fs');
-const puppeteer = require('puppeteer');
+const fs = require("fs");
+const puppeteer = require("puppeteer");
 const cron = require("node-cron");
 const ShareLink = require("./models/Sharelinks");
 // Connect to database
@@ -18,13 +18,17 @@ const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
-const pdfRoutes = require('./routes/pdf');
-app.use('/api/subscriptions/webhook', express.raw({ type: 'application/json' }));
+const pdfRoutes = require("./routes/pdf");
+const esignRoutes = require("./routes/esignRoutes");
+app.use(
+  "/api/subscriptions/webhook",
+  express.raw({ type: "application/json" })
+);
 
 app.use(cors());
 app.use(express.json({ limit: process.env.MAX_FILE_SIZE }));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.text({ type: 'text/html' }));
+app.use(express.text({ type: "text/html" }));
 
 // Static folder for serving HTML image screenshots
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -38,7 +42,9 @@ app.use("/api/subscriptions", subscriptionRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/payments", paymentRoutes);
-app.use('/api', pdfRoutes);
+app.use("/api", pdfRoutes);
+app.use("/api/esign", esignRoutes);
+
 cron.schedule("0 2 * * *", async () => {
   console.log("Running cleanup job...");
   const now = new Date();
