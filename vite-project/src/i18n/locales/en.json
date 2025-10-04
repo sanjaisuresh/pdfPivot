@@ -210,9 +210,8 @@
     "pdf_to_text": "PDF to Text",
     "e_sign": "eSign PDF",
     "e_sign_desc": "Sign your PDF documents electronically",
-    "sign_pdf":"Sign PDF",
-    "sign_pdf_desc" :"ign your PDF documents"
-
+    "sign_pdf": "Sign PDF",
+    "sign_pdf_desc": "ign your PDF documents"
   },
   "user_management": {
     "title": "User Management",
@@ -973,8 +972,8 @@
     "uploadPDFFirst": "Upload PDF first!",
     "failedToCreatePDF": "Failed to create PDF"
   },
- 
-"signPDF": {
+
+  "signPDF": {
     "signPdf_error": "Select PDF only",
     "title": "Sign PDF Files",
     "desc": "Sign PDF files. Drag to upload before signing",
@@ -1055,16 +1054,21 @@
 
     "password_protect": "Password Protect",
     "allowedSignFormat": "Allowed Sign Format",
-"global_settings": "Global Settings",
-"global_setting_desc": "Manage default signing preferences for all recipients.",
-"order_receivers_label": "Set the order of receivers",
-"order_receivers_desc": "Select this option to set a signing order. A signer won't receive a request until the previous person has completed their document."
 
-    
+    "global_settings": "Global Settings",
+    "global_setting_desc": "Manage default signing preferences for all recipients.",
+
+    "order_receivers_label": "Set the order of receivers",
+    "order_receivers_desc": "Select this option to set a signing order. A signer won't receive a request until the previous person has completed their document.",
+    "expire_date_label": "Change expiration date",
+    "expire_date_desc": "The document will expire in {{days}} days.",
+    "expires_in": "Expires on: (in {{days}} days)",
+    "expires_in_days": "Expires in",
+    "email_notifications_label": "Enable email notifications",
+    "email_notifications_desc": "You will receive an email notification when a receiver has completed their request.",
+    "reminder_label": "Enable reminders",
+    "reminder_desc": "Send a reminder to the participants every {{days}} days.",
+    "receipt_error": "Fill the required Fields",
+    "share_failed": "Something went wrong"
   }
-
-
-
-
-
 }

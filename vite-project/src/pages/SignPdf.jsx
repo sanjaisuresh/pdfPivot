@@ -5,16 +5,27 @@ import { Helmet } from "react-helmet";
 import { Text, Edit2, ImageIcon } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { Rnd } from "react-rnd";
-import { GripVertical, X, Settings, Lock, Eye, EyeOff } from "lucide-react";
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import toast, { Toaster } from "react-hot-toast";
 
+import {
+  GripVertical,
+  X,
+  Settings,
+  Lock,
+  Eye,
+  EyeOff,
+  ListOrdered,
+  CalendarClock,
+  Bell,
+  Mail,
+} from "lucide-react";
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const COLORS = [
   { key: "black", code: "#000000" },
   { key: "red", code: "#FF0000" },
   { key: "blue", code: "#0057FF" },
   { key: "green", code: "#008000" },
 ];
-
 const FONT_STYLES = [
   { key: "cursive", label: "Cursive", fontFamily: "'Great Vibes', cursive" },
   { key: "serif", label: "Elegant Serif", fontFamily: "'Merriweather', serif" },
@@ -31,7 +42,6 @@ const FONT_STYLES = [
   },
   { key: "signature2", label: "Classic", fontFamily: "'Pacifico', cursive" },
 ];
-
 const SignatureModal = ({
   isOpen,
   onClose,
@@ -50,19 +60,15 @@ const SignatureModal = ({
     drawnSignature: null,
     uploadedSign: null,
   });
-
   const canvasRef = useRef(null);
   const [drawing, setDrawing] = useState(false);
-
   const updateFormData = (key, value) => {
     setFormData((prev) => ({ ...prev, [key]: value }));
   };
-
   const handleLogoUpload = (e) => {
     const file = e.target.files[0];
     if (file) updateFormData("logo", file);
   };
-
   // Canvas drawing handlers
   const startDrawing = (e) => {
     const canvas = canvasRef.current;
@@ -71,7 +77,6 @@ const SignatureModal = ({
     ctx.moveTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
     setDrawing(true);
   };
-
   const draw = (e) => {
     if (!drawing) return;
     const canvas = canvasRef.current;
@@ -81,7 +86,6 @@ const SignatureModal = ({
     ctx.lineWidth = 2;
     ctx.stroke();
   };
-
   const endDrawing = () => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -90,7 +94,6 @@ const SignatureModal = ({
     }
     setDrawing(false);
   };
-
   const buildFormData = () => {
     const fd = new FormData();
     fd.append("fullName", formData.fullName);
@@ -102,14 +105,10 @@ const SignatureModal = ({
       fd.append("drawnSignature", formData.drawnSignature);
     return fd;
   };
-
   const handleSubmit = () => {
     const signatures = [];
-
     if (submitAllTabs) {
       const fd = buildFormData();
-      console.log("Submit all tabs data:", formData);
-
       // Collect all signature types with complete font information
       if (formData.fullName) {
         const selectedStyle = FONT_STYLES.find(
@@ -225,17 +224,13 @@ const SignatureModal = ({
           break;
       }
     }
-
     // Pass signatures to parent
     if (onSignaturesApplied && signatures.length > 0) {
       onSignaturesApplied(signatures);
     }
-
     onClose();
   };
-
   if (!isOpen) return null;
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="bg-white rounded-xl shadow-lg w-full max-w-3xl p-6 flex">
@@ -266,7 +261,6 @@ const SignatureModal = ({
             <ImageIcon className="w-5 h-5" />
           </button>
         </div>
-
         {/* Tab Content */}
         <div className="flex-1">
           {activeTab === "text" && (
@@ -341,7 +335,6 @@ const SignatureModal = ({
               </div>
             </div>
           )}
-
           {activeTab === "draw" && (
             <div className="mt-2 grid grid-rows-2 gap-4">
               {/* Top Half: Drawing */}
@@ -364,7 +357,6 @@ const SignatureModal = ({
                   style={{ cursor: "crosshair" }}
                 />
               </div>
-
               {/* Bottom Half: Upload Signature Image */}
               <div
                 className="border rounded-md p-2 flex flex-col items-center"
@@ -415,7 +407,6 @@ const SignatureModal = ({
               </div>
             </div>
           )}
-
           {activeTab === "logo" && (
             <div className="mt-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -467,7 +458,6 @@ const SignatureModal = ({
               </div>
             </div>
           )}
-
           {/* Footer */}
           <div className="mt-4 flex justify-end">
             <button
@@ -482,22 +472,18 @@ const SignatureModal = ({
     </div>
   );
 };
-
 // Editable Placement Component
 const EditablePlacement = ({ placement, onTextChange }) => {
   const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(placement.text);
-
   const handleTextChange = (e) => {
     setText(e.target.value);
   };
-
   const handleBlur = () => {
     setIsEditing(false);
     onTextChange(placement.id, text);
   };
-
   return (
     <div
       className="w-full h-full flex items-center justify-center p-1"
@@ -528,7 +514,6 @@ const EditablePlacement = ({ placement, onTextChange }) => {
     </div>
   );
 };
-
 const roles = ["signer", "viewer", "validator"];
 const signFormats = ["all", "text", "draw", "uploadedSign"];
 const globalSettingsConfig = [
@@ -537,16 +522,91 @@ const globalSettingsConfig = [
     key: "reorder",
     labelKey: "order_receivers_label",
     descKey: "order_receivers_desc",
+    icon: ListOrdered,
+  },
+  {
+    type: "checkbox",
+    key: "expireDate",
+    labelKey: "expire_date_label",
+    descKey: "expire_date_desc",
+    icon: CalendarClock,
+  },
+  {
+    type: "checkbox",
+    key: "emailNotifications",
+    labelKey: "email_notifications_label",
+    descKey: "email_notifications_desc",
+    icon: Mail,
+    defaultChecked: true, // default checked
+  },
+  {
+    type: "checkbox",
+    key: "reminder",
+    labelKey: "reminder_label",
+    descKey: "reminder_desc",
+    icon: Bell,
+    defaultChecked: true, // default checked
   },
 ];
-
 const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
   const { t } = useTranslation();
   const [recipients, setRecipients] = useState([]);
   const [draggingIndex, setDraggingIndex] = useState(null);
   const [activeSettingsId, setActiveSettingsId] = useState(null);
   const [showGlobalSettings, setShowGlobalSettings] = useState(true);
-
+  const [settingsSet, setSettingsSet] = useState([]);
+  const [errors, setErrors] = useState({}); // NEW: track errors per recipient
+  const resetModal = () => {
+    setRecipients([]);
+    setDraggingIndex(null);
+    setActiveSettingsId(null);
+    setErrors({});
+    const defaults = globalSettingsConfig
+      .filter((s) => defaultCheckedKeys.includes(s.key))
+      .map((s) => ({ key: s.key, value: s.key === "reminder" ? "1" : "" }));
+    setSettingsSet(defaults);
+    setShowGlobalSettings(true);
+  };
+  // ------
+  // Array of keys that should be default checked
+  const defaultCheckedKeys = ["emailNotifications", "reminder"]; // default checked keys
+  const GlobalNumberSetting = ({
+    settingKey,
+    label,
+    descriptionTemplate,
+    defaultValue,
+  }) => {
+    const checked = isGlobalChecked(settingKey);
+    const settingValue =
+      settingsSet.find((s) => s.key === settingKey)?.value || defaultValue;
+    if (!checked) return null;
+    return (
+      <div className="mt-2 flex flex-col gap-2">
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-gray-700">{label}</span>
+          <input
+            type="number"
+            min="1"
+            value={settingValue}
+            onChange={(e) =>
+              handleChangeGlobalValue(settingKey, e.target.value)
+            }
+            className="w-16 border rounded px-2 py-1 text-sm"
+          />
+          <span className="text-sm text-gray-700">days</span>
+        </div>
+        <p className="text-xs text-gray-600">
+          {t(descriptionTemplate, { days: settingValue })}
+        </p>
+      </div>
+    );
+  };
+  useEffect(() => {
+    const defaults = globalSettingsConfig
+      .filter((s) => defaultCheckedKeys.includes(s.key))
+      .map((s) => ({ key: s.key, value: s.key === "reminder" ? "1" : "" }));
+    setSettingsSet(defaults); // overwrite, not append
+  }, []);
   const handleAddRecipient = () => {
     setRecipients((prev) => [
       ...prev,
@@ -561,20 +621,12 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
     ]);
   };
 
-  const handleChange = (id, field, value) => {
-    setRecipients((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, [field]: value } : r))
-    );
-  };
-
   const handleRemove = (id) => {
     setRecipients((prev) => prev.filter((r) => r.id !== id));
   };
-
   const toggleSettings = (id) => {
     setActiveSettingsId(activeSettingsId === id ? null : id);
   };
-
   // Drag & Drop
   const handleDragStart = (index) => {
     if (!allowReorder) return;
@@ -591,14 +643,99 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
   };
   const handleDragEnd = () => setDraggingIndex(null);
 
-  const handleSubmit = () => {
-    onSubmit(recipients);
-    onClose();
+  const validateRecipients = () => {
+    let valid = true;
+    const newErrors = {};
+
+    recipients.forEach((r) => {
+      const recErrors = {};
+      // Check required fields
+      if (!r.name?.trim()) {
+        recErrors.name = t("signPDF.name_required");
+        valid = false;
+      }
+      if (!r.email?.trim()) {
+        recErrors.email = t("signPDF.email_required");
+        valid = false;
+      } else {
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(r.email)) {
+          recErrors.email = t("signPDF.invalid_email");
+          valid = false;
+        }
+      }
+      if (Object.keys(recErrors).length) newErrors[r.id] = recErrors;
+    });
+
+    setErrors(newErrors);
+    return valid;
   };
+
+  const handleSubmit = async () => {
+    if (!validateRecipients()) {
+      toast.error(t("signPDF.receipt_error"));
+      return; // stop submission if invalid
+    }
+
+    try {
+      // Await the parent onSubmit, which should return a status
+      const result = await onSubmit({
+        recipients,
+        globalSettings: settingsSet,
+      });
+
+      // Check if the submission was successful
+      if (result?.status === "success") {
+        toast.success(t("signPDF.share_success"));
+        resetModal(); // Reset modal state
+        onClose(); // Close the modal
+      } else {
+        toast.error(t("signPDF.share_failed"));
+      }
+    } catch (err) {
+      toast.error(t("signPDF.share_failed"));
+      console.error(err);
+    }
+  };
+
+  const handleChange = (id, field, value) => {
+    setRecipients((prev) =>
+      prev.map((r) => (r.id === id ? { ...r, [field]: value } : r))
+    );
+
+    // Clear error for this field as user types
+    setErrors((prev) => {
+      if (!prev[id]) return prev;
+      const { [field]: removed, ...rest } = prev[id];
+      return { ...prev, [id]: rest };
+    });
+  };
+
+  const handleToggleGlobal = (key) => {
+    setSettingsSet((prev) => {
+      const exists = prev.find((s) => s.key === key);
+      if (exists) {
+        return prev.filter((s) => s.key !== key);
+      } else {
+        const defaultValue =
+          key === "expireDate" ? "15" : key === "reminder" ? "1" : "";
+        // Ensure no duplicate for same key
+        return [
+          ...prev.filter((s) => s.key !== key),
+          { key, value: defaultValue },
+        ];
+      }
+    });
+  };
+  const handleChangeGlobalValue = (key, newValue) => {
+    setSettingsSet((prev) =>
+      prev.map((s) => (s.key === key ? { ...s, value: newValue } : s))
+    );
+  };
+  const isGlobalChecked = (key) => settingsSet.some((s) => s.key === key);
   const [showPassword, setShowPassword] = useState(false);
-
   if (!isOpen) return null;
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="bg-white rounded-xl shadow-lg w-full max-w-4xl p-6 relative overflow-y-auto max-h-[90vh] flex gap-4">
@@ -616,12 +753,11 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
               onClick={() => setShowGlobalSettings(!showGlobalSettings)}
             />
           </div>
-
           {/* Recipients list */}
           {recipients.map((r, idx) => (
             <div
               key={r.id}
-              className={`flex items-center gap-2 p-3 border rounded-lg ${
+              className={`flex flex-col gap-1 p-3 border rounded-lg ${
                 draggingIndex === idx ? "bg-yellow-100" : ""
               }`}
               draggable={allowReorder}
@@ -630,46 +766,72 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
               onDragEnd={handleDragEnd}
               style={{ cursor: allowReorder ? "grab" : "default" }}
             >
-              <GripVertical
-                className="text-gray-500 cursor-grab"
-                size={20}
-                onMouseDown={(e) => e.preventDefault()}
-              />
-              <input
-                type="text"
-                placeholder={t("signPDF.recipient_name")}
-                value={r.name}
-                onChange={(e) => handleChange(r.id, "name", e.target.value)}
-                className="w-24 border p-2 rounded"
-              />
-              <input
-                type="email"
-                placeholder={t("signPDF.recipient_email")}
-                value={r.email}
-                onChange={(e) => handleChange(r.id, "email", e.target.value)}
-                className="flex-1 border p-2 rounded"
-              />
-              <select
-                value={r.role}
-                onChange={(e) => handleChange(r.id, "role", e.target.value)}
-                className="border p-2 rounded"
-              >
-                {roles.map((role) => (
-                  <option key={role} value={role}>
-                    {t(`signPDF.role_${role}`)}
-                  </option>
-                ))}
-              </select>
-              <X
-                className="text-gray-500 cursor-pointer"
-                size={18}
-                onClick={() => handleChange(r.id, "name", "")}
-              />
-              <Settings
-                className="text-gray-500 cursor-pointer"
-                size={18}
-                onClick={() => toggleSettings(r.id)}
-              />
+              <div className="flex items-center gap-2">
+                {/* Drag handle */}
+                <GripVertical
+                  className="text-gray-500 cursor-grab"
+                  size={20}
+                  onMouseDown={(e) => e.preventDefault()}
+                />
+
+                <input
+                  type="text"
+                  placeholder={t("signPDF.recipient_name")}
+                  value={r.name}
+                  onChange={(e) => handleChange(r.id, "name", e.target.value)}
+                  className={`w-24 border p-2 rounded ${
+                    errors[r.id]?.name ? "border-red-500" : ""
+                  }`}
+                />
+                <input
+                  type="email"
+                  placeholder={t("signPDF.recipient_email")}
+                  value={r.email}
+                  onChange={(e) => handleChange(r.id, "email", e.target.value)}
+                  className={`flex-1 border p-2 rounded ${
+                    errors[r.id]?.email ? "border-red-500" : ""
+                  }`}
+                />
+                <select
+                  value={r.role}
+                  onChange={(e) => handleChange(r.id, "role", e.target.value)}
+                  className="border p-2 rounded"
+                >
+                  {roles.map((role) => (
+                    <option key={role} value={role}>
+                      {t(`signPDF.role_${role}`)}
+                    </option>
+                  ))}
+                </select>
+
+                {/* Remove recipient */}
+                <X
+                  className="text-gray-500 cursor-pointer"
+                  size={18}
+                  onClick={() => handleRemove(r.id)}
+                />
+
+                {/* Settings icon */}
+                <Settings
+                  className="text-gray-500 cursor-pointer"
+                  size={18}
+                  onClick={() => toggleSettings(r.id)}
+                />
+              </div>
+
+              {/* Field-specific errors */}
+              {/* <div className="flex flex-col gap-1">
+                {errors[r.id]?.name && (
+                  <span className="text-red-500 text-xs">
+                    {errors[r.id].name}
+                  </span>
+                )}
+                {errors[r.id]?.email && (
+                  <span className="text-red-500 text-xs">
+                    {errors[r.id].email}
+                  </span>
+                )}
+              </div> */}
             </div>
           ))}
 
@@ -711,7 +873,6 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
                       )}
                     </div>
                   </div>
-
                   <label className="text-gray-700 text-sm font-medium">
                     {t("signPDF.allowedSignFormat")}
                   </label>
@@ -731,14 +892,12 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
                 </div>
               )
           )}
-
           <button
             onClick={handleAddRecipient}
             className="mt-3 px-4 py-2 bg-blue-600 text-white rounded"
           >
             + {t("signPDF.add_recipient")}
           </button>
-
           <div className="mt-6 flex justify-end gap-3">
             <button
               onClick={onClose}
@@ -754,48 +913,77 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
             </button>
           </div>
         </div>
-
         {/* Right side: Global Settings */}
         {showGlobalSettings && (
-          <div className="w-80 border-l border-gray-200 pl-4 max-h-[600px] overflow-y-auto overflow-x-auto">
+          <div className="w-80 border-l border-gray-200 pl-4 max-h-[600px] overflow-y-auto">
             <h3 className="font-semibold text-gray-900 mb-3">
               {t("signPDF.global_settings")}
             </h3>
             <p className="text-gray-700 text-sm mb-4">
               {t("signPDF.global_setting_desc")}
             </p>
-
             <div className="space-y-4">
-              {globalSettingsConfig.map((setting) => (
-                <div
-                  key={setting.key}
-                  className="flex items-start gap-3 border p-3 rounded-lg"
-                >
-                  {setting.type === "checkbox" && (
-                    <input
-                      type="checkbox"
-                      id={setting.key}
-                      className="mt-1 h-4 w-4 cursor-pointer"
-                    />
-                  )}
-                  <div className="flex flex-col">
-                    <label
-                      htmlFor={setting.key}
-                      className="text-sm font-medium text-gray-900 cursor-pointer"
-                    >
-                      {t(`signPDF.${setting.labelKey}`)}
-                    </label>
-                    {setting.descKey && (
-                      <p className="text-xs text-gray-600">
-                        {t(`signPDF.${setting.descKey}`)}
-                      </p>
+              {globalSettingsConfig.map((setting) => {
+                const Icon = setting.icon;
+                const checked = isGlobalChecked(setting.key);
+                return (
+                  <div
+                    key={setting.key}
+                    className="flex items-start gap-3 border p-3 rounded-lg"
+                  >
+                    {/* Checkbox */}
+                    {setting.type === "checkbox" && (
+                      <input
+                        type="checkbox"
+                        id={setting.key}
+                        checked={checked}
+                        onChange={() => handleToggleGlobal(setting.key)}
+                        className="mt-1 h-4 w-4 cursor-pointer"
+                      />
                     )}
+                    {/* Icon */}
+                    {Icon && (
+                      <div className="mt-0.5 text-gray-700">
+                        <Icon size={18} />
+                      </div>
+                    )}
+                    <div className="flex flex-col flex-1">
+                      <label
+                        htmlFor={setting.key}
+                        className="text-sm font-medium text-gray-900 cursor-pointer"
+                      >
+                        {t(`signPDF.${setting.labelKey}`)}
+                      </label>
+                      {/* Normal description */}
+                      {setting.descKey &&
+                        !["expireDate", "reminder"].includes(setting.key) && (
+                          <p className="text-xs text-gray-600">
+                            {t(`signPDF.${setting.descKey}`)}
+                          </p>
+                        )}
+                      {/* Reusable number settings */}
+                      {setting.key === "expireDate" && (
+                        <GlobalNumberSetting
+                          settingKey="expireDate"
+                          label={t("signPDF.expires_in_days")}
+                          descriptionTemplate="signPDF.expires_in"
+                          defaultValue="15"
+                        />
+                      )}
+                      {setting.key === "reminder" && (
+                        <GlobalNumberSetting
+                          settingKey="reminder"
+                          label="Every"
+                          descriptionTemplate="signPDF.reminder_desc"
+                          defaultValue="1"
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
-
-            <div className="mt-6 flex justify-end gap-3">
+            {/* <div className="mt-6 flex justify-end gap-3">
               <button
                 onClick={() => setShowGlobalSettings(false)}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded"
@@ -804,31 +992,28 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
               </button>
               <button
                 className="px-4 py-2 bg-blue-600 text-white rounded"
-                onClick={() => console.log("Save global settings")}
+                onClick={() => }
               >
                 {t("signPDF.save_continue")}
               </button>
-            </div>
+            </div> */}
           </div>
         )}
       </div>
     </div>
   );
 };
-
 const SignPDF = () => {
   const { t } = useTranslation();
   const [files, setFiles] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [submitAllTabs, setSubmitAllTabs] = useState(true);
-
   // modal states
   const [typeModal, setTypeModal] = useState(false);
   const [signatureModal, setSignatureModal] = useState(false);
   const [typeState, setTypeState] = useState("self");
   const [step, setStep] = useState(1);
-
   // PDF preview states
   const [numPages, setNumPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -836,12 +1021,31 @@ const SignPDF = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [shareModal, setShareModal] = useState(false);
   const [recipients, setRecipients] = useState([]);
-
-  const handleRecipientsSubmit = (data) => {
-    console.log("Recipients =>", data);
-    setRecipients(data);
+  const [tempFileData, setTempFileData] = useState(null);
+  const handleShareSubmit = async ({ recipients, globalSettings }) => {
+    console.log(recipients, "Got in recipients");
+    // Prepare payload
+    const payload = {
+      file_path: tempFileData.file_path,
+      file_name: tempFileData.file_name,
+      shared_users: recipients.map((user) => ({
+        user_name: user.name,
+        user_email: user.email,
+        user_validation: user.allowedFormats || "viewer", // default
+        user_password: user.password || "",
+        user_role: user.role || "",
+      })),
+      settings: globalSettings,
+    };
+    try {
+      const response = await axios.post("/api/esign/share", payload, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
+    } catch (err) {}
   };
-
   useEffect(() => {
     const link = document.createElement("link");
     link.href =
@@ -852,39 +1056,51 @@ const SignPDF = () => {
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
-
   const handleContinue = () => {
     if (files.length === 0) return;
     setTypeModal(true);
   };
-
   const handleSelfSubmit = () => {
-    console.log("Submit as Self", { files, signerType: typeState });
     setTypeModal(false);
     setSignatureModal(true);
   };
-
   // Handle file input
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     const newFiles = Array.from(e.target.files).filter(
       (f) => f.type === "application/pdf"
     );
-
     if (newFiles.length === 0) {
       setError(t("signPDF.signPdf_error"));
       return;
     }
-
-    // keep only the latest file
-    setFiles([newFiles[0]]);
+    // Keep only the latest file
+    const fileToUpload = newFiles[0];
+    setFiles([fileToUpload]);
     setError(null);
+    // Prepare FormData
+    const formData = new FormData();
+    formData.append("pdf-file", fileToUpload); // payload key "pdf-file"
+    try {
+      const response = await axios.post("/api/esign/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (response.data?.status === "success") {
+        const data = response.data?.data;
+        // object should appear correctly
+        setTempFileData(data ?? {});
+      } else {
+        setError(t("signPDF.upload_failed"));
+      }
+    } catch (err) {
+      setError(t("signPDF.upload_failed")); // optional: display error
+    }
   };
-
   // Remove file
   const handleRemove = (idx) => {
     setFiles((prev) => prev.filter((_, i) => i !== idx));
   };
-
   // Drag and drop reordering
   const handleDragStart = (idx) => {
     setFiles((files) => files.map((f, i) => ({ ...f, _dragging: i === idx })));
@@ -900,26 +1116,20 @@ const SignPDF = () => {
   const handleDragEnd = () => {
     setFiles((files) => files.map((f) => ({ ...f, _dragging: false })));
   };
-
   const handleSeveralSubmit = () => {
     setTypeModal(false);
     setShareModal(true);
     setTypeState("several");
   };
-
   // Handle signatures applied from modal
   const handleSignaturesApplied = (signatures) => {
     setAppliedSignatures(signatures);
     setShowPreview(true);
   };
-
   // Add placement to PDF
   const handleAddPlacement = (signatureId, pageIndex) => {
-    console.log(signatureId, pageIndex, "Got in data for apply");
     const signature = appliedSignatures.find((sig) => sig.id === signatureId);
-    console.log(signature, "Match sign");
     if (!signature) return;
-
     const newPlacement = {
       id: `${signature.type}-${Date.now()}`,
       type: signature.type,
@@ -949,7 +1159,6 @@ const SignPDF = () => {
           imageFile: signature.imageFile,
         }),
     };
-    console.log(newPlacement, "GOt in for placement");
     setAppliedSignatures((prev) =>
       prev.map((sig) =>
         sig.id === signatureId
@@ -958,7 +1167,6 @@ const SignPDF = () => {
       )
     );
   };
-
   // Handle text change in placements
   const handleTextChange = (id, value) => {
     setAppliedSignatures((prev) =>
@@ -971,7 +1179,6 @@ const SignPDF = () => {
       }))
     );
   };
-
   // Handle placement movement and resize
   const handlePlacementUpdate = (id, updates) => {
     setAppliedSignatures((prev) =>
@@ -984,7 +1191,6 @@ const SignPDF = () => {
       }))
     );
   };
-
   // Remove placement
   const handleRemovePlacement = (id) => {
     setAppliedSignatures((prev) =>
@@ -994,23 +1200,18 @@ const SignPDF = () => {
       }))
     );
   };
-
   // Final submission
   const handleFinalSubmit = async () => {
     if (!files[0]) return alert(t("signPDF.uploadPDFFirst"));
-
     const token = localStorage.getItem("token");
-
     setLoading(true);
     try {
       const formData = new FormData();
       formData.append("pdf", files[0]);
-
       // Add all placements with complete styling information
       const allPlacements = appliedSignatures.flatMap(
         (sig) => sig.placements || []
       );
-
       // Ensure font data is preserved
       const placementsWithStyles = allPlacements.map((placement) => ({
         ...placement,
@@ -1018,18 +1219,14 @@ const SignPDF = () => {
         color: placement.color || "#000000",
         fontSize: placement.fontSize || 24,
       }));
-
       formData.append("placements", JSON.stringify(placementsWithStyles));
-
       // Add image files and signature data
       const imagePromises = [];
-
       appliedSignatures.forEach((sig) => {
         // Handle image files (logos and uploaded signatures)
         if (sig.type === "image" && sig.imageFile) {
           formData.append("images", sig.imageFile);
         }
-
         // Handle drawn signatures (convert data URL to blob)
         if (
           sig.type === "signature" &&
@@ -1046,16 +1243,13 @@ const SignPDF = () => {
             });
           imagePromises.push(promise);
         }
-
         // Handle uploaded signature images
         if (sig.type === "signature" && sig.imageFile) {
           formData.append("images", sig.imageFile);
         }
       });
-
       // Wait for all image conversions to complete
       await Promise.all(imagePromises);
-
       // Only track usage if user is logged in
       if (token) {
         await axios.post(
@@ -1074,7 +1268,6 @@ const SignPDF = () => {
           }
         );
       }
-
       // Submit for signing using the new route
       const res = await axios.post("/api/sign-PDF", formData, {
         responseType: "blob",
@@ -1083,7 +1276,6 @@ const SignPDF = () => {
           ...(token && { Authorization: `Bearer ${token}` }),
         },
       });
-
       const url = window.URL.createObjectURL(new Blob([res.data]));
       const a = document.createElement("a");
       a.href = url;
@@ -1091,17 +1283,14 @@ const SignPDF = () => {
       document.body.appendChild(a);
       a.click();
       a.remove();
-
       // Clean up
       window.URL.revokeObjectURL(url);
     } catch (err) {
-      console.error(err);
       alert(t("signPDF.failed_to_create"));
     } finally {
       setLoading(false);
     }
   };
-
   // Clear everything and reset to initial state
   const handleClearAll = () => {
     setFiles([]);
@@ -1113,8 +1302,8 @@ const SignPDF = () => {
     setTypeModal(false);
     setSignatureModal(false);
     setTypeState("self");
+    setTempFileData(null);
   };
-
   return (
     <>
       <Helmet>
@@ -1128,7 +1317,6 @@ const SignPDF = () => {
         <meta name="twitter:title" content={t("signPDF.title")} />
         <meta name="twitter:description" content={t("signPDF.desc")} />
       </Helmet>
-
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center mb-8">
@@ -1139,7 +1327,6 @@ const SignPDF = () => {
               {t("signPDF.desc")}
             </p>
           </div>
-
           <div
             className={`${
               showPreview
@@ -1179,7 +1366,6 @@ const SignPDF = () => {
                       </div>
                     </div>
                   )}
-
                   {/* File Upload */}
                   {!showPreview && (
                     <div>
@@ -1226,7 +1412,6 @@ const SignPDF = () => {
                       </div>
                     </div>
                   )}
-
                   {/* Uploaded Files List */}
                   {files.length > 0 && !showPreview && (
                     <div className="bg-white rounded-lg shadow p-4 mt-2">
@@ -1256,7 +1441,6 @@ const SignPDF = () => {
                       </ul>
                     </div>
                   )}
-
                   {/* Available Signatures */}
                   {showPreview && appliedSignatures.length > 0 && (
                     <div className="bg-white rounded-lg p-4">
@@ -1320,7 +1504,6 @@ const SignPDF = () => {
                       </div>
                     </div>
                   )}
-
                   {/* Action Buttons */}
                   {!showPreview ? (
                     <button
@@ -1380,7 +1563,7 @@ const SignPDF = () => {
                   {files.length > 0 && (
                     <button
                       onClick={() => handleClearAll()}
-                      className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition duration-200"
+                      className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition duration-200 ml-[10px]"
                     >
                       {t("signPDF.clear_signature")}
                     </button>
@@ -1388,7 +1571,6 @@ const SignPDF = () => {
                 </div>
               </div>
             </div>
-
             {/* Right Column - PDF Preview */}
             {showPreview && files[0] && (
               <div className="bg-white rounded-xl shadow-lg p-6">
@@ -1421,7 +1603,6 @@ const SignPDF = () => {
                     </button>
                   </div>
                 </div>
-
                 <div
                   className="border rounded-lg overflow-auto bg-gray-50 relative"
                   style={{ maxHeight: "70vh" }}
@@ -1431,7 +1612,6 @@ const SignPDF = () => {
                     onLoadSuccess={onDocumentLoadSuccess}
                   >
                     <Page pageNumber={currentPage} width={600} />
-
                     {/* Render placements for current page */}
                     {appliedSignatures
                       .flatMap(
@@ -1489,7 +1669,6 @@ const SignPDF = () => {
                             >
                               ×
                             </button>
-
                             {placement.type === "image" &&
                               placement.imageFile && (
                                 <img
@@ -1528,7 +1707,6 @@ const SignPDF = () => {
           </div>
         </div>
       </div>
-
       {/* Modals */}
       {typeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
@@ -1540,7 +1718,6 @@ const SignPDF = () => {
                   : t("signPDF.several_desc")}
               </h2>
             </div>
-
             <div className="space-y-4">
               {["self", "several"].map((opt) => (
                 <label
@@ -1567,7 +1744,6 @@ const SignPDF = () => {
                 </label>
               ))}
             </div>
-
             <div className="mt-6 flex justify-end gap-3">
               <button
                 onClick={() => setTypeModal(false)}
@@ -1594,7 +1770,6 @@ const SignPDF = () => {
           </div>
         </div>
       )}
-
       <SignatureModal
         isOpen={signatureModal}
         onClose={() => setSignatureModal(false)}
@@ -1602,15 +1777,13 @@ const SignPDF = () => {
         submitAllTabs={submitAllTabs}
         onSignaturesApplied={handleSignaturesApplied}
       />
-
       <ShareModal
         isOpen={shareModal}
         onClose={() => setShareModal(false)}
         allowReorder={true} // toggle reordering here
-        onSubmit={handleRecipientsSubmit}
+        onSubmit={handleShareSubmit}
       />
     </>
   );
 };
-
 export default SignPDF;
