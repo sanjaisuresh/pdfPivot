@@ -1,10 +1,15 @@
-const { uploadPdf, sharePdf } = require("../services/esignServices");
+const {
+  uploadPdf,
+  sharePdf,
+  sharedDocList,
+  sharedDocInfoList,
+} = require("../services/esignServices");
 
 const uploadPdfController = async (req, res) => {
   try {
     let { originalname, buffer, mimetype, encoding } = req.file;
 
-    let user_id = "123";
+    let { _id: user_id } = req.user;
 
     let params = {};
 
@@ -30,7 +35,7 @@ const sharePdfController = async (req, res) => {
   try {
     let { file_path, file_name, shared_users, settings } = req.body;
 
-    let user_id = "123";
+    let { _id: user_id } = req.user;
 
     let params = {};
 
@@ -52,7 +57,51 @@ const sharePdfController = async (req, res) => {
   }
 };
 
+const getSharedFileController = async (req, res) => {
+  try {
+    let { _id: user_id } = req.user;
+
+    let params = {};
+
+    params.user_id = user_id;
+
+    let result = await sharedDocList(params);
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Error while getting shared pdf document", error);
+    res.status(400).json({
+      status: "false",
+      message: "Failed to Fetch Shared Pdf",
+    });
+  }
+};
+
+const getSharedFileInfoController = async (req, res) => {
+  try {
+    let { file_id } = req.query;
+    let { _id: user_id } = req.user;
+
+    let params = {};
+
+    params.user_id = user_id;
+    params.file_id = file_id;
+
+    let result = await sharedDocInfoList(params);
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Error while getting shared document info", error);
+    res.status(400).json({
+      status: "false",
+      message: "Failed to Fetch Shared Pdf info",
+    });
+  }
+};
+
 module.exports = {
   uploadPdfController,
   sharePdfController,
+  getSharedFileController,
+  getSharedFileInfoController,
 };
