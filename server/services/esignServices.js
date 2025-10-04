@@ -198,9 +198,40 @@ const sharedDocInfoList = async (params) => {
   }
 };
 
+const sharedDocInfo = async (params) => {
+  try {
+    let { shared_id } = params;
+
+    let shared_docs_info = await EsignMembersDoc.findOne(
+      {
+        _id: shared_id,
+      },
+      {
+        signed_file_path: 0,
+        email_id: 0,
+      }
+    ).lean();
+
+    shared_docs_info.user_password = !!(
+      shared_docs_info.user_password &&
+      shared_docs_info.user_password.length > 0
+    );
+
+    let result = {
+      status: "success",
+      message: "Shared PDF docs info.",
+      data: shared_docs_info,
+    };
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   uploadPdf,
   sharePdf,
   sharedDocList,
   sharedDocInfoList,
+  sharedDocInfo,
 };

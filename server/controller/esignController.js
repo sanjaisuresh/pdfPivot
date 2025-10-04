@@ -3,6 +3,7 @@ const {
   sharePdf,
   sharedDocList,
   sharedDocInfoList,
+  sharedDocInfo,
 } = require("../services/esignServices");
 const fs = require("fs").promises;
 const path = require("path");
@@ -122,10 +123,30 @@ const downloadPdfController = async (req, res) => {
   }
 };
 
+const sharedPdfInfoController = async (req, res) => {
+  try {
+    let { shared_id } = req.query;
+
+    let params = {};
+
+    params.shared_id = shared_id;
+
+    let result = await sharedDocInfo(params);
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Error while getting shared file info", error);
+    res.status(400).json({
+      status: "false",
+      message: "PDF info failed",
+    });
+  }
+};
 module.exports = {
   uploadPdfController,
   sharePdfController,
   getSharedFileController,
   getSharedFileInfoController,
   downloadPdfController,
+  sharedPdfInfoController,
 };
