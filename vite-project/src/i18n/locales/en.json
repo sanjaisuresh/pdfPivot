@@ -1069,6 +1069,7 @@
     "reminder_label": "Enable reminders",
     "reminder_desc": "Send a reminder to the participants every {{days}} days.",
     "receipt_error": "Fill the required Fields",
-    "share_failed": "Something went wrong"
+    "share_failed": "Something went wrong",
+    "share_success":"Shared Successfully"
   }
 }

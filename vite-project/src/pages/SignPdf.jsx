@@ -1022,6 +1022,20 @@ const SignPDF = () => {
   const [shareModal, setShareModal] = useState(false);
   const [recipients, setRecipients] = useState([]);
   const [tempFileData, setTempFileData] = useState(null);
+  const [hasShareReq, sethasShareReq] = useState(false);
+
+  const handleShareId = (id) => {
+    console.log("Share ID from URL:", id);
+    sethasShareReq(true);
+    // Here you can make API calls or handle it as needed
+  };
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const shareId = params.get("share_id");
+    if (shareId) {
+      handleShareId(shareId);
+    }
+  }, []);
   const handleShareSubmit = async ({ recipients, globalSettings }) => {
     console.log(recipients, "Got in recipients");
     // Prepare payload
@@ -1372,7 +1386,13 @@ const SignPDF = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         {t("signPDF.upload_pdfs")}
                       </label>
-                      <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-gold transition-colors duration-200">
+                      <div
+                        className={`mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg ${
+                          hasShareReq
+                            ? "opacity-50 cursor-not-allowed"
+                            : "hover:border-gold transition-colors duration-200"
+                        }`}
+                      >
                         <div className="space-y-1 text-center">
                           <svg
                             className="mx-auto h-12 w-12 text-gray-400"
@@ -1390,7 +1410,11 @@ const SignPDF = () => {
                           <div className="flex text-sm text-gray-600">
                             <label
                               htmlFor="file-upload-pdf"
-                              className="relative cursor-pointer bg-white rounded-md font-medium text-gold hover:text-forest focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-gold"
+                              className={`relative cursor-pointer bg-white rounded-md font-medium text-gold focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-gold ${
+                                hasShareReq
+                                  ? "pointer-events-none"
+                                  : "hover:text-forest"
+                              }`}
                             >
                               <span>{t("signPDF.upload_btn")}</span>
                               <input
@@ -1401,6 +1425,7 @@ const SignPDF = () => {
                                 multiple
                                 onChange={handleFileChange}
                                 className="sr-only"
+                                disabled={hasShareReq} // disable input if flag is true
                               />
                             </label>
                             <p className="pl-1">{t("or_drag_and_drop")}</p>
@@ -1422,17 +1447,26 @@ const SignPDF = () => {
                             className={`flex items-center py-2 ${
                               file._dragging ? "bg-yellow-100" : ""
                             }`}
-                            draggable
-                            onDragStart={() => handleDragStart(idx)}
-                            onDragOver={() => handleDragOver(idx)}
-                            onDragEnd={handleDragEnd}
+                            draggable={!hasShareReq} // disable drag if flag is true
+                            onDragStart={() =>
+                              !hasShareReq && handleDragStart(idx)
+                            }
+                            onDragOver={() =>
+                              !hasShareReq && handleDragOver(idx)
+                            }
+                            onDragEnd={() => !hasShareReq && handleDragEnd()}
                           >
                             <span className="flex-1 truncate text-gray-800 text-sm">
                               {file.name}
                             </span>
                             <button
-                              onClick={() => handleRemove(idx)}
-                              className="ml-4 text-red-500 hover:text-red-700 text-xs font-medium"
+                              onClick={() => !hasShareReq && handleRemove(idx)}
+                              disabled={hasShareReq} // disable remove button
+                              className={`ml-4 text-red-500 text-xs font-medium ${
+                                !hasShareReq
+                                  ? "hover:text-red-700"
+                                  : "opacity-50 cursor-not-allowed"
+                              }`}
                             >
                               {t("signPDF.remove")}
                             </button>
@@ -1441,6 +1475,7 @@ const SignPDF = () => {
                       </ul>
                     </div>
                   )}
+
                   {/* Available Signatures */}
                   {showPreview && appliedSignatures.length > 0 && (
                     <div className="bg-white rounded-lg p-4">
