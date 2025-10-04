@@ -974,7 +974,7 @@
     "failedToCreatePDF": "Failed to create PDF"
   },
  
-  "signPDF": {
+"signPDF": {
     "signPdf_error": "Select PDF only",
     "title": "Sign PDF Files",
     "desc": "Sign PDF files. Drag to upload before signing",
@@ -993,11 +993,13 @@
     "next": "Next",
     "back": "Back",
     "finish": "Finish",
-    "download":"Download Signed PDF",
+    "download": "Download Signed PDF",
     "cancel": "Cancel",
     "save": "Save",
-    "addSign":"Add Signature",
-    "text":"Text",
+    "addSign": "Add Signature",
+    "text": "Text",
+    "drawn": "Drawn",
+    "uploadedSign": "Uploaded Signature",
 
     "set_signature_details": "Set your signature details below",
     "full_name": "Full Name",
@@ -1012,6 +1014,7 @@
     "place_initials": "Place Initials",
     "place_logo": "Place Logo",
     "place_text": "Place Text",
+    "place_image": "Place Image",
 
     "clear_signature": "Clear Signature",
     "failed_to_create": "Failed to create signed PDF. Please try again.",
@@ -1031,11 +1034,35 @@
     "step_sign": "Sign",
     "step_review": "Review",
     "step_complete": "Complete",
-    "uploadedSign":"uploaded Sign",
-    "logo":"Uploaded Logo",
-    "image":"Uploded Image",
-    "place_image":"Place Image"
+    "logo": "Uploaded Logo",
+    "image": "Uploaded Image",
+
+    "share_title": "Share PDF",
+    "add_recipient": "Add Recipient",
+    "recipient_name": "Full Name",
+    "recipient_email": "Email Address",
+    "recipient_role": "Role",
+    "save_continue": "Save & Continue",
+
+    "role_signer": "Signer",
+    "role_viewer": "Viewer",
+    "role_validator": "Validator",
+
+    "signFormatall": "All",
+    "signFormattext": "Text",
+    "signFormatdraw": "Drawn",
+    "signFormatuploadedSign": "Uploaded Signature",
+
+    "password_protect": "Password Protect",
+    "allowedSignFormat": "Allowed Sign Format",
+"global_settings": "Global Settings",
+"global_setting_desc": "Manage default signing preferences for all recipients.",
+"order_receivers_label": "Set the order of receivers",
+"order_receivers_desc": "Select this option to set a signing order. A signer won't receive a request until the previous person has completed their document."
+
+    
   }
+
 
 
 

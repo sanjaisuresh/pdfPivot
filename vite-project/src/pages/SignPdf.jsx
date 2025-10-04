@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { Text, Edit2, ImageIcon } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { Rnd } from "react-rnd";
-
+import { GripVertical, X, Settings, Lock, Eye, EyeOff } from "lucide-react";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const COLORS = [
@@ -529,6 +529,293 @@ const EditablePlacement = ({ placement, onTextChange }) => {
   );
 };
 
+const roles = ["signer", "viewer", "validator"];
+const signFormats = ["all", "text", "draw", "uploadedSign"];
+const globalSettingsConfig = [
+  {
+    type: "checkbox",
+    key: "reorder",
+    labelKey: "order_receivers_label",
+    descKey: "order_receivers_desc",
+  },
+];
+
+const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
+  const { t } = useTranslation();
+  const [recipients, setRecipients] = useState([]);
+  const [draggingIndex, setDraggingIndex] = useState(null);
+  const [activeSettingsId, setActiveSettingsId] = useState(null);
+  const [showGlobalSettings, setShowGlobalSettings] = useState(true);
+
+  const handleAddRecipient = () => {
+    setRecipients((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        name: "",
+        email: "",
+        role: "signer",
+        password: "",
+        allowedFormats: ["all"],
+      },
+    ]);
+  };
+
+  const handleChange = (id, field, value) => {
+    setRecipients((prev) =>
+      prev.map((r) => (r.id === id ? { ...r, [field]: value } : r))
+    );
+  };
+
+  const handleRemove = (id) => {
+    setRecipients((prev) => prev.filter((r) => r.id !== id));
+  };
+
+  const toggleSettings = (id) => {
+    setActiveSettingsId(activeSettingsId === id ? null : id);
+  };
+
+  // Drag & Drop
+  const handleDragStart = (index) => {
+    if (!allowReorder) return;
+    setDraggingIndex(index);
+  };
+  const handleDragOver = (index) => {
+    if (!allowReorder || draggingIndex === null || draggingIndex === index)
+      return;
+    const updated = [...recipients];
+    const [dragged] = updated.splice(draggingIndex, 1);
+    updated.splice(index, 0, dragged);
+    setRecipients(updated);
+    setDraggingIndex(index);
+  };
+  const handleDragEnd = () => setDraggingIndex(null);
+
+  const handleSubmit = () => {
+    onSubmit(recipients);
+    onClose();
+  };
+  const [showPassword, setShowPassword] = useState(false);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="bg-white rounded-xl shadow-lg w-full max-w-4xl p-6 relative overflow-y-auto max-h-[90vh] flex gap-4">
+        {/* Left side: ShareModal content */}
+        <div
+          className={`flex-1 flex flex-col gap-3 max-h-[600px] overflow-y-auto overflow-x-auto pr-2`}
+        >
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-lg font-semibold text-gray-900">
+              {t("signPDF.share_title")}
+            </h2>
+            <Settings
+              className="text-gray-500 cursor-pointer"
+              size={20}
+              onClick={() => setShowGlobalSettings(!showGlobalSettings)}
+            />
+          </div>
+
+          {/* Recipients list */}
+          {recipients.map((r, idx) => (
+            <div
+              key={r.id}
+              className={`flex items-center gap-2 p-3 border rounded-lg ${
+                draggingIndex === idx ? "bg-yellow-100" : ""
+              }`}
+              draggable={allowReorder}
+              onDragStart={() => handleDragStart(idx)}
+              onDragOver={() => handleDragOver(idx)}
+              onDragEnd={handleDragEnd}
+              style={{ cursor: allowReorder ? "grab" : "default" }}
+            >
+              <GripVertical
+                className="text-gray-500 cursor-grab"
+                size={20}
+                onMouseDown={(e) => e.preventDefault()}
+              />
+              <input
+                type="text"
+                placeholder={t("signPDF.recipient_name")}
+                value={r.name}
+                onChange={(e) => handleChange(r.id, "name", e.target.value)}
+                className="w-24 border p-2 rounded"
+              />
+              <input
+                type="email"
+                placeholder={t("signPDF.recipient_email")}
+                value={r.email}
+                onChange={(e) => handleChange(r.id, "email", e.target.value)}
+                className="flex-1 border p-2 rounded"
+              />
+              <select
+                value={r.role}
+                onChange={(e) => handleChange(r.id, "role", e.target.value)}
+                className="border p-2 rounded"
+              >
+                {roles.map((role) => (
+                  <option key={role} value={role}>
+                    {t(`signPDF.role_${role}`)}
+                  </option>
+                ))}
+              </select>
+              <X
+                className="text-gray-500 cursor-pointer"
+                size={18}
+                onClick={() => handleChange(r.id, "name", "")}
+              />
+              <Settings
+                className="text-gray-500 cursor-pointer"
+                size={18}
+                onClick={() => toggleSettings(r.id)}
+              />
+            </div>
+          ))}
+
+          {/* Active settings for each recipient */}
+          {recipients.map(
+            (r) =>
+              activeSettingsId === r.id && (
+                <div
+                  key={`settings-${r.id}`}
+                  className="border p-3 rounded-lg bg-gray-50 flex flex-col gap-3"
+                >
+                  <label className="text-gray-700 text-sm font-medium">
+                    {t("signPDF.password_protect")}
+                  </label>
+                  <div className="relative w-full">
+                    <Lock
+                      className="absolute left-2 top-1/2 -translate-y-1/2 text-red-500"
+                      size={18}
+                    />
+                    <input
+                      type={r.showPassword ? "text" : "password"}
+                      placeholder={t("signPDF.password_protect")}
+                      value={r.password || ""}
+                      onChange={(e) =>
+                        handleChange(r.id, "password", e.target.value)
+                      }
+                      className="w-full pl-8 pr-8 border p-2 rounded"
+                    />
+                    <div
+                      className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
+                      onClick={() =>
+                        handleChange(r.id, "showPassword", !r.showPassword)
+                      }
+                    >
+                      {r.showPassword ? (
+                        <EyeOff size={18} />
+                      ) : (
+                        <Eye size={18} />
+                      )}
+                    </div>
+                  </div>
+
+                  <label className="text-gray-700 text-sm font-medium">
+                    {t("signPDF.allowedSignFormat")}
+                  </label>
+                  <select
+                    value={r.allowedFormats[0]}
+                    onChange={(e) =>
+                      handleChange(r.id, "allowedFormats", [e.target.value])
+                    }
+                    className="border p-2 rounded"
+                  >
+                    {signFormats.map((f) => (
+                      <option key={f} value={f}>
+                        {t(`signPDF.signFormat${f}`)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )
+          )}
+
+          <button
+            onClick={handleAddRecipient}
+            className="mt-3 px-4 py-2 bg-blue-600 text-white rounded"
+          >
+            + {t("signPDF.add_recipient")}
+          </button>
+
+          <div className="mt-6 flex justify-end gap-3">
+            <button
+              onClick={onClose}
+              className="px-4 py-2 bg-gray-200 text-gray-700 rounded"
+            >
+              {t("signPDF.cancel")}
+            </button>
+            <button
+              onClick={handleSubmit}
+              className="px-4 py-2 bg-forest text-white rounded"
+            >
+              {t("signPDF.save_continue")}
+            </button>
+          </div>
+        </div>
+
+        {/* Right side: Global Settings */}
+        {showGlobalSettings && (
+          <div className="w-80 border-l border-gray-200 pl-4 max-h-[600px] overflow-y-auto overflow-x-auto">
+            <h3 className="font-semibold text-gray-900 mb-3">
+              {t("signPDF.global_settings")}
+            </h3>
+            <p className="text-gray-700 text-sm mb-4">
+              {t("signPDF.global_setting_desc")}
+            </p>
+
+            <div className="space-y-4">
+              {globalSettingsConfig.map((setting) => (
+                <div
+                  key={setting.key}
+                  className="flex items-start gap-3 border p-3 rounded-lg"
+                >
+                  {setting.type === "checkbox" && (
+                    <input
+                      type="checkbox"
+                      id={setting.key}
+                      className="mt-1 h-4 w-4 cursor-pointer"
+                    />
+                  )}
+                  <div className="flex flex-col">
+                    <label
+                      htmlFor={setting.key}
+                      className="text-sm font-medium text-gray-900 cursor-pointer"
+                    >
+                      {t(`signPDF.${setting.labelKey}`)}
+                    </label>
+                    {setting.descKey && (
+                      <p className="text-xs text-gray-600">
+                        {t(`signPDF.${setting.descKey}`)}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 flex justify-end gap-3">
+              <button
+                onClick={() => setShowGlobalSettings(false)}
+                className="px-4 py-2 bg-gray-200 text-gray-700 rounded"
+              >
+                {t("signPDF.cancel")}
+              </button>
+              <button
+                className="px-4 py-2 bg-blue-600 text-white rounded"
+                onClick={() => console.log("Save global settings")}
+              >
+                {t("signPDF.save_continue")}
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const SignPDF = () => {
   const { t } = useTranslation();
   const [files, setFiles] = useState([]);
@@ -547,6 +834,13 @@ const SignPDF = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [appliedSignatures, setAppliedSignatures] = useState([]);
   const [showPreview, setShowPreview] = useState(false);
+  const [shareModal, setShareModal] = useState(false);
+  const [recipients, setRecipients] = useState([]);
+
+  const handleRecipientsSubmit = (data) => {
+    console.log("Recipients =>", data);
+    setRecipients(data);
+  };
 
   useEffect(() => {
     const link = document.createElement("link");
@@ -575,11 +869,14 @@ const SignPDF = () => {
     const newFiles = Array.from(e.target.files).filter(
       (f) => f.type === "application/pdf"
     );
+
     if (newFiles.length === 0) {
       setError(t("signPDF.signPdf_error"));
       return;
     }
-    setFiles((prev) => [...prev, ...newFiles]);
+
+    // keep only the latest file
+    setFiles([newFiles[0]]);
     setError(null);
   };
 
@@ -604,10 +901,10 @@ const SignPDF = () => {
     setFiles((files) => files.map((f) => ({ ...f, _dragging: false })));
   };
 
-  const handleClose = () => {
+  const handleSeveralSubmit = () => {
     setTypeModal(false);
-    setStep(1);
-    setTypeState("self");
+    setShareModal(true);
+    setTypeState("several");
   };
 
   // Handle signatures applied from modal
@@ -815,7 +1112,6 @@ const SignPDF = () => {
     setError(null);
     setTypeModal(false);
     setSignatureModal(false);
-    setStep(1);
     setTypeState("self");
   };
 
@@ -1239,86 +1535,60 @@ const SignPDF = () => {
           <div className="bg-white rounded-xl shadow-lg w-full max-w-lg p-6 relative">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold text-gray-900">
-                {step === 1
+                {typeState === "self"
                   ? t("signPDF.who_will_sign")
                   : t("signPDF.several_desc")}
               </h2>
             </div>
 
-            {step === 1 ? (
-              <div className="space-y-4">
-                {["self", "several"].map((opt) => (
-                  <label
-                    key={opt}
-                    className={`flex items-center justify-between p-4 border rounded-lg shadow cursor-pointer transition ${
-                      typeState === opt
-                        ? "border-forest bg-green-50"
-                        : "border-gray-200"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="signerType"
-                        value={opt}
-                        checked={typeState === opt}
-                        onChange={() => setTypeState(opt)}
-                        className="h-4 w-4 text-forest focus:ring-forest"
-                      />
-                      <span className="text-sm font-medium text-gray-800">
-                        {t(`signPDF.${opt}`)}
-                      </span>
-                    </div>
-                  </label>
-                ))}
-              </div>
-            ) : (
-              <div>
-                <p className="text-gray-600">{t("signPDF.several_desc")}</p>
-              </div>
-            )}
+            <div className="space-y-4">
+              {["self", "several"].map((opt) => (
+                <label
+                  key={opt}
+                  className={`flex items-center justify-between p-4 border rounded-lg shadow cursor-pointer transition ${
+                    typeState === opt
+                      ? "border-forest bg-green-50"
+                      : "border-gray-200"
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="signerType"
+                      value={opt}
+                      checked={typeState === opt}
+                      onChange={() => setTypeState(opt)}
+                      className="h-4 w-4 text-forest focus:ring-forest"
+                    />
+                    <span className="text-sm font-medium text-gray-800">
+                      {t(`signPDF.${opt}`)}
+                    </span>
+                  </div>
+                </label>
+              ))}
+            </div>
 
             <div className="mt-6 flex justify-end gap-3">
-              {step === 1 ? (
-                <>
-                  {typeState === "self" ? (
-                    <button
-                      onClick={handleSelfSubmit}
-                      className="px-6 py-2 bg-forest text-white rounded-lg shadow hover:bg-gold hover:text-forest"
-                    >
-                      {t("signPDF.submit")}
-                    </button>
-                  ) : typeState === "several" ? (
-                    <button
-                      onClick={() => setStep(2)}
-                      className="px-6 py-2 bg-forest text-white rounded-lg shadow hover:bg-gold hover:text-forest"
-                    >
-                      {t("signPDF.next")}
-                    </button>
-                  ) : (
-                    <button
-                      onClick={handleClose}
-                      className="px-6 py-2 bg-forest text-white rounded-lg shadow hover:bg-gold hover:text-forest"
-                    >
-                      {t("signPDF.submit")}
-                    </button>
-                  )}
-                </>
+              <button
+                onClick={() => setTypeModal(false)}
+                className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg"
+              >
+                {t("signPDF.back")}
+              </button>
+              {typeState === "self" ? (
+                <button
+                  onClick={handleSelfSubmit}
+                  className="px-6 py-2 bg-forest text-white rounded-lg shadow hover:bg-gold hover:text-forest"
+                >
+                  {t("signPDF.submit")}
+                </button>
               ) : (
-                <>
-                  <button
-                    onClick={() => setStep(1)}
-                    className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg"
-                  >
-                    {t("signPDF.back")}
-                  </button>
-                  <button
-                    onClick={handleClose}
-                    className="px-6 py-2 bg-forest text-white rounded-lg shadow hover:bg-gold hover:text-forest"
-                  >
-                    {t("signPDF.submit")}
-                  </button>
-                </>
+                <button
+                  onClick={handleSeveralSubmit}
+                  className="px-6 py-2 bg-forest text-white rounded-lg shadow hover:bg-gold hover:text-forest"
+                >
+                  {t("signPDF.submit")}
+                </button>
               )}
             </div>
           </div>
@@ -1331,6 +1601,13 @@ const SignPDF = () => {
         signerData={{ files, signerType: typeState }}
         submitAllTabs={submitAllTabs}
         onSignaturesApplied={handleSignaturesApplied}
+      />
+
+      <ShareModal
+        isOpen={shareModal}
+        onClose={() => setShareModal(false)}
+        allowReorder={true} // toggle reordering here
+        onSubmit={handleRecipientsSubmit}
       />
     </>
   );
