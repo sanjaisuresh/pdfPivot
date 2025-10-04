@@ -12,6 +12,6 @@ const uploadPdf = require("../middleware/csvUpload");
 
 router.post("/upload", uploadPdf.single("pdf-file"), uploadPdfController);
 
-router.post("/share/pdf", sharePdfController);
+router.post("/share", sharePdfController);
 
 module.exports = router;

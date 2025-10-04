@@ -23,9 +23,9 @@ const esignMembersDocSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    signed_file_path:{
-        type: String,
-        default:null
+    signed_file_path: {
+      type: String,
+      default: null,
     },
     status: {
       type: String,
@@ -41,9 +41,8 @@ const esignMembersDocSchema = new mongoose.Schema(
       default: null,
     },
     user_validation: {
-      type: String,
-      enum: ["all", "text", "draw", "uploadedSign"],
-      default: "all",
+      type: Array,
+      default: null,
     },
     user_role: {
       type: String,
