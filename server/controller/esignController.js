@@ -4,6 +4,8 @@ const {
   sharedDocList,
   sharedDocInfoList,
 } = require("../services/esignServices");
+const fs = require("fs").promises;
+const path = require("path");
 
 const uploadPdfController = async (req, res) => {
   try {
@@ -99,9 +101,31 @@ const getSharedFileInfoController = async (req, res) => {
   }
 };
 
+const downloadPdfController = async (req, res) => {
+  try {
+    let { file_path } = req.body;
+
+    const download_path = path.resolve(__dirname, "..", "." + file_path);
+
+    res.sendFile(download_path, (err) => {
+      if (err) {
+        console.error(err);
+        res.status(404).send("File not found");
+      }
+    });
+  } catch (error) {
+    console.error("Error while downloading pdf document", error);
+    res.status(400).json({
+      status: "false",
+      message: "download failed",
+    });
+  }
+};
+
 module.exports = {
   uploadPdfController,
   sharePdfController,
   getSharedFileController,
   getSharedFileInfoController,
+  downloadPdfController,
 };

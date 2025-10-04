@@ -6,9 +6,11 @@ const {
   sharePdfController,
   getSharedFileController,
   getSharedFileInfoController,
+  downloadPdfController,
 } = require("../controller/esignController");
 const uploadPdf = require("../middleware/csvUpload");
 
+router.post("/docs/download", downloadPdfController);
 // Middleware
 router.use(auth);
 
