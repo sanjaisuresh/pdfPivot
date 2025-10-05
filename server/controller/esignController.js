@@ -4,6 +4,7 @@ const {
   sharedDocList,
   sharedDocInfoList,
   sharedDocInfo,
+  uploadSignedPdf,
 } = require("../services/esignServices");
 const fs = require("fs").promises;
 const path = require("path");
@@ -142,6 +143,32 @@ const sharedPdfInfoController = async (req, res) => {
     });
   }
 };
+
+const uploadSignedPdfController = async (req, res) => {
+  try {
+    let { originalname, buffer, mimetype, encoding } = req.file;
+
+    let { file_id } = req.body;
+
+    let params = {};
+
+    params.originalname = originalname;
+    params.buffer = buffer;
+    params.mimetype = mimetype;
+    params.encoding = encoding;
+    params.file_id = file_id;
+
+    let result = await uploadSignedPdf(params);
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Error while uploading pdf document", error);
+    res.status(400).json({
+      status: "false",
+      message: error.message || "Upload failed",
+    });
+  }
+};
 module.exports = {
   uploadPdfController,
   sharePdfController,
@@ -149,4 +176,5 @@ module.exports = {
   getSharedFileInfoController,
   downloadPdfController,
   sharedPdfInfoController,
+  uploadSignedPdfController,
 };

@@ -228,10 +228,72 @@ const sharedDocInfo = async (params) => {
   }
 };
 
+const uploadSignedPdf = async (params) => {
+  try {
+    let { originalname, buffer, file_id } = params;
+
+    // Edge case
+    let file_info = await EsignMembersDoc.findOne({
+      _id: file_id,
+    });
+
+    let file_status = file_info.status;
+
+    if (file_status !== "pending") {
+      throw new Error("PDF expired or already signed");
+    }
+
+    // Check file directory
+    await checkEsignDir();
+
+    // Generate path /uploads/esign-docs/temp-doc
+    const save_path = path.join(
+      __dirname,
+      "..",
+      "uploads",
+      "esign-docs",
+      "signed-doc"
+    );
+
+    // File Name
+    const file_name = `${file_id}.pdf`;
+    // File Path
+    const file_path = path.join(save_path, file_name);
+
+    await fs.writeFile(file_path, buffer);
+
+    // update status signed and path
+    await EsignMembersDoc.updateOne(
+      {
+        _id: file_id,
+      },
+      {
+        $set: {
+          status: "signed",
+          signed_file_path: `/uploads/esign-docs/signed-doc/${file_name}`,
+        },
+      }
+    );
+
+    let result = {
+      status: "success",
+      message: "Successfully uploaded",
+      data: {
+        file_name: originalname,
+        file_path: `/uploads/esign-docs/signed-doc/${file_name}`,
+      },
+    };
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   uploadPdf,
   sharePdf,
   sharedDocList,
   sharedDocInfoList,
   sharedDocInfo,
+  uploadSignedPdf,
 };
