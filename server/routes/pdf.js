@@ -1580,9 +1580,9 @@ router.post(
               }
             }
           } 
-          else if (p.type === "text") {
+          else if (p.type === "text" || p.type === "initials") {
             // Handle text placements with proper fonts and colors
-            const text = p.text || "";
+            const text = p.text || ""; 
             const fontSize = p.fontSize || 24;
             const fontFamily = p.fontFamily || "'Montserrat', sans-serif";
             const color = p.color || "#000000";
