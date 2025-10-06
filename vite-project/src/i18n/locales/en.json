@@ -211,7 +211,7 @@
     "e_sign": "eSign PDF",
     "e_sign_desc": "Sign your PDF documents electronically",
     "sign_pdf": "Sign PDF",
-    "sign_pdf_desc": "ign your PDF documents"
+    "sign_pdf_desc": "Sign your PDF documents"
   },
   "user_management": {
     "title": "User Management",
@@ -1070,6 +1070,7 @@
     "reminder_desc": "Send a reminder to the participants every {{days}} days.",
     "receipt_error": "Fill the required Fields",
     "share_failed": "Something went wrong",
-    "share_success":"Shared Successfully"
+    "share_success":"Shared Successfully",
+    "no_file_selected":"No File selected"
   }
 }

@@ -69,14 +69,21 @@ const SignatureModal = ({
     const file = e.target.files[0];
     if (file) updateFormData("logo", file);
   };
-  // Canvas drawing handlers
-  const startDrawing = (e) => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+  const startDrawing = ({ nativeEvent }) => {
+    const ctx = canvasRef.current.getContext("2d");
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#000";
     ctx.beginPath();
-    ctx.moveTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
+    ctx.moveTo(nativeEvent.offsetX, nativeEvent.offsetY);
     setDrawing(true);
   };
+
+  const stopDrawing = () => setDrawing(false);
+  const clearCanvas = () =>
+    canvasRef.current
+      .getContext("2d")
+      .clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+
   const draw = (e) => {
     if (!drawing) return;
     const canvas = canvasRef.current;
@@ -339,23 +346,31 @@ const SignatureModal = ({
             <div className="mt-2 grid grid-rows-2 gap-4">
               {/* Top Half: Drawing */}
               <div
-                className="border rounded-md p-2 flex flex-col items-center"
+                className="border rounded-md p-2 flex flex-col items-center relative"
                 style={{ maxHeight: "200px" }}
               >
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t("signPDF.signature")}
-                </label>
-                <canvas
-                  ref={canvasRef}
-                  width={400}
-                  height={80}
-                  className="border rounded-md w-full"
-                  onMouseDown={startDrawing}
-                  onMouseMove={draw}
-                  onMouseUp={endDrawing}
-                  onMouseLeave={endDrawing}
-                  style={{ cursor: "crosshair" }}
-                />
+                <div className="mt-2 flex flex-col items-start relative">
+                  {/* Canvas */}
+                  <canvas
+                    ref={canvasRef}
+                    width={600}
+                    height={140}
+                    className="border border-gray-400 rounded mb-2"
+                    onMouseDown={startDrawing}
+                    onMouseMove={draw}
+                    onMouseUp={stopDrawing}
+                    onMouseLeave={stopDrawing}
+                  />
+
+                  {/* Clear Icon */}
+                  <button
+                    onClick={clearCanvas}
+                    className="absolute top-0 right-0 bg-white p-1 rounded-full shadow hover:bg-gray-100 transition"
+                    title="Clear signature"
+                  >
+                    <X className="w-4 h-4 text-red-500" />
+                  </button>
+                </div>
               </div>
               {/* Bottom Half: Upload Signature Image */}
               <div
@@ -1038,6 +1053,7 @@ const SignPDF = () => {
   }, []);
   const handleShareSubmit = async ({ recipients, globalSettings }) => {
     console.log(recipients, "Got in recipients");
+    await uploadFile();
     // Prepare payload
     const payload = {
       file_path: tempFileData.file_path,
@@ -1079,38 +1095,49 @@ const SignPDF = () => {
     setSignatureModal(true);
   };
   // Handle file input
-  const handleFileChange = async (e) => {
+  const handleFileChange = (e) => {
     const newFiles = Array.from(e.target.files).filter(
       (f) => f.type === "application/pdf"
     );
+
     if (newFiles.length === 0) {
       setError(t("signPDF.signPdf_error"));
       return;
     }
-    // Keep only the latest file
+
+    // keep latest file
     const fileToUpload = newFiles[0];
     setFiles([fileToUpload]);
     setError(null);
-    // Prepare FormData
+  };
+
+  const uploadFile = async () => {
+    if (!files || files.length === 0) {
+      toast.error(t("signPDF.no_file_selected"));
+      return;
+    }
+
+    const fileToUpload = files[0];
     const formData = new FormData();
-    formData.append("pdf-file", fileToUpload); // payload key "pdf-file"
+    formData.append("pdf-file", fileToUpload);
+
     try {
       const response = await axios.post("/api/esign/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
+
       if (response.data?.status === "success") {
         const data = response.data?.data;
-        // object should appear correctly
         setTempFileData(data ?? {});
-      } else {
-        setError(t("signPDF.upload_failed"));
+        setError(null);
       }
     } catch (err) {
-      setError(t("signPDF.upload_failed")); // optional: display error
+      toast.error("Sign in to share file");
     }
   };
+
   // Remove file
   const handleRemove = (idx) => {
     setFiles((prev) => prev.filter((_, i) => i !== idx));
@@ -1387,10 +1414,24 @@ const SignPDF = () => {
                         {t("signPDF.upload_pdfs")}
                       </label>
                       <div
-                        className={`mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg ${
+                        onDragOver={(e) => e.preventDefault()}
+                        onDragEnter={(e) => e.preventDefault()}
+                        onDragLeave={(e) => e.preventDefault()}
+                        onDrop={(e) => {
+                          e.preventDefault();
+                          if (hasShareReq) return; // disable when sharing
+                          const files = Array.from(e.dataTransfer.files);
+                          const pdfFiles = files.filter(
+                            (file) => file.type === "application/pdf"
+                          );
+                          if (pdfFiles.length > 0) {
+                            handleFileChange({ target: { files: pdfFiles } });
+                          }
+                        }}
+                        className={`mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed rounded-lg transition-colors duration-200 ${
                           hasShareReq
-                            ? "opacity-50 cursor-not-allowed"
-                            : "hover:border-gold transition-colors duration-200"
+                            ? "opacity-50 cursor-not-allowed border-gray-300"
+                            : "border-gray-300 hover:border-gold"
                         }`}
                       >
                         <div className="space-y-1 text-center">
