@@ -3,6 +3,9 @@ const path = require("path");
 const { checkEsignDir } = require("../utils/uploadDIR");
 const EsignDoc = require("../models/EsignDoc");
 const EsignMembersDoc = require("../models/EsignMemberDocs");
+const User = require("../models/User");
+const { eSignTemplate } = require("../utils/templates/esignShare");
+const { sendMail } = require("../utils/mailService");
 
 const uploadPdf = async (params) => {
   try {
@@ -71,7 +74,7 @@ const renamePath = async (params) => {
 
 const shareEmailAll = async (params) => {
   try {
-    let { shared_users, file_path, file_name, file_id } = params;
+    let { shared_users, file_path, file_name, file_id, owner_name } = params;
     let shared_ids = [];
 
     await Promise.all(
@@ -88,6 +91,23 @@ const shareEmailAll = async (params) => {
         });
 
         shared_ids.push({ email: user.user_email, shared_id: shareDoc._id });
+
+        // Email Format
+        let email_payload = {
+          owner_name: owner_name,
+          member_name: user.user_name,
+          member_email: user.user_email,
+          pdf_id: shareDoc._id,
+        };
+
+        let email_html_format = eSignTemplate(email_payload);
+
+        // Send Email
+        await sendMail(
+          user.user_email,
+          email_html_format.subject,
+          email_html_format.html
+        );
       })
     );
 
@@ -124,6 +144,20 @@ const sharePdf = async (params) => {
     );
 
     params.file_id = file_id;
+
+    // get owner user name
+    let get_owner_name = await User.findOne(
+      {
+        _id: user_id,
+      },
+      {
+        name: 1,
+      }
+    );
+
+    let owner_name = get_owner_name?.name ?? "Unknown";
+
+    params.owner_name = owner_name;
 
     let shared_ids = await shareEmailAll(params);
 
@@ -184,6 +218,7 @@ const sharedDocInfoList = async (params) => {
         signed_file_path: 1,
         status: 1,
         createdAt: 1,
+        user_name: 1,
       }
     );
 

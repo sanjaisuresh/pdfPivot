@@ -1,15 +1,15 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp-relay.brevo.com',
+  host: "mail.pdfpivot.com",
   port: 587,
   secure: false, // use STARTTLS
   auth: {
-    user: process.env.BREVO_USER, // your Brevo login email
-    pass: process.env.BREVO_PASS  // Brevo SMTP password (not your login password)
+    user: process.env.BREVO_USER,
+    pass: process.env.BREVO_PASS,
   },
   logger: true,
-  debug: true
+  debug: true,
 });
 
 exports.sendMail = async (to, subject, html) => {
@@ -18,11 +18,11 @@ exports.sendMail = async (to, subject, html) => {
       from: `"PdfPivot" <info@pdfpivot.com>`, // must match verified domain
       to,
       subject,
-      html
+      html,
     });
-    console.log('✅ Email sent:', info.messageId);
+    console.log("✅ Email sent:", info.messageId);
   } catch (error) {
-    console.error('❌ Failed to send email:', error);
+    console.error("❌ Failed to send email:", error);
     throw error;
   }
 };
