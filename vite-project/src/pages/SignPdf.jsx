@@ -412,11 +412,18 @@ const SignatureModal = ({
                           className="sr-only"
                         />
                       </label>
-                      <p className="pl-1">{t("or_drag_and_drop")}</p>
+                      {/* <p className="pl-1">{t("or_drag_and_drop")}</p> */}
                     </div>
                     <p className="text-xs text-gray-500">
                       {t("image_up_to_5mb")}
                     </p>
+                    {formData.uploadedSign && (
+                      <img
+                        src={URL.createObjectURL(formData.uploadedSign)}
+                        alt="Logo Preview"
+                        className="h-16 mt-2 mx-auto rounded-md border"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -457,7 +464,7 @@ const SignatureModal = ({
                         className="sr-only"
                       />
                     </label>
-                    <p className="pl-1">{t("or_drag_and_drop")}</p>
+                    {/* <p className="pl-1">{t("or_drag_and_drop")}</p> */}
                   </div>
                   <p className="text-xs text-gray-500">
                     {t("image_up_to_5mb")}
@@ -754,6 +761,11 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="bg-white rounded-xl shadow-lg w-full max-w-4xl p-6 relative overflow-y-auto max-h-[90vh] flex gap-4">
+        <X
+          size={22}
+          className="absolute top-4 right-4 text-gray-500 cursor-pointer hover:text-gray-700 transition"
+          onClick={onClose}
+        />
         {/* Left side: ShareModal content */}
         <div
           className={`flex-1 flex flex-col gap-3 max-h-[600px] overflow-y-auto overflow-x-auto pr-2`}
@@ -1038,15 +1050,71 @@ const SignPDF = () => {
   const [recipients, setRecipients] = useState([]);
   const [tempFileData, setTempFileData] = useState(null);
   const [hasShareReq, sethasShareReq] = useState(false);
-
-  const handleShareId = (id) => {
+  const [sharedDetails, setSharedDetails] = useState(null);
+  const handleShareId = async (id) => {
     console.log("Share ID from URL:", id);
     sethasShareReq(true);
-    // Here you can make API calls or handle it as needed
+    try {
+      const response = await getSharedDetails(id);
+      if (response) {
+        await getFileShared();
+      }
+    } catch (error) {
+      console.error("Error loading shared file:", error);
+    } // Here you can make API calls or handle it as needed
   };
+  const getSharedDetails = async (shared_id) => {
+    try {
+      const response = await axios.get(`/api/esign/share/docs/info`, {
+        params: { shared_id }, // query param
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response, "Got in data for response");
+      setSharedDetails(response?.data?.data ?? {});
+      return response;
+    } catch (error) {
+      toast.error(t("signPDF.share_failed"));
+      throw error;
+    }
+  };
+
+  const getFileShared = async () => {
+    const file_path = sharedDetails?.original_file_path;
+    console.log(file_path, "Got in data for download");
+    try {
+      const response = await axios.post(
+        `/api/esign/docs/download`,
+        { file_path },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          responseType: "blob", // we want blob to create a File object
+        }
+      );
+
+      // Convert blob into a File object
+      const fileName = file_path.split("/").pop();
+      const file = new File([response.data], fileName, {
+        type: "application/pdf",
+      });
+
+      // ✅ Directly set the file (same as file input)
+      setFiles([file]);
+      setError(null);
+
+      console.log("✅ File fetched and set successfully:", fileName);
+    } catch (error) {
+      console.error("❌ Error fetching shared file:", error);
+      setError(t("signPDF.signPdf_error"));
+    }
+  };
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const shareId = params.get("share_id");
+    const shareId = params.get("file_id");
     if (shareId) {
       handleShareId(shareId);
     }
@@ -1129,8 +1197,8 @@ const SignPDF = () => {
       });
 
       if (response.data?.status === "success") {
-        const data = response.data?.data;
-        setTempFileData(data ?? {});
+        const data = response.data;
+        setTempFileData(data?.data ?? {});
         setError(null);
       }
     } catch (err) {
@@ -1249,74 +1317,119 @@ const SignPDF = () => {
     try {
       const formData = new FormData();
       formData.append("pdf", files[0]);
+
       // Add all placements with complete styling information
       const allPlacements = appliedSignatures.flatMap(
         (sig) => sig.placements || []
       );
-      // Ensure font data is preserved
+
+      // Ensure font data is preserved and add image file names
       const placementsWithStyles = allPlacements.map((placement) => ({
         ...placement,
-        fontFamily: placement.fontFamily || FONT_STYLES[0].fontFamily,
+        fontFamily: placement.fontFamily || FONT_STYLES[0].fontfamily,
         color: placement.color || "#000000",
         fontSize: placement.fontSize || 24,
+        // Add image file name for backend matching
+        imageFileName: placement.imageFile ? placement.imageFile.name : null,
       }));
+
       formData.append("placements", JSON.stringify(placementsWithStyles));
-      // Add image files and signature data
-      const imagePromises = [];
+
+      // Add image files - CRITICAL: Use the placement ID as fieldname
       appliedSignatures.forEach((sig) => {
         // Handle image files (logos and uploaded signatures)
-        if (sig.type === "image" && sig.imageFile) {
-          formData.append("images", sig.imageFile);
+        if (
+          (sig.type === "image" || sig.type === "signature") &&
+          sig.imageFile
+        ) {
+          // Use the placement ID as the fieldname for exact matching
+          const placementId = sig.placements?.[0]?.id || sig.id;
+
+          if (placementId) {
+            // Create a new File object with the correct fieldname
+            const renamedFile = new File([sig.imageFile], sig.imageFile.name, {
+              type: sig.imageFile.type,
+            });
+
+            // Append with placement ID as fieldname
+            formData.append("images", renamedFile, placementId);
+            console.log(
+              `Added image with fieldname: ${placementId}, filename: ${sig.imageFile.name}`
+            );
+          }
         }
-        // Handle drawn signatures (convert data URL to blob)
+      });
+
+      // Handle drawn signatures (convert data URL to blob)
+      const imagePromises = [];
+      appliedSignatures.forEach((sig) => {
         if (
           sig.type === "signature" &&
           sig.signatureData &&
-          sig.signatureData.startsWith("data:")
+          sig.signatureData.startsWith("data:") &&
+          !sig.imageFile // Only for drawn signatures, not uploaded images
         ) {
           const promise = fetch(sig.signatureData)
             .then((res) => res.blob())
             .then((blob) => {
-              const file = new File([blob], `signature-${sig.id}.png`, {
+              const placementId = sig.placements?.[0]?.id || sig.id;
+              const file = new File([blob], `signature-${placementId}.png`, {
                 type: "image/png",
               });
-              formData.append("signatures", file);
+              formData.append("signatures", file, placementId);
+              console.log(
+                `Added drawn signature with fieldname: ${placementId}`
+              );
             });
           imagePromises.push(promise);
         }
-        // Handle uploaded signature images
-        if (sig.type === "signature" && sig.imageFile) {
-          formData.append("images", sig.imageFile);
-        }
       });
+
       // Wait for all image conversions to complete
       await Promise.all(imagePromises);
-      // Only track usage if user is logged in
-      if (token) {
-        await axios.post(
-          "/api/user/track",
-          {
-            service: "e-sign",
-            imageCount: appliedSignatures.filter(
-              (sig) => sig.type === "image" || sig.type === "signature"
-            ).length,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
+
+      // Debug: Log what we're sending
+      console.log("Sending placements:", placementsWithStyles);
+      console.log("FormData entries:");
+      for (let [key, value] of formData.entries()) {
+        if (value instanceof File) {
+          console.log(`- ${key}: ${value.name} (${value.size} bytes)`);
+        } else if (key === "placements") {
+          console.log(`- ${key}: ${value.substring(0, 100)}...`);
+        } else {
+          console.log(`- ${key}: ${value}`);
+        }
       }
-      // Submit for signing using the new route
+
+      // Only track usage if user is logged in
+      // if (token) {
+      //   await axios.post(
+      //     "/api/user/track",
+      //     {
+      //       service: "e-sign",
+      //       imageCount: appliedSignatures.filter(
+      //         (sig) => sig.type === "image" || sig.type === "signature"
+      //       ).length,
+      //     },
+      //     {
+      //       headers: {
+      //         Authorization: `Bearer ${token}`,
+      //         "Content-Type": "application/json",
+      //       },
+      //     }
+      //   );
+      // }
+
+      // Submit for signing
       const res = await axios.post("/api/sign-PDF", formData, {
         responseType: "blob",
         headers: {
           "Content-Type": "multipart/form-data",
           ...(token && { Authorization: `Bearer ${token}` }),
         },
+        timeout: 60000, // 60 second timeout
       });
+
       const url = window.URL.createObjectURL(new Blob([res.data]));
       const a = document.createElement("a");
       a.href = url;
@@ -1324,9 +1437,9 @@ const SignPDF = () => {
       document.body.appendChild(a);
       a.click();
       a.remove();
-      // Clean up
       window.URL.revokeObjectURL(url);
     } catch (err) {
+      console.error("Error creating signed PDF:", err);
       alert(t("signPDF.failed_to_create"));
     } finally {
       setLoading(false);
@@ -1811,7 +1924,12 @@ const SignPDF = () => {
                       value={opt}
                       checked={typeState === opt}
                       onChange={() => setTypeState(opt)}
-                      className="h-4 w-4 text-forest focus:ring-forest"
+                      className={`h-4 w-4 text-forest focus:ring-forest ${
+                        opt === "several" && hasShareReq
+                          ? "cursor-not-allowed"
+                          : "cursor-pointer"
+                      }`}
+                      disabled={opt === "several" && hasShareReq} // ✅ disable only if "several" and hasShareReq true
                     />
                     <span className="text-sm font-medium text-gray-800">
                       {t(`signPDF.${opt}`)}

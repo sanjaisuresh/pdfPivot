@@ -1446,7 +1446,10 @@ const downloadFont = async (fontName, fontUrl) => {
       method: 'GET',
       url: fontUrl,
       responseType: 'arraybuffer',
-      timeout: 30000
+      timeout: 30000,
+      validateStatus: function (status) {
+        return status >= 200 && status < 300; // Only resolve for 2xx status
+      }
     });
     
     // Verify it's actually a font file (check first few bytes)
@@ -1460,6 +1463,7 @@ const downloadFont = async (fontName, fontUrl) => {
     return fontPath;
   } catch (error) {
     console.error(`Failed to download font ${fontName}:`, error.message);
+    // Don't throw, just return null so we can use fallback fonts
     return null;
   }
 };
@@ -1475,7 +1479,6 @@ const initializeFonts = async () => {
 
 // Call this when your server starts
 // initializeFonts().catch(console.error);
-
 router.post(
   "/sign-PDF",
   upload.fields([
@@ -1488,7 +1491,13 @@ router.post(
       const pdfFile = req.files["pdf"][0];
       const placements = JSON.parse(req.body.placements || "[]");
       
-      console.log("Received placements:", placements.length);
+      console.log("Received placements:", placements);
+      console.log("Received images:", req.files["images"] ? req.files["images"].map(img => ({
+        originalname: img.originalname,
+        fieldname: img.fieldname,
+        size: img.size
+      })) : []);
+      console.log("Received signatures:", req.files["signatures"] ? req.files["signatures"].length : 0);
 
       const pdfBytes = fs.readFileSync(pdfFile.path);
       const pdfDoc = await PDFDocument.load(pdfBytes);
@@ -1524,6 +1533,25 @@ router.post(
         return { r, g, b };
       };
 
+      // Create a map of image files for easier lookup - use fieldname as key
+      const imageMap = new Map();
+      if (req.files["images"]) {
+        req.files["images"].forEach(img => {
+          // Use the fieldname as key (this is what FormData uses)
+          imageMap.set(img.fieldname, img);
+          console.log(`Mapped image - Fieldname: ${img.fieldname}, Original: ${img.originalname}`);
+        });
+      }
+
+      // Also map by original filename without extension for fallback
+      const imageNameMap = new Map();
+      if (req.files["images"]) {
+        req.files["images"].forEach(img => {
+          const nameWithoutExt = path.parse(img.originalname).name;
+          imageNameMap.set(nameWithoutExt, img);
+        });
+      }
+
       // Process each placement
       for (const p of placements) {
         const page = pages[p.page];
@@ -1537,21 +1565,100 @@ router.post(
 
         try {
           if (p.type === "image") {
-            // Handle image placements
-            if (req.files["images"]) {
-              const imageFile = req.files["images"].find(img => 
-                img.originalname.includes(p.id) || img.fieldname === p.id
-              );
-              if (imageFile) {
+            console.log(`Processing image placement - ID: ${p.id}, Type: ${p.type}`);
+            
+            let imageFile = null;
+
+            // Method 1: Try to find by the placement ID as fieldname
+            if (p.id) {
+              imageFile = imageMap.get(p.id);
+            }
+
+            // Method 2: Try to find by imageFileName if provided
+            if (!imageFile && p.imageFileName) {
+              const searchName = path.parse(p.imageFileName).name;
+              imageFile = imageNameMap.get(searchName);
+            }
+
+            // Method 3: Fallback - use first available image if only one exists
+            if (!imageFile && req.files["images"] && req.files["images"].length === 1) {
+              imageFile = req.files["images"][0];
+              console.log(`Using single available image as fallback: ${imageFile.originalname}`);
+            }
+
+            // Method 4: Try partial matching on fieldname
+            if (!imageFile && p.id) {
+              for (const [fieldname, img] of imageMap.entries()) {
+                if (fieldname.includes(p.id) || p.id.includes(fieldname)) {
+                  imageFile = img;
+                  break;
+                }
+              }
+            }
+
+            if (imageFile) {
+              console.log(`Found matching image: ${imageFile.originalname} for placement: ${p.id}`);
+              try {
                 const imgBytes = fs.readFileSync(imageFile.path);
-                const image = await pdfDoc.embedPng(imgBytes);
+                
+                // Determine image type and embed accordingly
+                let image;
+                if (imageFile.mimetype === 'image/png' || imageFile.originalname.endsWith('.png')) {
+                  image = await pdfDoc.embedPng(imgBytes);
+                  console.log(`Embedded as PNG image`);
+                } else if (imageFile.mimetype === 'image/jpeg' || imageFile.originalname.endsWith('.jpg') || imageFile.originalname.endsWith('.jpeg')) {
+                  image = await pdfDoc.embedJpg(imgBytes);
+                  console.log(`Embedded as JPG image`);
+                } else {
+                  // Default to PNG for other types
+                  image = await pdfDoc.embedPng(imgBytes);
+                  console.log(`Embedded as default PNG image`);
+                }
+                
                 page.drawImage(image, { 
                   x: p.x, 
                   y: adjustedY, 
                   width: p.width || 100, 
                   height: p.height || 100 
                 });
+                console.log(`Successfully drew image at x:${p.x}, y:${adjustedY}, width:${p.width}, height:${p.height}`);
+              } catch (embedError) {
+                console.error(`Error embedding image ${p.id}:`, embedError);
+                // Draw a placeholder rectangle for debugging
+                page.drawRectangle({
+                  x: p.x,
+                  y: adjustedY,
+                  width: p.width || 100,
+                  height: p.height || 100,
+                  color: rgb(1, 0, 0),
+                  opacity: 0.3,
+                });
+                page.drawText(`IMAGE ERROR: ${embedError.message}`, {
+                  x: p.x,
+                  y: adjustedY,
+                  size: 8,
+                  color: rgb(1, 0, 0),
+                });
               }
+            } else {
+              console.warn(`No image file found for placement: ${p.id}`);
+              console.log('Available images:', Array.from(imageMap.entries()));
+              
+              // Draw a placeholder for missing images
+              page.drawRectangle({
+                x: p.x,
+                y: adjustedY,
+                width: p.width || 100,
+                height: p.height || 100,
+                color: rgb(0.8, 0.8, 0.8),
+                opacity: 0.5,
+              });
+              page.drawText(`Missing: ${p.id}`, {
+                x: p.x,
+                y: adjustedY + (p.height || 100) / 2,
+                size: 10,
+                color: rgb(0, 0, 0),
+              });
             }
           } 
           else if (p.type === "signature") {
@@ -1567,6 +1674,7 @@ router.post(
                   width: p.width || 150, 
                   height: p.height || 80 
                 });
+                console.log(`Drawn signature at x:${p.x}, y:${adjustedY}`);
               } catch (sigError) {
                 console.error("Error embedding signature:", sigError);
                 // Fallback to text signature
@@ -1676,7 +1784,7 @@ router.post(
         "Content-Length": signedPdfBytes.length
       });
       
-           res.send(Buffer.from(signedPdfBytes));
+      res.send(Buffer.from(signedPdfBytes));
       console.log("PDF successfully generated and sent");
       
     } catch (err) {
@@ -1688,6 +1796,5 @@ router.post(
     }
   }
 );
-
 
 module.exports = router;

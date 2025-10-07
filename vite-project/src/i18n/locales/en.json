@@ -1071,6 +1071,9 @@
     "receipt_error": "Fill the required Fields",
     "share_failed": "Something went wrong",
     "share_success":"Shared Successfully",
-    "no_file_selected":"No File selected"
+    "no_file_selected":"No File selected",
+    "drawnSign":"Upload Drawn Image",
+    "download_success":"Download Successfull",
+    "signPdf_error_load_shared" : "Failed to load shared file"
   }
 }
