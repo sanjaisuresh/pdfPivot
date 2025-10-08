@@ -1468,17 +1468,6 @@ const downloadFont = async (fontName, fontUrl) => {
   }
 };
 
-// Pre-download all fonts when server starts
-const initializeFonts = async () => {
-  console.log('Initializing fonts...');
-  for (const [fontName, fontUrl] of Object.entries(fontUrls)) {
-    await downloadFont(fontName, fontUrl);
-  }
-  console.log('Font initialization complete');
-};
-
-// Call this when your server starts
-// initializeFonts().catch(console.error);
 router.post(
   "/sign-PDF",
   upload.fields([
@@ -1688,7 +1677,7 @@ router.post(
               }
             }
           } 
-          else if (p.type === "text" || p.type === "initials") {
+          else if (p.type === "fullName" || p.type === "initials") {
             // Handle text placements with proper fonts and colors
             const text = p.text || ""; 
             const fontSize = p.fontSize || 24;

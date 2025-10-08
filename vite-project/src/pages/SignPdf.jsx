@@ -6,6 +6,13 @@ import { Text, Edit2, ImageIcon } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { Rnd } from "react-rnd";
 import toast, { Toaster } from "react-hot-toast";
+import { FileSignature, Upload, Download } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 import {
   GripVertical,
@@ -78,7 +85,14 @@ const SignatureModal = ({
     setDrawing(true);
   };
 
-  const stopDrawing = () => setDrawing(false);
+  const stopDrawing = () => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const dataUrl = canvas.toDataURL();
+      updateFormData("drawnSignature", dataUrl);
+    }
+    setDrawing(false);
+  };
   const clearCanvas = () =>
     canvasRef.current
       .getContext("2d")
@@ -122,8 +136,8 @@ const SignatureModal = ({
           (s) => s.key === formData.selectedStyle
         );
         signatures.push({
-          id: `text-${Date.now()}`,
-          type: "text",
+          id: `fullName-${Date.now()}`,
+          type: "fullName",
           text: formData.fullName,
           fontFamily: selectedStyle?.fontFamily,
           fontStyle: formData.selectedStyle, // Keep the style key
@@ -176,61 +190,8 @@ const SignatureModal = ({
           height: 40,
         });
       }
-    } else {
-      switch (activeTab) {
-        case "text":
-          if (formData.fullName) {
-            const selectedStyle = FONT_STYLES.find(
-              (s) => s.key === formData.selectedStyle
-            );
-            signatures.push({
-              id: `text-${Date.now()}`,
-              type: "text",
-              text: formData.fullName,
-              fontFamily: selectedStyle?.fontFamily,
-              fontStyle: formData.selectedStyle,
-              color: formData.color,
-              fontSize: 24,
-              width: 200,
-              height: 40,
-            });
-          }
-          break;
-        case "draw":
-          if (formData.drawnSignature) {
-            signatures.push({
-              id: `signature-${Date.now()}`,
-              type: "signature",
-              signatureData: formData.drawnSignature,
-              width: 150,
-              height: 80,
-            });
-          }
-          break;
-        case "logo":
-          if (formData.logo) {
-            signatures.push({
-              id: `logo-${Date.now()}`,
-              type: "image",
-              imageFile: formData.logo,
-              width: 100,
-              height: 100,
-            });
-          }
-          break;
-        case "uploadedSign":
-          if (formData.uploadedSign) {
-            signatures.push({
-              id: `uploadedSign-${Date.now()}`,
-              type: "image",
-              imageFile: formData.uploadedSign,
-              width: 100,
-              height: 100,
-            });
-          }
-          break;
-      }
     }
+
     // Pass signatures to parent
     if (onSignaturesApplied && signatures.length > 0) {
       onSignaturesApplied(signatures);
@@ -496,6 +457,7 @@ const SignatureModal = ({
 };
 // Editable Placement Component
 const EditablePlacement = ({ placement, onTextChange }) => {
+  console.log(placement, "Got in data for placement edit");
   const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(placement.text);
@@ -1050,15 +1012,22 @@ const SignPDF = () => {
   const [recipients, setRecipients] = useState([]);
   const [tempFileData, setTempFileData] = useState(null);
   const [hasShareReq, sethasShareReq] = useState(false);
-  const [sharedDetails, setSharedDetails] = useState(null);
+  const [sharedDetails, setSharedDetails] = useState({});
+  const hasFetchedRef = useRef(false);
+
+  useEffect(() => {
+    if (hasFetchedRef.current) return; // prevent duplicate fetch
+    hasFetchedRef.current = true;
+
+    const params = new URLSearchParams(window.location.search);
+    const shareId = params.get("file_id");
+    if (shareId) handleShareId(shareId);
+  }, []);
   const handleShareId = async (id) => {
     console.log("Share ID from URL:", id);
     sethasShareReq(true);
     try {
       const response = await getSharedDetails(id);
-      if (response) {
-        await getFileShared();
-      }
     } catch (error) {
       console.error("Error loading shared file:", error);
     } // Here you can make API calls or handle it as needed
@@ -1066,45 +1035,41 @@ const SignPDF = () => {
   const getSharedDetails = async (shared_id) => {
     try {
       const response = await axios.get(`/api/esign/share/docs/info`, {
-        params: { shared_id }, // query param
-        headers: {
-          "Content-Type": "application/json",
-        },
+        params: { shared_id },
+        headers: { "Content-Type": "application/json" },
       });
-      console.log(response, "Got in data for response");
-      setSharedDetails(response?.data?.data ?? {});
-      return response;
+      const data = response?.data?.data;
+      console.log(data, "Got in data for set");
+
+      setSharedDetails(data ?? {});
+      await getFileShared(data); // ✅ pass directly here
     } catch (error) {
       toast.error(t("signPDF.share_failed"));
       throw error;
     }
   };
 
-  const getFileShared = async () => {
-    const file_path = sharedDetails?.original_file_path;
+  const getFileShared = async (sharedData) => {
+    const file_path = sharedData?.original_file_path; // ✅ use from argument
     console.log(file_path, "Got in data for download");
+
     try {
       const response = await axios.post(
         `/api/esign/docs/download`,
         { file_path },
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          responseType: "blob", // we want blob to create a File object
+          headers: { "Content-Type": "application/json" },
+          responseType: "blob",
         }
       );
 
-      // Convert blob into a File object
       const fileName = file_path.split("/").pop();
       const file = new File([response.data], fileName, {
         type: "application/pdf",
       });
 
-      // ✅ Directly set the file (same as file input)
       setFiles([file]);
       setError(null);
-
       console.log("✅ File fetched and set successfully:", fileName);
     } catch (error) {
       console.error("❌ Error fetching shared file:", error);
@@ -1112,13 +1077,6 @@ const SignPDF = () => {
     }
   };
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const shareId = params.get("file_id");
-    if (shareId) {
-      handleShareId(shareId);
-    }
-  }, []);
   const handleShareSubmit = async ({ recipients, globalSettings }) => {
     console.log(recipients, "Got in recipients");
     await uploadFile();
@@ -1248,15 +1206,15 @@ const SignPDF = () => {
       width: signature.width,
       height: signature.height,
       text:
-        signature.type === "text" || signature.type === "initials"
+        signature.type === "fullName" || signature.type === "initials"
           ? signature.text
           : undefined,
       fontFamily:
-        signature.type === "text" || signature.type === "initials"
+        signature.type === "fullName" || signature.type === "initials"
           ? signature.fontFamily
           : undefined,
       color:
-        signature.type === "text" || signature.type === "initials"
+        signature.type === "fullName" || signature.type === "initials"
           ? signature.color
           : undefined,
       signatureData:
@@ -1458,6 +1416,12 @@ const SignPDF = () => {
     setTypeState("self");
     setTempFileData(null);
   };
+
+  const handleUploadSigned =()=>
+  {
+    console.log("GOt in for upload signed")
+  }
+  console.log(appliedSignatures, "Got in data for appliedSignatures");
   return (
     <>
       <Helmet>
@@ -1652,7 +1616,7 @@ const SignPDF = () => {
                                 {t(`signPDF.place_${sig.type}`)}
                               </button>
                             </div>
-                            {sig.type === "text" && (
+                            {sig.type === "fullName" && (
                               <div
                                 style={{
                                   fontFamily: sig.fontFamily,
@@ -1733,20 +1697,66 @@ const SignPDF = () => {
                       )}
                     </button>
                   ) : (
-                    <div className="flex gap-3">
-                      <button
-                        onClick={() => setSignatureModal(true)}
-                        className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                      >
-                        {t("signPDF.addSign")}
-                      </button>
-                      <button
-                        onClick={handleFinalSubmit}
-                        disabled={loading}
-                        className="px-6 py-3 bg-forest text-white rounded-lg hover:bg-gold hover:text-forest flex-1"
-                      >
-                        {loading ? t("signPDF.loading") : t("signPDF.download")}
-                      </button>
+                    <div className="flex gap-3 items-center">
+                      <TooltipProvider>
+                        {/* ➤ Add Signature */}
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div
+                              className="flex items-center gap-2 cursor-pointer"
+                              onClick={() => setSignatureModal(true)}
+                            >
+                              <FileSignature className="w-6 h-6 text-blue-600 hover:text-blue-800" />
+                              <span className="text-sm">
+                                {t("signPDF.addSign")}
+                              </span>
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            {t("signPDF.addSign")}
+                          </TooltipContent>
+                        </Tooltip>
+
+                        {/* ➤ Upload Signed */}
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div
+                              className="flex items-center gap-2 cursor-pointer"
+                              onClick={() => handleUploadSigned(true)}
+                            >
+                              <Upload className="w-6 h-6 text-blue-600 hover:text-blue-800" />
+                              <span className="text-sm">
+                                {t("signPDF.uploadSigned")}
+                              </span>
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            {t("signPDF.uploadSigned")}
+                          </TooltipContent>
+                        </Tooltip>
+
+                        {/* ➤ Download */}
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div
+                              className="flex items-center gap-2 cursor-pointer text-forest hover:text-gold"
+                              onClick={handleFinalSubmit}
+                            >
+                              <Download
+                                className={`w-6 h-6 ${
+                                  loading ? "animate-spin" : ""
+                                }`}
+                              />
+                              <span className="text-sm">
+                                {t("signPDF.download")}
+                              </span>
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            {t("signPDF.download")}
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     </div>
                   )}
                   {files.length > 0 && (
@@ -1874,7 +1884,7 @@ const SignPDF = () => {
                                   className="w-full h-full object-contain"
                                 />
                               )}
-                            {placement.type === "text" && (
+                            {placement.type === "fullName" && (
                               <EditablePlacement
                                 placement={placement}
                                 onTextChange={handleTextChange}
