@@ -1006,13 +1006,13 @@
     "initials": "Initials",
     "signature": "Signature",
     "initial": "Initial",
-    "companyLogo": "Company Logo",
-    "upload_logo": "Upload your company logo",
+    "companyLogo": "Company stamp",
+    "upload_logo": "Upload your company stamp",
 
     "preview": "Preview",
     "place_signature": "Place Signature",
     "place_initials": "Place Initials",
-    "place_logo": "Place Logo",
+    "place_logo": "Place stamp",
     "place_text": "Place Text",
     "place_image": "Place Image",
     "place_fullName":"Place Full Name",
@@ -1035,7 +1035,7 @@
     "step_sign": "Sign",
     "step_review": "Review",
     "step_complete": "Complete",
-    "logo": "Uploaded Logo",
+    "logo": "Uploaded stamp",
     "image": "Uploaded Image",
 
     "share_title": "Share PDF",
@@ -1048,6 +1048,7 @@
     "role_signer": "Signer",
     "role_viewer": "Viewer",
     "role_validator": "Validator",
+    "role_witness": "Witness",
 
     "signFormatall": "All",
     "signFormattext": "Text",

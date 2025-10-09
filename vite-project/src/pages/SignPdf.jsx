@@ -498,7 +498,7 @@ const EditablePlacement = ({ placement, onTextChange }) => {
     </div>
   );
 };
-const roles = ["signer", "viewer", "validator"];
+const roles = ["signer", "viewer", "validator", "witness"];
 const signFormats = ["all", "text", "draw", "uploadedSign"];
 const globalSettingsConfig = [
   {
@@ -1267,11 +1267,12 @@ const SignPDF = () => {
       }))
     );
   };
-  // Final submission
-  const handleFinalSubmit = async () => {
+  const handleFinalSubmit = async (isUploadSign) => {
     if (!files[0]) return alert(t("signPDF.uploadPDFFirst"));
     const token = localStorage.getItem("token");
-    setLoading(true);
+    if (isUploadSign === false) {
+      setLoading(true);
+    }
     try {
       const formData = new FormData();
       formData.append("pdf", files[0]);
@@ -1281,35 +1282,27 @@ const SignPDF = () => {
         (sig) => sig.placements || []
       );
 
-      // Ensure font data is preserved and add image file names
       const placementsWithStyles = allPlacements.map((placement) => ({
         ...placement,
         fontFamily: placement.fontFamily || FONT_STYLES[0].fontfamily,
         color: placement.color || "#000000",
         fontSize: placement.fontSize || 24,
-        // Add image file name for backend matching
         imageFileName: placement.imageFile ? placement.imageFile.name : null,
       }));
 
       formData.append("placements", JSON.stringify(placementsWithStyles));
 
-      // Add image files - CRITICAL: Use the placement ID as fieldname
+      // Add image files - CRITICAL: Use placement ID as fieldname
       appliedSignatures.forEach((sig) => {
-        // Handle image files (logos and uploaded signatures)
         if (
           (sig.type === "image" || sig.type === "signature") &&
           sig.imageFile
         ) {
-          // Use the placement ID as the fieldname for exact matching
           const placementId = sig.placements?.[0]?.id || sig.id;
-
           if (placementId) {
-            // Create a new File object with the correct fieldname
             const renamedFile = new File([sig.imageFile], sig.imageFile.name, {
               type: sig.imageFile.type,
             });
-
-            // Append with placement ID as fieldname
             formData.append("images", renamedFile, placementId);
             console.log(
               `Added image with fieldname: ${placementId}, filename: ${sig.imageFile.name}`
@@ -1318,14 +1311,14 @@ const SignPDF = () => {
         }
       });
 
-      // Handle drawn signatures (convert data URL to blob)
+      // Handle drawn signatures
       const imagePromises = [];
       appliedSignatures.forEach((sig) => {
         if (
           sig.type === "signature" &&
           sig.signatureData &&
           sig.signatureData.startsWith("data:") &&
-          !sig.imageFile // Only for drawn signatures, not uploaded images
+          !sig.imageFile
         ) {
           const promise = fetch(sig.signatureData)
             .then((res) => res.blob())
@@ -1343,40 +1336,9 @@ const SignPDF = () => {
         }
       });
 
-      // Wait for all image conversions to complete
       await Promise.all(imagePromises);
 
-      // Debug: Log what we're sending
       console.log("Sending placements:", placementsWithStyles);
-      console.log("FormData entries:");
-      for (let [key, value] of formData.entries()) {
-        if (value instanceof File) {
-          console.log(`- ${key}: ${value.name} (${value.size} bytes)`);
-        } else if (key === "placements") {
-          console.log(`- ${key}: ${value.substring(0, 100)}...`);
-        } else {
-          console.log(`- ${key}: ${value}`);
-        }
-      }
-
-      // Only track usage if user is logged in
-      // if (token) {
-      //   await axios.post(
-      //     "/api/user/track",
-      //     {
-      //       service: "e-sign",
-      //       imageCount: appliedSignatures.filter(
-      //         (sig) => sig.type === "image" || sig.type === "signature"
-      //       ).length,
-      //     },
-      //     {
-      //       headers: {
-      //         Authorization: `Bearer ${token}`,
-      //         "Content-Type": "application/json",
-      //       },
-      //     }
-      //   );
-      // }
 
       // Submit for signing
       const res = await axios.post("/api/sign-PDF", formData, {
@@ -1385,17 +1347,32 @@ const SignPDF = () => {
           "Content-Type": "multipart/form-data",
           ...(token && { Authorization: `Bearer ${token}` }),
         },
-        timeout: 60000, // 60 second timeout
+        timeout: 60000,
       });
 
-      const url = window.URL.createObjectURL(new Blob([res.data]));
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "signed-document.pdf";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
+      // If user wants to upload the signed PDF instead of downloading
+      if (isUploadSign === true) {
+        console.log("Uploading signed file instead of downloading...");
+        const signedFile = new File([res.data], "signed-document.pdf", {
+          type: "application/pdf",
+        });
+        console.log(sharedDetails, "Got in data for sharedDetails");
+        const uploadFormData = new FormData();
+        uploadFormData.append("pdf-file", signedFile);
+        uploadFormData.append("file_id", sharedDetails?._id ?? "");
+        await uploadFileSigned(uploadFormData, token);
+        alert("Signed PDF successfully uploaded!");
+        return;
+      } else {
+        const url = window.URL.createObjectURL(new Blob([res.data]));
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "signed-document.pdf";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+      }
     } catch (err) {
       console.error("Error creating signed PDF:", err);
       alert(t("signPDF.failed_to_create"));
@@ -1403,6 +1380,22 @@ const SignPDF = () => {
       setLoading(false);
     }
   };
+
+  const uploadFileSigned = async (formData, token) => {
+    try {
+      const response = await axios.post("/api/esign/upload/signed", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          ...(token && { Authorization: `Bearer ${token}` }),
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error uploading signed PDF:", error);
+      toast.error(error?.data?.data?.message ?? "PDF already signed");
+    }
+  };
+
   // Clear everything and reset to initial state
   const handleClearAll = () => {
     setFiles([]);
@@ -1415,93 +1408,6 @@ const SignPDF = () => {
     setSignatureModal(false);
     setTypeState("self");
     setTempFileData(null);
-  };
-
-  const handleUploadSigned = async () => {
-    console.log("Got in data for upload");
-
-    if (!files[0]) return alert(t("signPDF.uploadPDFFirst"));
-
-    const token = localStorage.getItem("token");
-    setLoading(true);
-
-    try {
-      // First, generate the signed PDF (similar to handleFinalSubmit)
-      const signedPdfFormData = new FormData();
-      signedPdfFormData.append("pdf", files[0]);
-
-      const allPlacements = appliedSignatures.flatMap(
-        (sig) => sig.placements || []
-      );
-
-      const placementsWithStyles = allPlacements.map((placement) => ({
-        ...placement,
-        fontFamily: placement.fontFamily || FONT_STYLES[0].fontfamily,
-        color: placement.color || "#000000",
-        fontSize: placement.fontSize || 24,
-        imageFileName: placement.imageFile ? placement.imageFile.name : null,
-      }));
-
-      signedPdfFormData.append(
-        "placements",
-        JSON.stringify(placementsWithStyles)
-      );
-
-      // ... (add images and signatures same as before)
-
-      // Generate signed PDF
-      const signResponse = await axios.post(
-        "/api/sign-PDF",
-        signedPdfFormData,
-        {
-          responseType: "blob",
-          headers: {
-            "Content-Type": "multipart/form-data",
-            ...(token && { Authorization: `Bearer ${token}` }),
-          },
-          timeout: 60000,
-        }
-      );
-
-      // Now upload the signed PDF
-      const uploadFormData = new FormData();
-      const signedPdfBlob = new Blob([signResponse.data], {
-        type: "application/pdf",
-      });
-      const signedPdfFile = new File(
-        [signedPdfBlob],
-        `signed-${files[0].name}`,
-        {
-          type: "application/pdf",
-        }
-      );
-
-      uploadFormData.append("signed_pdf", signedPdfFile);
-      uploadFormData.append("original_file_name", files[0].name);
-      uploadFormData.append(
-        "placements_data",
-        JSON.stringify(placementsWithStyles)
-      );
-
-      const uploadResponse = await axios.post(
-        "/api/esign/upload/signed",
-        uploadFormData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            ...(token && { Authorization: `Bearer ${token}` }),
-          },
-        }
-      );
-
-      console.log("Upload successful:", uploadResponse.data);
-      toast.success(t("signPDF.upload_success"));
-    } catch (error) {
-      console.error("Error uploading signed file:", error);
-      toast.error(t("signPDF.upload_failed"));
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
@@ -1800,29 +1706,31 @@ const SignPDF = () => {
                         </Tooltip>
 
                         {/* ➤ Upload Signed */}
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <div
-                              className="flex items-center gap-2 cursor-pointer"
-                              onClick={() => handleUploadSigned(true)}
-                            >
-                              <Upload className="w-6 h-6 text-blue-600 hover:text-blue-800" />
-                              <span className="text-sm">
-                                {t("signPDF.uploadSigned")}
-                              </span>
-                            </div>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            {t("signPDF.uploadSigned")}
-                          </TooltipContent>
-                        </Tooltip>
+                        {hasShareReq && (
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <div
+                                className="flex items-center gap-2 cursor-pointer"
+                                onClick={() => handleFinalSubmit(true)}
+                              >
+                                <Upload className="w-6 h-6 text-blue-600 hover:text-blue-800" />
+                                <span className="text-sm">
+                                  {t("signPDF.uploadSigned")}
+                                </span>
+                              </div>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              {t("signPDF.uploadSigned")}
+                            </TooltipContent>
+                          </Tooltip>
+                        )}
 
                         {/* ➤ Download */}
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <div
                               className="flex items-center gap-2 cursor-pointer text-forest hover:text-gold"
-                              onClick={handleFinalSubmit}
+                              onClick={() => handleFinalSubmit(false)}
                             >
                               <Download
                                 className={`w-6 h-6 ${
