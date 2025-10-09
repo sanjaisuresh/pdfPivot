@@ -7,10 +7,13 @@ const fs = require("fs");
 const puppeteer = require("puppeteer");
 const cron = require("node-cron");
 const ShareLink = require("./models/Sharelinks");
+const https = require("https");
 // Connect to database
 connectDB();
 
 const app = express();
+
+const PORT = process.env.PORT || 5000;
 
 const imageRoutes = require("./routes/imageRoutes");
 const subscriptionRoutes = require("./routes/subscriptionRoutes");
@@ -84,5 +87,18 @@ cron.schedule("0 5 * * *", async () => {
   console.log("Running daily temp-doc cleanup at 5:00 AM...");
   await deleteTempPdf();
 });
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// Conditional HTTPS for production
+if (process.env.NODE_ENV === "production") {
+  const options = {
+    key: fs.readFileSync("./certs/server.key"),
+    cert: fs.readFileSync("./certs/server.crt"),
+  };
+
+  https.createServer(options, app).listen(PORT, "0.0.0.0", () => {
+    console.log(`HTTPS server running on port ${PORT}`);
+  });
+} else {
+  // HTTP for development
+  app.listen(PORT, () => console.log(`HTTP server running on port ${PORT}`));
+}
