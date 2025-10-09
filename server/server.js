@@ -45,6 +45,14 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api", pdfRoutes);
 app.use("/api/esign", esignRoutes);
 
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "Server is running",
+    timestamp: new Date().toISOString(),
+  });
+});
+
 cron.schedule("0 2 * * *", async () => {
   console.log("Running cleanup job...");
   const now = new Date();
