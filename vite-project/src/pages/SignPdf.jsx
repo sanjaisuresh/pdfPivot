@@ -1417,11 +1417,93 @@ const SignPDF = () => {
     setTempFileData(null);
   };
 
-  const handleUploadSigned =()=>
-  {
-    console.log("GOt in for upload signed")
-  }
-  console.log(appliedSignatures, "Got in data for appliedSignatures");
+  const handleUploadSigned = async () => {
+    console.log("Got in data for upload");
+
+    if (!files[0]) return alert(t("signPDF.uploadPDFFirst"));
+
+    const token = localStorage.getItem("token");
+    setLoading(true);
+
+    try {
+      // First, generate the signed PDF (similar to handleFinalSubmit)
+      const signedPdfFormData = new FormData();
+      signedPdfFormData.append("pdf", files[0]);
+
+      const allPlacements = appliedSignatures.flatMap(
+        (sig) => sig.placements || []
+      );
+
+      const placementsWithStyles = allPlacements.map((placement) => ({
+        ...placement,
+        fontFamily: placement.fontFamily || FONT_STYLES[0].fontfamily,
+        color: placement.color || "#000000",
+        fontSize: placement.fontSize || 24,
+        imageFileName: placement.imageFile ? placement.imageFile.name : null,
+      }));
+
+      signedPdfFormData.append(
+        "placements",
+        JSON.stringify(placementsWithStyles)
+      );
+
+      // ... (add images and signatures same as before)
+
+      // Generate signed PDF
+      const signResponse = await axios.post(
+        "/api/sign-PDF",
+        signedPdfFormData,
+        {
+          responseType: "blob",
+          headers: {
+            "Content-Type": "multipart/form-data",
+            ...(token && { Authorization: `Bearer ${token}` }),
+          },
+          timeout: 60000,
+        }
+      );
+
+      // Now upload the signed PDF
+      const uploadFormData = new FormData();
+      const signedPdfBlob = new Blob([signResponse.data], {
+        type: "application/pdf",
+      });
+      const signedPdfFile = new File(
+        [signedPdfBlob],
+        `signed-${files[0].name}`,
+        {
+          type: "application/pdf",
+        }
+      );
+
+      uploadFormData.append("signed_pdf", signedPdfFile);
+      uploadFormData.append("original_file_name", files[0].name);
+      uploadFormData.append(
+        "placements_data",
+        JSON.stringify(placementsWithStyles)
+      );
+
+      const uploadResponse = await axios.post(
+        "/api/esign/upload/signed",
+        uploadFormData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            ...(token && { Authorization: `Bearer ${token}` }),
+          },
+        }
+      );
+
+      console.log("Upload successful:", uploadResponse.data);
+      toast.success(t("signPDF.upload_success"));
+    } catch (error) {
+      console.error("Error uploading signed file:", error);
+      toast.error(t("signPDF.upload_failed"));
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Helmet>
