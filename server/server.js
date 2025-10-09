@@ -20,6 +20,7 @@ const adminRoutes = require("./routes/adminRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const pdfRoutes = require("./routes/pdf");
 const esignRoutes = require("./routes/esignRoutes");
+const { deleteTempPdf } = require("./services/cronJobs");
 app.use(
   "/api/subscriptions/webhook",
   express.raw({ type: "application/json" })
@@ -76,6 +77,12 @@ cron.schedule("0 2 * * *", async () => {
   } catch (err) {
     console.error("Cron cleanup error:", err);
   }
+});
+
+// CRON JOBS
+cron.schedule("0 5 * * *", async () => {
+  console.log("Running daily temp-doc cleanup at 5:00 AM...");
+  await deleteTempPdf();
 });
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
