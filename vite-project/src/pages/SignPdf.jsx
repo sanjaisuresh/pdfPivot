@@ -895,30 +895,30 @@ const ShareModal = ({
   const [errors, setErrors] = useState({});
   const [applyToAll, setApplyToAll] = useState(false);
 
-  useEffect(() => {
-    if (applyToAll && activeSettingsId) {
-      const activeRecipient = recipients.find((r) => r.id === activeSettingsId);
-      if (!activeRecipient) return;
+ useEffect(() => {
+  if (applyToAll && activeSettingsId) {
+    const activeRecipient = recipients.find((r) => r.id === activeSettingsId);
+    if (!activeRecipient) return;
 
-      // Apply same password and format to all
-      setRecipients((prev) =>
-        prev.map((r) => ({
-          ...r,
-          password: activeRecipient.password,
-          allowedFormats: activeRecipient.allowedFormats,
-        }))
-      );
-    } else if (!applyToAll) {
-      // Clear shared values (make independent again)
-      setRecipients((prev) =>
-        prev.map((r) => ({
-          ...r,
-          password: "",
-          allowedFormats: ["all"],
-        }))
-      );
-    }
-  }, [applyToAll, activeSettingsId, recipients]);
+    // Apply same password and format to all (one-time sync)
+    setRecipients((prev) =>
+      prev.map((r) => ({
+        ...r,
+        password: activeRecipient.password,
+        allowedFormats: activeRecipient.allowedFormats,
+      }))
+    );
+  } else if (!applyToAll) {
+    // Only reset once when toggled off
+    setRecipients((prev) =>
+      prev.map((r) => ({
+        ...r,
+        password: "",
+        allowedFormats: ["all"],
+      }))
+    );
+  }
+}, [applyToAll, activeSettingsId]);
 
   const resetModal = () => {
     setRecipients([]);
