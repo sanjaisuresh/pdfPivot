@@ -106,11 +106,11 @@ const shareEmailAll = async (params) => {
         let email_html_format = eSignTemplate(email_payload);
 
         // Send Email
-        // await sendMail(
-        //   user.user_email,
-        //   email_html_format.subject,
-        //   email_html_format.html
-        // );
+        await sendMail(
+          user.user_email,
+          email_html_format.subject,
+          email_html_format.html
+        );
       })
     );
 
