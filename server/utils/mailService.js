@@ -8,8 +8,8 @@ const transporter = nodemailer.createTransport({
     user: process.env.BREVO_USER,
     pass: process.env.BREVO_PASS,
   },
-  logger: true,
-  debug: true,
+  logger: false,
+  debug: false,
 });
 
 exports.sendMail = async (to, subject, html) => {
@@ -20,7 +20,7 @@ exports.sendMail = async (to, subject, html) => {
       subject,
       html,
     });
-    console.log("✅ Email sent:", info.messageId);
+    console.log("✅ Email sent:", to);
   } catch (error) {
     console.error("❌ Failed to send email:", error);
     throw error;

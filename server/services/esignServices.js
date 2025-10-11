@@ -6,6 +6,7 @@ const EsignMembersDoc = require("../models/EsignMemberDocs");
 const User = require("../models/User");
 const { eSignTemplate } = require("../utils/templates/esignShare");
 const { sendMail } = require("../utils/mailService");
+const EsignCron = require("../models/EsignCron");
 
 const uploadPdf = async (params) => {
   try {
@@ -100,6 +101,8 @@ const shareEmailAll = async (params) => {
           pdf_id: shareDoc._id,
         };
 
+        console.log("[ESign Request] Mail Request (All) : ", email_payload);
+
         let email_html_format = eSignTemplate(email_payload);
 
         // Send Email
@@ -121,8 +124,9 @@ const shareOrderedEmail = async (params) => {
   try {
     let { shared_users, file_path, file_name, file_id, owner_name } = params;
 
-    for (let i = 0; i < shared_users.length; i++) {
+    let shared_ids = [];
 
+    for (let i = 0; i < shared_users.length; i++) {
       let member_doc_payload = {
         file_id: file_id,
         file_name: file_name,
@@ -132,8 +136,10 @@ const shareOrderedEmail = async (params) => {
         user_role: shared_users[i].user_role,
         user_validation: shared_users[i].user_validation,
         user_password: shared_users[i].user_password,
-      }
+      };
       const shareDoc = await EsignMembersDoc.create(member_doc_payload);
+
+      shared_ids.push(shareDoc._id);
 
       if (i === 0) {
         // Email Format
@@ -144,15 +150,29 @@ const shareOrderedEmail = async (params) => {
           pdf_id: shareDoc._id,
         };
 
+        console.log(
+          "ESign Request] Mail Request (order)[first] : ",
+          email_payload
+        );
+
         let email_html_format = eSignTemplate(email_payload);
 
-        // Send Email
-        // await sendMail(
-        //   user.user_email,
-        //   email_html_format.subject,
-        //   email_html_format.html
-        // );
+        //Send Email
+        await sendMail(
+          shared_users[i].user_email,
+          email_html_format.subject,
+          email_html_format.html
+        );
       }
+    }
+
+    for (let i = 0; i < shared_ids.length; i++) {
+      const currentId = shared_ids[i];
+      const nextId = i < shared_ids.length - 1 ? shared_ids[i + 1] : null;
+
+      await EsignMembersDoc.findByIdAndUpdate(currentId, {
+        next_id: nextId,
+      });
     }
 
     return true;
@@ -188,10 +208,11 @@ const sharePdf = async (params) => {
     );
 
     (async () => {
-      console.log(settings);
       let setting_list = settings.map((k) => k.key);
-      console.log(setting_list);
       params.file_id = file_id;
+
+      console.log(setting_list);
+      console.log(settings);
 
       // get owner user name
       let get_owner_name = await User.findOne(
@@ -213,6 +234,54 @@ const sharePdf = async (params) => {
 
       if (setting_list.includes("reorder")) {
         await shareOrderedEmail(params);
+      }
+
+      if (setting_list.includes("expireDate")) {
+        let period = 0;
+
+        settings.map((key) => {
+          if (key.key === "expireDate") {
+            period = parseInt(key.value);
+          }
+        });
+
+        const currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + period);
+
+        // Format to yyyy-mm-dd
+        const nextNotify = currentDate.toISOString().split("T")[0];
+
+        await EsignCron.create({
+          user_id: user_id,
+          file_id: file_id,
+          cron_type: "expireDate",
+          notify_period: period,
+          next_notify: nextNotify,
+        });
+      }
+
+      if (setting_list.includes("reminder")) {
+        let period = 0;
+
+        settings.map((key) => {
+          if (key.key === "reminder") {
+            period = parseInt(key.value);
+          }
+        });
+
+        const currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + period);
+
+        // Format to yyyy-mm-dd
+        const nextNotify = currentDate.toISOString().split("T")[0];
+
+        await EsignCron.create({
+          user_id: user_id,
+          file_id: file_id,
+          cron_type: "reminder",
+          notify_period: period,
+          next_notify: nextNotify,
+        });
       }
     })();
 
@@ -323,6 +392,8 @@ const uploadSignedPdf = async (params) => {
     });
 
     let file_status = file_info.status;
+    let next_id = file_info?.next_id ?? null;
+    let owner_file_id = file_info.file_id;
 
     if (file_status !== "pending") {
       throw new Error("PDF expired or already signed");
@@ -359,6 +430,44 @@ const uploadSignedPdf = async (params) => {
         },
       }
     );
+    (async () => {
+      if (next_id != null) {
+        let get_file_info = await EsignDoc.findOne({
+          _id: owner_file_id,
+        });
+
+        let owner_id = get_file_info.user_id;
+
+        let owner_name = await User.findOne({
+          _id: owner_id,
+        });
+
+        let next_user = await EsignMembersDoc.findOne({
+          _id: next_id,
+        });
+
+        let email_payload = {
+          owner_name: owner_name.name,
+          member_name: next_user.user_name,
+          member_email: next_user.email_id,
+          pdf_id: next_id,
+        };
+
+        console.log(
+          "ESign Request] Mail Request (order)[next] :",
+          email_payload
+        );
+
+        let email_html_format = eSignTemplate(email_payload);
+
+        // Send Email
+        await sendMail(
+          next_user.email_id,
+          email_html_format.subject,
+          email_html_format.html
+        );
+      }
+    })();
 
     let result = {
       status: "success",

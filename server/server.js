@@ -23,7 +23,7 @@ const adminRoutes = require("./routes/adminRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const pdfRoutes = require("./routes/pdf");
 const esignRoutes = require("./routes/esignRoutes");
-const { deleteTempPdf } = require("./services/cronJobs");
+const { deleteTempPdf, esignExpired, esignReminder } = require("./services/cronJobs");
 app.use(
   "/api/subscriptions/webhook",
   express.raw({ type: "application/json" })
@@ -82,7 +82,14 @@ cron.schedule("0 2 * * *", async () => {
   }
 });
 
-// CRON JOBS
+// CRON JOBS - 4:00 AM
+cron.schedule("0 4 * * *", async () => {
+  console.log("Running daily esign doc reminder at 4:00 AM...");
+  await esignExpired();
+   await esignReminder();
+});
+
+// CRON JOBS - 5:00 AM
 cron.schedule("0 5 * * *", async () => {
   console.log("Running daily temp-doc cleanup at 5:00 AM...");
   await deleteTempPdf();
