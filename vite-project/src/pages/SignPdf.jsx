@@ -6,7 +6,14 @@ import { Text, Edit2, ImageIcon } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { Rnd } from "react-rnd";
 import toast, { Toaster } from "react-hot-toast";
-import { FileSignature, Upload, Download, Trash2, LogOut } from "lucide-react";
+import {
+  FileSignature,
+  Upload,
+  Download,
+  Trash2,
+  LogOut,
+  Type,
+} from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -448,7 +455,7 @@ const SignatureModal = ({
                 }`}
                 onClick={() => setActiveTab("freeText")}
               >
-                <Edit2 className="w-5 h-5" />
+                <Type className="w-5 h-5" />
               </button>
             )}
 
