@@ -103,15 +103,59 @@ const shareEmailAll = async (params) => {
         let email_html_format = eSignTemplate(email_payload);
 
         // Send Email
-        await sendMail(
-          user.user_email,
-          email_html_format.subject,
-          email_html_format.html
-        );
+        // await sendMail(
+        //   user.user_email,
+        //   email_html_format.subject,
+        //   email_html_format.html
+        // );
       })
     );
 
     return shared_ids;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const shareOrderedEmail = async (params) => {
+  try {
+    let { shared_users, file_path, file_name, file_id, owner_name } = params;
+
+    for (let i = 0; i < shared_users.length; i++) {
+
+      let member_doc_payload = {
+        file_id: file_id,
+        file_name: file_name,
+        original_file_path: file_path,
+        user_name: shared_users[i].user_name,
+        email_id: shared_users[i].user_email,
+        user_role: shared_users[i].user_role,
+        user_validation: shared_users[i].user_validation,
+        user_password: shared_users[i].user_password,
+      }
+      const shareDoc = await EsignMembersDoc.create(member_doc_payload);
+
+      if (i === 0) {
+        // Email Format
+        let email_payload = {
+          owner_name: owner_name,
+          member_name: shared_users[i].user_name,
+          member_email: shared_users[i].user_email,
+          pdf_id: shareDoc._id,
+        };
+
+        let email_html_format = eSignTemplate(email_payload);
+
+        // Send Email
+        // await sendMail(
+        //   user.user_email,
+        //   email_html_format.subject,
+        //   email_html_format.html
+        // );
+      }
+    }
+
+    return true;
   } catch (error) {
     throw error;
   }
@@ -143,32 +187,38 @@ const sharePdf = async (params) => {
       }
     );
 
-    params.file_id = file_id;
+    (async () => {
+      console.log(settings);
+      let setting_list = settings.map((k) => k.key);
+      console.log(setting_list);
+      params.file_id = file_id;
 
-    // get owner user name
-    let get_owner_name = await User.findOne(
-      {
-        _id: user_id,
-      },
-      {
-        name: 1,
+      // get owner user name
+      let get_owner_name = await User.findOne(
+        {
+          _id: user_id,
+        },
+        {
+          name: 1,
+        }
+      );
+
+      let owner_name = get_owner_name?.name ?? "Unknown";
+
+      params.owner_name = owner_name;
+
+      if (!setting_list.includes("reorder")) {
+        await shareEmailAll(params);
       }
-    );
 
-    let owner_name = get_owner_name?.name ?? "Unknown";
-
-    params.owner_name = owner_name;
-
-    let shared_ids = await shareEmailAll(params);
+      if (setting_list.includes("reorder")) {
+        await shareOrderedEmail(params);
+      }
+    })();
 
     let result = {
       status: "success",
       message: "Pdf file shared successfully",
-      data: {
-        file_id: save_pdf._id,
-        new_file_path,
-        shared_ids: shared_ids,
-      },
     };
     return result;
   } catch (error) {
