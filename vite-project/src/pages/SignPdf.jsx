@@ -13,6 +13,7 @@ import {
   Trash2,
   LogOut,
   Type,
+  FileText,
 } from "lucide-react";
 import {
   Tooltip,
@@ -1421,6 +1422,164 @@ const ShareModal = ({
     </div>
   );
 };
+// ViewInfoModal Component
+const ViewInfoModal = ({ isOpen, onClose, fileInfo, loading }) => {
+  const { t } = useTranslation();
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="bg-white rounded-xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-hidden">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          <h2 className="text-xl font-semibold text-gray-900">
+            {t("signPDF.file_information")}
+          </h2>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 transition duration-200"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        <div className="p-6 overflow-y-auto max-h-[70vh]">
+          {loading ? (
+            <div className="flex justify-center items-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-forest"></div>
+              <span className="ml-2 text-gray-600">{t("signPDF.loading")}</span>
+            </div>
+          ) : fileInfo && fileInfo.length > 0 ? (
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      {t("signPDF.document_name")}
+                    </th>
+                    {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      {t("signPDF.signed_file_path")}
+                    </th> */}
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      {t("signPDF.status")}
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      {t("signPDF.user_name")}
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      {t("signPDF.created_date")}
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      {t("signPDF.actions")}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {fileInfo.map((info, index) => (
+                    <tr key={info._id || index} className="hover:bg-gray-50">
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <div className="text-sm font-medium text-gray-900">
+                          {info.file_name || "Untitled Document"}
+                        </div>
+                      </td>
+                      {/* <td className="px-6 py-4">
+                        <div className="text-sm text-gray-500 max-w-xs truncate">
+                          {info.signed_file_path || "--"}
+                        </div>
+                      </td> */}
+                      <td className="px-6 py-4 whitespace-nowrap">
+                        <span
+                          className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                            info.status === "completed"
+                              ? "bg-green-100 text-green-800"
+                              : info.status === "pending"
+                              ? "bg-yellow-100 text-yellow-800"
+                              : info.status === "signed"
+                              ? "bg-blue-100 text-blue-800"
+                              : "bg-gray-100 text-gray-800"
+                          }`}
+                        >
+                          {info.status
+                            ? t(`signPDF.status_${info.status}`)
+                            : "--"}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {info.user_name || "--"}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {info.createdAt
+                          ? new Date(info.createdAt).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              }
+                            )
+                          : "--"}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <div className="flex space-x-2">
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <button
+                                  onClick={() =>
+                                    info.signed_file_path &&
+                                    handleDownloadSignedFile(info)
+                                  }
+                                  disabled={!info.signed_file_path}
+                                  className={`transition duration-200 p-1 rounded hover:bg-gray-100 ${
+                                    info.signed_file_path
+                                      ? "text-forest hover:text-gold cursor-pointer"
+                                      : "text-gray-400 opacity-60 cursor-not-allowed"
+                                  }`}
+                                >
+                                  <Download className="w-4 h-4" />
+                                </button>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                {info.signed_file_path
+                                  ? t("signPDF.download_signed_document")
+                                  : t("signPDF.no_signed_document")}
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="text-center py-8">
+              <FileText className="mx-auto h-12 w-12 text-gray-400" />
+              <h3 className="mt-2 text-sm font-medium text-gray-900">
+                {t("signPDF.no_file_info")}
+              </h3>
+              <p className="mt-1 text-sm text-gray-500">
+                {t("signPDF.no_file_info_desc")}
+              </p>
+            </div>
+          )}
+        </div>
+
+        <div className="flex justify-end p-6 border-t border-gray-200">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-200"
+          >
+            {t("signPDF.close")}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 const SignPDF = () => {
   const { t } = useTranslation();
   const [files, setFiles] = useState([]);
@@ -1898,6 +2057,66 @@ const SignPDF = () => {
     newFreeTextSignature.placements = [newFreeTextPlacement];
 
     setAppliedSignatures((prev) => [...prev, newFreeTextSignature]);
+  };
+
+  const [historyData, setHistoryData] = useState([]);
+  const [historyLoading, setHistoryLoading] = useState(false);
+
+  // Fetch document history
+  useEffect(() => {
+    const fetchDocumentHistory = async () => {
+      setHistoryLoading(true);
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get("/api/esign/owner-docs/list", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.data?.status === "success") {
+          setHistoryData(response.data.data || []);
+        }
+      } catch (error) {
+        console.error("Error fetching document history:", error);
+        toast.error(t("signPDF.history_fetch_error"));
+      } finally {
+        setHistoryLoading(false);
+      }
+    };
+
+    fetchDocumentHistory();
+  }, [t]);
+
+  const [viewInfoModal, setViewInfoModal] = useState(false);
+  const [viewInfoData, setviewInfoData] = useState(null);
+  const [fileInfoLoading, setFileInfoLoading] = useState(false);
+
+  const handleViewHistoryDoc = async (doc) => {
+    setFileInfoLoading(true);
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get("/api/esign/owner-docs/file-info", {
+        params: { file_id: doc._id },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.data?.status === "success") {
+        setviewInfoData(response.data.data);
+        setViewInfoModal(true);
+      } else {
+        toast.error(t("signPDF.file_info_error"));
+      }
+    } catch (error) {
+      console.error("Error fetching file info:", error);
+      toast.error(t("signPDF.file_info_error"));
+    } finally {
+      setFileInfoLoading(false);
+    }
   };
   return (
     <>
@@ -2454,7 +2673,114 @@ const SignPDF = () => {
             )}
           </div>
         </div>
+        <div className="mt-5 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div className="p-6">
+              <h2 className="text-2xl font-bold text-forest mb-6">
+                {t("signPDF.document_history")}
+              </h2>
+
+              {historyLoading ? (
+                <div className="flex justify-center items-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-forest"></div>
+                  <span className="ml-2 text-gray-600">
+                    {t("signPDF.loading")}
+                  </span>
+                </div>
+              ) : historyData.length > 0 ? (
+                <div className="max-h-[500px] overflow-x-auto">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          {t("signPDF.document_name")}
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          {t("signPDF.file_path")}
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          {t("signPDF.status")}
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          {t("signPDF.created_date")}
+                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          {t("signPDF.actions")}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {historyData.map((doc, index) => (
+                        <tr key={doc._id || index} className="hover:bg-gray-50">
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm font-medium text-gray-900">
+                              {doc.file_name || "Untitled Document"}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4">
+                            <div className="text-sm text-gray-500 max-w-xs truncate">
+                              {doc.file_path || "--"}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                              {doc.status || "--"}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {doc.createdAt
+                              ? new Date(doc.createdAt).toLocaleDateString(
+                                  "en-US",
+                                  {
+                                    year: "numeric",
+                                    month: "short",
+                                    day: "numeric",
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                  }
+                                )
+                              : "--"}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <div className="flex space-x-2">
+                              <TooltipProvider>
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <button
+                                      onClick={() => handleViewHistoryDoc(doc)}
+                                      className="text-blue-600 hover:text-blue-800 transition duration-200 p-1 rounded hover:bg-gray-100"
+                                    >
+                                      <Eye className="w-4 h-4" />
+                                    </button>
+                                  </TooltipTrigger>
+                                  <TooltipContent>
+                                    {t("signPDF.view_document")}
+                                  </TooltipContent>
+                                </Tooltip>
+                              </TooltipProvider>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div className="text-center py-8">
+                  <FileText className="mx-auto h-12 w-12 text-gray-400" />
+                  <h3 className="mt-2 text-sm font-medium text-gray-900">
+                    {t("signPDF.no_documents")}
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-500">
+                    {t("signPDF.no_documents_desc")}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
+
       {/* Modals */}
       {typeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
@@ -2531,7 +2857,6 @@ const SignPDF = () => {
           </div>
         </div>
       )}
-
       {signatureModal && (
         <SignatureModal
           isOpen={signatureModal}
@@ -2546,7 +2871,6 @@ const SignPDF = () => {
           editingSignature={editingSignature}
         />
       )}
-
       {shareModal && (
         <ShareModal
           isOpen={shareModal}
@@ -2554,6 +2878,19 @@ const SignPDF = () => {
           allowReorder={true} // toggle reordering here
           onSubmit={handleShareSubmit}
           shareLoading={shareLoading}
+        />
+      )}
+
+      {/* Other modals */}
+      {viewInfoModal && (
+        <ViewInfoModal
+          isOpen={viewInfoModal}
+          onClose={() => {
+            setViewInfoModal(false);
+            setviewInfoData(null);
+          }}
+          fileInfo={viewInfoData}
+          loading={fileInfoLoading}
         />
       )}
     </>
