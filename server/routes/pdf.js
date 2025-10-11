@@ -1677,12 +1677,18 @@ router.post(
               }
             }
           } 
-          else if (p.type === "fullName" || p.type === "initials") {
+          else if (p.type === "fullName" || p.type === "initials" || p.type === "freeText") {
             // Handle text placements with proper fonts and colors
-            const text = p.text || ""; 
-            const fontSize = p.fontSize || 24;
+            const text = p.text || (p.type === "freeText" ? "" : "Sample Text");
+            const fontSize = p.fontSize || (p.type === "freeText" ? 16 : 24);
             const fontFamily = p.fontFamily || "'Montserrat', sans-serif";
             const color = p.color || "#000000";
+            
+            // Skip empty freeText
+            if (p.type === "freeText" && !text.trim()) {
+              console.log(`Skipping empty freeText placement: ${p.id}`);
+              continue;
+            }
             
             let fontToUse = helveticaFont; // Default font
             
@@ -1728,19 +1734,41 @@ router.post(
             // Convert color to RGB
             const rgbColor = hexToRgb(color);
 
-            page.drawText(text, {
+            // For freeText, we might want to handle text wrapping differently
+            const options = {
               x: p.x,
               y: adjustedY,
               size: fontSize,
               font: fontToUse,
               color: rgb(rgbColor.r, rgbColor.g, rgbColor.b),
-              maxWidth: p.width || 200
-            });
+            };
+
+            // Add maxWidth for text wrapping if width is specified
+            if (p.width && p.width > 0) {
+              options.maxWidth = p.width;
+            }
+
+            page.drawText(text, options);
             
-            console.log(`Drew text: "${text}" with font: ${fontFamily}, color: ${color}`);
+            console.log(`Drew ${p.type}: "${text}" with font: ${fontFamily}, color: ${color}, size: ${fontSize}`);
           }
         } catch (placementError) {
           console.error(`Error processing placement ${p.id}:`, placementError);
+          // Draw error indicator for debugging
+          page.drawRectangle({
+            x: p.x,
+            y: adjustedY,
+            width: p.width || 100,
+            height: p.height || 30,
+            color: rgb(1, 0, 0),
+            opacity: 0.2,
+          });
+          page.drawText(`ERROR: ${placementError.message}`, {
+            x: p.x,
+            y: adjustedY,
+            size: 6,
+            color: rgb(1, 0, 0),
+          });
         }
       }
 

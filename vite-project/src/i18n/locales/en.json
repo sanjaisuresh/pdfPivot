@@ -999,7 +999,7 @@
     "text": "Text",
     "drawn": "Drawn",
     "uploadedSign": "Uploaded Signature",
-    "fullName":"Full Name",
+    "fullName": "Full Name",
 
     "set_signature_details": "Set your signature details below",
     "full_name": "Full Name",
@@ -1015,7 +1015,8 @@
     "place_logo": "Place stamp",
     "place_text": "Place Text",
     "place_image": "Place Image",
-    "place_fullName":"Place Full Name",
+    "place_fullName": "Place Full Name",
+    "place_freeText": "Place Free Text",
 
     "clear_signature": "Clear Signature",
     "failed_to_create": "Failed to create signed PDF. Please try again.",
@@ -1073,15 +1074,32 @@
     "reminder_desc": "Send a reminder to the participants every {{days}} days.",
     "receipt_error": "Fill the required Fields",
     "share_failed": "Something went wrong",
-    "share_success":"Shared Successfully",
-    "no_file_selected":"No File selected",
-    "drawnSign":"Upload Drawn Image",
-    "download_success":"Download Successfull",
-    "signPdf_error_load_shared" : "Failed to load shared file",
+    "share_success": "Shared Successfully",
+    "no_file_selected": "No File selected",
+    "drawnSign": "Upload Drawn Image",
+    "download_success": "Download Successfull",
+    "signPdf_error_load_shared": "Failed to load shared file",
 
+    "uploadSigned": "Uplaod Signed PDF",
+    "uploadSigned_error": "Failed to upload signed",
+    "uploadSignedSuccess": "Successfully Uploaded",
 
-    "uploadSigned":"Uplaod Signed PDF",
-    "uploadSigned_error":"Failed to upload signed",
-    "uploadSignedSuccess":"Successfully Uploaded"
+    "uploading": "Uploading...",
+    "sharing": "Sharing...",
+    "allowShareError": "You are not allowed to share this file",
+    "shareFileError": "Unable to download shared File",
+    "exitShare": "Reset",
+
+    "receiptHeader": "Recipient wise Settings",
+    "apply_all": "Apply same for all",
+    "add_free_text": "Add Free Text",
+    "type_here": "Type your text here...",
+    "double_click_to_edit": "Double click to edit",
+    "freeText": "Free Text",
+    "free_text": "Free Text",
+    "update":"Update",
+    "no_text_added":"No Text added",
+    "free_text_placeholder":"Enter any Text Here",
+    "free_text_sample":"Free Text"
   }
 }

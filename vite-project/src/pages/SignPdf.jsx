@@ -6,14 +6,14 @@ import { Text, Edit2, ImageIcon } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { Rnd } from "react-rnd";
 import toast, { Toaster } from "react-hot-toast";
-import { FileSignature, Upload, Download } from "lucide-react";
+import { FileSignature, Upload, Download, Trash2, LogOut } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
-
+import { useNavigate } from "react-router-dom";
 import {
   GripVertical,
   X,
@@ -55,27 +55,185 @@ const SignatureModal = ({
   signerData,
   submitAllTabs = false,
   onSignaturesApplied,
+  sharedDetails,
+  editingSignature = null,
 }) => {
+  console.log(sharedDetails, "Got in data for sharedDetails");
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState("text");
-  const [formData, setFormData] = useState({
-    fullName: "",
-    initials: "",
-    logo: null,
-    selectedStyle: FONT_STYLES[0].key,
-    color: "#000000",
-    drawnSignature: null,
-    uploadedSign: null,
+
+  // Determine which tabs to show based on editing mode
+  const getVisibleTabs = () => {
+    if (editingSignature) {
+      // When editing, show only the tab for the specific signature type
+      switch (editingSignature.type) {
+        case "fullName":
+        case "initials":
+          return ["text"];
+        case "freeText":
+          return ["freeText"];
+        case "signature":
+          return ["draw"];
+        case "image":
+          return ["logo"];
+        default:
+          return ["text"];
+      }
+    }
+
+    // When creating new, show all tabs based on sharedDetails
+    if (sharedDetails?.user_validation?.length) {
+      const validations = sharedDetails.user_validation;
+      if (validations.includes("all")) {
+        return ["text", "freeText", "draw", "logo"];
+      } else {
+        return validations;
+      }
+    }
+
+    return ["text", "freeText", "draw", "logo"];
+  };
+
+  const [visibleTabs, setVisibleTabs] = useState(getVisibleTabs());
+  const [activeTab, setActiveTab] = useState(
+    editingSignature ? getVisibleTabs()[0] : "text"
+  );
+
+  // Initialize formData with separate styling for each tab
+  const [formData, setFormData] = useState(() => {
+    if (editingSignature) {
+      // Pre-fill form when editing - only show data for the specific type being edited
+      const baseData = {
+        fullName: "",
+        initials: "",
+        freeText: "",
+        logo: null,
+        drawnSignature: null,
+        uploadedSign: null,
+        textStyle: {
+          selectedStyle: FONT_STYLES[0].key,
+          color: "#000000",
+        },
+        freeTextStyle: {
+          selectedStyle: FONT_STYLES[0].key,
+          color: "#000000",
+        },
+      };
+
+      // Fill only the relevant field based on signature type
+      switch (editingSignature.type) {
+        case "fullName":
+          baseData.fullName = editingSignature.text || "";
+          baseData.textStyle = {
+            selectedStyle:
+              FONT_STYLES.find(
+                (s) => s.fontFamily === editingSignature.fontFamily
+              )?.key || FONT_STYLES[0].key,
+            color: editingSignature.color || "#000000",
+          };
+          break;
+        case "initials":
+          baseData.initials = editingSignature.text || "";
+          baseData.textStyle = {
+            selectedStyle:
+              FONT_STYLES.find(
+                (s) => s.fontFamily === editingSignature.fontFamily
+              )?.key || FONT_STYLES[0].key,
+            color: editingSignature.color || "#000000",
+          };
+          break;
+        case "freeText":
+          baseData.freeText = editingSignature.text || "";
+          baseData.freeTextStyle = {
+            selectedStyle:
+              FONT_STYLES.find(
+                (s) => s.fontFamily === editingSignature.fontFamily
+              )?.key || FONT_STYLES[0].key,
+            color: editingSignature.color || "#000000",
+          };
+          break;
+        case "signature":
+          if (
+            editingSignature.signatureData &&
+            editingSignature.signatureData.startsWith("data:")
+          ) {
+            baseData.drawnSignature = editingSignature.signatureData;
+          } else if (editingSignature.imageFile) {
+            baseData.uploadedSign = editingSignature.imageFile;
+          }
+          break;
+        case "image":
+          baseData.logo = editingSignature.imageFile || null;
+          break;
+      }
+
+      return baseData;
+    }
+
+    return {
+      fullName: "",
+      initials: "",
+      freeText: "",
+      logo: null,
+      textStyle: {
+        selectedStyle: FONT_STYLES[0].key,
+        color: "#000000",
+      },
+      freeTextStyle: {
+        selectedStyle: FONT_STYLES[0].key,
+        color: "#000000",
+      },
+      drawnSignature: null,
+      uploadedSign: null,
+    };
   });
+
   const canvasRef = useRef(null);
   const [drawing, setDrawing] = useState(false);
-  const updateFormData = (key, value) => {
-    setFormData((prev) => ({ ...prev, [key]: value }));
+
+  // Update visible tabs when editingSignature changes
+  useEffect(() => {
+    const newVisibleTabs = getVisibleTabs();
+    setVisibleTabs(newVisibleTabs);
+    setActiveTab(newVisibleTabs[0]);
+  }, [editingSignature]);
+
+  // Update form data with nested structure support
+  const updateFormData = (key, value, category = null) => {
+    if (category && formData[category]) {
+      setFormData((prev) => ({
+        ...prev,
+        [category]: {
+          ...prev[category],
+          [key]: value,
+        },
+      }));
+    } else {
+      setFormData((prev) => ({ ...prev, [key]: value }));
+    }
   };
+
+  // Helper to get current style based on active tab
+  const getCurrentStyle = () => {
+    if (activeTab === "freeText") {
+      return formData.freeTextStyle;
+    }
+    return formData.textStyle;
+  };
+
+  // Helper to update current style
+  const updateCurrentStyle = (key, value) => {
+    if (activeTab === "freeText") {
+      updateFormData(key, value, "freeTextStyle");
+    } else {
+      updateFormData(key, value, "textStyle");
+    }
+  };
+
   const handleLogoUpload = (e) => {
     const file = e.target.files[0];
     if (file) updateFormData("logo", file);
   };
+
   const startDrawing = ({ nativeEvent }) => {
     const ctx = canvasRef.current.getContext("2d");
     ctx.lineWidth = 2;
@@ -93,6 +251,7 @@ const SignatureModal = ({
     }
     setDrawing(false);
   };
+
   const clearCanvas = () =>
     canvasRef.current
       .getContext("2d")
@@ -103,10 +262,11 @@ const SignatureModal = ({
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     ctx.lineTo(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
-    ctx.strokeStyle = formData.color;
+    ctx.strokeStyle = getCurrentStyle().color;
     ctx.lineWidth = 2;
     ctx.stroke();
   };
+
   const endDrawing = () => {
     const canvas = canvasRef.current;
     if (canvas) {
@@ -115,38 +275,92 @@ const SignatureModal = ({
     }
     setDrawing(false);
   };
-  const buildFormData = () => {
-    const fd = new FormData();
-    fd.append("fullName", formData.fullName);
-    fd.append("initials", formData.initials);
-    fd.append("selectedStyle", formData.selectedStyle);
-    fd.append("color", formData.color);
-    if (formData.logo) fd.append("logo", formData.logo);
-    if (formData.drawnSignature)
-      fd.append("drawnSignature", formData.drawnSignature);
-    return fd;
-  };
+
   const handleSubmit = () => {
     const signatures = [];
-    if (submitAllTabs) {
-      const fd = buildFormData();
-      // Collect all signature types with complete font information
+
+    if (editingSignature) {
+      // Update existing signature - use the appropriate style based on type
+      const style =
+        editingSignature.type === "freeText"
+          ? formData.freeTextStyle
+          : formData.textStyle;
+      const selectedStyle = FONT_STYLES.find(
+        (s) => s.key === style.selectedStyle
+      );
+
+      const updatedSignature = {
+        ...editingSignature,
+        fontFamily: selectedStyle?.fontFamily,
+        fontStyle: style.selectedStyle,
+        color: style.color,
+      };
+
+      // Update the text based on signature type
+      switch (editingSignature.type) {
+        case "fullName":
+          updatedSignature.text = formData.fullName;
+          break;
+        case "initials":
+          updatedSignature.text = formData.initials;
+          break;
+        case "freeText":
+          updatedSignature.text = formData.freeText;
+          break;
+        case "signature":
+          if (formData.drawnSignature) {
+            updatedSignature.signatureData = formData.drawnSignature;
+          }
+          if (formData.uploadedSign) {
+            updatedSignature.imageFile = formData.uploadedSign;
+          }
+          break;
+        case "image":
+          if (formData.logo) {
+            updatedSignature.imageFile = formData.logo;
+          }
+          break;
+      }
+
+      if (onSignaturesApplied) {
+        onSignaturesApplied([updatedSignature]);
+      }
+    } else if (submitAllTabs) {
+      // Create new signatures with their respective styles
       if (formData.fullName) {
         const selectedStyle = FONT_STYLES.find(
-          (s) => s.key === formData.selectedStyle
+          (s) => s.key === formData.textStyle.selectedStyle
         );
         signatures.push({
           id: `fullName-${Date.now()}`,
           type: "fullName",
           text: formData.fullName,
           fontFamily: selectedStyle?.fontFamily,
-          fontStyle: formData.selectedStyle, // Keep the style key
-          color: formData.color,
-          fontSize: 24, // Add font size
+          fontStyle: formData.textStyle.selectedStyle,
+          color: formData.textStyle.color,
+          fontSize: 24,
           width: 200,
           height: 40,
         });
       }
+
+      if (formData.freeText) {
+        const selectedStyle = FONT_STYLES.find(
+          (s) => s.key === formData.freeTextStyle.selectedStyle
+        );
+        signatures.push({
+          id: `freeText-${Date.now()}`,
+          type: "freeText",
+          text: formData.freeText,
+          fontFamily: selectedStyle?.fontFamily,
+          fontStyle: formData.freeTextStyle.selectedStyle,
+          color: formData.freeTextStyle.color,
+          fontSize: 16,
+          width: 200,
+          height: 40,
+        });
+      }
+
       if (formData.drawnSignature) {
         signatures.push({
           id: `signature-${Date.now()}`,
@@ -156,6 +370,7 @@ const SignatureModal = ({
           height: 80,
         });
       }
+
       if (formData.logo) {
         signatures.push({
           id: `logo-${Date.now()}`,
@@ -165,6 +380,7 @@ const SignatureModal = ({
           height: 100,
         });
       }
+
       if (formData.uploadedSign) {
         signatures.push({
           id: `uploadedSign-${Date.now()}`,
@@ -174,18 +390,19 @@ const SignatureModal = ({
           height: 100,
         });
       }
+
       if (formData.initials) {
         const selectedStyle = FONT_STYLES.find(
-          (s) => s.key === formData.selectedStyle
+          (s) => s.key === formData.textStyle.selectedStyle
         );
         signatures.push({
           id: `initials-${Date.now()}`,
           type: "initials",
           text: formData.initials,
           fontFamily: selectedStyle?.fontFamily,
-          fontStyle: formData.selectedStyle, // Keep the style key
-          color: formData.color,
-          fontSize: 24, // Add font size
+          fontStyle: formData.textStyle.selectedStyle,
+          color: formData.textStyle.color,
+          fontSize: 24,
           width: 200,
           height: 40,
         });
@@ -198,92 +415,138 @@ const SignatureModal = ({
     }
     onClose();
   };
+
   if (!isOpen) return null;
+
+  const currentStyle = getCurrentStyle();
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="bg-white rounded-xl shadow-lg w-full max-w-3xl p-6 flex">
-        {/* Vertical Tabs */}
-        <div className="flex flex-col gap-4 mr-6">
-          <button
-            className={`p-2 rounded-lg ${
-              activeTab === "text" ? "bg-green-50 border border-green-500" : ""
-            }`}
-            onClick={() => setActiveTab("text")}
-          >
-            <Text className="w-5 h-5" />
-          </button>
-          <button
-            className={`p-2 rounded-lg ${
-              activeTab === "draw" ? "bg-green-50 border border-green-500" : ""
-            }`}
-            onClick={() => setActiveTab("draw")}
-          >
-            <Edit2 className="w-5 h-5" />
-          </button>
-          <button
-            className={`p-2 rounded-lg ${
-              activeTab === "logo" ? "bg-green-50 border border-green-500" : ""
-            }`}
-            onClick={() => setActiveTab("logo")}
-          >
-            <ImageIcon className="w-5 h-5" />
-          </button>
-        </div>
+        {/* Vertical Tabs - Only show relevant tabs */}
+        {visibleTabs.length > 1 && (
+          <div className="flex flex-col gap-4 mr-6">
+            {visibleTabs.includes("text") && (
+              <button
+                className={`p-2 rounded-lg ${
+                  activeTab === "text"
+                    ? "bg-green-50 border border-green-500"
+                    : ""
+                }`}
+                onClick={() => setActiveTab("text")}
+              >
+                <Text className="w-5 h-5" />
+              </button>
+            )}
+
+            {visibleTabs.includes("freeText") && (
+              <button
+                className={`p-2 rounded-lg ${
+                  activeTab === "freeText"
+                    ? "bg-green-50 border border-green-500"
+                    : ""
+                }`}
+                onClick={() => setActiveTab("freeText")}
+              >
+                <Edit2 className="w-5 h-5" />
+              </button>
+            )}
+
+            {visibleTabs.includes("draw") && (
+              <button
+                className={`p-2 rounded-lg ${
+                  activeTab === "draw"
+                    ? "bg-green-50 border border-green-500"
+                    : ""
+                }`}
+                onClick={() => setActiveTab("draw")}
+              >
+                <Edit2 className="w-5 h-5" />
+              </button>
+            )}
+
+            {visibleTabs.includes("logo") && (
+              <button
+                className={`p-2 rounded-lg ${
+                  activeTab === "logo"
+                    ? "bg-green-50 border border-green-500"
+                    : ""
+                }`}
+                onClick={() => setActiveTab("logo")}
+              >
+                <ImageIcon className="w-5 h-5" />
+              </button>
+            )}
+          </div>
+        )}
+
         {/* Tab Content */}
         <div className="flex-1">
           {activeTab === "text" && (
             <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  {t("signPDF.full_name")}
-                </label>
-                <input
-                  type="text"
-                  value={formData.fullName}
-                  onChange={(e) => updateFormData("fullName", e.target.value)}
-                  className="w-full border rounded-md px-3 py-2"
-                  style={{
-                    fontFamily: FONT_STYLES.find(
-                      (s) => s.key === formData.selectedStyle
-                    )?.fontFamily,
-                    color: formData.color,
-                  }}
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  {t("signPDF.initials")}
-                </label>
-                <input
-                  type="text"
-                  value={formData.initials}
-                  onChange={(e) => updateFormData("initials", e.target.value)}
-                  className="w-full border rounded-md px-3 py-2"
-                  style={{
-                    fontFamily: FONT_STYLES.find(
-                      (s) => s.key === formData.selectedStyle
-                    )?.fontFamily,
-                    color: formData.color,
-                  }}
-                />
-              </div>
+              {/* Only show fullName field when editing fullName or creating new */}
+              {(editingSignature?.type === "fullName" || !editingSignature) && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    {t("signPDF.full_name")}
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.fullName}
+                    onChange={(e) => updateFormData("fullName", e.target.value)}
+                    className="w-full border rounded-md px-3 py-2"
+                    style={{
+                      fontFamily: FONT_STYLES.find(
+                        (s) => s.key === currentStyle.selectedStyle
+                      )?.fontFamily,
+                      color: currentStyle.color,
+                    }}
+                  />
+                </div>
+              )}
+
+              {/* Only show initials field when editing initials or creating new */}
+              {(editingSignature?.type === "initials" || !editingSignature) && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    {t("signPDF.initials")}
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.initials}
+                    onChange={(e) => updateFormData("initials", e.target.value)}
+                    className="w-full border rounded-md px-3 py-2"
+                    style={{
+                      fontFamily: FONT_STYLES.find(
+                        (s) => s.key === currentStyle.selectedStyle
+                      )?.fontFamily,
+                      color: currentStyle.color,
+                    }}
+                  />
+                </div>
+              )}
+
               <div className="grid grid-cols-3 gap-2 mt-2">
                 {FONT_STYLES.map((style) => (
                   <div
                     key={style.key}
-                    onClick={() => updateFormData("selectedStyle", style.key)}
+                    onClick={() =>
+                      updateCurrentStyle("selectedStyle", style.key)
+                    }
                     className={`border rounded-md p-2 text-center cursor-pointer ${
-                      formData.selectedStyle === style.key
+                      currentStyle.selectedStyle === style.key
                         ? "border-green-500 bg-green-50"
                         : "border-gray-200"
                     }`}
                     style={{
                       fontFamily: style.fontFamily,
                       fontSize: "24px",
-                      color: formData.color,
+                      color: currentStyle.color,
                     }}
                   >
-                    {formData.fullName || t("signPDF.full_name")}
+                    {editingSignature?.type === "initials"
+                      ? formData.initials || t("signPDF.initials")
+                      : formData.fullName || t("signPDF.full_name")}
                   </div>
                 ))}
               </div>
@@ -291,9 +554,9 @@ const SignatureModal = ({
                 {COLORS.map((c) => (
                   <button
                     key={c.key}
-                    onClick={() => updateFormData("color", c.code)}
+                    onClick={() => updateCurrentStyle("color", c.code)}
                     className={`w-7 h-7 rounded-full border-2 ${
-                      formData.color === c.code
+                      currentStyle.color === c.code
                         ? "border-green-500"
                         : "border-gray-300"
                     }`}
@@ -303,15 +566,75 @@ const SignatureModal = ({
               </div>
             </div>
           )}
+
+          {activeTab === "freeText" && (
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  {t("signPDF.free_text")}
+                </label>
+                <input
+                  type="text"
+                  value={formData.freeText}
+                  onChange={(e) => updateFormData("freeText", e.target.value)}
+                  className="w-full border rounded-md px-3 py-2"
+                  style={{
+                    fontFamily: FONT_STYLES.find(
+                      (s) => s.key === currentStyle.selectedStyle
+                    )?.fontFamily,
+                    color: currentStyle.color,
+                  }}
+                  placeholder={t("signPDF.free_text_placeholder")}
+                />
+              </div>
+              <div className="grid grid-cols-3 gap-2 mt-2">
+                {FONT_STYLES.map((style) => (
+                  <div
+                    key={style.key}
+                    onClick={() =>
+                      updateCurrentStyle("selectedStyle", style.key)
+                    }
+                    className={`border rounded-md p-2 text-center cursor-pointer ${
+                      currentStyle.selectedStyle === style.key
+                        ? "border-green-500 bg-green-50"
+                        : "border-gray-200"
+                    }`}
+                    style={{
+                      fontFamily: style.fontFamily,
+                      fontSize: "16px",
+                      color: currentStyle.color,
+                    }}
+                  >
+                    {formData.freeText || t("signPDF.free_text_sample")}
+                  </div>
+                ))}
+              </div>
+              <div className="flex gap-2 mt-2">
+                {COLORS.map((c) => (
+                  <button
+                    key={c.key}
+                    onClick={() => updateCurrentStyle("color", c.code)}
+                    className={`w-7 h-7 rounded-full border-2 ${
+                      currentStyle.color === c.code
+                        ? "border-green-500"
+                        : "border-gray-300"
+                    }`}
+                    style={{ backgroundColor: c.code }}
+                  ></button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Draw and Logo tabs remain similar but with conditional rendering */}
           {activeTab === "draw" && (
             <div className="mt-2 grid grid-rows-2 gap-4">
-              {/* Top Half: Drawing */}
+              {/* Drawing canvas */}
               <div
                 className="border rounded-md p-2 flex flex-col items-center relative"
                 style={{ maxHeight: "200px" }}
               >
                 <div className="mt-2 flex flex-col items-start relative">
-                  {/* Canvas */}
                   <canvas
                     ref={canvasRef}
                     width={600}
@@ -322,8 +645,6 @@ const SignatureModal = ({
                     onMouseUp={stopDrawing}
                     onMouseLeave={stopDrawing}
                   />
-
-                  {/* Clear Icon */}
                   <button
                     onClick={clearCanvas}
                     className="absolute top-0 right-0 bg-white p-1 rounded-full shadow hover:bg-gray-100 transition"
@@ -333,7 +654,8 @@ const SignatureModal = ({
                   </button>
                 </div>
               </div>
-              {/* Bottom Half: Upload Signature Image */}
+
+              {/* Upload signature image */}
               <div
                 className="border rounded-md p-2 flex flex-col items-center"
                 style={{ maxHeight: "200px" }}
@@ -373,7 +695,6 @@ const SignatureModal = ({
                           className="sr-only"
                         />
                       </label>
-                      {/* <p className="pl-1">{t("or_drag_and_drop")}</p> */}
                     </div>
                     <p className="text-xs text-gray-500">
                       {t("image_up_to_5mb")}
@@ -381,7 +702,7 @@ const SignatureModal = ({
                     {formData.uploadedSign && (
                       <img
                         src={URL.createObjectURL(formData.uploadedSign)}
-                        alt="Logo Preview"
+                        alt="Signature Preview"
                         className="h-16 mt-2 mx-auto rounded-md border"
                       />
                     )}
@@ -390,6 +711,7 @@ const SignatureModal = ({
               </div>
             </div>
           )}
+
           {activeTab === "logo" && (
             <div className="mt-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -425,7 +747,6 @@ const SignatureModal = ({
                         className="sr-only"
                       />
                     </label>
-                    {/* <p className="pl-1">{t("or_drag_and_drop")}</p> */}
                   </div>
                   <p className="text-xs text-gray-500">
                     {t("image_up_to_5mb")}
@@ -441,13 +762,20 @@ const SignatureModal = ({
               </div>
             </div>
           )}
+
           {/* Footer */}
-          <div className="mt-4 flex justify-end">
+          <div className="mt-4 flex justify-end gap-3">
+            <button
+              onClick={onClose}
+              className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+            >
+              {t("signPDF.cancel")}
+            </button>
             <button
               onClick={handleSubmit}
               className="px-6 py-2 bg-forest text-white rounded-lg hover:bg-gold hover:text-forest"
             >
-              {t("signPDF.submit")}
+              {editingSignature ? t("signPDF.update") : t("signPDF.submit")}
             </button>
           </div>
         </div>
@@ -457,25 +785,33 @@ const SignatureModal = ({
 };
 // Editable Placement Component
 const EditablePlacement = ({ placement, onTextChange }) => {
-  console.log(placement, "Got in data for placement edit");
   const { t } = useTranslation();
-  const [isEditing, setIsEditing] = useState(false);
-  const [text, setText] = useState(placement.text);
+  const [isEditing, setIsEditing] = useState(placement.isEditing || false);
+  const [text, setText] = useState(placement.text || "");
+
   const handleTextChange = (e) => {
     setText(e.target.value);
   };
+
   const handleBlur = () => {
     setIsEditing(false);
     onTextChange(placement.id, text);
   };
+
+  const handleDoubleClick = () => {
+    setIsEditing(true);
+  };
+
   return (
     <div
-      className="w-full h-full flex items-center justify-center p-1"
-      onDoubleClick={() => setIsEditing(true)}
+      className="w-full h-full flex items-center justify-center p-1 cursor-text"
+      onDoubleClick={handleDoubleClick}
       style={{
         fontFamily: placement.fontFamily,
         color: placement.color,
         fontSize: `${placement.fontSize || 16}px`,
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        borderRadius: "4px",
       }}
     >
       {isEditing ? (
@@ -491,9 +827,12 @@ const EditablePlacement = ({ placement, onTextChange }) => {
             fontSize: `${placement.fontSize || 16}px`,
           }}
           autoFocus
+          placeholder={t("signPDF.type_here")}
         />
       ) : (
-        <span>{text}</span>
+        <span className={!text ? "text-gray-400 italic" : ""}>
+          {text || t("signPDF.double_click_to_edit")}
+        </span>
       )}
     </div>
   );
@@ -532,14 +871,47 @@ const globalSettingsConfig = [
     defaultChecked: true, // default checked
   },
 ];
-const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
+const ShareModal = ({
+  isOpen,
+  onClose,
+  allowReorder = true,
+  onSubmit,
+  shareLoading,
+}) => {
   const { t } = useTranslation();
   const [recipients, setRecipients] = useState([]);
   const [draggingIndex, setDraggingIndex] = useState(null);
   const [activeSettingsId, setActiveSettingsId] = useState(null);
   const [showGlobalSettings, setShowGlobalSettings] = useState(true);
   const [settingsSet, setSettingsSet] = useState([]);
-  const [errors, setErrors] = useState({}); // NEW: track errors per recipient
+  const [errors, setErrors] = useState({});
+  const [applyToAll, setApplyToAll] = useState(false);
+
+  useEffect(() => {
+    if (applyToAll && activeSettingsId) {
+      const activeRecipient = recipients.find((r) => r.id === activeSettingsId);
+      if (!activeRecipient) return;
+
+      // Apply same password and format to all
+      setRecipients((prev) =>
+        prev.map((r) => ({
+          ...r,
+          password: activeRecipient.password,
+          allowedFormats: activeRecipient.allowedFormats,
+        }))
+      );
+    } else if (!applyToAll) {
+      // Clear shared values (make independent again)
+      setRecipients((prev) =>
+        prev.map((r) => ({
+          ...r,
+          password: "",
+          allowedFormats: ["all"],
+        }))
+      );
+    }
+  }, [applyToAll, activeSettingsId, recipients]);
+
   const resetModal = () => {
     setRecipients([]);
     setDraggingIndex(null);
@@ -551,7 +923,27 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
     setSettingsSet(defaults);
     setShowGlobalSettings(true);
   };
-  // ------
+  useEffect(() => {
+    // If there are recipients and no one is active, open the first one
+    if (recipients.length > 0 && !activeSettingsId) {
+      setActiveSettingsId(recipients[0].id);
+    }
+  }, [recipients]);
+  useEffect(() => {
+    if (isOpen && recipients.length === 0) {
+      const defaultRecipient = {
+        id: Date.now(),
+        name: "",
+        email: "",
+        role: "signer",
+        password: "",
+        allowedFormats: ["all"],
+      };
+      setRecipients([defaultRecipient]);
+      setActiveSettingsId(defaultRecipient.id); // Auto open its settings
+    }
+  }, [isOpen]);
+
   // Array of keys that should be default checked
   const defaultCheckedKeys = ["emailNotifications", "reminder"]; // default checked keys
   const GlobalNumberSetting = ({
@@ -742,74 +1134,78 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
               onClick={() => setShowGlobalSettings(!showGlobalSettings)}
             />
           </div>
-          {/* Recipients list */}
-          {recipients.map((r, idx) => (
-            <div
-              key={r.id}
-              className={`flex flex-col gap-1 p-3 border rounded-lg ${
-                draggingIndex === idx ? "bg-yellow-100" : ""
-              }`}
-              draggable={allowReorder}
-              onDragStart={() => handleDragStart(idx)}
-              onDragOver={() => handleDragOver(idx)}
-              onDragEnd={handleDragEnd}
-              style={{ cursor: allowReorder ? "grab" : "default" }}
-            >
-              <div className="flex items-center gap-2">
-                {/* Drag handle */}
-                <GripVertical
-                  className="text-gray-500 cursor-grab"
-                  size={20}
-                  onMouseDown={(e) => e.preventDefault()}
-                />
 
-                <input
-                  type="text"
-                  placeholder={t("signPDF.recipient_name")}
-                  value={r.name}
-                  onChange={(e) => handleChange(r.id, "name", e.target.value)}
-                  className={`w-24 border p-2 rounded ${
-                    errors[r.id]?.name ? "border-red-500" : ""
-                  }`}
-                />
-                <input
-                  type="email"
-                  placeholder={t("signPDF.recipient_email")}
-                  value={r.email}
-                  onChange={(e) => handleChange(r.id, "email", e.target.value)}
-                  className={`flex-1 border p-2 rounded ${
-                    errors[r.id]?.email ? "border-red-500" : ""
-                  }`}
-                />
-                <select
-                  value={r.role}
-                  onChange={(e) => handleChange(r.id, "role", e.target.value)}
-                  className="border p-2 rounded"
-                >
-                  {roles.map((role) => (
-                    <option key={role} value={role}>
-                      {t(`signPDF.role_${role}`)}
-                    </option>
-                  ))}
-                </select>
+          <div className="max-h-[500px] overflow-x-auto">
+            {recipients.map((r, idx) => (
+              <div
+                key={r.id}
+                className={`flex flex-col gap-1 p-3 mb-2 border rounded-lg transition-colors
+    ${draggingIndex === idx ? "bg-yellow-100" : ""}
+    ${activeSettingsId === r.id ? "bg-blue-50 border-blue-400" : "bg-white"}
+  `}
+                draggable={allowReorder}
+                onDragStart={() => handleDragStart(idx)}
+                onDragOver={() => handleDragOver(idx)}
+                onDragEnd={handleDragEnd}
+                style={{ cursor: allowReorder ? "grab" : "default" }}
+              >
+                <div className="flex items-center gap-2">
+                  {/* Drag handle */}
+                  <GripVertical
+                    className="text-gray-500 cursor-grab"
+                    size={20}
+                    onMouseDown={(e) => e.preventDefault()}
+                  />
 
-                {/* Remove recipient */}
-                <X
-                  className="text-gray-500 cursor-pointer"
-                  size={18}
-                  onClick={() => handleRemove(r.id)}
-                />
+                  <input
+                    type="text"
+                    placeholder={t("signPDF.recipient_name")}
+                    value={r.name}
+                    onChange={(e) => handleChange(r.id, "name", e.target.value)}
+                    className={`w-24 border p-2 rounded ${
+                      errors[r.id]?.name ? "border-red-500" : ""
+                    }`}
+                  />
+                  <input
+                    type="email"
+                    placeholder={t("signPDF.recipient_email")}
+                    value={r.email}
+                    onChange={(e) =>
+                      handleChange(r.id, "email", e.target.value)
+                    }
+                    className={`flex-1 border p-2 rounded ${
+                      errors[r.id]?.email ? "border-red-500" : ""
+                    }`}
+                  />
+                  <select
+                    value={r.role}
+                    onChange={(e) => handleChange(r.id, "role", e.target.value)}
+                    className="border p-2 rounded"
+                  >
+                    {roles.map((role) => (
+                      <option key={role} value={role}>
+                        {t(`signPDF.role_${role}`)}
+                      </option>
+                    ))}
+                  </select>
 
-                {/* Settings icon */}
-                <Settings
-                  className="text-gray-500 cursor-pointer"
-                  size={18}
-                  onClick={() => toggleSettings(r.id)}
-                />
-              </div>
+                  {/* Remove recipient */}
+                  <X
+                    className="text-gray-500 cursor-pointer"
+                    size={18}
+                    onClick={() => handleRemove(r.id)}
+                  />
 
-              {/* Field-specific errors */}
-              {/* <div className="flex flex-col gap-1">
+                  {/* Settings icon */}
+                  <Settings
+                    className="text-gray-500 cursor-pointer"
+                    size={18}
+                    onClick={() => toggleSettings(r.id)}
+                  />
+                </div>
+
+                {/* Field-specific errors */}
+                {/* <div className="flex flex-col gap-1">
                 {errors[r.id]?.name && (
                   <span className="text-red-500 text-xs">
                     {errors[r.id].name}
@@ -821,66 +1217,10 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
                   </span>
                 )}
               </div> */}
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
 
-          {/* Active settings for each recipient */}
-          {recipients.map(
-            (r) =>
-              activeSettingsId === r.id && (
-                <div
-                  key={`settings-${r.id}`}
-                  className="border p-3 rounded-lg bg-gray-50 flex flex-col gap-3"
-                >
-                  <label className="text-gray-700 text-sm font-medium">
-                    {t("signPDF.password_protect")}
-                  </label>
-                  <div className="relative w-full">
-                    <Lock
-                      className="absolute left-2 top-1/2 -translate-y-1/2 text-red-500"
-                      size={18}
-                    />
-                    <input
-                      type={r.showPassword ? "text" : "password"}
-                      placeholder={t("signPDF.password_protect")}
-                      value={r.password || ""}
-                      onChange={(e) =>
-                        handleChange(r.id, "password", e.target.value)
-                      }
-                      className="w-full pl-8 pr-8 border p-2 rounded"
-                    />
-                    <div
-                      className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
-                      onClick={() =>
-                        handleChange(r.id, "showPassword", !r.showPassword)
-                      }
-                    >
-                      {r.showPassword ? (
-                        <EyeOff size={18} />
-                      ) : (
-                        <Eye size={18} />
-                      )}
-                    </div>
-                  </div>
-                  <label className="text-gray-700 text-sm font-medium">
-                    {t("signPDF.allowedSignFormat")}
-                  </label>
-                  <select
-                    value={r.allowedFormats[0]}
-                    onChange={(e) =>
-                      handleChange(r.id, "allowedFormats", [e.target.value])
-                    }
-                    className="border p-2 rounded"
-                  >
-                    {signFormats.map((f) => (
-                      <option key={f} value={f}>
-                        {t(`signPDF.signFormat${f}`)}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              )
-          )}
           <button
             onClick={handleAddRecipient}
             className="mt-3 px-4 py-2 bg-blue-600 text-white rounded"
@@ -888,6 +1228,21 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
             + {t("signPDF.add_recipient")}
           </button>
           <div className="mt-6 flex justify-end gap-3">
+            <div className="flex items-center gap-2">
+              <label
+                htmlFor="applyAllToggle"
+                className="text-sm text-gray-700 cursor-pointer select-none"
+              >
+                {t("signPDF.apply_all")}
+              </label>
+              <input
+                type="checkbox"
+                id="applyAllToggle"
+                checked={applyToAll}
+                onChange={(e) => setApplyToAll(e.target.checked)}
+                className="w-5 h-5 accent-blue-600 cursor-pointer"
+              />
+            </div>
             <button
               onClick={onClose}
               className="px-4 py-2 bg-gray-200 text-gray-700 rounded"
@@ -897,82 +1252,148 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
             <button
               onClick={handleSubmit}
               className="px-4 py-2 bg-forest text-white rounded"
+              disabled={shareLoading}
             >
-              {t("signPDF.save_continue")}
+              {shareLoading ? t("signPDF.sharing") : t("signPDF.save_continue")}
             </button>
           </div>
         </div>
         {/* Right side: Global Settings */}
         {showGlobalSettings && (
-          <div className="w-80 border-l border-gray-200 pl-4 max-h-[600px] overflow-y-auto">
-            <h3 className="font-semibold text-gray-900 mb-3">
-              {t("signPDF.global_settings")}
-            </h3>
-            <p className="text-gray-700 text-sm mb-4">
-              {t("signPDF.global_setting_desc")}
-            </p>
-            <div className="space-y-4">
-              {globalSettingsConfig.map((setting) => {
-                const Icon = setting.icon;
-                const checked = isGlobalChecked(setting.key);
-                return (
-                  <div
-                    key={setting.key}
-                    className="flex items-start gap-3 border p-3 rounded-lg"
-                  >
-                    {/* Checkbox */}
-                    {setting.type === "checkbox" && (
-                      <input
-                        type="checkbox"
-                        id={setting.key}
-                        checked={checked}
-                        onChange={() => handleToggleGlobal(setting.key)}
-                        className="mt-1 h-4 w-4 cursor-pointer"
-                      />
-                    )}
-                    {/* Icon */}
-                    {Icon && (
-                      <div className="mt-0.5 text-gray-700">
-                        <Icon size={18} />
-                      </div>
-                    )}
-                    <div className="flex flex-col flex-1">
-                      <label
-                        htmlFor={setting.key}
-                        className="text-sm font-medium text-gray-900 cursor-pointer"
-                      >
-                        {t(`signPDF.${setting.labelKey}`)}
-                      </label>
-                      {/* Normal description */}
-                      {setting.descKey &&
-                        !["expireDate", "reminder"].includes(setting.key) && (
-                          <p className="text-xs text-gray-600">
-                            {t(`signPDF.${setting.descKey}`)}
-                          </p>
-                        )}
-                      {/* Reusable number settings */}
-                      {setting.key === "expireDate" && (
-                        <GlobalNumberSetting
-                          settingKey="expireDate"
-                          label={t("signPDF.expires_in_days")}
-                          descriptionTemplate="signPDF.expires_in"
-                          defaultValue="15"
-                        />
-                      )}
-                      {setting.key === "reminder" && (
-                        <GlobalNumberSetting
-                          settingKey="reminder"
-                          label="Every"
-                          descriptionTemplate="signPDF.reminder_desc"
-                          defaultValue="1"
-                        />
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
+          <div className="w-80 border-l border-gray-200 pl-4 max-h-[600px] overflow-y-auto mb-2">
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-3">
+                {t("signPDF.receiptHeader")}
+              </h3>
             </div>
-            {/* <div className="mt-6 flex justify-end gap-3">
+
+            {recipients.map(
+              (r) =>
+                activeSettingsId === r.id && (
+                  <>
+                    <div
+                      key={`settings-${r.id}`}
+                      className="border p-3 rounded-lg bg-gray-50 flex flex-col gap-3"
+                    >
+                      <label className="text-gray-700 text-sm font-medium">
+                        {t("signPDF.password_protect")}
+                      </label>
+                      <div className="relative w-full">
+                        <Lock
+                          className="absolute left-2 top-1/2 -translate-y-1/2 text-red-500"
+                          size={18}
+                        />
+                        <input
+                          type={r.showPassword ? "text" : "password"}
+                          placeholder={t("signPDF.password_protect")}
+                          value={r.password || ""}
+                          onChange={(e) =>
+                            handleChange(r.id, "password", e.target.value)
+                          }
+                          className="w-full pl-8 pr-8 border p-2 rounded"
+                        />
+                        <div
+                          className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
+                          onClick={() =>
+                            handleChange(r.id, "showPassword", !r.showPassword)
+                          }
+                        >
+                          {r.showPassword ? (
+                            <EyeOff size={18} />
+                          ) : (
+                            <Eye size={18} />
+                          )}
+                        </div>
+                      </div>
+                      <label className="text-gray-700 text-sm font-medium">
+                        {t("signPDF.allowedSignFormat")}
+                      </label>
+                      <select
+                        value={r.allowedFormats[0]}
+                        onChange={(e) =>
+                          handleChange(r.id, "allowedFormats", [e.target.value])
+                        }
+                        className="border p-2 rounded"
+                      >
+                        {signFormats.map((f) => (
+                          <option key={f} value={f}>
+                            {t(`signPDF.signFormat${f}`)}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </>
+                )
+            )}
+            <div className="mt-2">
+              <h3 className="font-semibold text-gray-900 mb-3">
+                {t("signPDF.global_settings")}
+              </h3>
+              <p className="text-gray-700 text-sm mb-4">
+                {t("signPDF.global_setting_desc")}
+              </p>
+              <div className="space-y-4">
+                {globalSettingsConfig.map((setting) => {
+                  const Icon = setting.icon;
+                  const checked = isGlobalChecked(setting.key);
+                  return (
+                    <div
+                      key={setting.key}
+                      className="flex items-start gap-3 border p-3 rounded-lg"
+                    >
+                      {/* Checkbox */}
+                      {setting.type === "checkbox" && (
+                        <input
+                          type="checkbox"
+                          id={setting.key}
+                          checked={checked}
+                          onChange={() => handleToggleGlobal(setting.key)}
+                          className="mt-1 h-4 w-4 cursor-pointer"
+                        />
+                      )}
+                      {/* Icon */}
+                      {Icon && (
+                        <div className="mt-0.5 text-gray-700">
+                          <Icon size={18} />
+                        </div>
+                      )}
+                      <div className="flex flex-col flex-1">
+                        <label
+                          htmlFor={setting.key}
+                          className="text-sm font-medium text-gray-900 cursor-pointer"
+                        >
+                          {t(`signPDF.${setting.labelKey}`)}
+                        </label>
+                        {/* Normal description */}
+                        {setting.descKey &&
+                          !["expireDate", "reminder"].includes(setting.key) && (
+                            <p className="text-xs text-gray-600">
+                              {t(`signPDF.${setting.descKey}`)}
+                            </p>
+                          )}
+                        {/* Reusable number settings */}
+                        {setting.key === "expireDate" && (
+                          <GlobalNumberSetting
+                            settingKey="expireDate"
+                            label={t("signPDF.expires_in_days")}
+                            descriptionTemplate="signPDF.expires_in"
+                            defaultValue="15"
+                          />
+                        )}
+                        {setting.key === "reminder" && (
+                          <GlobalNumberSetting
+                            settingKey="reminder"
+                            label="Every"
+                            descriptionTemplate="signPDF.reminder_desc"
+                            defaultValue="1"
+                          />
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              {/* <div className="mt-6 flex justify-end gap-3">
               <button
                 onClick={() => setShowGlobalSettings(false)}
                 className="px-4 py-2 bg-gray-200 text-gray-700 rounded"
@@ -986,6 +1407,7 @@ const ShareModal = ({ isOpen, onClose, allowReorder = true, onSubmit }) => {
                 {t("signPDF.save_continue")}
               </button>
             </div> */}
+            </div>
           </div>
         )}
       </div>
@@ -1010,11 +1432,34 @@ const SignPDF = () => {
   const [showPreview, setShowPreview] = useState(false);
   const [shareModal, setShareModal] = useState(false);
   const [recipients, setRecipients] = useState([]);
-  const [tempFileData, setTempFileData] = useState(null);
   const [hasShareReq, sethasShareReq] = useState(false);
   const [sharedDetails, setSharedDetails] = useState({});
   const hasFetchedRef = useRef(false);
+  const [shareLoading, setShareLoading] = useState(false);
+  const [editingSignature, setEditingSignature] = useState(null);
 
+  const handleEditSignature = (signature) => {
+    setEditingSignature(signature);
+    setSignatureModal(true);
+  };
+
+  // Update handleSignaturesApplied to handle updates correctly
+  const handleSignaturesApplied = (signatures) => {
+    if (editingSignature) {
+      // Update existing signature by ID
+      setAppliedSignatures((prev) =>
+        prev.map((sig) =>
+          sig.id === editingSignature.id ? { ...sig, ...signatures[0] } : sig
+        )
+      );
+      setEditingSignature(null);
+    } else {
+      // Add new signatures
+      setAppliedSignatures((prev) => [...prev, ...signatures]);
+      setShowPreview(true);
+    }
+  };
+  const navigate = useNavigate();
   useEffect(() => {
     if (hasFetchedRef.current) return; // prevent duplicate fetch
     hasFetchedRef.current = true;
@@ -1070,20 +1515,19 @@ const SignPDF = () => {
 
       setFiles([file]);
       setError(null);
-      console.log("✅ File fetched and set successfully:", fileName);
     } catch (error) {
-      console.error("❌ Error fetching shared file:", error);
-      setError(t("signPDF.signPdf_error"));
+      setError(t("signPDF.shareFileError"));
     }
   };
 
   const handleShareSubmit = async ({ recipients, globalSettings }) => {
     console.log(recipients, "Got in recipients");
-    await uploadFile();
+    const resUpload = await uploadFile();
+    console.log(resUpload, "Got in data for resUpload");
     // Prepare payload
     const payload = {
-      file_path: tempFileData.file_path,
-      file_name: tempFileData.file_name,
+      file_path: resUpload?.data?.data.file_path,
+      file_name: resUpload?.data?.data.file_name,
       shared_users: recipients.map((user) => ({
         user_name: user.name,
         user_email: user.email,
@@ -1100,7 +1544,10 @@ const SignPDF = () => {
         },
       });
       return response.data;
-    } catch (err) {}
+    } catch (err) {
+    } finally {
+      setShareLoading(false);
+    }
   };
   useEffect(() => {
     const link = document.createElement("link");
@@ -1138,6 +1585,7 @@ const SignPDF = () => {
   };
 
   const uploadFile = async () => {
+    setShareLoading(true);
     if (!files || files.length === 0) {
       toast.error(t("signPDF.no_file_selected"));
       return;
@@ -1156,9 +1604,9 @@ const SignPDF = () => {
 
       if (response.data?.status === "success") {
         const data = response.data;
-        setTempFileData(data?.data ?? {});
         setError(null);
       }
+      return response;
     } catch (err) {
       toast.error("Sign in to share file");
     }
@@ -1188,15 +1636,12 @@ const SignPDF = () => {
     setShareModal(true);
     setTypeState("several");
   };
-  // Handle signatures applied from modal
-  const handleSignaturesApplied = (signatures) => {
-    setAppliedSignatures(signatures);
-    setShowPreview(true);
-  };
+
   // Add placement to PDF
   const handleAddPlacement = (signatureId, pageIndex) => {
     const signature = appliedSignatures.find((sig) => sig.id === signatureId);
     if (!signature) return;
+
     const newPlacement = {
       id: `${signature.type}-${Date.now()}`,
       type: signature.type,
@@ -1205,18 +1650,10 @@ const SignPDF = () => {
       y: 50,
       width: signature.width,
       height: signature.height,
-      text:
-        signature.type === "fullName" || signature.type === "initials"
-          ? signature.text
-          : undefined,
-      fontFamily:
-        signature.type === "fullName" || signature.type === "initials"
-          ? signature.fontFamily
-          : undefined,
-      color:
-        signature.type === "fullName" || signature.type === "initials"
-          ? signature.color
-          : undefined,
+      text: signature.text || "", // Use signature text for text-based types
+      fontFamily: signature.fontFamily,
+      color: signature.color,
+      fontSize: signature.fontSize,
       signatureData:
         signature.type === "signature" ? signature.signatureData : undefined,
       imageFile: signature.type === "image" ? signature.imageFile : undefined,
@@ -1226,6 +1663,7 @@ const SignPDF = () => {
           imageFile: signature.imageFile,
         }),
     };
+
     setAppliedSignatures((prev) =>
       prev.map((sig) =>
         sig.id === signatureId
@@ -1241,7 +1679,7 @@ const SignPDF = () => {
         ...sig,
         placements:
           sig.placements?.map((pl) =>
-            pl.id === id ? { ...pl, text: value } : pl
+            pl.id === id ? { ...pl, text: value, isEditing: false } : pl
           ) || [],
       }))
     );
@@ -1258,6 +1696,7 @@ const SignPDF = () => {
       }))
     );
   };
+
   // Remove placement
   const handleRemovePlacement = (id) => {
     setAppliedSignatures((prev) =>
@@ -1407,9 +1846,52 @@ const SignPDF = () => {
     setTypeModal(false);
     setSignatureModal(false);
     setTypeState("self");
-    setTempFileData(null);
+    sethasShareReq(false);
   };
 
+  const handleReloadPage = () => {
+    // If the current URL includes a file_id query, remove it
+    navigate("/sign-pdf", { replace: true });
+    handleClearAll();
+    // Optionally reload the page if you want a hard reload
+    // window.location.href = "/sign-pdf";
+  };
+
+  const handleAddFreeText = (pageIndex) => {
+    const newFreeTextId = `free-text-${Date.now()}`;
+
+    // Create the signature object first
+    const newFreeTextSignature = {
+      id: newFreeTextId,
+      type: "freeText",
+      text: "Free Text", // Default text when creating new free text
+      fontFamily: FONT_STYLES[0].fontFamily,
+      color: "#000000",
+      fontSize: 16,
+      placements: [], // Start with empty placements
+    };
+
+    // Create the placement with the same text
+    const newFreeTextPlacement = {
+      id: `${newFreeTextId}-placement`,
+      type: "freeText",
+      page: pageIndex,
+      x: 50,
+      y: 50,
+      width: 200,
+      height: 40,
+      text: "Free Text", // Set initial text here
+      fontFamily: FONT_STYLES[0].fontFamily,
+      color: "#000000",
+      fontSize: 16,
+      isEditing: true, // Start in editing mode
+    };
+
+    // Add the placement to the signature
+    newFreeTextSignature.placements = [newFreeTextPlacement];
+
+    setAppliedSignatures((prev) => [...prev, newFreeTextSignature]);
+  };
   return (
     <>
       <Helmet>
@@ -1582,180 +2064,254 @@ const SignPDF = () => {
                     </div>
                   )}
 
+                  {!showPreview && (
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <button
+                            onClick={handleContinue}
+                            disabled={files.length === 0 || loading}
+                            className={`inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-forest hover:bg-gold hover:text-forest transition duration-200 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 ${
+                              files.length === 0 || loading
+                                ? "opacity-50 cursor-not-allowed"
+                                : "hover:scale-105"
+                            }`}
+                          >
+                            {loading ? (
+                              <>
+                                <svg
+                                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <circle
+                                    className="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    strokeWidth="4"
+                                  ></circle>
+                                  <path
+                                    className="opacity-75"
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                  ></path>
+                                </svg>
+                                {t("signPDF.loading")}
+                              </>
+                            ) : (
+                              t("signPDF.continue_btn")
+                            )}
+                          </button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          {t("signPDF.continue_tooltip")}
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  )}
                   {/* Available Signatures */}
                   {showPreview && appliedSignatures.length > 0 && (
                     <div className="bg-white rounded-lg p-4">
                       <h3 className="text-lg font-medium text-gray-900 mb-3">
                         {t("signPDF.preview")}
                       </h3>
-                      <div className="space-y-3">
-                        {appliedSignatures.map((sig, index) => (
-                          <div key={index} className="border rounded-lg p-3">
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="font-medium capitalize">
-                                {t(`signPDF.${sig.type}`)}
-                              </span>
-                              <button
-                                onClick={() =>
-                                  handleAddPlacement(sig.id, currentPage - 1)
-                                }
-                                className="px-3 py-1 bg-forest text-white text-sm rounded hover:bg-gold hover:text-forest"
-                              >
-                                {t(`signPDF.place_${sig.type}`)}
-                              </button>
-                            </div>
-                            {sig.type === "fullName" && (
-                              <div
-                                style={{
-                                  fontFamily: sig.fontFamily,
-                                  color: sig.color,
-                                }}
-                                className="text-center"
-                              >
-                                {sig.text}
-                              </div>
-                            )}
-                            {sig.type === "initials" && (
-                              <div
-                                style={{
-                                  fontFamily: sig.fontFamily,
-                                  color: sig.color,
-                                }}
-                                className="text-center"
-                              >
-                                {sig.text}
-                              </div>
-                            )}
-                            {sig.type === "signature" && sig.signatureData && (
-                              <img
-                                src={sig.signatureData}
-                                alt="Signature"
-                                className="h-8 mx-auto"
-                              />
-                            )}
-                            {sig.type === "image" && sig.imageFile && (
-                              <img
-                                src={URL.createObjectURL(sig.imageFile)}
-                                alt="Logo"
-                                className="h-8 mx-auto"
-                              />
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {/* Action Buttons */}
-                  {!showPreview ? (
-                    <button
-                      onClick={handleContinue}
-                      disabled={files.length === 0 || loading}
-                      className={`inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-forest hover:bg-gold hover:text-forest transition duration-200 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 ${
-                        files.length === 0 || loading
-                          ? "opacity-50 cursor-not-allowed"
-                          : "hover:scale-105"
-                      }`}
-                    >
-                      {loading ? (
-                        <>
-                          <svg
-                            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                          >
-                            <circle
-                              className="opacity-25"
-                              cx="12"
-                              cy="12"
-                              r="10"
-                              stroke="currentColor"
-                              strokeWidth="4"
-                            ></circle>
-                            <path
-                              className="opacity-75"
-                              fill="currentColor"
-                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                            ></path>
-                          </svg>
-                          {t("signPDF.loading")}
-                        </>
-                      ) : (
-                        t("signPDF.continue_btn")
-                      )}
-                    </button>
-                  ) : (
-                    <div className="flex gap-3 items-center">
-                      <TooltipProvider>
-                        {/* ➤ Add Signature */}
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <div
-                              className="flex items-center gap-2 cursor-pointer"
-                              onClick={() => setSignatureModal(true)}
-                            >
-                              <FileSignature className="w-6 h-6 text-blue-600 hover:text-blue-800" />
-                              <span className="text-sm">
-                                {t("signPDF.addSign")}
-                              </span>
-                            </div>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            {t("signPDF.addSign")}
-                          </TooltipContent>
-                        </Tooltip>
-
-                        {/* ➤ Upload Signed */}
-                        {hasShareReq && (
+                      <div className="mb-4 flex gap-2">
+                        <TooltipProvider>
                           <Tooltip>
                             <TooltipTrigger asChild>
                               <div
-                                className="flex items-center gap-2 cursor-pointer"
-                                onClick={() => handleFinalSubmit(true)}
+                                onClick={() =>
+                                  handleAddFreeText(currentPage - 1)
+                                }
+                                className="flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-gray-100 transition duration-200 border border-dashed border-gray-300 hover:border-blue-500"
                               >
-                                <Upload className="w-6 h-6 text-blue-600 hover:text-blue-800" />
-                                <span className="text-sm">
-                                  {t("signPDF.uploadSigned")}
+                                <Edit2 className="w-5 h-5 text-blue-600" />
+                                <span className="text-sm text-blue-600 font-medium">
+                                  {t("signPDF.add_free_text")}
                                 </span>
                               </div>
                             </TooltipTrigger>
                             <TooltipContent>
-                              {t("signPDF.uploadSigned")}
+                              {t("signPDF.add_free_text_tooltip")}
                             </TooltipContent>
                           </Tooltip>
-                        )}
+                        </TooltipProvider>
+                        {/* Action Buttons */}
 
-                        {/* ➤ Download */}
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <div
-                              className="flex items-center gap-2 cursor-pointer text-forest hover:text-gold"
-                              onClick={() => handleFinalSubmit(false)}
-                            >
-                              <Download
-                                className={`w-6 h-6 ${
-                                  loading ? "animate-spin" : ""
-                                }`}
-                              />
-                              <span className="text-sm">
+                        <div className="flex gap-3 items-center">
+                          <TooltipProvider>
+                            {/* ➤ Add Signature */}
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <div
+                                  className="flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-gray-100 transition duration-200"
+                                  onClick={() => setSignatureModal(true)}
+                                >
+                                  <FileSignature className="w-6 h-6 text-blue-600 hover:text-blue-800" />
+                                </div>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                {t("signPDF.addSign")}
+                              </TooltipContent>
+                            </Tooltip>
+
+                            {/* ➤ Upload Signed */}
+                            {hasShareReq && (
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <div
+                                    className="flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-gray-100 transition duration-200"
+                                    onClick={() => handleFinalSubmit(true)}
+                                  >
+                                    <Upload className="w-6 h-6 text-blue-600 hover:text-blue-800" />
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  {t("signPDF.uploadSigned")}
+                                </TooltipContent>
+                              </Tooltip>
+                            )}
+
+                            {/* ➤ Download */}
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <div
+                                  className="flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-gray-100 transition duration-200 text-forest hover:text-gold"
+                                  onClick={() => handleFinalSubmit(false)}
+                                >
+                                  <Download
+                                    className={`w-6 h-6 ${
+                                      loading ? "animate-spin" : ""
+                                    }`}
+                                  />
+                                </div>
+                              </TooltipTrigger>
+                              <TooltipContent>
                                 {t("signPDF.download")}
-                              </span>
+                              </TooltipContent>
+                            </Tooltip>
+
+                            {/* ➤ Clear All */}
+                            {files.length > 0 && hasShareReq === false && (
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <div
+                                    className="flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-gray-100 transition duration-200"
+                                    onClick={() => handleClearAll()}
+                                  >
+                                    <Trash2 className="w-6 h-6 text-red-500 hover:text-red-700" />
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  {t("signPDF.clear_signature")}
+                                </TooltipContent>
+                              </Tooltip>
+                            )}
+
+                            {/* ➤ Exit Share */}
+                            {hasShareReq === true && (
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <div
+                                    className="flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-gray-100 transition duration-200"
+                                    onClick={() => handleReloadPage()}
+                                  >
+                                    <LogOut className="w-6 h-6 text-gray-600 hover:text-gray-800" />
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  {t("signPDF.exitShare")}
+                                </TooltipContent>
+                              </Tooltip>
+                            )}
+                          </TooltipProvider>
+                        </div>
+                      </div>
+                      <div className="space-y-3 max-h-[350px] overflow-x-auto">
+                        {appliedSignatures.map((sig, index) => {
+                          // For all text types, get the text from the first placement or signature text
+                          const displayText =
+                            sig.placements?.[0]?.text || sig.text || "";
+
+                          return (
+                            <div key={index} className="border rounded-lg p-3">
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="font-medium capitalize">
+                                  {t(`signPDF.${sig.type}`)}
+                                </span>
+                                <div className="flex gap-2">
+                                  {/* Edit Icon */}
+                                  <TooltipProvider>
+                                    <Tooltip>
+                                      <TooltipTrigger asChild>
+                                        <button
+                                          onClick={() =>
+                                            handleEditSignature(sig)
+                                          }
+                                          className="p-1 text-blue-600 hover:text-blue-800 transition"
+                                        >
+                                          <Edit2 className="w-4 h-4" />
+                                        </button>
+                                      </TooltipTrigger>
+                                      <TooltipContent>
+                                        {t("signPDF.edit_signature")}
+                                      </TooltipContent>
+                                    </Tooltip>
+                                  </TooltipProvider>
+                                  {/* Place Button */}
+                                  <button
+                                    onClick={() =>
+                                      handleAddPlacement(
+                                        sig.id,
+                                        currentPage - 1
+                                      )
+                                    }
+                                    className="px-3 py-1 bg-forest text-white text-sm rounded hover:bg-gold hover:text-forest"
+                                  >
+                                    {t(`signPDF.place_${sig.type}`)}
+                                  </button>
+                                </div>
+                              </div>
+
+                              {(sig.type === "fullName" ||
+                                sig.type === "initials" ||
+                                sig.type === "freeText") && (
+                                <div
+                                  style={{
+                                    fontFamily: sig.fontFamily,
+                                    color: sig.color,
+                                    fontSize: `${sig.fontSize}px`,
+                                  }}
+                                  className="text-center"
+                                >
+                                  {displayText || t("signPDF.no_text_added")}
+                                </div>
+                              )}
+
+                              {sig.type === "signature" &&
+                                sig.signatureData && (
+                                  <img
+                                    src={sig.signatureData}
+                                    alt="Signature"
+                                    className="h-8 mx-auto"
+                                  />
+                                )}
+
+                              {sig.type === "image" && sig.imageFile && (
+                                <img
+                                  src={URL.createObjectURL(sig.imageFile)}
+                                  alt="Logo"
+                                  className="h-8 mx-auto"
+                                />
+                              )}
                             </div>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            {t("signPDF.download")}
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                          );
+                        })}
+                      </div>
                     </div>
-                  )}
-                  {files.length > 0 && (
-                    <button
-                      onClick={() => handleClearAll()}
-                      className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition duration-200 ml-[10px]"
-                    >
-                      {t("signPDF.clear_signature")}
-                    </button>
                   )}
                 </div>
               </div>
@@ -1874,13 +2430,9 @@ const SignPDF = () => {
                                   className="w-full h-full object-contain"
                                 />
                               )}
-                            {placement.type === "fullName" && (
-                              <EditablePlacement
-                                placement={placement}
-                                onTextChange={handleTextChange}
-                              />
-                            )}
-                            {placement.type === "initials" && (
+                            {(placement.type === "fullName" ||
+                              placement.type === "initials" ||
+                              placement.type === "freeText") && (
                               <EditablePlacement
                                 placement={placement}
                                 onTextChange={handleTextChange}
@@ -1907,37 +2459,51 @@ const SignPDF = () => {
                   : t("signPDF.several_desc")}
               </h2>
             </div>
+
             <div className="space-y-4">
-              {["self", "several"].map((opt) => (
-                <label
-                  key={opt}
-                  className={`flex items-center justify-between p-4 border rounded-lg shadow cursor-pointer transition ${
-                    typeState === opt
-                      ? "border-forest bg-green-50"
-                      : "border-gray-200"
-                  }`}
-                >
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="signerType"
-                      value={opt}
-                      checked={typeState === opt}
-                      onChange={() => setTypeState(opt)}
-                      className={`h-4 w-4 text-forest focus:ring-forest ${
-                        opt === "several" && hasShareReq
-                          ? "cursor-not-allowed"
-                          : "cursor-pointer"
-                      }`}
-                      disabled={opt === "several" && hasShareReq} // ✅ disable only if "several" and hasShareReq true
-                    />
-                    <span className="text-sm font-medium text-gray-800">
-                      {t(`signPDF.${opt}`)}
-                    </span>
-                  </div>
-                </label>
-              ))}
+              {["self", "several"].map((opt) => {
+                const isDisabled = opt === "several" && hasShareReq;
+                return (
+                  <label
+                    key={opt}
+                    onClick={() => {
+                      if (isDisabled) {
+                        toast.error(t("signPDF.allowShareError"));
+                        return;
+                      }
+                      setTypeState(opt);
+                    }}
+                    className={`flex items-center justify-between p-4 border rounded-lg shadow transition 
+                ${
+                  typeState === opt
+                    ? "border-forest bg-green-50"
+                    : "border-gray-200"
+                } 
+                ${
+                  isDisabled
+                    ? "opacity-50 cursor-not-allowed"
+                    : "cursor-pointer"
+                }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="signerType"
+                        value={opt}
+                        checked={typeState === opt}
+                        onChange={() => setTypeState(opt)}
+                        disabled={isDisabled}
+                        className="h-4 w-4 text-forest focus:ring-forest"
+                      />
+                      <span className="text-sm font-medium text-gray-800">
+                        {t(`signPDF.${opt}`)}
+                      </span>
+                    </div>
+                  </label>
+                );
+              })}
             </div>
+
             <div className="mt-6 flex justify-end gap-3">
               <button
                 onClick={() => setTypeModal(false)}
@@ -1945,38 +2511,44 @@ const SignPDF = () => {
               >
                 {t("signPDF.back")}
               </button>
-              {typeState === "self" ? (
-                <button
-                  onClick={handleSelfSubmit}
-                  className="px-6 py-2 bg-forest text-white rounded-lg shadow hover:bg-gold hover:text-forest"
-                >
-                  {t("signPDF.submit")}
-                </button>
-              ) : (
-                <button
-                  onClick={handleSeveralSubmit}
-                  className="px-6 py-2 bg-forest text-white rounded-lg shadow hover:bg-gold hover:text-forest"
-                >
-                  {t("signPDF.submit")}
-                </button>
-              )}
+
+              <button
+                onClick={
+                  typeState === "self" ? handleSelfSubmit : handleSeveralSubmit
+                }
+                className="px-6 py-2 bg-forest text-white rounded-lg shadow hover:bg-gold hover:text-forest"
+              >
+                {t("signPDF.submit")}
+              </button>
             </div>
           </div>
         </div>
       )}
-      <SignatureModal
-        isOpen={signatureModal}
-        onClose={() => setSignatureModal(false)}
-        signerData={{ files, signerType: typeState }}
-        submitAllTabs={submitAllTabs}
-        onSignaturesApplied={handleSignaturesApplied}
-      />
-      <ShareModal
-        isOpen={shareModal}
-        onClose={() => setShareModal(false)}
-        allowReorder={true} // toggle reordering here
-        onSubmit={handleShareSubmit}
-      />
+
+      {signatureModal && (
+        <SignatureModal
+          isOpen={signatureModal}
+          onClose={() => {
+            setSignatureModal(false);
+            setEditingSignature(null);
+          }}
+          signerData={{ files, signerType: typeState }}
+          submitAllTabs={submitAllTabs}
+          onSignaturesApplied={handleSignaturesApplied}
+          sharedDetails={sharedDetails}
+          editingSignature={editingSignature}
+        />
+      )}
+
+      {shareModal && (
+        <ShareModal
+          isOpen={shareModal}
+          onClose={() => setShareModal(false)}
+          allowReorder={true} // toggle reordering here
+          onSubmit={handleShareSubmit}
+          shareLoading={shareLoading}
+        />
+      )}
     </>
   );
 };
