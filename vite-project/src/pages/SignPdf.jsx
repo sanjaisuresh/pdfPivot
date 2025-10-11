@@ -895,30 +895,30 @@ const ShareModal = ({
   const [errors, setErrors] = useState({});
   const [applyToAll, setApplyToAll] = useState(false);
 
- useEffect(() => {
-  if (applyToAll && activeSettingsId) {
-    const activeRecipient = recipients.find((r) => r.id === activeSettingsId);
-    if (!activeRecipient) return;
+  useEffect(() => {
+    if (applyToAll && activeSettingsId) {
+      const activeRecipient = recipients.find((r) => r.id === activeSettingsId);
+      if (!activeRecipient) return;
 
-    // Apply same password and format to all (one-time sync)
-    setRecipients((prev) =>
-      prev.map((r) => ({
-        ...r,
-        password: activeRecipient.password,
-        allowedFormats: activeRecipient.allowedFormats,
-      }))
-    );
-  } else if (!applyToAll) {
-    // Only reset once when toggled off
-    setRecipients((prev) =>
-      prev.map((r) => ({
-        ...r,
-        password: "",
-        allowedFormats: ["all"],
-      }))
-    );
-  }
-}, [applyToAll, activeSettingsId]);
+      // Apply same password and format to all (one-time sync)
+      setRecipients((prev) =>
+        prev.map((r) => ({
+          ...r,
+          password: activeRecipient.password,
+          allowedFormats: activeRecipient.allowedFormats,
+        }))
+      );
+    } else if (!applyToAll) {
+      // Only reset once when toggled off
+      setRecipients((prev) =>
+        prev.map((r) => ({
+          ...r,
+          password: "",
+          allowedFormats: ["all"],
+        }))
+      );
+    }
+  }, [applyToAll, activeSettingsId]);
 
   const resetModal = () => {
     setRecipients([]);
@@ -1897,7 +1897,7 @@ const SignPDF = () => {
 
       formData.append("placements", JSON.stringify(placementsWithStyles));
 
-      // Add image files - CRITICAL: Use placement ID as fieldname
+      // Add image files - FIXED: Use placement ID as fieldname
       appliedSignatures.forEach((sig) => {
         if (
           (sig.type === "image" || sig.type === "signature") &&
@@ -1905,18 +1905,15 @@ const SignPDF = () => {
         ) {
           const placementId = sig.placements?.[0]?.id || sig.id;
           if (placementId) {
-            const renamedFile = new File([sig.imageFile], sig.imageFile.name, {
-              type: sig.imageFile.type,
-            });
-            formData.append("images", renamedFile, placementId);
+            // Use placement ID as the fieldname, not "images"
+            formData.append(placementId, sig.imageFile);
             console.log(
-              `Added image with fieldname: ${placementId}, filename: ${sig.imageFile.name}`
+              `Added image with fieldname: ${placementId}, filename: ${sig.imageFile.name}, size: ${sig.imageFile.size} bytes`
             );
           }
         }
       });
-
-      // Handle drawn signatures
+      // Handle drawn signatures - FIXED: Properly convert data URL to file
       const imagePromises = [];
       appliedSignatures.forEach((sig) => {
         if (
@@ -1925,23 +1922,37 @@ const SignPDF = () => {
           sig.signatureData.startsWith("data:") &&
           !sig.imageFile
         ) {
-          const promise = fetch(sig.signatureData)
-            .then((res) => res.blob())
-            .then((blob) => {
+          const promise = (async () => {
+            try {
               const placementId = sig.placements?.[0]?.id || sig.id;
+              // Convert data URL to blob and then to file
+              const response = await fetch(sig.signatureData);
+              const blob = await response.blob();
+
+              // Create file with proper binary data
               const file = new File([blob], `signature-${placementId}.png`, {
                 type: "image/png",
               });
+
               formData.append("signatures", file, placementId);
               console.log(
-                `Added drawn signature with fieldname: ${placementId}`
+                `Added drawn signature with fieldname: ${placementId}, size: ${file.size} bytes`
               );
-            });
+            } catch (error) {
+              console.error("Error processing signature:", error);
+            }
+          })();
           imagePromises.push(promise);
         }
       });
 
       await Promise.all(imagePromises);
+
+      // Log form data contents for debugging
+      console.log("FormData entries:");
+      for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+      }
 
       console.log("Sending placements:", placementsWithStyles);
 
@@ -1985,7 +1996,6 @@ const SignPDF = () => {
       setLoading(false);
     }
   };
-
   const uploadFileSigned = async (formData, token) => {
     try {
       const response = await axios.post("/api/esign/upload/signed", formData, {
@@ -2576,7 +2586,7 @@ const SignPDF = () => {
                 </div>
                 <div
                   className="border rounded-lg overflow-auto bg-gray-50 relative"
-                  style={{ maxHeight: "70vh" }}
+                  style={{ maxHeight: "100vh" }}
                 >
                   <Document
                     file={files[0]}
@@ -2673,112 +2683,120 @@ const SignPDF = () => {
             )}
           </div>
         </div>
-        <div className="mt-5 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="p-6">
-              <h2 className="text-2xl font-bold text-forest mb-6">
-                {t("signPDF.document_history")}
-              </h2>
 
-              {historyLoading ? (
-                <div className="flex justify-center items-center py-8">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-forest"></div>
-                  <span className="ml-2 text-gray-600">
-                    {t("signPDF.loading")}
-                  </span>
-                </div>
-              ) : historyData.length > 0 ? (
-                <div className="max-h-[500px] overflow-x-auto">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          {t("signPDF.document_name")}
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          {t("signPDF.file_path")}
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          {t("signPDF.status")}
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          {t("signPDF.created_date")}
-                        </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          {t("signPDF.actions")}
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                      {historyData.map((doc, index) => (
-                        <tr key={doc._id || index} className="hover:bg-gray-50">
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="text-sm font-medium text-gray-900">
-                              {doc.file_name || "Untitled Document"}
-                            </div>
-                          </td>
-                          <td className="px-6 py-4">
-                            <div className="text-sm text-gray-500 max-w-xs truncate">
-                              {doc.file_path || "--"}
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
-                              {doc.status || "--"}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {doc.createdAt
-                              ? new Date(doc.createdAt).toLocaleDateString(
-                                  "en-US",
-                                  {
-                                    year: "numeric",
-                                    month: "short",
-                                    day: "numeric",
-                                    hour: "2-digit",
-                                    minute: "2-digit",
-                                  }
-                                )
-                              : "--"}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <div className="flex space-x-2">
-                              <TooltipProvider>
-                                <Tooltip>
-                                  <TooltipTrigger asChild>
-                                    <button
-                                      onClick={() => handleViewHistoryDoc(doc)}
-                                      className="text-blue-600 hover:text-blue-800 transition duration-200 p-1 rounded hover:bg-gray-100"
-                                    >
-                                      <Eye className="w-4 h-4" />
-                                    </button>
-                                  </TooltipTrigger>
-                                  <TooltipContent>
-                                    {t("signPDF.view_document")}
-                                  </TooltipContent>
-                                </Tooltip>
-                              </TooltipProvider>
-                            </div>
-                          </td>
+        {!showPreview && (
+          <div className="mt-5 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="p-6">
+                <h2 className="text-2xl font-bold text-forest mb-6">
+                  {t("signPDF.document_history")}
+                </h2>
+
+                {historyLoading ? (
+                  <div className="flex justify-center items-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-forest"></div>
+                    <span className="ml-2 text-gray-600">
+                      {t("signPDF.loading")}
+                    </span>
+                  </div>
+                ) : historyData.length > 0 ? (
+                  <div className="max-h-[500px] overflow-x-auto">
+                    <table className="min-w-full divide-y divide-gray-200">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {t("signPDF.document_name")}
+                          </th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {t("signPDF.file_path")}
+                          </th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {t("signPDF.status")}
+                          </th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {t("signPDF.created_date")}
+                          </th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {t("signPDF.actions")}
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              ) : (
-                <div className="text-center py-8">
-                  <FileText className="mx-auto h-12 w-12 text-gray-400" />
-                  <h3 className="mt-2 text-sm font-medium text-gray-900">
-                    {t("signPDF.no_documents")}
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-500">
-                    {t("signPDF.no_documents_desc")}
-                  </p>
-                </div>
-              )}
+                      </thead>
+                      <tbody className="bg-white divide-y divide-gray-200">
+                        {historyData.map((doc, index) => (
+                          <tr
+                            key={doc._id || index}
+                            className="hover:bg-gray-50"
+                          >
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="text-sm font-medium text-gray-900">
+                                {doc.file_name || "Untitled Document"}
+                              </div>
+                            </td>
+                            <td className="px-6 py-4">
+                              <div className="text-sm text-gray-500 max-w-xs truncate">
+                                {doc.file_path || "--"}
+                              </div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                                {doc.status || "--"}
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {doc.createdAt
+                                ? new Date(doc.createdAt).toLocaleDateString(
+                                    "en-US",
+                                    {
+                                      year: "numeric",
+                                      month: "short",
+                                      day: "numeric",
+                                      hour: "2-digit",
+                                      minute: "2-digit",
+                                    }
+                                  )
+                                : "--"}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                              <div className="flex space-x-2">
+                                <TooltipProvider>
+                                  <Tooltip>
+                                    <TooltipTrigger asChild>
+                                      <button
+                                        onClick={() =>
+                                          handleViewHistoryDoc(doc)
+                                        }
+                                        className="text-blue-600 hover:text-blue-800 transition duration-200 p-1 rounded hover:bg-gray-100"
+                                      >
+                                        <Eye className="w-4 h-4" />
+                                      </button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                      {t("signPDF.view_document")}
+                                    </TooltipContent>
+                                  </Tooltip>
+                                </TooltipProvider>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <FileText className="mx-auto h-12 w-12 text-gray-400" />
+                    <h3 className="mt-2 text-sm font-medium text-gray-900">
+                      {t("signPDF.no_documents")}
+                    </h3>
+                    <p className="mt-1 text-sm text-gray-500">
+                      {t("signPDF.no_documents_desc")}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Modals */}

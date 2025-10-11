@@ -1470,23 +1470,45 @@ const downloadFont = async (fontName, fontUrl) => {
 
 router.post(
   "/sign-PDF",
-  upload.fields([
-    { name: "pdf", maxCount: 1 }, 
-    { name: "images" }, 
-    { name: "signatures" }
-  ]),
+  upload.any(),
   async (req, res) => {
     try {
-      const pdfFile = req.files["pdf"][0];
+      // Since we're using upload.any(), req.files is an array, not an object
+      const files = req.files || [];
+      
+      // Find the PDF file and other files
+      const pdfFile = files.find(file => file.fieldname === "pdf");
+      const imageFiles = files.filter(file => file.fieldname !== "pdf" && file.fieldname !== "signatures");
+      const signatureFiles = files.filter(file => file.fieldname === "signatures");
+      
+      if (!pdfFile) {
+        return res.status(400).json({ 
+          error: "No PDF file provided",
+          details: "Please upload a PDF file"
+        });
+      }
+
       const placements = JSON.parse(req.body.placements || "[]");
       
+      console.log("Received PDF:", {
+        originalname: pdfFile.originalname,
+        fieldname: pdfFile.fieldname,
+        size: pdfFile.size
+      });
+      
       console.log("Received placements:", placements);
-      console.log("Received images:", req.files["images"] ? req.files["images"].map(img => ({
+      
+      console.log("Received images:", imageFiles.map(img => ({
         originalname: img.originalname,
         fieldname: img.fieldname,
         size: img.size
-      })) : []);
-      console.log("Received signatures:", req.files["signatures"] ? req.files["signatures"].length : 0);
+      })));
+      
+      console.log("Received signatures:", signatureFiles.map(sig => ({
+        originalname: sig.originalname,
+        fieldname: sig.fieldname,
+        size: sig.size
+      })));
 
       const pdfBytes = fs.readFileSync(pdfFile.path);
       const pdfDoc = await PDFDocument.load(pdfBytes);
@@ -1524,22 +1546,18 @@ router.post(
 
       // Create a map of image files for easier lookup - use fieldname as key
       const imageMap = new Map();
-      if (req.files["images"]) {
-        req.files["images"].forEach(img => {
-          // Use the fieldname as key (this is what FormData uses)
-          imageMap.set(img.fieldname, img);
-          console.log(`Mapped image - Fieldname: ${img.fieldname}, Original: ${img.originalname}`);
-        });
-      }
+      imageFiles.forEach(img => {
+        // Use the fieldname as key (this is what FormData uses)
+        imageMap.set(img.fieldname, img);
+        console.log(`Mapped image - Fieldname: ${img.fieldname}, Original: ${img.originalname}`);
+      });
 
       // Also map by original filename without extension for fallback
       const imageNameMap = new Map();
-      if (req.files["images"]) {
-        req.files["images"].forEach(img => {
-          const nameWithoutExt = path.parse(img.originalname).name;
-          imageNameMap.set(nameWithoutExt, img);
-        });
-      }
+      imageFiles.forEach(img => {
+        const nameWithoutExt = path.parse(img.originalname).name;
+        imageNameMap.set(nameWithoutExt, img);
+      });
 
       // Process each placement
       for (const p of placements) {
@@ -1570,8 +1588,8 @@ router.post(
             }
 
             // Method 3: Fallback - use first available image if only one exists
-            if (!imageFile && req.files["images"] && req.files["images"].length === 1) {
-              imageFile = req.files["images"][0];
+            if (!imageFile && imageFiles.length === 1) {
+              imageFile = imageFiles[0];
               console.log(`Using single available image as fallback: ${imageFile.originalname}`);
             }
 
@@ -1777,19 +1795,15 @@ router.post(
       
       // Clean up uploaded files
       try {
-        fs.unlinkSync(pdfFile.path);
-        
-        if (req.files["images"]) {
-          req.files["images"].forEach(img => {
-            try { fs.unlinkSync(img.path); } catch (e) {}
-          });
-        }
-        
-        if (req.files["signatures"]) {
-          req.files["signatures"].forEach(sig => {
-            try { fs.unlinkSync(sig.path); } catch (e) {}
-          });
-        }
+        // Clean up all uploaded files
+        files.forEach(file => {
+          try { 
+            fs.unlinkSync(file.path); 
+            console.log(`Cleaned up: ${file.originalname}`);
+          } catch (e) {
+            console.warn(`Could not clean up ${file.originalname}:`, e.message);
+          }
+        });
       } catch (cleanupError) {
         console.warn("Error during file cleanup:", cleanupError);
       }
