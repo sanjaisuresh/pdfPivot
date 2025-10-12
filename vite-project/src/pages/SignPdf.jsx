@@ -6,6 +6,7 @@ import { Text, Edit2, ImageIcon } from "lucide-react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { Rnd } from "react-rnd";
 import toast, { Toaster } from "react-hot-toast";
+import MultiSelect from "../components/MultiSelect ";
 import {
   FileSignature,
   Upload,
@@ -846,7 +847,7 @@ const EditablePlacement = ({ placement, onTextChange }) => {
   );
 };
 const roles = ["signer", "viewer", "validator", "witness"];
-const signFormats = ["all", "text", "draw", "uploadedSign"];
+const signFormats = ["text", "draw", "uploadedSign","freeText"];
 const globalSettingsConfig = [
   {
     type: "checkbox",
@@ -914,7 +915,7 @@ const ShareModal = ({
         prev.map((r) => ({
           ...r,
           password: "",
-          allowedFormats: ["all"],
+          allowedFormats: [],
         }))
       );
     }
@@ -945,7 +946,7 @@ const ShareModal = ({
         email: "",
         role: "signer",
         password: "",
-        allowedFormats: ["all"],
+        allowedFormats: [],
       };
       setRecipients([defaultRecipient]);
       setActiveSettingsId(defaultRecipient.id); // Auto open its settings
@@ -1000,7 +1001,7 @@ const ShareModal = ({
         email: "",
         role: "signer",
         password: "",
-        allowedFormats: ["all"],
+        allowedFormats: [],
       },
     ]);
   };
@@ -1316,19 +1317,27 @@ const ShareModal = ({
                       <label className="text-gray-700 text-sm font-medium">
                         {t("signPDF.allowedSignFormat")}
                       </label>
-                      <select
-                        value={r.allowedFormats[0]}
-                        onChange={(e) =>
-                          handleChange(r.id, "allowedFormats", [e.target.value])
+                     <MultiSelect
+                        options={signFormats.map((f) => ({
+                          value: f,
+                          label: t(`signPDF.signFormat${f}`),
+                        }))}
+                        value={r.allowedFormats.map((f) => ({
+                          value: f,
+                          label: t(`signPDF.signFormat${f}`),
+                        }))}
+                        onChange={(selected) =>
+                          handleChange(
+                            r.id,
+                            "allowedFormats",
+                            selected.map((s) => s.value)
+                          )
                         }
-                        className="border p-2 rounded"
-                      >
-                        {signFormats.map((f) => (
-                          <option key={f} value={f}>
-                            {t(`signPDF.signFormat${f}`)}
-                          </option>
-                        ))}
-                      </select>
+                        placeholder={t("signPDF.select_formats")}
+                        isMultiSelect={true}
+                        isClearable={true}
+                        className="w-full"
+                      />
                     </div>
                   </>
                 )

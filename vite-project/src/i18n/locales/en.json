@@ -1055,6 +1055,7 @@
     "signFormattext": "Text",
     "signFormatdraw": "Drawn",
     "signFormatuploadedSign": "Uploaded Signature",
+    "signFormatfreeText": "Free Text",
 
     "password_protect": "Password Protect",
     "allowedSignFormat": "Allowed Sign Format",
@@ -1126,6 +1127,7 @@
     "status_pending": "Pending",
     "status_completed": "Completed",
     "status_signed": "Signed",
-    "no_signed_document": "No signed document available"
+    "no_signed_document": "No signed document available",
+    "select_formats":"Select allowed Format"
   }
 }
