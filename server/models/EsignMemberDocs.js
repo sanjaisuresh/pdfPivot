@@ -44,6 +44,10 @@ const esignMembersDocSchema = new mongoose.Schema(
       type: Array,
       default: null,
     },
+    placements: {
+      type: Array,
+      default: null,
+    },
     user_role: {
       type: String,
       enum: ["signer", "viewer", "validator"],

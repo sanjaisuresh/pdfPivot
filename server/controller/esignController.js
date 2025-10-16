@@ -37,7 +37,7 @@ const uploadPdfController = async (req, res) => {
 
 const sharePdfController = async (req, res) => {
   try {
-    let { file_path, file_name, shared_users, settings } = req.body;
+    let { file_path, file_name, shared_users, settings, placements } = req.body;
 
     let { _id: user_id } = req.user;
 
@@ -48,6 +48,7 @@ const sharePdfController = async (req, res) => {
     params.shared_users = shared_users;
     params.settings = settings;
     params.user_id = user_id;
+    params.placements = placements;
 
     let result = await sharePdf(params);
 

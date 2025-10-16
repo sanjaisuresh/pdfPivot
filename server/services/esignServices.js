@@ -75,7 +75,14 @@ const renamePath = async (params) => {
 
 const shareEmailAll = async (params) => {
   try {
-    let { shared_users, file_path, file_name, file_id, owner_name } = params;
+    let {
+      shared_users,
+      file_path,
+      file_name,
+      file_id,
+      owner_name,
+      placements,
+    } = params;
     let shared_ids = [];
 
     await Promise.all(
@@ -89,6 +96,7 @@ const shareEmailAll = async (params) => {
           user_role: user.user_role,
           user_validation: user.user_validation,
           user_password: user.user_password,
+          placements: placements,
         });
 
         shared_ids.push({ email: user.user_email, shared_id: shareDoc._id });
@@ -122,7 +130,14 @@ const shareEmailAll = async (params) => {
 
 const shareOrderedEmail = async (params) => {
   try {
-    let { shared_users, file_path, file_name, file_id, owner_name } = params;
+    let {
+      shared_users,
+      file_path,
+      file_name,
+      file_id,
+      owner_name,
+      placements,
+    } = params;
 
     let shared_ids = [];
 
@@ -136,6 +151,7 @@ const shareOrderedEmail = async (params) => {
         user_role: shared_users[i].user_role,
         user_validation: shared_users[i].user_validation,
         user_password: shared_users[i].user_password,
+        placements: placements,
       };
       const shareDoc = await EsignMembersDoc.create(member_doc_payload);
 
@@ -183,7 +199,7 @@ const shareOrderedEmail = async (params) => {
 
 const sharePdf = async (params) => {
   try {
-    let { file_path, file_name, settings, user_id } = params;
+    let { file_path, file_name, settings, user_id, placements } = params;
 
     let save_pdf = await EsignDoc.create({
       user_id: user_id,
