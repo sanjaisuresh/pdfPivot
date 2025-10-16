@@ -848,6 +848,20 @@ const EditablePlacement = ({ placement, onTextChange }) => {
     </div>
   );
 };
+
+const NonEditablePlacement = ({ placement, children }) => {
+  return (
+    <div
+      className="w-full h-full flex items-center justify-center p-1"
+      style={{
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        borderRadius: "4px",
+      }}
+    >
+      {children}
+    </div>
+  );
+};
 const roles = ["signer", "viewer", "validator", "witness"];
 const signFormats = ["text", "draw", "uploadedSign", "freeText"];
 const globalSettingsConfig = [
@@ -1069,7 +1083,7 @@ const ShareModal = ({
     try {
       // Call the new callback instead of directly submitting
       if (onRecipientsSaved) {
-        onRecipientsSaved({recipients, settingsSet});
+        onRecipientsSaved({ recipients, settingsSet });
         onClose();
       }
     } catch (err) {
@@ -1430,7 +1444,32 @@ const ViewInfoModal = ({ isOpen, onClose, fileInfo, loading }) => {
   const { t } = useTranslation();
 
   if (!isOpen) return null;
+  const handleDownloadSignedFile = async (filePath) => {
+    const file_path = filePath;
+    console.log(file_path, "Got in data for download");
 
+    try {
+      const response = await axios.post(
+        `api/esign/docs/download`,
+        { file_path },
+        {
+          headers: { "Content-Type": "application/json" },
+          responseType: "blob",
+        }
+      );
+
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "signed-document.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      setError(t("signPDF.shareFileError"));
+    }
+  };
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="bg-white rounded-xl shadow-lg w-full max-w-4xl max-h-[90vh] overflow-hidden">
@@ -1532,7 +1571,7 @@ const ViewInfoModal = ({ isOpen, onClose, fileInfo, loading }) => {
                                 <button
                                   onClick={() =>
                                     info.signed_file_path &&
-                                    handleDownloadSignedFile(info)
+                                    handleDownloadSignedFile(info.signed_file_path)
                                   }
                                   disabled={!info.signed_file_path}
                                   className={`transition duration-200 p-1 rounded hover:bg-gray-100 ${
@@ -1699,15 +1738,36 @@ const SignPDF = () => {
   // Update handleSignaturesApplied to handle updates correctly
   const handleSignaturesApplied = (signatures) => {
     if (editingSignature) {
-      // Update existing signature by ID
       setAppliedSignatures((prev) =>
-        prev.map((sig) =>
-          sig.id === editingSignature.id ? { ...sig, ...signatures[0] } : sig
-        )
+        prev.map((sig) => {
+          if (sig.id === editingSignature.id) {
+            const updatedSignature = { ...sig, ...signatures[0] };
+
+            if (sig.placements && sig.placements.length > 0) {
+              updatedSignature.placements = sig.placements.map((placement) => ({
+                ...placement,
+                text: signatures[0].text || placement.text,
+                fontFamily: signatures[0].fontFamily || placement.fontFamily,
+                color: signatures[0].color || placement.color,
+                fontSize: signatures[0].fontSize || placement.fontSize,
+                signatureData:
+                  signatures[0].signatureData || placement.signatureData,
+                ...(signatures[0].imageFile && {
+                  imageFile: signatures[0].imageFile,
+                }),
+                isPredefined: placement.isPredefined,
+              }));
+            }
+            setSignatureModal(false);
+            return updatedSignature;
+          }
+          return sig;
+        })
       );
       setEditingSignature(null);
+
+      // Force re-render
     } else {
-      // Add new signatures
       setAppliedSignatures((prev) => [...prev, ...signatures]);
       setShowPreview(true);
     }
@@ -1740,15 +1800,75 @@ const SignPDF = () => {
       console.log(data, "Got in data for set");
 
       setSharedDetails(data ?? {});
-      await getFileShared(data); // ✅ pass directly here
+
+      // Check if there are predefined placements
+      if (data?.placements && data.placements.length > 0) {
+        console.log("Found predefined placements:", data.placements);
+
+        // Convert predefined placements to appliedSignatures format
+        const predefinedSignatures = processPredefinedPlacements(
+          data.placements
+        );
+        setAppliedSignatures(predefinedSignatures);
+
+        // Auto-show preview for shared documents with placements
+        setShowPreview(true);
+      }
+
+      await getFileShared(data);
     } catch (error) {
       toast.error(t("signPDF.share_failed"));
       throw error;
     }
   };
+  // Helper function to convert predefined placements to appliedSignatures format
+  const processPredefinedPlacements = (placements) => {
+    const signatureMap = new Map();
 
+    placements.forEach((placement) => {
+      const signatureId =
+        placement.signatureId || `predefined-${placement.type}-${placement.id}`;
+
+      if (!signatureMap.has(signatureId)) {
+        // Create signature entry
+        signatureMap.set(signatureId, {
+          id: signatureId,
+          type: placement.type,
+          text: placement.text || "",
+          fontFamily: placement.fontFamily || FONT_STYLES[0].fontFamily,
+          color: placement.color || "#000000",
+          fontSize: placement.fontSize || 16,
+          signatureData: placement.signatureData,
+          imageFile: placement.imageFile,
+          placements: [], // Will hold all placements for this signature
+        });
+      }
+
+      // Add placement to the signature
+      const signature = signatureMap.get(signatureId);
+      signature.placements.push({
+        id: placement.id,
+        type: placement.type,
+        page: placement.page || 0,
+        x: placement.x || 50,
+        y: placement.y || 50,
+        width: placement.width || 200,
+        height: placement.height || 40,
+        text: placement.text || "",
+        fontFamily: placement.fontFamily,
+        color: placement.color,
+        fontSize: placement.fontSize,
+        signatureData: placement.signatureData,
+        imageFile: placement.imageFile,
+        assignedTo: placement.assignedTo, // Preserve assignment
+        isPredefined: true, // Mark as predefined
+      });
+    });
+
+    return Array.from(signatureMap.values());
+  };
   const getFileShared = async (sharedData) => {
-    const file_path = sharedData?.original_file_path; // ✅ use from argument
+    const file_path = sharedData?.original_file_path;
     console.log(file_path, "Got in data for download");
 
     try {
@@ -1768,14 +1888,21 @@ const SignPDF = () => {
 
       setFiles([file]);
       setError(null);
+
+      // Auto-show preview for shared documents (even without placements)
+      if (sharedData?.shared_id) {
+        setShowPreview(true);
+      }
     } catch (error) {
       setError(t("signPDF.shareFileError"));
     }
   };
 
+
+
   const handleShareSubmit = async (shareData) => {
-    const { recipients, globalSettings } = shareData;
-    console.log(recipients,shareData,"Got in data for receiptent")
+    const { recipients, settingsSet } = shareData;
+    console.log(recipients, shareData, "Got in data for receiptent");
     // Store recipients for later assignment
     setPlacementRecipients(recipients);
 
@@ -1792,7 +1919,7 @@ const SignPDF = () => {
       file_path: resUpload.data.data.file_path,
       file_name: resUpload.data.data.file_name,
       recipients,
-      globalSettings,
+      globalSettings: settingsSet,
     }));
 
     // Close share modal and show preview
@@ -2243,6 +2370,7 @@ const SignPDF = () => {
       toast.error(t("signPDF.file_not_uploaded"));
       return;
     }
+    console.log(sharedDetails, "Got in data for sharedDetails ---");
 
     // Prepare placements with assignments
     const placementsWithAssignments = appliedSignatures.flatMap(
@@ -2638,27 +2766,29 @@ const SignPDF = () => {
                             )}
                           </TooltipProvider>
                           {/* In the preview section action buttons */}
-                          <TooltipProvider>
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <div
-                                  className="flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-gray-100 transition duration-200"
-                                  onClick={handleFinalShare}
-                                  disabled={shareLoading}
-                                >
-                                  <Share className="w-6 h-6 text-green-600 hover:text-green-800" />
-                                  <span className="text-sm text-green-600 font-medium">
-                                    {shareLoading
-                                      ? t("signPDF.sharing")
-                                      : t("signPDF.share")}
-                                  </span>
-                                </div>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                {t("signPDF.share_document")}
-                              </TooltipContent>
-                            </Tooltip>
-                          </TooltipProvider>
+                          {hasShareReq === false && (
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <div
+                                    className="flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-gray-100 transition duration-200"
+                                    onClick={handleFinalShare}
+                                    disabled={shareLoading}
+                                  >
+                                    <Share className="w-6 h-6 text-green-600 hover:text-green-800" />
+                                    <span className="text-sm text-green-600 font-medium">
+                                      {shareLoading
+                                        ? t("signPDF.sharing")
+                                        : t("signPDF.share")}
+                                    </span>
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  {t("signPDF.share_document")}
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          )}
                         </div>
                       </div>
                       {appliedSignatures.length > 0 && (
@@ -2697,17 +2827,19 @@ const SignPDF = () => {
                                       </Tooltip>
                                     </TooltipProvider>
                                     {/* Place Button */}
-                                    <button
-                                      onClick={() =>
-                                        handleAddPlacement(
-                                          sig.id,
-                                          currentPage - 1
-                                        )
-                                      }
-                                      className="px-3 py-1 bg-forest text-white text-sm rounded hover:bg-gold hover:text-forest"
-                                    >
-                                      {t(`signPDF.place_${sig.type}`)}
-                                    </button>
+                                    {hasShareReq === false && (
+                                      <button
+                                        onClick={() =>
+                                          handleAddPlacement(
+                                            sig.id,
+                                            currentPage - 1
+                                          )
+                                        }
+                                        className="px-3 py-1 bg-forest text-white text-sm rounded hover:bg-gold hover:text-forest"
+                                      >
+                                        {t(`signPDF.place_${sig.type}`)}
+                                      </button>
+                                    )}
                                   </div>
                                 </div>
 
@@ -2784,120 +2916,196 @@ const SignPDF = () => {
                     </button>
                   </div>
                 </div>
-                <div
-                  className="border rounded-lg overflow-auto bg-gray-50 relative"
-                  style={{ maxHeight: "100vh" }}
-                >
-                  <Document
-                    file={files[0]}
-                    onLoadSuccess={onDocumentLoadSuccess}
-                  >
-                    <Page pageNumber={currentPage} width={600} />
-                    {/* Render placements for current page */}
-                    {appliedSignatures
-                      .flatMap(
-                        (sig) =>
-                          sig.placements?.filter(
-                            (pl) => pl.page === currentPage - 1
-                          ) || []
-                      )
-                      .map((placement) => (
-                        <Rnd
-                          key={placement.id}
-                          bounds="parent"
-                          size={{
-                            width: placement.width,
-                            height: placement.height,
-                          }}
-                          position={{ x: placement.x, y: placement.y }}
-                          onDragStop={(e, d) =>
-                            handlePlacementUpdate(placement.id, {
-                              x: d.x,
-                              y: d.y,
-                            })
-                          }
-                          onResizeStop={(
-                            e,
-                            direction,
-                            ref,
-                            delta,
-                            position
-                          ) => {
-                            handlePlacementUpdate(placement.id, {
-                              x: position.x,
-                              y: position.y,
-                              width: parseInt(ref.style.width, 10),
-                              height: parseInt(ref.style.height, 10),
-                            });
-                          }}
-                          style={{
-                            border: "2px dashed #3b82f6",
-                            zIndex: 10,
-                            background:
-                              placement.type === "text"
-                                ? "rgba(243, 244, 246, 0.8)"
-                                : "transparent",
-                            borderRadius: "4px",
-                          }}
-                        >
-                          <div className="relative w-full h-full">
-                            {placementAssignments[placement.id] && (
-                              <div className="absolute -top-8 left-0 bg-blue-500 text-white text-xs px-2 py-1 rounded">
-                                {
-                                  placementRecipients.find(
-                                    (r) =>
-                                      r.email ===
-                                      placementAssignments[placement.id]
-                                  )?.name
-                                }
-                              </div>
-                            )}
+                <div className="border rounded-lg overflow-auto bg-gray-50 relative">
+                  <div className="flex justify-center p-4">
+                    <div
+                      className="relative"
+                      style={{
+                        width: "fit-content",
+                        maxWidth: "100%",
+                      }}
+                    >
+                      <Document
+                        file={files[0]}
+                        onLoadSuccess={onDocumentLoadSuccess}
+                        loading={
+                          <div className="text-center p-8">Loading PDF...</div>
+                        }
+                        key={`document-${
+                          appliedSignatures.length
+                        }-${JSON.stringify(
+                          appliedSignatures.map((sig) => sig.id)
+                        )}`} // Add this key
+                      >
+                        <Page
+                          pageNumber={currentPage}
+                          width={Math.min(600, window.innerWidth - 40)}
+                          className="shadow-sm"
+                        />
 
-                            {/* Assign button */}
-                            <button
-                              onClick={() => handleOpenAssignModal(placement)}
-                              className="absolute -top-2 -right-8 w-6 h-6 bg-blue-500 text-white rounded-full text-xs flex items-center justify-center z-20 hover:bg-blue-600"
-                              title={t("signPDF.assign_recipient")}
-                            >
-                              <User className="w-3 h-3" />
-                            </button>
-                            {/* Close button */}
-                            <button
-                              onClick={() =>
-                                handleRemovePlacement(placement.id)
-                              }
-                              className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full text-xs flex items-center justify-center z-20"
-                            >
-                              ×
-                            </button>
-                            {placement.type === "image" &&
-                              placement.imageFile && (
-                                <img
-                                  src={URL.createObjectURL(placement.imageFile)}
-                                  alt="Placed image"
-                                  className="w-full h-full object-contain"
-                                />
-                              )}
-                            {placement.type === "signature" &&
-                              placement.signatureData && (
-                                <img
-                                  src={placement.signatureData}
-                                  alt="Signature"
-                                  className="w-full h-full object-contain"
-                                />
-                              )}
-                            {(placement.type === "fullName" ||
-                              placement.type === "initials" ||
-                              placement.type === "freeText") && (
-                              <EditablePlacement
-                                placement={placement}
-                                onTextChange={handleTextChange}
-                              />
-                            )}
-                          </div>
-                        </Rnd>
-                      ))}
-                  </Document>
+                        {/* Render placements for current page */}
+                        <div className="absolute inset-0 pointer-events-none">
+                          {appliedSignatures
+                            .flatMap(
+                              (sig) =>
+                                sig.placements?.filter(
+                                  (pl) => pl.page === currentPage - 1
+                                ) || []
+                            )
+                            .map((placement) => (
+                              <Rnd
+                                key={placement.id} // This should already be unique
+                                bounds="parent"
+                                size={{
+                                  width: placement.width,
+                                  height: placement.height,
+                                }}
+                                position={{ x: placement.x, y: placement.y }}
+                                onDragStop={(e, d) =>
+                                  !placement.isPredefined &&
+                                  handlePlacementUpdate(placement.id, {
+                                    x: d.x,
+                                    y: d.y,
+                                  })
+                                }
+                                onResizeStop={(
+                                  e,
+                                  direction,
+                                  ref,
+                                  delta,
+                                  position
+                                ) => {
+                                  !placement.isPredefined &&
+                                    handlePlacementUpdate(placement.id, {
+                                      x: position.x,
+                                      y: position.y,
+                                      width: parseInt(ref.style.width, 10),
+                                      height: parseInt(ref.style.height, 10),
+                                    });
+                                }}
+                                style={{
+                                  border: placement.isPredefined
+                                    ? "2px solid #10B981"
+                                    : "2px dashed #3b82f6",
+                                  zIndex: 10,
+                                  background:
+                                    placement.type === "text"
+                                      ? "rgba(243, 244, 246, 0.8)"
+                                      : "transparent",
+                                  borderRadius: "4px",
+                                  pointerEvents: placement.isPredefined
+                                    ? "none"
+                                    : "all",
+                                  cursor: placement.isPredefined
+                                    ? "not-allowed"
+                                    : "move",
+                                }}
+                                enableResizing={!placement.isPredefined}
+                                disableDragging={placement.isPredefined}
+                              >
+                                <div className="relative w-full h-full">
+                                  {/* Show predefined badge */}
+                                  {placement.isPredefined && (
+                                    <div className="absolute -top-8 left-0 bg-green-500 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                                      {t("signPDF.predefined")}
+                                    </div>
+                                  )}
+
+                                  {placementAssignments[placement.id] && (
+                                    <div className="absolute -top-8 left-0 bg-blue-500 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                                      {
+                                        placementRecipients.find(
+                                          (r) =>
+                                            r.email ===
+                                            placementAssignments[placement.id]
+                                        )?.name
+                                      }
+                                    </div>
+                                  )}
+
+                                  {/* Only show assign button for non-predefined placements */}
+                                  {!placement.isPredefined && (
+                                    <>
+                                      {/* Assign button */}
+                                      <button
+                                        onClick={() =>
+                                          handleOpenAssignModal(placement)
+                                        }
+                                        className="absolute -top-2 -right-8 w-6 h-6 bg-blue-500 text-white rounded-full text-xs flex items-center justify-center z-20 hover:bg-blue-600 transition-colors"
+                                        title={t("signPDF.assign_recipient")}
+                                      >
+                                        <User className="w-3 h-3" />
+                                      </button>
+
+                                      {/* Close button */}
+                                      <button
+                                        onClick={() =>
+                                          handleRemovePlacement(placement.id)
+                                        }
+                                        className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full text-xs flex items-center justify-center z-20 hover:bg-red-600 transition-colors"
+                                      >
+                                        ×
+                                      </button>
+                                    </>
+                                  )}
+
+                                  {/* Placement content - Ensure this uses the latest placement data */}
+                                  <div className="w-full h-full flex items-center justify-center p-1">
+                                    {placement.type === "image" &&
+                                      placement.imageFile && (
+                                        <NonEditablePlacement
+                                          placement={placement}
+                                        >
+                                          <img
+                                            src={URL.createObjectURL(
+                                              placement.imageFile
+                                            )}
+                                            alt="Placed image"
+                                            className="w-full h-full object-contain"
+                                            draggable={false}
+                                            key={`image-${placement.id}-${
+                                              placement.imageFile?.name || ""
+                                            }`} // Add key to force re-render
+                                          />
+                                        </NonEditablePlacement>
+                                      )}
+                                    {placement.type === "signature" &&
+                                      placement.signatureData && (
+                                        <NonEditablePlacement
+                                          placement={placement}
+                                        >
+                                          <img
+                                            src={placement.signatureData}
+                                            alt="Signature"
+                                            className="w-full h-full object-contain"
+                                            draggable={false}
+                                            key={`signature-${placement.id}-${
+                                              placement.signatureData?.substring(
+                                                0,
+                                                50
+                                              ) || ""
+                                            }`} // Add key to force re-render
+                                          />
+                                        </NonEditablePlacement>
+                                      )}
+                                    {(placement.type === "fullName" ||
+                                      placement.type === "initials" ||
+                                      placement.type === "freeText") && (
+                                      <EditablePlacement
+                                        placement={placement}
+                                        onTextChange={handleTextChange}
+                                        readOnly={placement.isPredefined}
+                                        key={`text-${placement.id}-${placement.text}`} // Add key to force re-render
+                                      />
+                                    )}
+                                  </div>
+                                </div>
+                              </Rnd>
+                            ))}
+                        </div>
+                      </Document>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}

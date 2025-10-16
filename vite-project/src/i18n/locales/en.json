@@ -1143,6 +1143,8 @@
     "recipients_saved": "Recipients saved. Now assign placements to each recipient.",
     "recipient_assigned": "Recipient assigned successfully",
     "share_document": "Share document with recipients",
-    "share": "Share"
+    "share": "Share",
+    "predefined": "Predefined",
+    "no_text": "No text"
   }
 }

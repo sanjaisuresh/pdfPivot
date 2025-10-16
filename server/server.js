@@ -31,7 +31,6 @@ app.use(
 
 app.use(cors());
 app.use(express.json({ limit: process.env.MAX_FILE_SIZE }));
-app.use(express.urlencoded({ extended: true }));
 app.use(express.text({ type: "text/html" }));
 
 // Static folder for serving HTML image screenshots
