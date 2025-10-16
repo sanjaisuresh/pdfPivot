@@ -15,6 +15,8 @@ import {
   LogOut,
   Type,
   FileText,
+  Share,
+  User,
 } from "lucide-react";
 import {
   Tooltip,
@@ -847,7 +849,7 @@ const EditablePlacement = ({ placement, onTextChange }) => {
   );
 };
 const roles = ["signer", "viewer", "validator", "witness"];
-const signFormats = ["text", "draw", "uploadedSign","freeText"];
+const signFormats = ["text", "draw", "uploadedSign", "freeText"];
 const globalSettingsConfig = [
   {
     type: "checkbox",
@@ -886,6 +888,7 @@ const ShareModal = ({
   allowReorder = true,
   onSubmit,
   shareLoading,
+  onRecipientsSaved,
 }) => {
   const { t } = useTranslation();
   const [recipients, setRecipients] = useState([]);
@@ -1060,23 +1063,14 @@ const ShareModal = ({
   const handleSubmit = async () => {
     if (!validateRecipients()) {
       toast.error(t("signPDF.receipt_error"));
-      return; // stop submission if invalid
+      return;
     }
 
     try {
-      // Await the parent onSubmit, which should return a status
-      const result = await onSubmit({
-        recipients,
-        globalSettings: settingsSet,
-      });
-
-      // Check if the submission was successful
-      if (result?.status === "success") {
-        toast.success(t("signPDF.share_success"));
-        resetModal(); // Reset modal state
-        onClose(); // Close the modal
-      } else {
-        toast.error(t("signPDF.share_failed"));
+      // Call the new callback instead of directly submitting
+      if (onRecipientsSaved) {
+        onRecipientsSaved({recipients, settingsSet});
+        onClose();
       }
     } catch (err) {
       toast.error(t("signPDF.share_failed"));
@@ -1317,7 +1311,7 @@ const ShareModal = ({
                       <label className="text-gray-700 text-sm font-medium">
                         {t("signPDF.allowedSignFormat")}
                       </label>
-                     <MultiSelect
+                      <MultiSelect
                         options={signFormats.map((f) => ({
                           value: f,
                           label: t(`signPDF.signFormat${f}`),
@@ -1589,6 +1583,87 @@ const ViewInfoModal = ({ isOpen, onClose, fileInfo, loading }) => {
     </div>
   );
 };
+
+const AssignRecipientModal = ({
+  isOpen,
+  onClose,
+  placement,
+  recipients = [], // Add default value
+  currentAssignment,
+  onAssign,
+}) => {
+  const { t } = useTranslation();
+  const [selectedRecipient, setSelectedRecipient] = useState(
+    currentAssignment || ""
+  );
+
+  const handleSubmit = () => {
+    if (selectedRecipient && onAssign) {
+      onAssign(placement.id, selectedRecipient);
+    }
+    onClose();
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="bg-white rounded-xl shadow-lg w-full max-w-md p-6">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg font-semibold text-gray-900">
+            {t("signPDF.assign_recipient")}
+          </h3>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        <div className="mb-4">
+          <p className="text-sm text-gray-600 mb-3">
+            {t("signPDF.assign_recipient_desc")}
+          </p>
+
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            {t("signPDF.select_recipient")}
+          </label>
+          <select
+            value={selectedRecipient}
+            onChange={(e) => setSelectedRecipient(e.target.value)}
+            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-forest"
+          >
+            <option value="">{t("signPDF.select_recipient")}</option>
+            {recipients
+              .filter((recipient) => recipient.role === "signer")
+              .map((recipient) => (
+                <option key={recipient.id} value={recipient.email}>
+                  {recipient.name} ({recipient.email})
+                </option>
+              ))}
+          </select>
+        </div>
+
+        <div className="flex justify-end gap-3 mt-6">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+          >
+            {t("signPDF.cancel")}
+          </button>
+          <button
+            onClick={handleSubmit}
+            disabled={!selectedRecipient}
+            className="px-4 py-2 bg-forest text-white rounded-lg hover:bg-gold hover:text-forest disabled:opacity-50"
+          >
+            {t("signPDF.assign")}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 const SignPDF = () => {
   const { t } = useTranslation();
   const [files, setFiles] = useState([]);
@@ -1612,7 +1687,10 @@ const SignPDF = () => {
   const hasFetchedRef = useRef(false);
   const [shareLoading, setShareLoading] = useState(false);
   const [editingSignature, setEditingSignature] = useState(null);
-
+  const [placementRecipients, setPlacementRecipients] = useState([]);
+  const [assignRecipientModal, setAssignRecipientModal] = useState(false);
+  const [currentPlacement, setCurrentPlacement] = useState(null);
+  const [placementAssignments, setPlacementAssignments] = useState({});
   const handleEditSignature = (signature) => {
     setEditingSignature(signature);
     setSignatureModal(true);
@@ -1695,35 +1773,58 @@ const SignPDF = () => {
     }
   };
 
-  const handleShareSubmit = async ({ recipients, globalSettings }) => {
-    console.log(recipients, "Got in recipients");
+  const handleShareSubmit = async (shareData) => {
+    const { recipients, globalSettings } = shareData;
+    console.log(recipients,shareData,"Got in data for receiptent")
+    // Store recipients for later assignment
+    setPlacementRecipients(recipients);
+
+    // Upload file first
     const resUpload = await uploadFile();
-    console.log(resUpload, "Got in data for resUpload");
-    // Prepare payload
-    const payload = {
-      file_path: resUpload?.data?.data.file_path,
-      file_name: resUpload?.data?.data.file_name,
-      shared_users: recipients.map((user) => ({
-        user_name: user.name,
-        user_email: user.email,
-        user_validation: user.allowedFormats || "viewer", // default
-        user_password: user.password || "",
-        user_role: user.role || "",
-      })),
-      settings: globalSettings,
-    };
-    try {
-      const response = await axios.post("/api/esign/share", payload, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      return response.data;
-    } catch (err) {
-    } finally {
-      setShareLoading(false);
+    if (!resUpload?.data?.data?.file_path) {
+      toast.error(t("signPDF.upload_failed"));
+      return;
     }
+
+    // Store the file info for final submission
+    setSharedDetails((prev) => ({
+      ...prev,
+      file_path: resUpload.data.data.file_path,
+      file_name: resUpload.data.data.file_name,
+      recipients,
+      globalSettings,
+    }));
+
+    // Close share modal and show preview
+    setShareModal(false);
+    setShowPreview(true);
+    toast.success(t("signPDF.recipients_saved"));
   };
+  // Open assignment modal
+  const handleOpenAssignModal = (placement) => {
+    setCurrentPlacement(placement);
+    setAssignRecipientModal(true);
+  };
+  const handleAssignRecipient = (placementId, recipientEmail) => {
+    setPlacementAssignments((prev) => ({
+      ...prev,
+      [placementId]: recipientEmail,
+    }));
+
+    // Also update the placement in appliedSignatures
+    setAppliedSignatures((prev) =>
+      prev.map((sig) => ({
+        ...sig,
+        placements:
+          sig.placements?.map((pl) =>
+            pl.id === placementId ? { ...pl, assignedTo: recipientEmail } : pl
+          ) || [],
+      }))
+    );
+
+    toast.success(t("signPDF.recipient_assigned"));
+  };
+
   useEffect(() => {
     const link = document.createElement("link");
     link.href =
@@ -1760,7 +1861,6 @@ const SignPDF = () => {
   };
 
   const uploadFile = async () => {
-    setShareLoading(true);
     if (!files || files.length === 0) {
       toast.error(t("signPDF.no_file_selected"));
       return;
@@ -2137,6 +2237,70 @@ const SignPDF = () => {
       setFileInfoLoading(false);
     }
   };
+
+  const handleFinalShare = async () => {
+    if (!sharedDetails.file_path) {
+      toast.error(t("signPDF.file_not_uploaded"));
+      return;
+    }
+
+    // Prepare placements with assignments
+    const placementsWithAssignments = appliedSignatures.flatMap(
+      (sig) =>
+        sig.placements?.map((placement) => ({
+          ...placement,
+          assignedTo: placementAssignments[placement.id] || "",
+          // Include styling info
+          fontFamily: placement.fontFamily,
+          color: placement.color,
+          fontSize: placement.fontSize,
+          imageFileName: placement.imageFile ? placement.imageFile.name : null,
+        })) || []
+    );
+
+    // Check if all placements are assigned
+    const unassignedPlacements = placementsWithAssignments.filter(
+      (placement) => !placement.assignedTo
+    );
+
+    if (unassignedPlacements.length > 0) {
+      toast.error(t("signPDF.assign_all_placements"));
+      return;
+    }
+
+    const payload = {
+      file_path: sharedDetails.file_path,
+      file_name: sharedDetails.file_name,
+      shared_users: sharedDetails.recipients.map((user) => ({
+        user_name: user.name,
+        user_email: user.email,
+        user_validation: user.allowedFormats,
+        user_password: user.password || "",
+        user_role: user.role,
+      })),
+      settings: sharedDetails.globalSettings,
+      placements: placementsWithAssignments,
+    };
+
+    try {
+      setShareLoading(true);
+      const response = await axios.post("/api/esign/share", payload, {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.data?.status === "success") {
+        toast.success(t("signPDF.share_success"));
+        handleClearAll();
+      } else {
+        toast.error(t("signPDF.share_failed"));
+      }
+    } catch (err) {
+      console.error("Share error:", err);
+      toast.error(t("signPDF.share_failed"));
+    } finally {
+      setShareLoading(false);
+    }
+  };
   return (
     <>
       <Helmet>
@@ -2358,7 +2522,7 @@ const SignPDF = () => {
                     </TooltipProvider>
                   )}
                   {/* Available Signatures */}
-                  {showPreview && appliedSignatures.length > 0 && (
+                  {showPreview && (
                     <div className="bg-white rounded-lg p-4">
                       <h3 className="text-lg font-medium text-gray-900 mb-3">
                         {t("signPDF.preview")}
@@ -2473,89 +2637,116 @@ const SignPDF = () => {
                               </Tooltip>
                             )}
                           </TooltipProvider>
+                          {/* In the preview section action buttons */}
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <div
+                                  className="flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-gray-100 transition duration-200"
+                                  onClick={handleFinalShare}
+                                  disabled={shareLoading}
+                                >
+                                  <Share className="w-6 h-6 text-green-600 hover:text-green-800" />
+                                  <span className="text-sm text-green-600 font-medium">
+                                    {shareLoading
+                                      ? t("signPDF.sharing")
+                                      : t("signPDF.share")}
+                                  </span>
+                                </div>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                {t("signPDF.share_document")}
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
                         </div>
                       </div>
-                      <div className="space-y-3 max-h-[350px] overflow-x-auto">
-                        {appliedSignatures.map((sig, index) => {
-                          // For all text types, get the text from the first placement or signature text
-                          const displayText =
-                            sig.placements?.[0]?.text || sig.text || "";
+                      {appliedSignatures.length > 0 && (
+                        <div className="space-y-3 max-h-[350px] overflow-x-auto">
+                          {appliedSignatures.map((sig, index) => {
+                            // For all text types, get the text from the first placement or signature text
+                            const displayText =
+                              sig.placements?.[0]?.text || sig.text || "";
 
-                          return (
-                            <div key={index} className="border rounded-lg p-3">
-                              <div className="flex items-center justify-between mb-2">
-                                <span className="font-medium capitalize">
-                                  {t(`signPDF.${sig.type}`)}
-                                </span>
-                                <div className="flex gap-2">
-                                  {/* Edit Icon */}
-                                  <TooltipProvider>
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <button
-                                          onClick={() =>
-                                            handleEditSignature(sig)
-                                          }
-                                          className="p-1 text-blue-600 hover:text-blue-800 transition"
-                                        >
-                                          <Edit2 className="w-4 h-4" />
-                                        </button>
-                                      </TooltipTrigger>
-                                      <TooltipContent>
-                                        {t("signPDF.edit_signature")}
-                                      </TooltipContent>
-                                    </Tooltip>
-                                  </TooltipProvider>
-                                  {/* Place Button */}
-                                  <button
-                                    onClick={() =>
-                                      handleAddPlacement(
-                                        sig.id,
-                                        currentPage - 1
-                                      )
-                                    }
-                                    className="px-3 py-1 bg-forest text-white text-sm rounded hover:bg-gold hover:text-forest"
+                            return (
+                              <div
+                                key={index}
+                                className="border rounded-lg p-3"
+                              >
+                                <div className="flex items-center justify-between mb-2">
+                                  <span className="font-medium capitalize">
+                                    {t(`signPDF.${sig.type}`)}
+                                  </span>
+                                  <div className="flex gap-2">
+                                    {/* Edit Icon */}
+                                    <TooltipProvider>
+                                      <Tooltip>
+                                        <TooltipTrigger asChild>
+                                          <button
+                                            onClick={() =>
+                                              handleEditSignature(sig)
+                                            }
+                                            className="p-1 text-blue-600 hover:text-blue-800 transition"
+                                          >
+                                            <Edit2 className="w-4 h-4" />
+                                          </button>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                          {t("signPDF.edit_signature")}
+                                        </TooltipContent>
+                                      </Tooltip>
+                                    </TooltipProvider>
+                                    {/* Place Button */}
+                                    <button
+                                      onClick={() =>
+                                        handleAddPlacement(
+                                          sig.id,
+                                          currentPage - 1
+                                        )
+                                      }
+                                      className="px-3 py-1 bg-forest text-white text-sm rounded hover:bg-gold hover:text-forest"
+                                    >
+                                      {t(`signPDF.place_${sig.type}`)}
+                                    </button>
+                                  </div>
+                                </div>
+
+                                {(sig.type === "fullName" ||
+                                  sig.type === "initials" ||
+                                  sig.type === "freeText") && (
+                                  <div
+                                    style={{
+                                      fontFamily: sig.fontFamily,
+                                      color: sig.color,
+                                      fontSize: `${sig.fontSize}px`,
+                                    }}
+                                    className="text-center"
                                   >
-                                    {t(`signPDF.place_${sig.type}`)}
-                                  </button>
-                                </div>
-                              </div>
+                                    {displayText || t("signPDF.no_text_added")}
+                                  </div>
+                                )}
 
-                              {(sig.type === "fullName" ||
-                                sig.type === "initials" ||
-                                sig.type === "freeText") && (
-                                <div
-                                  style={{
-                                    fontFamily: sig.fontFamily,
-                                    color: sig.color,
-                                    fontSize: `${sig.fontSize}px`,
-                                  }}
-                                  className="text-center"
-                                >
-                                  {displayText || t("signPDF.no_text_added")}
-                                </div>
-                              )}
+                                {sig.type === "signature" &&
+                                  sig.signatureData && (
+                                    <img
+                                      src={sig.signatureData}
+                                      alt="Signature"
+                                      className="h-8 mx-auto"
+                                    />
+                                  )}
 
-                              {sig.type === "signature" &&
-                                sig.signatureData && (
+                                {sig.type === "image" && sig.imageFile && (
                                   <img
-                                    src={sig.signatureData}
-                                    alt="Signature"
+                                    src={URL.createObjectURL(sig.imageFile)}
+                                    alt="Logo"
                                     className="h-8 mx-auto"
                                   />
                                 )}
-
-                              {sig.type === "image" && sig.imageFile && (
-                                <img
-                                  src={URL.createObjectURL(sig.imageFile)}
-                                  alt="Logo"
-                                  className="h-8 mx-auto"
-                                />
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -2650,6 +2841,26 @@ const SignPDF = () => {
                           }}
                         >
                           <div className="relative w-full h-full">
+                            {placementAssignments[placement.id] && (
+                              <div className="absolute -top-8 left-0 bg-blue-500 text-white text-xs px-2 py-1 rounded">
+                                {
+                                  placementRecipients.find(
+                                    (r) =>
+                                      r.email ===
+                                      placementAssignments[placement.id]
+                                  )?.name
+                                }
+                              </div>
+                            )}
+
+                            {/* Assign button */}
+                            <button
+                              onClick={() => handleOpenAssignModal(placement)}
+                              className="absolute -top-2 -right-8 w-6 h-6 bg-blue-500 text-white rounded-full text-xs flex items-center justify-center z-20 hover:bg-blue-600"
+                              title={t("signPDF.assign_recipient")}
+                            >
+                              <User className="w-3 h-3" />
+                            </button>
                             {/* Close button */}
                             <button
                               onClick={() =>
@@ -2902,9 +3113,10 @@ const SignPDF = () => {
         <ShareModal
           isOpen={shareModal}
           onClose={() => setShareModal(false)}
-          allowReorder={true} // toggle reordering here
-          onSubmit={handleShareSubmit}
+          allowReorder={true}
+          // onSubmit={handleShareSubmit}
           shareLoading={shareLoading}
+          onRecipientsSaved={handleShareSubmit} // Use the new handler
         />
       )}
 
@@ -2918,6 +3130,20 @@ const SignPDF = () => {
           }}
           fileInfo={viewInfoData}
           loading={fileInfoLoading}
+        />
+      )}
+
+      {assignRecipientModal && (
+        <AssignRecipientModal
+          isOpen={assignRecipientModal}
+          onClose={() => {
+            setAssignRecipientModal(false);
+            setCurrentPlacement(null);
+          }}
+          placement={currentPlacement}
+          recipients={placementRecipients || []} // Add safety check here too
+          currentAssignment={placementAssignments[currentPlacement?.id]}
+          onAssign={handleAssignRecipient}
         />
       )}
     </>

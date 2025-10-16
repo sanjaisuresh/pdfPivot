@@ -1128,6 +1128,21 @@
     "status_completed": "Completed",
     "status_signed": "Signed",
     "no_signed_document": "No signed document available",
-    "select_formats":"Select allowed Format"
+    "select_formats": "Select allowed Format",
+    "share_preview": "Share Preview",
+    "confirm_share": "Confirm & Share",
+    "share_details": "Share Details",
+    "recipients": "Recipients",
+    "settings": "Settings",
+    "document_preview": "Document Preview",
+    "assign_recipient": "Assign Recipient",
+    "assign_recipient_desc": "Select which recipient should sign this field",
+    "select_recipient": "Select Recipient",
+    "assign": "Assign",
+    "assign_all_placements": "Please assign all placements to recipients before sharing",
+    "recipients_saved": "Recipients saved. Now assign placements to each recipient.",
+    "recipient_assigned": "Recipient assigned successfully",
+    "share_document": "Share document with recipients",
+    "share": "Share"
   }
 }
